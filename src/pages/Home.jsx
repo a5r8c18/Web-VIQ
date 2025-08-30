@@ -7,39 +7,39 @@ const Home = () => {
   const services = [
     {
       icon: Code,
-      title: 'Desarrollo Web',
-      description: 'Aplicaciones web modernas y responsivas con las últimas tecnologías.',
-      features: ['React/Vue/Angular', 'Backend APIs', 'Base de datos']
+      title: 'Web Development',
+      description: 'Modern and responsive web applications with the latest technologies.',
+      features: ['React/Vue/Angular', 'Backend APIs', 'Database']
     },
     {
       icon: Smartphone,
-      title: 'Apps Móviles',
-      description: 'Aplicaciones nativas e híbridas para iOS y Android.',
-      features: ['React Native', 'Flutter', 'Nativo iOS/Android']
+      title: 'Mobile Apps',
+      description: 'Native and hybrid applications for iOS and Android.',
+      features: ['React Native', 'Flutter', 'Native iOS/Android']
     },
     {
       icon: Cloud,
       title: 'Cloud Computing',
-      description: 'Soluciones en la nube escalables y seguras.',
-      features: ['AWS/Azure/GCP', 'DevOps', 'Microservicios']
+      description: 'Scalable and secure cloud solutions.',
+      features: ['AWS/Azure/GCP', 'DevOps', 'Microservices']
     },
     {
       icon: Users,
-      title: 'Consultoría IT',
-      description: 'Asesoramiento estratégico para la transformación digital.',
-      features: ['Arquitectura', 'Estrategia', 'Optimización']
+      title: 'IT Consulting',
+      description: 'Strategic advice for digital transformation.',
+      features: ['Architecture', 'Strategy', 'Optimization']
     },
     {
       icon: Shield,
-      title: 'Ciberseguridad',
-      description: 'Protección avanzada para tus sistemas y datos sensibles.',
-      features: ['Auditorías', 'Pentesting', 'Cumplimiento']
+      title: 'Cybersecurity',
+      description: 'Advanced protection for your systems and sensitive data.',
+      features: ['Audits', 'Pentesting', 'Compliance']
     },
     {
       icon: BarChart2,
-      title: 'Marketing Digital',
-      description: 'Estrategias digitales para aumentar tu presencia en línea.',
-      features: ['SEO/SEM', 'Redes Sociales', 'Analítica Web']
+      title: 'Digital Marketing',
+      description: 'Digital strategies to increase your online presence.',
+      features: ['SEO/SEM', 'Social Media', 'Web Analytics']
     }
   ];
 
@@ -114,10 +114,10 @@ const Home = () => {
         <div className="relative z-10 w-full">
           <div className="text-center mb-16 container-custom">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Nuestros Servicios
+              Our Services
             </h2>
             <p className="text-lg text-white/90 max-w-2xl mx-auto">
-              Soluciones tecnológicas completas para impulsar tu negocio al siguiente nivel
+              Complete technological solutions to boost your business to the next level
             </p>
           </div>
 
@@ -221,7 +221,7 @@ const Home = () => {
               to="/servicios" 
               className="group relative inline-flex items-center justify-center px-8 py-3 bg-white text-gray-900 dark:bg-gradient-to-r dark:from-yellow-600 dark:to-yellow-600 dark:text-white font-medium rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-white/30 dark:hover:shadow-yellow-600/30"
             >
-              <span className="relative z-10">Ver todos los servicios</span>
+              <span className="relative z-10">View all services</span>
               <ArrowRight className="w-5 h-5 ml-2 text-gray-900 dark:text-white group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -240,9 +240,9 @@ const Home = () => {
 
         <div className="container-custom relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-black dark:text-gold-600 mb-4">¿Por qué elegirnos?</h2>
+            <h2 className="text-4xl font-bold text-black dark:text-gold-600 mb-4">Why Choose Us?</h2>
             <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-              Más de 10 años de experiencia ofreciendo soluciones tecnológicas de primer nivel
+              Over 10 years of experience offering top-level technological solutions
             </p>
           </div>
 
@@ -250,38 +250,38 @@ const Home = () => {
             {[
               {
                 icon: <Code className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
-                title: "Tecnología de Vanguardia",
-                description: "Utilizamos las últimas tecnologías y frameworks del mercado para ofrecerte soluciones modernas y escalables.",
+                title: "Cutting-Edge Technology",
+                description: "We use the latest technologies and frameworks on the market to offer you modern and scalable solutions.",
                 bgGradient: "from-blue-100 via-blue-50 to-transparent dark:from-gold-600/5 dark:via-gold-500/10 dark:to-transparent"
               },
               {
                 icon: <Users className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
-                title: "Equipo Especializado",
-                description: "Nuestro equipo de expertos está altamente capacitado para enfrentar cualquier desafío tecnológico.",
+                title: "Specialized Team",
+                description: "Our team of experts is highly trained to face any technological challenge.",
                 bgGradient: "from-blue-100 via-blue-50 to-transparent dark:from-gold-600/5 dark:via-gold-500/10 dark:to-transparent"
               },
               {
                 icon: <Shield className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
-                title: "Seguridad Garantizada",
-                description: "Implementamos los más altos estándares de seguridad para proteger tus datos y los de tus clientes.",
+                title: "Guaranteed Security",
+                description: "We implement the highest security standards to protect your data and that of your clients.",
                 bgGradient: "from-blue-100 via-blue-50 to-transparent dark:from-gold-600/5 dark:via-gold-500/10 dark:to-transparent"
               },
               {
                 icon: <Clock className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
-                title: "Entregas a Tiempo",
-                description: "Cumplimos con los plazos acordados sin comprometer la calidad del producto final.",
+                title: "On-Time Deliveries",
+                description: "We meet the agreed deadlines without compromising the quality of the final product.",
                 bgGradient: "from-blue-100 via-blue-50 to-transparent dark:from-gold-600/5 dark:via-gold-500/10 dark:to-transparent"
               },
               {
                 icon: <MessageCircle className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
-                title: "Comunicación Clara",
-                description: "Mantenemos una comunicación constante y transparente durante todo el desarrollo del proyecto.",
+                title: "Clear Communication",
+                description: "We maintain constant and transparent communication throughout the project development.",
                 bgGradient: "from-blue-100 via-blue-50 to-transparent dark:from-gold-600/5 dark:via-gold-500/10 dark:to-transparent"
               },
               {
                 icon: <Award className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
-                title: "Soporte Continuo",
-                description: "Ofrecemos soporte técnico continuo incluso después de finalizado el proyecto.",
+                title: "Continuous Support",
+                description: "We offer continuous technical support even after the project is finished.",
                 bgGradient: "from-blue-100 via-blue-50 to-transparent dark:from-gold-600/5 dark:via-gold-500/10 dark:to-transparent"
               }
             ].map((item, index) => (
@@ -306,33 +306,47 @@ const Home = () => {
       </section>
 
       {/* Sección Testimonios */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container-custom">
+      <section className="relative py-20 overflow-hidden">
+        {/* Video de fondo */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/videos/8725948-uhd_3840_2160_25fps.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 via-gray-900/80 to-gray-900/90"></div>
+        </div>
+
+        <div className="container-custom relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-black dark:text-gold-600 mb-4">Lo que dicen nuestros clientes</h2>
-            <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-              Testimonios de empresas que han confiado en nuestros servicios
+            <h2 className="text-4xl font-bold text-white mb-4">What Our Clients Say</h2>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+              Testimonials from companies that have trusted our services
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                quote: "Increíble trabajo. El equipo superó todas nuestras expectativas con su profesionalismo y atención al detalle.",
+                quote: "Incredible work. The team exceeded all our expectations with their professionalism and attention to detail.",
                 author: "María González",
                 position: "CEO, TechSolutions",
                 rating: 5
               },
               {
-                quote: "La mejor inversión que hemos hecho. Su enfoque en la experiencia del usuario es excepcional.",
+                quote: "The best investment we've made. Their focus on user experience is exceptional.",
                 author: "Carlos Méndez",
-                position: "Director de Marketing, DigitalPlus",
+                position: "Director of Marketing, DigitalPlus",
                 rating: 5
               },
               {
-                quote: "Soporte excepcional y soluciones personalizadas que realmente entienden nuestras necesidades.",
+                quote: "Exceptional support and customized solutions that really understand our needs.",
                 author: "Ana Ramírez",
-                position: "Gerente de TI, InnovateCorp",
+                position: "IT Manager, InnovateCorp",
                 rating: 5
               }
             ].map((testimonial, index) => (
@@ -374,22 +388,22 @@ const Home = () => {
         </div>
 
         <div className="container-custom relative z-10 text-center">
-          <h2 className="text-4xl font-bold text-black dark:text-white mb-6">¿Listo para transformar tu negocio?</h2>
+          <h2 className="text-4xl font-bold text-black dark:text-white mb-6">Ready to Transform Your Business?</h2>
           <p className="text-xl text-gray-800 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            Contáctanos hoy mismo y descubre cómo podemos ayudarte a alcanzar tus objetivos tecnológicos.
+            Contact us today and discover how we can help you achieve your technological goals.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link 
               to="/contacto" 
               className="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-900 transition-colors"
             >
-              Contáctanos
+              Contact Us
             </Link>
             <Link 
               to="/servicios" 
               className="bg-black text-white border-2 border-black px-8 py-3 rounded-lg font-medium hover:bg-gray-900 transition-colors"
             >
-              Nuestros Servicios
+              Our Services
             </Link>
           </div>
         </div>

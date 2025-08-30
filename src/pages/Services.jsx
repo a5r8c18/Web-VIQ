@@ -17,11 +17,11 @@ const Services = () => {
   }, [])
 
   const categories = [
-    { id: 'all', name: 'Todos' },
-    { id: 'development', name: 'Desarrollo' },
+    { id: 'all', name: 'All' },
+    { id: 'development', name: 'Development' },
     { id: 'marketing', name: 'Marketing' },
     { id: 'cloud', name: 'Cloud' },
-    { id: 'consulting', name: 'Consultoría' }
+    { id: 'consulting', name: 'Consulting' }
   ]
 
   const services = [
@@ -29,65 +29,65 @@ const Services = () => {
       id: 1,
       category: 'development',
       icon: <Code className="h-8 w-8" />,
-      title: 'Desarrollo Web',
-      description: 'Sitios web y aplicaciones personalizadas construidas con tecnologías modernas para un rendimiento óptimo.',
-      features: ['React, Vue, Angular', 'Diseño Responsivo', 'Aplicaciones Web Progresivas', 'Optimización SEO'],
-      price: 'Desde $2,500',
-      duration: '4-8 semanas',
+      title: 'Web Development',
+      description: 'Custom websites and applications built with modern technologies for optimal performance.',
+      features: ['React, Vue, Angular', 'Responsive Design', 'Progressive Web Apps', 'SEO Optimization'],
+      price: 'From $2,500',
+      duration: '4-8 weeks',
       popular: true
     },
     {
       id: 2,
       category: 'development',
       icon: <Smartphone className="h-8 w-8" />,
-      title: 'Apps Móviles',
-      description: 'Aplicaciones nativas e híbridas para iOS y Android.',
-      features: ['React Native', 'Flutter', 'iOS/Android Nativo', 'Publicación en Tiendas'],
-      price: 'Desde $4,000',
-      duration: '8-12 semanas',
+      title: 'Mobile Apps',
+      description: 'Native and hybrid applications for iOS and Android.',
+      features: ['React Native', 'Flutter', 'Native iOS/Android', 'App Store Publishing'],
+      price: 'From $4,000',
+      duration: '8-12 weeks',
       popular: true
     },
     {
       id: 3,
       category: 'marketing',
       icon: <BarChart2 className="h-8 w-8" />,
-      title: 'Marketing Digital',
-      description: 'Estrategias de marketing basadas en datos para hacer crecer tu presencia en línea.',
-      features: ['SEO/SEM', 'Redes Sociales', 'Marketing de Contenidos', 'Analítica'],
-      price: 'Desde $1,500',
-      duration: 'Continuo',
+      title: 'Digital Marketing',
+      description: 'Data-driven marketing strategies to grow your online presence.',
+      features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Analytics'],
+      price: 'From $1,500',
+      duration: 'Ongoing',
       popular: true
     },
     {
       id: 4,
       category: 'cloud',
       icon: <Cloud className="h-8 w-8" />,
-      title: 'Migración a la Nube',
-      description: 'Transición sin problemas a la infraestructura en la nube con máximo rendimiento.',
-      features: ['AWS/Azure/GCP', 'Migración de Datos', 'Optimización de Costos', 'Seguridad'],
-      price: 'Desde $5,000',
-      duration: '6-14 semanas',
+      title: 'Cloud Migration',
+      description: 'Seamless transition to cloud infrastructure with maximum performance.',
+      features: ['AWS/Azure/GCP', 'Data Migration', 'Cost Optimization', 'Security'],
+      price: 'From $5,000',
+      duration: '6-14 weeks',
       popular: false
     },
     {
       id: 5,
       category: 'cloud',
       icon: <Shield className="h-8 w-8" />,
-      title: 'DevOps & Seguridad',
-      description: 'Implementación de prácticas DevOps y medidas de seguridad para proteger tus activos digitales.',
-      features: ['Pipelines CI/CD', 'Docker/Kubernetes', 'Auditorías de Seguridad', 'Monitoreo'],
-      price: 'Desde $3,000',
-      duration: '4-8 semanas',
+      title: 'DevOps & Security',
+      description: 'Implementation of DevOps practices and security measures to protect your digital assets.',
+      features: ['CI/CD Pipelines', 'Docker/Kubernetes', 'Security Audits', 'Monitoring'],
+      price: 'From $3,000',
+      duration: '4-8 weeks',
       popular: true
     },
     {
       id: 6,
       category: 'consulting',
       icon: <Users className="h-8 w-8" />,
-      title: 'Consultoría IT',
-      description: 'Orientación experta para alinear tu tecnología con los objetivos de negocio.',
-      features: ['Estrategia Tecnológica', 'Transformación Digital', 'Arquitectura de Sistemas', 'Capacitación'],
-      price: 'Desde $150/hora',
+      title: 'IT Consulting',
+      description: 'Expert guidance to align your technology with business objectives.',
+      features: ['Technology Strategy', 'Digital Transformation', 'Systems Architecture', 'Training'],
+      price: 'From $150/hour',
       duration: 'Flexible',
       popular: false
     },
@@ -95,11 +95,11 @@ const Services = () => {
       id: 7,
       category: 'development',
       icon: <Zap className="h-8 w-8" />,
-      title: 'Desarrollo Full-Stack',
-      description: 'Servicios de desarrollo de extremo a extremo desde el concepto hasta el despliegue.',
-      features: ['Frontend & Backend', 'Diseño de Base de Datos', 'Desarrollo de API', 'Despliegue'],
-      price: 'Desde $6,500',
-      duration: '10-16 semanas',
+      title: 'Full-Stack Development',
+      description: 'End-to-end development services from concept to deployment.',
+      features: ['Frontend & Backend', 'Database Design', 'API Development', 'Deployment'],
+      price: 'From $6,500',
+      duration: '10-16 weeks',
       popular: true
     },
     {
@@ -107,10 +107,10 @@ const Services = () => {
       category: 'marketing',
       icon: <Target className="h-8 w-8" />,
       title: 'Branding',
-      description: 'Crea una identidad de marca sólida que resuene con tu audiencia objetivo.',
-      features: ['Diseño de Logo', 'Guías de Marca', 'Identidad Visual', 'Estrategia de Marca'],
-      price: 'Desde $3,000',
-      duration: '4-6 semanas',
+      description: 'Create a solid brand identity that resonates with your target audience.',
+      features: ['Logo Design', 'Brand Guides', 'Visual Identity', 'Brand Strategy'],
+      price: 'From $3,000',
+      duration: '4-6 weeks',
       popular: false
     }
   ]
@@ -143,7 +143,7 @@ const Services = () => {
   if (!isMounted) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="animate-pulse text-yellow-500">Cargando servicios...</div>
+        <div className="animate-pulse text-yellow-500">Loading services...</div>
       </div>
     )
   }
@@ -157,9 +157,9 @@ const Services = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Nuestros Servicios</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Soluciones tecnológicas personalizadas para impulsar tu negocio al siguiente nivel.
+            Custom technology solutions to take your business to the next level.
           </p>
         </motion.div>
 
@@ -208,7 +208,7 @@ const Services = () => {
                   <div className="relative z-10 p-8 h-full flex flex-col">
                     {service.popular && (
                       <div className="absolute top-4 right-4 bg-gradient-to-r dark:from-yellow-600 dark:to-yellow-700 from-yellow-500 to-yellow-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                        ¡Popular!
+                        Popular!
                       </div>
                     )}
                     
@@ -220,7 +220,7 @@ const Services = () => {
                     <p className="dark:text-yellow-300/80 text-gray-600 mb-6 flex-grow">{service.description}</p>
                     
                     <div className="mb-6">
-                      <h4 className="dark:text-yellow-400 text-gray-800 font-medium mb-3">Incluye:</h4>
+                      <h4 className="dark:text-yellow-400 text-gray-800 font-medium mb-3">Includes:</h4>
                       <ul className="space-y-2">
                         {service.features.map((feature, index) => (
                           <li key={index} className="flex items-center dark:text-yellow-300/80 text-gray-600 text-sm">
@@ -237,7 +237,7 @@ const Services = () => {
                         <span className="dark:text-yellow-500/70 text-gray-500 text-sm">{service.duration}</span>
                       </div>
                       <Link 
-                        to="/contacto" 
+                        to="/contact" 
                         className="dark:text-yellow-400 text-yellow-600 hover:text-yellow-700 dark:hover:text-yellow-300 transition-colors"
                       >
                         <ArrowRight className="h-5 w-5" />

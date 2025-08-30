@@ -21,7 +21,7 @@ const Footer = () => {
               <span className="text-2xl font-bold text-blue-600 dark:text-yellow-500">Systems</span>
             </Link>
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-              Líderes en soluciones tecnológicas innovadoras. Transformamos ideas en realidad digital con excelencia y pasión.
+              Leaders in innovative technology solutions. We transform ideas into digital reality with excellence and passion.
             </p>
             <div className="flex space-x-4 pt-2">
               {[
@@ -44,14 +44,14 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Enlaces Rápidos</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Links</h3>
             <ul className="space-y-3">
               {[
-                { name: 'Inicio', path: '/' },
-                { name: 'Servicios', path: '/servicios' },
-                { name: 'Registro', path: '/registro' },
-                { name: 'Sobre Nosotros', path: '/nosotros' },
-                { name: 'Contacto', path: '/contacto' }
+                { name: 'Home', path: '/' },
+                { name: 'Services', path: '/services' },
+                { name: 'Register', path: '/register' },
+                { name: 'About Us', path: '/about' },
+                { name: 'Contact', path: '/contact' }
               ].map((link, index) => (
                 <li key={index}>
                   <Link 
@@ -68,15 +68,15 @@ const Footer = () => {
 
           {/* Services */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Servicios</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Services</h3>
             <ul className="space-y-3">
               {[
-                'Desarrollo Web',
-                'Aplicaciones Móviles',
+                'Web Development',
+                'Mobile Applications',
                 'Cloud Computing',
-                'Consultoría IT',
-                'Ciberseguridad',
-                'Marketing Digital'
+                'IT Consulting',
+                'Cybersecurity',
+                'Digital Marketing'
               ].map((service, index) => (
                 <li key={index}>
                   <a 
@@ -93,7 +93,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Contáctanos</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
                 <div className="mt-0.5">
@@ -109,7 +109,7 @@ const Footer = () => {
                   <Phone className="h-5 w-5 text-blue-600 dark:text-yellow-500" />
                 </div>
                 <div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Teléfono</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">Phone</span>
                   <p className="text-gray-900 dark:text-white text-sm">+1 234 567 890</p>
                 </div>
               </li>
@@ -118,8 +118,8 @@ const Footer = () => {
                   <MapPin className="h-5 w-5 text-blue-600 dark:text-yellow-500" />
                 </div>
                 <div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Dirección</span>
-                  <p className="text-gray-900 dark:text-white text-sm">Av. Principal 123, Ciudad, País</p>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">Address</span>
+                  <p className="text-gray-900 dark:text-white text-sm">123 Main St, City, Country</p>
                 </div>
               </li>
             </ul>
@@ -128,15 +128,18 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-200 dark:border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-600 dark:text-gray-500 text-sm">
-            &copy; {currentYear} VIQ Systems. Todos los derechos reservados.
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            &copy; {currentYear} Systems. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-gray-600 hover:text-blue-600 dark:text-gray-500 dark:hover:text-yellow-500 text-sm transition-colors">
-              Términos de Servicio
+            <a href="#" className="text-sm text-gray-500 hover:text-blue-600 dark:hover:text-yellow-500 transition-colors">
+              Terms of Service
             </a>
-            <a href="#" className="text-gray-600 hover:text-blue-600 dark:text-gray-500 dark:hover:text-yellow-500 text-sm transition-colors">
-              Política de Privacidad
+            <a href="#" className="text-sm text-gray-500 hover:text-blue-600 dark:hover:text-yellow-500 transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="text-sm text-gray-500 hover:text-blue-600 dark:hover:text-yellow-500 transition-colors">
+              Cookie Policy
             </a>
           </div>
         </div>

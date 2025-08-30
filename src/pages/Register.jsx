@@ -35,59 +35,59 @@ const countryFlagMap = Object.entries(countryPhoneInfo).reduce((acc, [code, {iso
 
 const getCountryName = (isoCode) => {
   const countryNames = {
-    'US': 'Estados Unidos', 'CA': 'Canadá', 'RU': 'Rusia', 'KZ': 'Kazajistán',
-    'EG': 'Egipto', 'ZA': 'Sudáfrica', 'GR': 'Grecia', 'NL': 'Países Bajos',
-    'BE': 'Bélgica', 'FR': 'Francia', 'ES': 'España', 'IT': 'Italia',
-    'RO': 'Rumania', 'CH': 'Suiza', 'AT': 'Austria', 'GB': 'Reino Unido',
-    'DK': 'Dinamarca', 'SE': 'Suecia', 'NO': 'Noruega', 'PL': 'Polonia',
-    'DE': 'Alemania', 'PE': 'Perú', 'MX': 'México', 'CU': 'Cuba',
-    'AR': 'Argentina', 'BR': 'Brasil', 'CL': 'Chile', 'CO': 'Colombia',
-    'VE': 'Venezuela', 'MY': 'Malasia', 'AU': 'Australia', 'ID': 'Indonesia',
-    'PH': 'Filipinas', 'NZ': 'Nueva Zelanda', 'SG': 'Singapur', 'TH': 'Tailandia',
-    'JP': 'Japón', 'KR': 'Corea del Sur', 'VN': 'Vietnam', 'CN': 'China',
-    'TR': 'Turquía', 'IN': 'India', 'PK': 'Pakistán', 'AF': 'Afganistán',
-    'LK': 'Sri Lanka', 'MM': 'Myanmar', 'IR': 'Irán', 'MA': 'Marruecos',
-    'DZ': 'Argelia', 'TN': 'Túnez', 'LY': 'Libia', 'GM': 'Gambia',
-    'SN': 'Senegal', 'MR': 'Mauritania', 'ML': 'Malí', 'GN': 'Guinea',
-    'CI': 'Costa de Marfil', 'BF': 'Burkina Faso', 'NE': 'Níger',
-    'TG': 'Togo', 'BJ': 'Benín', 'MU': 'Mauricio', 'LR': 'Liberia',
-    'SL': 'Sierra Leona', 'GH': 'Ghana', 'NG': 'Nigeria', 'TD': 'Chad',
-    'CF': 'República Centroafricana', 'CM': 'Camerún', 'CV': 'Cabo Verde',
-    'ST': 'Santo Tomé y Príncipe', 'GQ': 'Guinea Ecuatorial', 'GA': 'Gabón',
-    'CG': 'República del Congo', 'CD': 'República Democrática del Congo',
-    'AO': 'Angola', 'GW': 'Guinea-Bisáu', 'SC': 'Seychelles', 'SD': 'Sudán',
-    'RW': 'Ruanda', 'ET': 'Etiopía', 'SO': 'Somalia', 'DJ': 'Yibuti',
-    'KE': 'Kenia', 'TZ': 'Tanzania', 'UG': 'Uganda', 'BI': 'Burundi',
-    'MZ': 'Mozambique', 'ZM': 'Zambia', 'MG': 'Madagascar', 'RE': 'Reunión',
-    'ZW': 'Zimbabue', 'NA': 'Namibia', 'MW': 'Malaui', 'LS': 'Lesoto',
-    'BW': 'Botsuana', 'SZ': 'Suazilandia', 'KM': 'Comoras', 'SH': 'Santa Elena',
-    'ER': 'Eritrea', 'AW': 'Aruba', 'FO': 'Islas Feroe', 'GL': 'Groenlandia',
-    'GI': 'Gibraltar', 'PT': 'Portugal', 'LU': 'Luxemburgo', 'IE': 'Irlanda',
-    'IS': 'Islandia', 'AL': 'Albania', 'MT': 'Malta', 'CY': 'Chipre',
-    'FI': 'Finlandia', 'BG': 'Bulgaria', 'LT': 'Lituania', 'LV': 'Letonia',
-    'EE': 'Estonia', 'MD': 'Moldavia', 'AM': 'Armenia', 'BY': 'Bielorrusia',
-    'AD': 'Andorra', 'MC': 'Mónaco', 'SM': 'San Marino', 'VA': 'Ciudad del Vaticano',
-    'UA': 'Ucrania', 'RS': 'Serbia', 'ME': 'Montenegro', 'XK': 'Kosovo',
-    'HR': 'Croacia', 'SI': 'Eslovenia', 'BA': 'Bosnia y Herzegovina', 'MK': 'Macedonia del Norte',
-    'CZ': 'República Checa', 'SK': 'Eslovaquia', 'LI': 'Liechtenstein', 'FK': 'Islas Malvinas',
-    'BZ': 'Belice', 'GT': 'Guatemala', 'SV': 'El Salvador', 'HN': 'Honduras',
-    'NI': 'Nicaragua', 'CR': 'Costa Rica', 'PA': 'Panamá', 'PM': 'San Pedro y Miquelón',
-    'HT': 'Haití', 'GP': 'Guadalupe', 'BO': 'Bolivia', 'GY': 'Guyana',
-    'EC': 'Ecuador', 'GF': 'Guayana Francesa', 'PY': 'Paraguay', 'MQ': 'Martinica',
-    'SR': 'Surinam', 'UY': 'Uruguay', 'TL': 'Timor Oriental', 'NF': 'Isla Norfolk',
-    'BN': 'Brunéi', 'NR': 'Nauru', 'PG': 'Papúa Nueva Guinea', 'TO': 'Tonga',
-    'SB': 'Islas Salomón', 'VU': 'Vanuatu', 'FJ': 'Fiyi', 'PW': 'Palaos',
-    'WF': 'Wallis y Futuna', 'CK': 'Islas Cook', 'NU': 'Niue', 'WS': 'Samoa',
-    'KI': 'Kiribati', 'NC': 'Nueva Caledonia', 'TV': 'Tuvalu', 'PF': 'Polinesia Francesa',
-    'TK': 'Tokelau', 'FM': 'Micronesia', 'MH': 'Islas Marshall', 'KP': 'Corea del Norte',
-    'HK': 'Hong Kong', 'MO': 'Macao', 'KH': 'Camboya', 'LA': 'Laos',
-    'BD': 'Bangladés', 'TW': 'Taiwán', 'MV': 'Maldivas', 'LB': 'Líbano',
-    'JO': 'Jordania', 'SY': 'Siria', 'IQ': 'Irak', 'KW': 'Kuwait',
-    'SA': 'Arabia Saudita', 'YE': 'Yemen', 'OM': 'Omán', 'PS': 'Palestina',
-    'AE': 'Emiratos Árabes Unidos', 'IL': 'Israel', 'BH': 'Baréin', 'QA': 'Catar',
-    'BT': 'Bután', 'MN': 'Mongolia', 'NP': 'Nepal', 'TJ': 'Tayikistán',
-    'TM': 'Turkmenistán', 'AZ': 'Azerbaiyán', 'GE': 'Georgia', 'KG': 'Kirguistán',
-    'UZ': 'Uzbekistán'
+    'US': 'United States', 'CA': 'Canada', 'RU': 'Russia', 'KZ': 'Kazakhstan',
+    'EG': 'Egypt', 'ZA': 'South Africa', 'GR': 'Greece', 'NL': 'Netherlands',
+    'BE': 'Belgium', 'FR': 'France', 'ES': 'Spain', 'IT': 'Italy',
+    'RO': 'Romania', 'CH': 'Switzerland', 'AT': 'Austria', 'GB': 'United Kingdom',
+    'DK': 'Denmark', 'SE': 'Sweden', 'NO': 'Norway', 'PL': 'Poland',
+    'DE': 'Germany', 'PE': 'Peru', 'MX': 'Mexico', 'CU': 'Cuba',
+    'AR': 'Argentina', 'BR': 'Brazil', 'CL': 'Chile', 'CO': 'Colombia',
+    'VE': 'Venezuela', 'MY': 'Malaysia', 'AU': 'Australia', 'ID': 'Indonesia',
+    'PH': 'Philippines', 'NZ': 'New Zealand', 'SG': 'Singapore', 'TH': 'Thailand',
+    'JP': 'Japan', 'KR': 'South Korea', 'VN': 'Vietnam', 'CN': 'China',
+    'TR': 'Turkey', 'IN': 'India', 'PK': 'Pakistan', 'AF': 'Afghanistan',
+    'LK': 'Sri Lanka', 'MM': 'Myanmar', 'IR': 'Iran', 'MA': 'Morocco',
+    'DZ': 'Algeria', 'TN': 'Tunisia', 'LY': 'Libya', 'GM': 'Gambia',
+    'SN': 'Senegal', 'MR': 'Mauritania', 'ML': 'Mali', 'GN': 'Guinea',
+    'CI': 'Ivory Coast', 'BF': 'Burkina Faso', 'NE': 'Niger',
+    'TG': 'Togo', 'BJ': 'Benin', 'MU': 'Mauritius', 'LR': 'Liberia',
+    'SL': 'Sierra Leone', 'GH': 'Ghana', 'NG': 'Nigeria', 'TD': 'Chad',
+    'CF': 'Central African Republic', 'CM': 'Cameroon', 'CV': 'Cape Verde',
+    'ST': 'Sao Tome and Principe', 'GQ': 'Equatorial Guinea', 'GA': 'Gabon',
+    'CG': 'Republic of the Congo', 'CD': 'Democratic Republic of the Congo',
+    'AO': 'Angola', 'GW': 'Guinea-Bissau', 'SC': 'Seychelles', 'SD': 'Sudan',
+    'RW': 'Rwanda', 'ET': 'Ethiopia', 'SO': 'Somalia', 'DJ': 'Djibouti',
+    'KE': 'Kenya', 'TZ': 'Tanzania', 'UG': 'Uganda', 'BI': 'Burundi',
+    'MZ': 'Mozambique', 'ZM': 'Zambia', 'MG': 'Madagascar', 'RE': 'Reunion',
+    'ZW': 'Zimbabwe', 'NA': 'Namibia', 'MW': 'Malawi', 'LS': 'Lesotho',
+    'BW': 'Botswana', 'SZ': 'Swaziland', 'KM': 'Comoros', 'SH': 'Saint Helena',
+    'ER': 'Eritrea', 'AW': 'Aruba', 'FO': 'Faroe Islands', 'GL': 'Greenland',
+    'GI': 'Gibraltar', 'PT': 'Portugal', 'LU': 'Luxembourg', 'IE': 'Ireland',
+    'IS': 'Iceland', 'AL': 'Albania', 'MT': 'Malta', 'CY': 'Cyprus',
+    'FI': 'Finland', 'BG': 'Bulgaria', 'LT': 'Lithuania', 'LV': 'Latvia',
+    'EE': 'Estonia', 'MD': 'Moldova', 'AM': 'Armenia', 'BY': 'Belarus',
+    'AD': 'Andorra', 'MC': 'Monaco', 'SM': 'San Marino', 'VA': 'Vatican City',
+    'UA': 'Ukraine', 'RS': 'Serbia', 'ME': 'Montenegro', 'XK': 'Kosovo',
+    'HR': 'Croatia', 'SI': 'Slovenia', 'BA': 'Bosnia and Herzegovina', 'MK': 'North Macedonia',
+    'CZ': 'Czech Republic', 'SK': 'Slovakia', 'LI': 'Liechtenstein', 'FK': 'Falkland Islands',
+    'BZ': 'Belize', 'GT': 'Guatemala', 'SV': 'El Salvador', 'HN': 'Honduras',
+    'NI': 'Nicaragua', 'CR': 'Costa Rica', 'PA': 'Panama', 'PM': 'Saint Pierre and Miquelon',
+    'HT': 'Haiti', 'GP': 'Guadeloupe', 'BO': 'Bolivia', 'GY': 'Guyana',
+    'EC': 'Ecuador', 'GF': 'French Guiana', 'PY': 'Paraguay', 'MQ': 'Martinique',
+    'SR': 'Suriname', 'UY': 'Uruguay', 'TL': 'Timor-Leste', 'NF': 'Norfolk Island',
+    'BN': 'Brunei', 'NR': 'Nauru', 'PG': 'Papua New Guinea', 'TO': 'Tonga',
+    'SB': 'Solomon Islands', 'VU': 'Vanuatu', 'FJ': 'Fiji', 'PW': 'Palau',
+    'WF': 'Wallis and Futuna', 'CK': 'Cook Islands', 'NU': 'Niue', 'WS': 'Samoa',
+    'KI': 'Kiribati', 'NC': 'New Caledonia', 'TV': 'Tuvalu', 'PF': 'French Polynesia',
+    'TK': 'Tokelau', 'FM': 'Micronesia', 'MH': 'Marshall Islands', 'KP': 'North Korea',
+    'HK': 'Hong Kong', 'MO': 'Macao', 'KH': 'Cambodia', 'LA': 'Laos',
+    'BD': 'Bangladesh', 'TW': 'Taiwan', 'MV': 'Maldives', 'LB': 'Lebanon',
+    'JO': 'Jordan', 'SY': 'Syria', 'IQ': 'Iraq', 'KW': 'Kuwait',
+    'SA': 'Saudi Arabia', 'YE': 'Yemen', 'OM': 'Oman', 'PS': 'Palestine',
+    'AE': 'United Arab Emirates', 'IL': 'Israel', 'BH': 'Bahrain', 'QA': 'Qatar',
+    'BT': 'Bhutan', 'MN': 'Mongolia', 'NP': 'Nepal', 'TJ': 'Tajikistan',
+    'TM': 'Turkmenistan', 'AZ': 'Azerbaijan', 'GE': 'Georgia', 'KG': 'Kyrgyzstan',
+    'UZ': 'Uzbekistan'
   };
   return countryNames[isoCode] || '';
 };
@@ -119,32 +119,32 @@ const Register = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const services = [
-    'Desarrollo Web Frontend',
-    'Desarrollo Backend & APIs',
-    'Aplicaciones Móviles',
-    'Migración a la Nube',
-    'DevOps & Seguridad',
-    'Consultoría Tecnológica',
-    'Desarrollo Full-Stack',
+    'Web Frontend Development',
+    'Backend & API Development',
+    'Mobile Applications',
+    'Cloud Migration',
+    'DevOps & Security',
+    'Technology Consulting',
+    'Full-Stack Development',
     'Big Data & Analytics',
-    'Otro (especificar en mensaje)'
+    'Other (specify in message)'
   ]
 
   const budgetRanges = [
-    'Menos de $5,000',
+    'Less than $5,000',
     '$5,000 - $15,000',
     '$15,000 - $50,000',
     '$50,000 - $100,000',
-    'Más de $100,000',
-    'Por definir'
+    'More than $100,000',
+    'To be determined'
   ]
 
   const timelineOptions = [
-    'Menos de 1 mes',
-    '1-3 meses',
-    '3-6 meses',
-    '6-12 meses',
-    'Más de 1 año',
+    'Less than 1 month',
+    '1-3 months',
+    '3-6 months',
+    '6-12 months',
+    'More than 1 year',
     'Flexible'
   ]
 
@@ -221,40 +221,40 @@ const Register = () => {
 
     // Validación para nombre
     if (!formData.firstName.trim()) {
-      newErrors.firstName = 'El nombre es requerido'
+      newErrors.firstName = 'First name is required'
     } else if (formData.firstName !== formData.firstName.trim()) {
-      newErrors.firstName = 'El nombre no debe tener espacios al inicio o final'
+      newErrors.firstName = 'First name should not have spaces at the beginning or end'
     } else if (formData.firstName.length > 20) {
-      newErrors.firstName = 'El nombre no puede exceder 20 caracteres'
+      newErrors.firstName = 'First name cannot exceed 20 characters'
     } else if (!/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ\s]*$/.test(formData.firstName)) {
-      newErrors.firstName = 'El nombre debe empezar con mayúscula y solo contener letras'
+      newErrors.firstName = 'First name should start with a capital letter and only contain letters'
     }
 
     // Validación para apellido
     if (!formData.lastName.trim()) {
-      newErrors.lastName = 'El apellido es requerido'
+      newErrors.lastName = 'Last name is required'
     } else if (formData.lastName !== formData.lastName.trim()) {
-      newErrors.lastName = 'El apellido no debe tener espacios al inicio o final'
+      newErrors.lastName = 'Last name should not have spaces at the beginning or end'
     } else if (formData.lastName.length > 20) {
-      newErrors.lastName = 'El apellido no puede exceder 20 caracteres'
+      newErrors.lastName = 'Last name cannot exceed 20 characters'
     } else if (!/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ\s'-]*$/.test(formData.lastName)) {
-      newErrors.lastName = 'El apellido debe empezar con mayúscula y solo puede contener letras, espacios, apóstrofes y guiones'
+      newErrors.lastName = 'Last name should start with a capital letter and only contain letters, spaces, apostrophes, and hyphens'
     }
 
     // Validación para email
     if (!formData.email.trim()) {
-      newErrors.email = 'El email es requerido'
+      newErrors.email = 'Email is required'
     } else if (formData.email !== formData.email.trim()) {
-      newErrors.email = 'El email no debe tener espacios al inicio o final'
+      newErrors.email = 'Email should not have spaces at the beginning or end'
     } else if (formData.email.length > 20) {
-      newErrors.email = 'El email no puede exceder 20 caracteres'
+      newErrors.email = 'Email cannot exceed 20 characters'
     } else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(formData.email)) {
-      newErrors.email = 'Solo se aceptan direcciones de Gmail (@gmail.com)'
+      newErrors.email = 'Only Gmail addresses (@gmail.com) are accepted'
     }
 
     // Validación para teléfono
     if (!formData.phone.trim()) {
-      newErrors.phone = 'El teléfono es requerido'
+      newErrors.phone = 'Phone number is required'
     } else {
       // Remover espacios, guiones y paréntesis para validar solo números
       const cleanPhone = formData.phone.replace(/[^\d+]/g, '');
@@ -265,49 +265,49 @@ const Register = () => {
         const countryCode = phoneWithoutPlus.substring(0, 3); // Tomar hasta 3 dígitos para el código de país
         
         if (!/^\d{10,15}$/.test(phoneWithoutPlus)) {
-          newErrors.phone = 'El teléfono debe tener entre 10 y 15 dígitos (incluyendo código de país)';
+          newErrors.phone = 'Phone number should have between 10 and 15 digits (including country code)';
         } else if (!countryPhoneInfo[countryCode] && !countryPhoneInfo[countryCode.substring(0, 2)] && !countryPhoneInfo[countryCode.substring(0, 1)]) {
-          newErrors.phone = 'Código de país no válido';
+          newErrors.phone = 'Invalid country code';
         } else if (phoneWithoutPlus.length !== countryPhoneInfo[countryCode].length + countryCode.length) {
-          newErrors.phone = `El número de teléfono debe tener ${countryPhoneInfo[countryCode].length} dígitos`;
+          newErrors.phone = `Phone number should have ${countryPhoneInfo[countryCode].length} digits`;
         }
       } else {
         // Validar formato local (sin código de país)
         if (!/^\d{10}$/.test(cleanPhone)) {
-          newErrors.phone = 'Ingresa un número de 10 dígitos o un número internacional con código de país (ej: +52 55 1234 5678)';
+          newErrors.phone = 'Enter a 10-digit phone number or an international number with country code (e.g. +52 55 1234 5678)';
         }
       }
     }
 
     // Validación para empresa
     if (!formData.company.trim()) {
-      newErrors.company = 'El nombre de la empresa es requerido'
+      newErrors.company = 'Company name is required'
     } else if (formData.company !== formData.company.trim()) {
-      newErrors.company = 'El nombre de la empresa no debe tener espacios al inicio o final'
+      newErrors.company = 'Company name should not have spaces at the beginning or end'
     } else if (formData.company.length > 20) {
-      newErrors.company = 'El nombre de la empresa no puede exceder 20 caracteres'
+      newErrors.company = 'Company name cannot exceed 20 characters'
     } else if (!/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ0-9\s&.,-]*$/.test(formData.company)) {
-      newErrors.company = 'El nombre de la empresa debe empezar con mayúscula y solo puede contener letras, números, espacios, &, ., -, y comas'
+      newErrors.company = 'Company name should start with a capital letter and only contain letters, numbers, spaces, &, ., -, and commas'
     }
 
     // Validación para sitio web (opcional)
     if (formData.website.trim() && !/^https?:\/\/.+\..+/.test(formData.website)) {
-      newErrors.website = 'El sitio web debe tener un formato válido (http:// o https://)'
+      newErrors.website = 'Website should have a valid format (http:// or https://)'
     }
 
     // Validación para mensaje (opcional)
     if (formData.message.trim()) {
       const wordCount = formData.message.trim().split(/\s+/).filter(word => word.length > 0).length;
       if (wordCount > 50) {
-        newErrors.message = 'El mensaje no puede exceder 50 palabras';
+        newErrors.message = 'Message cannot exceed 50 words';
       }
     }
 
     // Validaciones requeridas
-    if (!formData.service) newErrors.service = 'Selecciona un servicio'
-    if (!formData.budget) newErrors.budget = 'Selecciona un presupuesto'
-    if (!formData.timeline) newErrors.timeline = 'Selecciona un timeline'
-    if (!formData.terms) newErrors.terms = 'Debes aceptar los términos y condiciones'
+    if (!formData.service) newErrors.service = 'Select a service'
+    if (!formData.budget) newErrors.budget = 'Select a budget'
+    if (!formData.timeline) newErrors.timeline = 'Select a timeline'
+    if (!formData.terms) newErrors.terms = 'You must accept the terms and conditions'
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -341,18 +341,18 @@ const Register = () => {
               <CheckCircle className="h-10 w-10 text-yellow-500" />
             </div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-yellow-400 mb-4">
-              ¡Registro Exitoso!
+              Registration Successful!
             </h2>
             <p className="text-gray-800 dark:text-yellow-300/80 mb-6">
-              Gracias por tu interés en nuestros servicios. Nuestro equipo se pondrá en contacto contigo dentro de las próximas 24 horas.
+              Thank you for your interest in our services. Our team will contact you within the next 24 hours.
             </p>
             <div className="space-y-3 text-sm text-gray-700 dark:text-yellow-400/80 mb-6">
-              <p>📧 Recibirás un email de confirmación</p>
-              <p>📞 Te llamaremos para una consulta inicial</p>
-              <p>📋 Prepararemos una propuesta personalizada</p>
+              <p> You will receive a confirmation email</p>
+              <p> We will call you for an initial consultation</p>
+              <p> We will prepare a personalized proposal</p>
             </div>
             <Link to="/" className="inline-block w-full px-6 py-3 bg-yellow-600 hover:bg-yellow-500 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105">
-              Volver al Inicio
+              Back to Home
             </Link>
           </div>
         </div>
@@ -372,27 +372,27 @@ const Register = () => {
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <span className="inline-block px-3 py-1 text-sm font-medium text-yellow-600 dark:text-yellow-500 bg-yellow-100 dark:bg-yellow-500/10 rounded-full mb-4">
-            Contáctanos
+            Contact Us
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-yellow-400 mb-6">
-            Comienza tu Proyecto
+            Start Your Project
           </h1>
           <p className="text-xl text-gray-600 dark:text-yellow-300/80 max-w-3xl mx-auto mb-8">
-            Cuéntanos sobre tu proyecto y te ayudaremos a convertir tus ideas en realidad. 
-            Obtén una consulta gratuita y propuesta personalizada.
+            Tell us about your project and we will help you turn your ideas into reality. 
+            Get a free consultation and personalized proposal.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <div className="flex items-center space-x-2 bg-yellow-100 dark:bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 px-4 py-2 rounded-full">
               <Shield className="h-5 w-5" />
-              <span className="text-sm">Consulta gratuita</span>
+              <span className="text-sm">Free Consultation</span>
             </div>
             <div className="flex items-center space-x-2 bg-yellow-100 dark:bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 px-4 py-2 rounded-full">
               <Clock className="h-5 w-5" />
-              <span className="text-sm">Respuesta en 24h</span>
+              <span className="text-sm">Response within 24h</span>
             </div>
             <div className="flex items-center space-x-2 bg-yellow-100 dark:bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 px-4 py-2 rounded-full">
               <Users className="h-5 w-5" />
-              <span className="text-sm">Equipo experto</span>
+              <span className="text-sm">Expert Team</span>
             </div>
           </div>
         </div>
@@ -417,7 +417,7 @@ const Register = () => {
               
               <div className="relative z-10 p-8">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-yellow-400 mb-6">
-                  Información del Proyecto
+                  Project Information
                 </h2>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -425,7 +425,7 @@ const Register = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
-                        Nombre *
+                        First Name *
                       </label>
                       <div className="relative">
                         <User className="absolute left-3 top-3 h-5 w-5 text-yellow-500" />
@@ -437,7 +437,7 @@ const Register = () => {
                           className={`w-full pl-10 pr-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400 ${
                             errors.firstName ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
                           }`}
-                          placeholder="Tu nombre"
+                          placeholder="Your first name"
                         />
                       </div>
                       {errors.firstName && <p className="text-red-400 text-sm mt-1">{errors.firstName}</p>}
@@ -445,7 +445,7 @@ const Register = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
-                        Apellido *
+                        Last Name *
                       </label>
                       <div className="relative">
                         <User className="absolute left-3 top-3 h-5 w-5 text-yellow-500" />
@@ -457,7 +457,7 @@ const Register = () => {
                           className={`w-full pl-10 pr-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400 ${
                             errors.lastName ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
                           }`}
-                          placeholder="Tu apellido"
+                          placeholder="Your last name"
                         />
                       </div>
                       {errors.lastName && <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>}
@@ -480,7 +480,7 @@ const Register = () => {
                           className={`w-full pl-10 pr-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400 ${
                             errors.email ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
                           }`}
-                          placeholder="tu@gmail.com"
+                          placeholder="your@gmail.com"
                         />
                       </div>
                       {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
@@ -488,7 +488,7 @@ const Register = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
-                        Teléfono *
+                        Phone Number *
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
@@ -535,7 +535,7 @@ const Register = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
-                        Empresa *
+                        Company *
                       </label>
                       <div className="relative">
                         <Building className="absolute left-3 top-3 h-5 w-5 text-yellow-500" />
@@ -547,7 +547,7 @@ const Register = () => {
                           className={`w-full pl-10 pr-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400 ${
                             errors.company ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
                           }`}
-                          placeholder="Nombre de tu empresa"
+                          placeholder="Company name"
                         />
                       </div>
                       {errors.company && <p className="text-red-400 text-sm mt-1">{errors.company}</p>}
@@ -555,7 +555,7 @@ const Register = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
-                        Sitio Web
+                        Website
                       </label>
                       <div className="relative">
                         <Globe className="absolute left-3 top-3 h-5 w-5 text-yellow-500" />
@@ -567,7 +567,7 @@ const Register = () => {
                           className={`w-full pl-10 pr-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400 ${
                             errors.website ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
                           }`}
-                          placeholder="https://tuempresa.com"
+                          placeholder="https://yourcompany.com"
                         />
                       </div>
                       {errors.website && <p className="text-red-400 text-sm mt-1">{errors.website}</p>}
@@ -577,10 +577,10 @@ const Register = () => {
                   {/* Project Details */}
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
-                      Información del Proyecto
+                      Project Details
                     </h3>
                     <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
-                      Servicio de Interés *
+                      Service of Interest *
                     </label>
                     <select
                       name="service"
@@ -590,7 +590,7 @@ const Register = () => {
                         errors.service ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
                       }`}
                     >
-                      <option value="">Selecciona un servicio</option>
+                      <option value="">Select a service</option>
                       {services.map((service, index) => (
                         <option key={index} value={service}>{service}</option>
                       ))}
@@ -601,7 +601,7 @@ const Register = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
-                        Presupuesto *
+                        Budget *
                       </label>
                       <select
                         name="budget"
@@ -611,7 +611,7 @@ const Register = () => {
                           errors.budget ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
                         }`}
                       >
-                        <option value="">Selecciona presupuesto</option>
+                        <option value="">Select budget</option>
                         {budgetRanges.map((budget, index) => (
                           <option key={index} value={budget}>{budget}</option>
                         ))}
@@ -631,7 +631,7 @@ const Register = () => {
                           errors.timeline ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
                         }`}
                       >
-                        <option value="">Selecciona timeline</option>
+                        <option value="">Select timeline</option>
                         {timelineOptions.map((timeline, index) => (
                           <option key={index} value={timeline}>{timeline}</option>
                         ))}
@@ -643,7 +643,7 @@ const Register = () => {
                   {/* Message */}
                   <div>
                     <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
-                      Describe tu proyecto
+                      Describe your project
                     </label>
                     <div className="relative">
                       <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-yellow-500" />
@@ -655,9 +655,9 @@ const Register = () => {
                         className={`w-full pl-10 pr-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400 ${
                           errors.message ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
                         }`}
-                        placeholder="Cuéntanos más detalles sobre tu proyecto, objetivos y cualquier requerimiento específico..."
+                        placeholder="Tell us more about your project, objectives, and any specific requirements..."
                       />
-                      <p className="text-xs text-yellow-400 mt-1">{formData.message.trim().split(/\s+/).filter(word => word.length > 0).length} / 50 palabras</p>
+                      <p className="text-xs text-yellow-400 mt-1">{formData.message.trim().split(/\s+/).filter(word => word.length > 0).length} / 50 words</p>
                     </div>
                     {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
                   </div>
@@ -673,7 +673,7 @@ const Register = () => {
                         className="mt-1 h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-yellow-600/50 rounded bg-white dark:bg-black"
                       />
                       <span className="text-sm text-yellow-600 dark:text-yellow-400">
-                        Quiero recibir noticias y actualizaciones sobre tecnología
+                        I want to receive news and updates about technology
                       </span>
                     </label>
 
@@ -686,13 +686,13 @@ const Register = () => {
                         className="mt-1 h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-yellow-600/50 rounded bg-white dark:bg-black"
                       />
                       <span className="text-sm text-yellow-600 dark:text-yellow-400">
-                        Acepto los{' '}
+                        I accept the{' '}
                         <a href="#" className="text-yellow-500 hover:text-yellow-400">
-                          términos y condiciones
+                          terms and conditions
                         </a>{' '}
-                        y{' '}
+                        and{' '}
                         <a href="#" className="text-yellow-500 hover:text-yellow-400">
-                          política de privacidad
+                          privacy policy
                         </a>
                         *
                       </span>
@@ -709,11 +709,11 @@ const Register = () => {
                     {isSubmitting ? (
                       <>
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                        <span>Enviando...</span>
+                        <span>Submitting...</span>
                       </>
                     ) : (
                       <>
-                        <span>Enviar Solicitud</span>
+                        <span>Submit Request</span>
                         <ArrowRight className="h-4 w-4" />
                       </>
                     )}
