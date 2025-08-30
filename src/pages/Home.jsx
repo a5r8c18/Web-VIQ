@@ -106,7 +106,7 @@ const Home = () => {
             className="w-full h-full object-cover"
             ref={videoRef => videoRef && (videoRef.playbackRate = 0.4)}
           >
-            <source src="/videos/2792370-hd_1920_1080_30fps.mp4" type="video/mp4" />
+            <source src="/videos/14159465_3840_2160_25fps.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 via-gray-900/80 to-gray-900/90"></div>
         </div>

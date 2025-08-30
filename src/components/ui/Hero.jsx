@@ -39,17 +39,16 @@ const Hero = () => {
 
             {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight tracking-tight">
-              <span className="block">Transforming</span>
+              <span className="block">Your</span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-primary-400">
-                Business Through
+                Digital Revolution
               </span>
-              <span>Innovation</span>
+              <span>Starts Here!</span>
             </h1>
 
             {/* Subheading */}
-            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-              We help businesses thrive in the digital age with cutting-edge web development, 
-              digital marketing, and branding solutions tailored to your unique needs.
+            <p className="text-2xl md:text-3xl font-medium text-white/90 max-w-2xl mx-auto leading-relaxed">
+              Your Vision, our Expertise, your Success!
             </p>
 
             {/* Features */}
@@ -74,13 +73,15 @@ const Hero = () => {
                 <span>Get Started</span>
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
-              <button 
+              <a 
+                href="https://www.youtube.com/@viqsystems" 
+                target="_blank" 
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-medium rounded-lg border border-white/20 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
-                onClick={() => {}}
               >
                 <Play className="h-5 w-5 mr-2" />
-                <span>Watch Demo</span>
-              </button>
+                <span>Watch on YouTube</span>
+              </a>
             </div>
 
             {/* Stats */}
