@@ -117,6 +117,7 @@ const Register = () => {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState('');
 
   const services = [
     'Web Frontend Development',
@@ -221,143 +222,148 @@ const Register = () => {
 
     // Validación para nombre
     if (!formData.firstName.trim()) {
-      newErrors.firstName = 'First name is required'
+      newErrors.firstName = 'First name is required';
     } else if (formData.firstName !== formData.firstName.trim()) {
-      newErrors.firstName = 'First name should not have spaces at the beginning or end'
+      newErrors.firstName = 'Remove spaces at the beginning or end';
     } else if (formData.firstName.length > 20) {
-      newErrors.firstName = 'First name cannot exceed 20 characters'
+      newErrors.firstName = 'Maximum 20 characters';
     } else if (!/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ\s]*$/.test(formData.firstName)) {
-      newErrors.firstName = 'First name should start with a capital letter and only contain letters'
-    }
+      newErrors.firstName = 'Start with capital letter, only letters';
+    } 
 
     // Validación para apellido
     if (!formData.lastName.trim()) {
-      newErrors.lastName = 'Last name is required'
+      newErrors.lastName = 'Last name is required';
     } else if (formData.lastName !== formData.lastName.trim()) {
-      newErrors.lastName = 'Last name should not have spaces at the beginning or end'
+      newErrors.lastName = 'Remove spaces at the beginning or end';
     } else if (formData.lastName.length > 20) {
-      newErrors.lastName = 'Last name cannot exceed 20 characters'
+      newErrors.lastName = 'Maximum 20 characters';
     } else if (!/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ\s'-]*$/.test(formData.lastName)) {
-      newErrors.lastName = 'Last name should start with a capital letter and only contain letters, spaces, apostrophes, and hyphens'
+      newErrors.lastName = 'Invalid characters in last name';
     }
 
     // Validación para email
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required'
-    } else if (formData.email !== formData.email.trim()) {
-      newErrors.email = 'Email should not have spaces at the beginning or end'
-    } else if (formData.email.length > 20) {
-      newErrors.email = 'Email cannot exceed 20 characters'
+      newErrors.email = 'Email is required';
     } else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(formData.email)) {
-      newErrors.email = 'Only Gmail addresses (@gmail.com) are accepted'
+      newErrors.email = 'Only Gmail addresses (@gmail.com)';
+    } else if (formData.email.length > 50) {
+      newErrors.email = 'Maximum 50 characters';
     }
 
     // Validación para teléfono
     if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone number is required'
+      newErrors.phone = 'Phone number is required';
     } else {
-      // Remover espacios, guiones y paréntesis para validar solo números
       const cleanPhone = formData.phone.replace(/[^\d+]/g, '');
       
       if (cleanPhone.startsWith('+')) {
-        // Validar formato internacional (ej: +52 55 1234 5678)
         const phoneWithoutPlus = cleanPhone.substring(1);
-        const countryCode = phoneWithoutPlus.substring(0, 3); // Tomar hasta 3 dígitos para el código de país
+        const countryCode = phoneWithoutPlus.substring(0, 3);
         
         if (!/^\d{10,15}$/.test(phoneWithoutPlus)) {
-          newErrors.phone = 'Phone number should have between 10 and 15 digits (including country code)';
-        } else if (!countryPhoneInfo[countryCode] && !countryPhoneInfo[countryCode.substring(0, 2)] && !countryPhoneInfo[countryCode.substring(0, 1)]) {
+          newErrors.phone = '10-15 digits with country code';
+        } else if (!countryPhoneInfo[countryCode] && 
+                  !countryPhoneInfo[countryCode.substring(0, 2)] && 
+                  !countryPhoneInfo[countryCode.substring(0, 1)]) {
           newErrors.phone = 'Invalid country code';
-        } else if (phoneWithoutPlus.length !== countryPhoneInfo[countryCode].length + countryCode.length) {
-          newErrors.phone = `Phone number should have ${countryPhoneInfo[countryCode].length} digits`;
         }
-      } else {
-        // Validar formato local (sin código de país)
-        if (!/^\d{10}$/.test(cleanPhone)) {
-          newErrors.phone = 'Enter a 10-digit phone number or an international number with country code (e.g. +52 55 1234 5678)';
-        }
+      } else if (!/^\d{10,15}$/.test(cleanPhone)) {
+        newErrors.phone = '10-15 digits required';
       }
     }
 
     // Validación para empresa
     if (!formData.company.trim()) {
-      newErrors.company = 'Company name is required'
-    } else if (formData.company !== formData.company.trim()) {
-      newErrors.company = 'Company name should not have spaces at the beginning or end'
-    } else if (formData.company.length > 20) {
-      newErrors.company = 'Company name cannot exceed 20 characters'
+      newErrors.company = 'Company name is required';
+    } else if (formData.company.length > 50) {
+      newErrors.company = 'Maximum 50 characters';
     } else if (!/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ0-9\s&.,-]*$/.test(formData.company)) {
-      newErrors.company = 'Company name should start with a capital letter and only contain letters, numbers, spaces, &, ., -, and commas'
+      newErrors.company = 'Invalid characters in company name';
     }
 
     // Validación para sitio web (opcional)
     if (formData.website.trim() && !/^https?:\/\/.+\..+/.test(formData.website)) {
-      newErrors.website = 'Website should have a valid format (http:// or https://)'
+      newErrors.website = 'Enter a valid URL (http:// or https://)';
     }
 
     // Validación para mensaje (opcional)
     if (formData.message.trim()) {
       const wordCount = formData.message.trim().split(/\s+/).filter(word => word.length > 0).length;
       if (wordCount > 50) {
-        newErrors.message = 'Message cannot exceed 50 words';
+        newErrors.message = 'Maximum 50 words';
       }
     }
 
-    // Validaciones requeridas
-    if (!formData.service) newErrors.service = 'Select a service'
-    if (!formData.budget) newErrors.budget = 'Select a budget'
-    if (!formData.timeline) newErrors.timeline = 'Select a timeline'
-    if (!formData.terms) newErrors.terms = 'You must accept the terms and conditions'
+    // Validaciones de selección
+    if (!formData.service) newErrors.service = 'Select a service';
+    if (!formData.budget) newErrors.budget = 'Select a budget';
+    if (!formData.timeline) newErrors.timeline = 'Select a timeline';
+    if (!formData.terms) newErrors.terms = 'You must accept the terms';
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     
-    if (!validateForm()) return
+    if (!validateForm()) {
+      console.log('Form validation failed');
+      return;
+    }
 
-    setIsSubmitting(true)
+    console.log('Form submitted, setting isSubmitting to true');
+    setIsSubmitting(true);
+    setSubmitError('');
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-    }, 2000)
+    try {
+      // Simular llamada a la API con un retraso de 1 segundo
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      console.log('Form submission successful, setting isSubmitted to true');
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitError('Ocurrió un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+    } finally {
+      console.log('Form submission process completed');
+      setIsSubmitting(false);
+    }
   }
 
   if (isSubmitted) {
+    console.log('Rendering success message');
     return (
       <div className="min-h-screen bg-white dark:bg-black flex items-center justify-center py-20">
-        <div className="max-w-md w-full text-gray-900 dark:text-white rounded-3xl border-2 border-gray-200 dark:border-yellow-600/50 bg-white dark:bg-black shadow-2xl duration-700 z-10 relative p-8 text-center">
+        <div className="max-w-md w-full text-gray-900 dark:text-white rounded-3xl border-2 border-gray-200 dark:border-green-600/50 bg-white dark:bg-black shadow-2xl duration-700 z-10 relative p-8 text-center">
           <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-tr from-yellow-600/5 via-yellow-400/10 to-yellow-600/5 opacity-60 dark:opacity-60"></div>
-            <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-yellow-700/10 via-yellow-500/15 to-transparent blur-3xl opacity-40"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/10 to-transparent transform -skew-x-12"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-green-600/5 via-green-400/10 to-green-600/5 opacity-60 dark:opacity-60"></div>
+            <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-green-700/10 via-green-500/15 to-transparent blur-3xl opacity-40"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-500/10 to-transparent transform -skew-x-12"></div>
           </div>
           <div className="relative z-10">
-            <div className="w-20 h-20 bg-yellow-100 dark:bg-yellow-500/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-yellow-500/20 transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
-              <CheckCircle className="h-10 w-10 text-yellow-500" />
+            <div className="w-20 h-20 bg-green-100 dark:bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-green-500/20 transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+              <CheckCircle className="h-10 w-10 text-green-500" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-yellow-400 mb-4">
-              Registration Successful!
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-green-400 mb-4">
+              ¡Registro Exitoso!
             </h2>
-            <p className="text-gray-800 dark:text-yellow-300/80 mb-6">
-              Thank you for your interest in our services. Our team will contact you within the next 24 hours.
+            <p className="text-gray-800 dark:text-green-300/80 mb-6">
+              Gracias por tu interés en nuestros servicios. Nuestro equipo se pondrá en contacto contigo en las próximas 24 horas.
             </p>
-            <div className="space-y-3 text-sm text-gray-700 dark:text-yellow-400/80 mb-6">
-              <p> You will receive a confirmation email</p>
-              <p> We will call you for an initial consultation</p>
-              <p> We will prepare a personalized proposal</p>
+            <div className="space-y-3 text-sm text-gray-700 dark:text-green-400/80 mb-6">
+              <p>Recibirás un correo de confirmación</p>
+              <p>Te llamaremos para una consulta inicial</p>
+              <p>Prepararemos una propuesta personalizada</p>
             </div>
-            <Link to="/" className="inline-block w-full px-6 py-3 bg-yellow-600 hover:bg-yellow-500 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105">
-              Back to Home
+            <Link to="/" className="inline-block w-full px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105">
+              Volver al Inicio
             </Link>
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (

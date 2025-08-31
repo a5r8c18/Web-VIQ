@@ -5,6 +5,7 @@ import Footer from './components/layout/Footer'
 import Home from './pages/Home'
 import Services from './pages/Services'
 import Register from './pages/Register'
+import About from './pages/About'
 
 export const ThemeContext = createContext()
 
@@ -38,6 +39,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/servicios" element={<Services />} />
             <Route path="/registro" element={<Register />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </main>
         <Footer />

@@ -7,39 +7,37 @@ const Home = () => {
   const services = [
     {
       icon: Code,
-      title: 'Web Development',
-      description: 'Modern and responsive web applications with the latest technologies.',
-      features: ['React/Vue/Angular', 'Backend APIs', 'Database']
-    },
-    {
-      icon: Smartphone,
-      title: 'Mobile Apps',
-      description: 'Native and hybrid applications for iOS and Android.',
-      features: ['React Native', 'Flutter', 'Native iOS/Android']
-    },
-    {
-      icon: Cloud,
-      title: 'Cloud Computing',
-      description: 'Scalable and secure cloud solutions.',
-      features: ['AWS/Azure/GCP', 'DevOps', 'Microservices']
+      title: 'WEB DEVELOPMENT',
+      description: 'Custom websites and applications built with modern technologies for optimal performance.',
+      features: ['React, Vue, Angular', 'Responsive Design', 'Progressive Web Apps', 'SEO Optimization'],
+      price: 'From $2,500',
+      timeline: '4-8 weeks',
+      popular: true
     },
     {
       icon: Users,
-      title: 'IT Consulting',
-      description: 'Strategic advice for digital transformation.',
-      features: ['Architecture', 'Strategy', 'Optimization']
-    },
-    {
-      icon: Shield,
-      title: 'Cybersecurity',
-      description: 'Advanced protection for your systems and sensitive data.',
-      features: ['Audits', 'Pentesting', 'Compliance']
+      title: 'FULL-STACK DEVELOPMENT',
+      description: 'Desarrollo completo de aplicaciones web desde el frontend hasta el backend.',
+      features: ['React Native', 'Flutter', 'Native iOS/Android', 'App Store Publishing'],
+      price: 'Desde $6,500',
+      timeline: '10-16 semanas',
+      popular: true
     },
     {
       icon: BarChart2,
-      title: 'Digital Marketing',
-      description: 'Digital strategies to increase your online presence.',
-      features: ['SEO/SEM', 'Social Media', 'Web Analytics']
+      title: 'DIGITAL MARKETING',
+      description: 'Data-driven marketing strategies to grow your online presence.',
+      features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Analytics'],
+      price: 'From $1,500',
+      timeline: 'Ongoing'
+    },
+    {
+      icon: Award,
+      title: 'BRANDING',
+      description: 'Create a solid brand identity that resonates with your target audience.',
+      features: ['Logo Design', 'Brand Guides', 'Visual Identity'],
+      price: 'From $3,000',
+      timeline: '4-8 weeks'
     }
   ];
 
@@ -113,115 +111,135 @@ const Home = () => {
         </div>
 
         <div className="relative z-10 w-full">
-          <div className="text-center mb-16 container-custom">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Our Services
-            </h2>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto">
-              Complete technological solutions to boost your business to the next level
-            </p>
-          </div>
-
-          <div 
-            className="relative w-full overflow-hidden py-8"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <div 
-              ref={containerRef}
-              className="flex whitespace-nowrap"
-              style={{
-                transform: `translateX(-${offset}px)`,
-                transition: isPaused ? 'transform 0.3s ease-out' : 'transform 0.1s linear'
-              }}
-            >
-              {items.map((service, index) => (
-                <div 
-                  key={`${service.title}-${index}`}
-                  className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-4"
-                >
-                  <div className="text-white dark:text-gray-800 rounded-3xl border border-white/10 dark:border-white/10 bg-white dark:bg-gradient-to-br dark:from-[#010101] dark:via-[#090909] dark:to-[#010101] shadow-2xl duration-700 z-10 relative backdrop-blur-xl hover:border-white/25 dark:hover:border-white/25 overflow-hidden hover:shadow-white/5 hover:shadow-3xl w-[350px] h-full">
-                    {/* Background effects */}
-                    <div className="absolute inset-0 z-0 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-white/10 dark:from-white/5 dark:to-white/10 opacity-40 dark:opacity-40 group-hover:opacity-60 dark:group-hover:opacity-60 transition-opacity duration-500"></div>
-                      <div 
-                        style={{ animationDelay: '0.5s' }}
-                        className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-white/10 to-transparent dark:from-white/10 dark:to-transparent blur-3xl opacity-30 dark:opacity-30 group-hover:opacity-50 dark:group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"
-                      ></div>
-                      <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-white/5 dark:bg-white/5 blur-xl animate-ping"></div>
-                      <div 
-                        style={{ animationDelay: '1s' }}
-                        className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-white/5 dark:bg-white/5 blur-lg animate-ping"
-                      ></div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent dark:from-transparent dark:via-white/5 dark:to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
-                    </div>
-
-                    {/* Card content */}
-                    <div className="p-8 relative z-10">
-                      <div className="flex flex-col items-center text-center">
-                        <div className="relative mb-6">
-                          <div className="absolute inset-0 rounded-full border-2 border-white/20 dark:border-white/20 animate-ping"></div>
-                          <div 
-                            style={{ animationDelay: '0.5s' }}
-                            className="absolute inset-0 rounded-full border border-white/10 dark:border-white/10 animate-pulse"
-                          ></div>
-                          <div className="p-4 rounded-full backdrop-blur-lg border border-white/20 dark:border-white/20 bg-gradient-to-br from-white/90 to-white/70 dark:from-black/80 dark:to-black/60 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 hover:shadow-white/20">
-                            <div className="transform group-hover:rotate-180 transition-transform duration-700">
-                              <service.icon className="w-8 h-8 text-blue-600 dark:text-yellow-500 group-hover:text-blue-500 dark:group-hover:text-yellow-400 transition-colors duration-300 filter drop-shadow-lg" />
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="mb-4 transform group-hover:scale-105 transition-transform duration-300">
-                          <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
-                            {service.title}
-                          </h3>
-                        </div>
-
-                        <div className="space-y-1 max-w-sm">
-                          <ul className="mt-4 space-y-2">
-                            {service.features.map((feature, i) => (
-                              <li key={i} className="flex items-center text-sm text-gray-700 dark:text-gray-300">
-                                <svg className="w-4 h-4 mr-2 text-blue-500 dark:text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                </svg>
-                                {feature}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <div className="mt-6 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-gray-800 to-transparent dark:from-transparent dark:via-white dark:to-transparent rounded-full transform group-hover:w-1/2 group-hover:h-1 transition-all duration-500 animate-pulse"></div>
-
-                        <div className="flex space-x-2 mt-4 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                          {[0, 0.1, 0.2].map((delay) => (
-                            <div 
-                              key={delay}
-                              style={{ animationDelay: `${delay}s` }}
-                              className="w-2 h-2 bg-white rounded-full animate-bounce"
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Corner accents */}
-                    <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-white/10 to-transparent dark:from-white/10 dark:to-transparent rounded-br-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-white/10 to-transparent dark:from-white/10 dark:to-transparent rounded-tl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </div>
-                </div>
-              ))}
+          {/* VIQ Systems Section */}
+          <div className="py-16 bg-gradient-to-b from-transparent to-black/30">
+            <div className="container-custom text-center">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+                VIQ <span className="text-yellow-400">Systems</span>
+              </h2>
+              <div className="max-w-4xl mx-auto space-y-6 text-lg text-white/90 px-4">
+                <p className="leading-relaxed">
+                  We're passionate about leveraging technology to help businesses thrive in the digital age. With over nine years of experience in the industry, we've honed our expertise in providing cutting-edge solutions that empower our clients to succeed online.
+                </p>
+                <p className="leading-relaxed">
+                  Since our inception in 2020, we've been committed to delivering exceptional results and exceeding our clients' expectations. Over the past nine years, we've evolved and adapted to meet the ever-changing needs of the digital landscape, staying ahead of the curve with innovative solutions and best practices.
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="text-center mt-12">
-            <Link 
-              to="/servicios" 
-              className="group relative inline-flex items-center justify-center px-8 py-3 bg-white text-gray-900 dark:bg-gradient-to-r dark:from-yellow-600 dark:to-yellow-600 dark:text-white font-medium rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-white/30 dark:hover:shadow-yellow-600/30"
+          {/* Our Services Section */}
+          <div className="relative py-16 bg-gradient-to-b from-black/30 to-transparent">
+            <div className="text-center mb-16 container-custom">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Our Services
+              </h2>
+              <p className="text-lg text-white/90 max-w-2xl mx-auto">
+                Complete technological solutions to boost your business to the next level
+              </p>
+            </div>
+
+            <div 
+              className="relative w-full overflow-hidden py-8"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
-              <span className="relative z-10">View all services</span>
-              <ArrowRight className="w-5 h-5 ml-2 text-gray-900 dark:text-white group-hover:translate-x-1 transition-transform" />
-            </Link>
+              <div 
+                ref={containerRef}
+                className="flex whitespace-nowrap"
+                style={{
+                  transform: `translateX(-${offset}px)`,
+                  transition: isPaused ? 'transform 0.3s ease-out' : 'transform 0.1s linear'
+                }}
+              >
+                {items.map((service, index) => (
+                  <div 
+                    key={`${service.title}-${index}`}
+                    className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-4"
+                  >
+                    <div className="text-white dark:text-gray-800 rounded-3xl border border-white/10 dark:border-white/10 bg-white dark:bg-gradient-to-br dark:from-[#010101] dark:via-[#090909] dark:to-[#010101] shadow-2xl duration-700 z-10 relative backdrop-blur-xl hover:border-white/25 dark:hover:border-white/25 overflow-hidden hover:shadow-white/5 hover:shadow-3xl w-[350px] h-full">
+                      {/* Background effects */}
+                      <div className="absolute inset-0 z-0 overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-white/10 dark:from-white/5 dark:to-white/10 opacity-40 dark:opacity-40 group-hover:opacity-60 dark:group-hover:opacity-60 transition-opacity duration-500"></div>
+                        <div 
+                          style={{ animationDelay: '0.5s' }}
+                          className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-white/10 to-transparent dark:from-white/10 dark:to-transparent blur-3xl opacity-30 dark:opacity-30 group-hover:opacity-50 dark:group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"
+                        ></div>
+                        <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-white/5 dark:bg-white/5 blur-xl animate-ping"></div>
+                        <div 
+                          style={{ animationDelay: '1s' }}
+                          className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-white/5 dark:bg-white/5 blur-lg animate-ping"
+                        ></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent dark:from-transparent dark:via-white/5 dark:to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
+                      </div>
+
+                      {/* Card content */}
+                      <div className="p-8 relative z-10">
+                        <div className="flex flex-col items-center text-center">
+                          <div className="relative mb-6">
+                            <div className="absolute inset-0 rounded-full border-2 border-white/20 dark:border-white/20 animate-ping"></div>
+                            <div 
+                              style={{ animationDelay: '0.5s' }}
+                              className="absolute inset-0 rounded-full border border-white/10 dark:border-white/10 animate-pulse"
+                            ></div>
+                            <div className="p-4 rounded-full backdrop-blur-lg border border-white/20 dark:border-white/20 bg-gradient-to-br from-white/90 to-white/70 dark:from-black/80 dark:to-black/60 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 hover:shadow-white/20">
+                              <div className="transform group-hover:rotate-180 transition-transform duration-700">
+                                <service.icon className="w-8 h-8 text-blue-600 dark:text-yellow-500 group-hover:text-blue-500 dark:group-hover:text-yellow-400 transition-colors duration-300 filter drop-shadow-lg" />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="mb-4 transform group-hover:scale-105 transition-transform duration-300">
+                            <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
+                              {service.title}
+                            </h3>
+                          </div>
+
+                          <div className="space-y-1 max-w-sm">
+                            <ul className="space-y-2">
+                              {service.features.map((feature, i) => (
+                                <li key={i} className="flex items-center text-sm text-gray-700 dark:text-gray-300">
+                                  <svg className="w-4 h-4 mr-2 text-blue-500 dark:text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                  <span>{feature}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <div className="mt-6 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-gray-800 to-transparent dark:from-transparent dark:via-white dark:to-transparent rounded-full transform group-hover:w-1/2 group-hover:h-1 transition-all duration-500 animate-pulse"></div>
+
+                          <div className="flex space-x-2 mt-4 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                            {[0, 0.1, 0.2].map((delay) => (
+                              <div 
+                                key={delay}
+                                style={{ animationDelay: `${delay}s` }}
+                                className="w-2 h-2 bg-white rounded-full animate-bounce"
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Corner accents */}
+                      <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-white/10 to-transparent dark:from-white/10 dark:to-transparent rounded-br-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-white/10 to-transparent dark:from-white/10 dark:to-transparent rounded-tl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <Link 
+                to="/servicios" 
+                className="group relative inline-flex items-center justify-center px-8 py-3 bg-white text-gray-900 dark:bg-gradient-to-r dark:from-yellow-600 dark:to-yellow-600 dark:text-white font-medium rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-white/30 dark:hover:shadow-yellow-600/30"
+              >
+                <span className="relative z-10">View all services</span>
+                <ArrowRight className="w-5 h-5 ml-2 text-gray-900 dark:text-white group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -240,7 +258,7 @@ const Home = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-black dark:text-gold-600 mb-4">Why Choose Us?</h2>
             <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-              Over 10 years of experience offering top-level technological solutions
+              Over 5 years of experience offering top-level technological solutions
             </p>
           </div>
 

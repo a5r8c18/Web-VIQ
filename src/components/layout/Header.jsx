@@ -8,9 +8,9 @@ const Header = () => {
   const location = useLocation()
 
   const navigation = [
-    { name: 'Inicio', href: '/' },
-    { name: 'Servicios', href: '/servicios' },
-    { name: 'Registro', href: '/registro' },
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/servicios' },
+    { name: 'Register', href: '/registro' },
   ]
 
   const isActive = (path) => location.pathname === path

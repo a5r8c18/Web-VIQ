@@ -19,9 +19,7 @@ const Services = () => {
   const categories = [
     { id: 'all', name: 'All' },
     { id: 'development', name: 'Development' },
-    { id: 'marketing', name: 'Marketing' },
-    { id: 'cloud', name: 'Cloud' },
-    { id: 'consulting', name: 'Consulting' }
+    { id: 'marketing', name: 'Marketing' }
   ]
 
   const services = [
@@ -39,12 +37,12 @@ const Services = () => {
     {
       id: 2,
       category: 'development',
-      icon: <Smartphone className="h-8 w-8" />,
-      title: 'Mobile Apps',
-      description: 'Native and hybrid applications for iOS and Android.',
-      features: ['React Native', 'Flutter', 'Native iOS/Android', 'App Store Publishing'],
-      price: 'From $4,000',
-      duration: '8-12 weeks',
+      icon: <Zap className="h-8 w-8" />,
+      title: 'Full-Stack Development',
+      description: 'End-to-end development services from concept to deployment.',
+      features: ['Frontend & Backend', 'Database Design', 'API Development', 'Deployment'],
+      price: 'From $6,500',
+      duration: '10-16 weeks',
       popular: true
     },
     {
@@ -60,50 +58,6 @@ const Services = () => {
     },
     {
       id: 4,
-      category: 'cloud',
-      icon: <Cloud className="h-8 w-8" />,
-      title: 'Cloud Migration',
-      description: 'Seamless transition to cloud infrastructure with maximum performance.',
-      features: ['AWS/Azure/GCP', 'Data Migration', 'Cost Optimization', 'Security'],
-      price: 'From $5,000',
-      duration: '6-14 weeks',
-      popular: false
-    },
-    {
-      id: 5,
-      category: 'cloud',
-      icon: <Shield className="h-8 w-8" />,
-      title: 'DevOps & Security',
-      description: 'Implementation of DevOps practices and security measures to protect your digital assets.',
-      features: ['CI/CD Pipelines', 'Docker/Kubernetes', 'Security Audits', 'Monitoring'],
-      price: 'From $3,000',
-      duration: '4-8 weeks',
-      popular: true
-    },
-    {
-      id: 6,
-      category: 'consulting',
-      icon: <Users className="h-8 w-8" />,
-      title: 'IT Consulting',
-      description: 'Expert guidance to align your technology with business objectives.',
-      features: ['Technology Strategy', 'Digital Transformation', 'Systems Architecture', 'Training'],
-      price: 'From $150/hour',
-      duration: 'Flexible',
-      popular: false
-    },
-    {
-      id: 7,
-      category: 'development',
-      icon: <Zap className="h-8 w-8" />,
-      title: 'Full-Stack Development',
-      description: 'End-to-end development services from concept to deployment.',
-      features: ['Frontend & Backend', 'Database Design', 'API Development', 'Deployment'],
-      price: 'From $6,500',
-      duration: '10-16 weeks',
-      popular: true
-    },
-    {
-      id: 8,
       category: 'marketing',
       icon: <Target className="h-8 w-8" />,
       title: 'Branding',
