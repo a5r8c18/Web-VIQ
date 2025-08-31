@@ -51,6 +51,7 @@ const Home = () => {
   const gap = 32; // Espacio entre tarjetas
   const speed = 0.5; // Velocidad del desplazamiento
   const [items, setItems] = useState([]);
+  const [modalImage, setModalImage] = useState(null);
 
   useEffect(() => {
     // Crear un array con los servicios suficientes para el carrusel
@@ -178,9 +179,6 @@ const Home = () => {
                         </div>
 
                         <div className="space-y-1 max-w-sm">
-                          <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                            {service.description}
-                          </p>
                           <ul className="mt-4 space-y-2">
                             {service.features.map((feature, i) => (
                               <li key={i} className="flex items-center text-sm text-gray-700 dark:text-gray-300">
@@ -305,6 +303,89 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Successful Digital Projects Section */}
+      <section className="py-16 bg-gray-50 dark:bg-gray-900">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Our Successful Digital Projects
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {[
+              {
+                title: "Plataforma E-commerce",
+                image: "/images/projects/proyect-1/cover.jpg",
+                fullImage: "/images/projects/proyect-1/full.jpg",
+                link: null
+              },
+              {
+                title: "App de Banca Móvil",
+                image: "/images/projects/proyect-2/cover.jpg",
+                fullImage: "/images/projects/proyect-2/cover.jpg",
+                link: null
+              },
+              {
+                title: "Rediseño de Sitio Web",
+                image: "/images/projects/proyect-3/cover.jpg",
+                fullImage: "/images/projects/proyect-3/full.jpg",
+                link: null
+              },
+              {
+                title: "App de Comida a Domicilio",
+                image: "/images/projects/proyect-4/cover.jpg",
+                fullImage: "/images/projects/proyect-4/cover.jpg",
+                link: "https://vanellix.com/"
+              },
+              {
+                title: "Panel de Ejercicios",
+                image: "/images/projects/proyect-5/cover.jpg",
+                fullImage: "/images/projects/proyect-5/cover.jpg",
+                link: "https://hsbox.cl"
+              },
+              {
+                title: "Portal Inmobiliario",
+                image: "/images/projects/proyect-6/cover.jpg",
+                fullImage: "/images/projects/proyect-6/full.jpg",
+                link: null
+              },
+              {
+                title: "Sistema de Salud",
+                image: "/images/projects/proyect-7/cover.jpg",
+                fullImage: "/images/projects/proyect-7/full.jpg",
+                link: null
+              }
+            ].map((project, index) => (
+              <div 
+                key={index} 
+                className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 aspect-square overflow-hidden rounded-xl"
+                onClick={() => {
+                  if (project.link) {
+                    window.open(project.link, "_blank");
+                  } else if (project.fullImage) {
+                    setModalImage(project.fullImage);
+                  }
+                }}
+              >
+                <div className="relative w-full h-full">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="px-6 py-2 bg-yellow-500 text-white rounded-full text-sm font-medium transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:bg-yellow-600 shadow-lg">
+                      View
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Sección Testimonios */}
       <section className="relative py-20 overflow-hidden">
         {/* Video de fondo */}
@@ -408,6 +489,33 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Modal para la imagen */}
+      {modalImage && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
+          onClick={() => setModalImage(null)}
+        >
+          <div className="relative max-w-6xl w-full max-h-[90vh] flex items-center justify-center">
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setModalImage(null);
+              }}
+              className="absolute -top-12 right-0 text-white hover:text-yellow-400 text-4xl"
+              aria-label="Cerrar"
+            >
+              &times;
+            </button>
+            <img 
+              src={modalImage} 
+              alt="Vista previa del proyecto"
+              className="max-w-full max-h-[80vh] object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
