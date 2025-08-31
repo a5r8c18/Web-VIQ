@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -7,59 +8,64 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Color principal: Negro puro
         primary: {
-          50: '#fffef7',
-          100: '#fffce8',
-          200: '#fff7c2',
-          300: '#ffed8d',
-          400: '#ffdd55',
-          500: '#ffc107',
-          600: '#e6ac00',
-          700: '#cc9900',
-          800: '#b38600',
-          900: '#996600',
+          DEFAULT: '#000000',
+          light: '#333333',  // Versión clara para fondos oscuros
+          dark: '#000000',   // Versión oscura para fondos claros
         },
+        // Color secundario: Dorado personalizado
         secondary: {
-          50: '#f8f8f8',
-          100: '#f0f0f0',
-          200: '#e4e4e4',
-          300: '#d1d1d1',
-          400: '#a3a3a3',
-          500: '#737373',
-          600: '#525252',
-          700: '#404040',
-          800: '#262626',
-          900: '#171717',
+          light: '#FFE87C',  // Dorado claro para fondos oscuros
+          DEFAULT: '#FFD700', // Dorado principal
+          dark: '#B8860B',   // Dorado oscuro para hover/efectos
         },
+        // Escala completa de colores dorados
         gold: {
-          50: '#fffef7',
-          100: '#fffce8',
-          200: '#fff7c2',
-          300: '#ffed8d',
-          400: '#ffdd55',
-          500: '#ffc107',
-          600: '#e6ac00',
-          700: '#cc9900',
-          800: '#b38600',
-          900: '#996600',
+          50: '#FFFBEB',  // Muy claro
+          100: '#FEF3C7', // Claro
+          200: '#FDE68A', // Claro-medio
+          300: '#FCD34D', // Medio
+          400: '#FBBF24', // Medio-intenso
+          500: '#F59E0B', // Intenso
+          600: '#D97706', // Intenso-oscuro (el que estás usando)
+          700: '#B45309', // Oscuro
+          800: '#92400E', // Muy oscuro
+          900: '#78350F', // El tono más oscuro
         },
-        dark: {
-          50: '#f6f6f6',
-          100: '#e7e7e7',
-          200: '#d1d1d1',
-          300: '#b0b0b0',
-          400: '#888888',
-          500: '#6d6d6d',
-          600: '#5d5d5d',
-          700: '#4f4f4f',
-          800: '#454545',
-          900: '#3d3d3d',
-        }
+      },
+      // Configuración de variantes
+      backgroundColor: (theme) => ({
+        ...theme('colors'),
+        'secondary-hover': theme('colors.secondary.dark'),
+      }),
+      // Asegurar contraste en textos
+      textColor: {
+        primary: 'var(--color-text-primary, #000000)',
+        secondary: 'var(--color-text-secondary, #FFD700)',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        display: ['Poppins', 'sans-serif'],
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'slide-up': 'slideUp 0.5s ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+  ],
 }

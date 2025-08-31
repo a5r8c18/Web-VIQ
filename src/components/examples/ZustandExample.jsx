@@ -43,7 +43,7 @@ const ZustandExample = () => {
         Ejemplo de Zustand
       </h2>
       
-      {/* Estado de autenticación */}
+      {/* update state */}
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-secondary-200 mb-2">
           Estado de Autenticación

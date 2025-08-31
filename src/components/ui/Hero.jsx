@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, Play, CheckCircle } from 'lucide-react'
+import { useEffect, useRef } from 'react';
 
 const Hero = () => {
   const features = [
-    'Soluciones personalizadas',
-    'Soporte 24/7',
-    'Tecnología de vanguardia'
+    'Custom Solutions',
+    '24/7 Support',
+    'Cutting-edge Technology',
+    'Proven Results'
   ]
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
@@ -19,68 +21,91 @@ const Hero = () => {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4" />
-          <source src="https://videos.pexels.com/video-files/2278095/2278095-uhd_2560_1440_30fps.mp4" type="video/mp4" />
-          {/* Fallback for browsers that don't support video */}
+          <source src="/videos/VQS.mp4" type="video/mp4" />
+          Tu navegador no soporta el elemento de video.
         </video>
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/70"></div>
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-900/80 via-primary-900/60 to-primary-900/90"></div>
       </div>
       
-      <div className="container-custom section-padding relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-32">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Content */}
           <div className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary-100 leading-tight">
-                Transformamos
-                <span className="text-gold-400 block">Ideas en Realidad</span>
-                Digital
-              </h1>
-              <p className="text-lg text-secondary-300 max-w-2xl mx-auto">
-                Somos líderes en soluciones tecnológicas innovadoras. Ayudamos a empresas 
-                a digitalizar sus procesos y alcanzar el éxito en la era digital.
-              </p>
+            {/* Badge */}
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/90 text-sm font-medium">
+              <span className="w-2 h-2 rounded-full bg-accent-400 mr-2"></span>
+              Leading Digital Solutions Provider
             </div>
 
+            {/* Main Heading */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight tracking-tight">
+              <span className="block">Your</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-primary-400">
+                Digital Revolution
+              </span>
+              <span>Starts Here!</span>
+            </h1>
+
+            {/* Subheading */}
+            <p className="text-2xl md:text-3xl font-medium text-white/90 max-w-2xl mx-auto leading-relaxed">
+              Your Vision, our Expertise, your Success!
+            </p>
+
             {/* Features */}
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex flex-wrap justify-center gap-4">
               {features.map((feature, index) => (
-                <div key={index} className="flex items-center space-x-3">
-                  <CheckCircle className="h-5 w-5 text-gold-400" />
-                  <span className="text-secondary-200">{feature}</span>
+                <div 
+                  key={index} 
+                  className="flex items-center space-x-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10"
+                >
+                  <CheckCircle className="h-4 w-4 text-accent-400" />
+                  <span className="text-sm text-white/90">{feature}</span>
                 </div>
               ))}
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/registro" className="btn-primary flex items-center justify-center space-x-2">
-                <span>Comenzar Ahora</span>
-                <ArrowRight className="h-4 w-4" />
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+              >
+                <span>Get Started</span>
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
-              <button className="btn-secondary flex items-center justify-center space-x-2">
-                <Play className="h-4 w-4" />
-                <span>Ver Demo</span>
-              </button>
+              <a 
+                href="https://www.youtube.com/@viqsystems" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-medium rounded-lg border border-white/20 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+              >
+                <Play className="h-5 w-5 mr-2" />
+                <span>Watch on YouTube</span>
+              </a>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-gold-600/20 max-w-md mx-auto">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gold-400">500+</div>
-                <div className="text-sm text-secondary-300">Proyectos</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gold-400">98%</div>
-                <div className="text-sm text-secondary-300">Satisfacción</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gold-400">24/7</div>
-                <div className="text-sm text-secondary-300">Soporte</div>
-              </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 max-w-4xl mx-auto">
+              {[
+                { value: '500+', label: 'Projects Completed' },
+                { value: '98%', label: 'Client Satisfaction' },
+                { value: '10+', label: 'Years Experience' },
+                { value: '50+', label: 'Team Members' }
+              ].map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-white">{stat.value}</div>
+                  <div className="text-sm text-white/70 mt-1">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="animate-bounce w-8 h-14 border-2 border-white/30 rounded-full flex justify-center p-1">
+          <div className="w-1 h-3 bg-white rounded-full"></div>
         </div>
       </div>
     </section>

@@ -1,134 +1,151 @@
-import { Link } from 'react-router-dom'
-import { Code, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Github } from 'lucide-react'
+import { Link } from 'react-router-dom';
+import { Code, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Github } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-secondary-900 text-white">
-      <div className="container-custom section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-white text-gray-900 border-t border-gray-200 shadow-2xl dark:bg-black dark:text-white dark:border-gray-800">
+      <div className="container-custom py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
-          <div className="space-y-4">
-            <Link to="/" className="flex items-center space-x-2">
-              <Code className="h-8 w-8 text-primary-400" />
-              <span className="text-xl font-bold">TechCorp</span>
+          <div className="space-y-6">
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="p-1.5 rounded-lg">
+                <img 
+                  src="/images/Captura de pantalla (430).png" 
+                  alt="Website Logo" 
+                  className="h-8 w-auto object-contain"
+                />
+              </div>
+              <span className="text-2xl font-bold text-blue-600 dark:text-yellow-500">Systems</span>
             </Link>
-            <p className="text-secondary-300 text-sm">
-              Líderes en soluciones tecnológicas innovadoras. Transformamos ideas en realidad digital.
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              Leaders in innovative technology solutions. We transform ideas into digital reality with excellence and passion.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-secondary-400 hover:text-primary-400 transition-colors">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-secondary-400 hover:text-primary-400 transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-secondary-400 hover:text-primary-400 transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-secondary-400 hover:text-primary-400 transition-colors">
-                <Github className="h-5 w-5" />
-              </a>
+            <div className="flex space-x-4 pt-2">
+              {[
+                { icon: Facebook, url: '#' },
+                { icon: Twitter, url: '#' },
+                { icon: Linkedin, url: '#' },
+                { icon: Github, url: '#' }
+              ].map((social, index) => (
+                <a 
+                  key={index}
+                  href={social.url}
+                  className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-yellow-500 transition-colors p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+                  aria-label={social.icon.name}
+                >
+                  <social.icon className="h-5 w-5" />
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Enlaces Rápidos</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/" className="text-secondary-300 hover:text-primary-400 transition-colors text-sm">
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link to="/servicios" className="text-secondary-300 hover:text-primary-400 transition-colors text-sm">
-                  Servicios
-                </Link>
-              </li>
-              <li>
-                <Link to="/registro" className="text-secondary-300 hover:text-primary-400 transition-colors text-sm">
-                  Registro
-                </Link>
-              </li>
-              <li>
-                <a href="#" className="text-secondary-300 hover:text-primary-400 transition-colors text-sm">
-                  Sobre Nosotros
-                </a>
-              </li>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Links</h3>
+            <ul className="space-y-3">
+              {[
+                { name: 'Home', path: '/' },
+                { name: 'Services', path: '/services' },
+                { name: 'Register', path: '/register' },
+                { name: 'About Us', path: '/about' },
+                { name: 'Contact', path: '/contact' }
+              ].map((link, index) => (
+                <li key={index}>
+                  <Link 
+                    to={link.path} 
+                    className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-yellow-500 transition-colors text-sm flex items-center group"
+                  >
+                    <span className="w-1.5 h-1.5 bg-blue-600/0 group-hover:bg-blue-600 dark:group-hover:bg-yellow-500 rounded-full mr-2 transition-all"></span>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Services */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Servicios</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-secondary-300 hover:text-primary-400 transition-colors text-sm">
-                  Desarrollo Web
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-secondary-300 hover:text-primary-400 transition-colors text-sm">
-                  Aplicaciones Móviles
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-secondary-300 hover:text-primary-400 transition-colors text-sm">
-                  Cloud Computing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-secondary-300 hover:text-primary-400 transition-colors text-sm">
-                  Consultoría IT
-                </a>
-              </li>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Services</h3>
+            <ul className="space-y-3">
+              {[
+                'Web Development',
+                'Mobile Applications',
+                'Cloud Computing',
+                'IT Consulting',
+                'Cybersecurity',
+                'Digital Marketing'
+              ].map((service, index) => (
+                <li key={index}>
+                  <a 
+                    href="#" 
+                    className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-yellow-500 transition-colors text-sm flex items-center group"
+                  >
+                    <span className="w-1.5 h-1.5 bg-blue-600/0 group-hover:bg-blue-600 dark:group-hover:bg-yellow-500 rounded-full mr-2 transition-all"></span>
+                    {service}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Contacto</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center space-x-3">
-                <Mail className="h-4 w-4 text-primary-400" />
-                <span className="text-secondary-300 text-sm">info@techcorp.com</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <Phone className="h-4 w-4 text-primary-400" />
-                <span className="text-secondary-300 text-sm">+1 (555) 123-4567</span>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Contact Us</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start space-x-3">
+                <div className="mt-0.5">
+                  <Mail className="h-5 w-5 text-blue-600 dark:text-yellow-500" />
+                </div>
+                <div>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">Email</span>
+                  <p className="text-gray-900 dark:text-white text-sm">info@viqsystems.com</p>
+                </div>
               </li>
               <li className="flex items-start space-x-3">
-                <MapPin className="h-4 w-4 text-primary-400 mt-0.5" />
-                <span className="text-secondary-300 text-sm">
-                  123 Tech Street<br />
-                  Silicon Valley, CA 94000
-                </span>
+                <div className="mt-0.5">
+                  <Phone className="h-5 w-5 text-blue-600 dark:text-yellow-500" />
+                </div>
+                <div>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">Phone</span>
+                  <p className="text-gray-900 dark:text-white text-sm">+1 234 567 890</p>
+                </div>
+              </li>
+              <li className="flex items-start space-x-3">
+                <div className="mt-0.5">
+                  <MapPin className="h-5 w-5 text-blue-600 dark:text-yellow-500" />
+                </div>
+                <div>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">Address</span>
+                  <p className="text-gray-900 dark:text-white text-sm">123 Main St, City, Country</p>
+                </div>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-secondary-800 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-secondary-400 text-sm">
-              © {currentYear} TechCorp. Todos los derechos reservados.
-            </p>
-            <div className="flex space-x-6">
-              <a href="#" className="text-secondary-400 hover:text-primary-400 transition-colors text-sm">
-                Política de Privacidad
-              </a>
-              <a href="#" className="text-secondary-400 hover:text-primary-400 transition-colors text-sm">
-                Términos de Servicio
-              </a>
-            </div>
+        <div className="border-t border-gray-200 dark:border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Copyright &copy; {currentYear} VIQSystems INC. All Rights Reserved.
+          </p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <a href="#" className="text-sm text-gray-500 hover:text-blue-600 dark:hover:text-yellow-500 transition-colors">
+              Terms of Service
+            </a>
+            <a href="#" className="text-sm text-gray-500 hover:text-blue-600 dark:hover:text-yellow-500 transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="text-sm text-gray-500 hover:text-blue-600 dark:hover:text-yellow-500 transition-colors">
+              Cookie Policy
+            </a>
           </div>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

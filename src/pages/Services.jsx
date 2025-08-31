@@ -1,107 +1,70 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { 
   Code, Smartphone, Cloud, Users, Database, Shield, 
-  Zap, ArrowRight, CheckCircle, Star 
+  Zap, ArrowRight, CheckCircle, Star, ChevronLeft, ChevronRight,
+  Globe, BarChart2, Cpu, Lock, Server, Target, Settings, PenTool, Palette
 } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const Services = () => {
   const [activeCategory, setActiveCategory] = useState('all')
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+    return () => setIsMounted(false)
+  }, [])
 
   const categories = [
-    { id: 'all', name: 'Todos los Servicios' },
-    { id: 'development', name: 'Desarrollo' },
-    { id: 'cloud', name: 'Cloud & DevOps' },
-    { id: 'consulting', name: 'Consultoría' }
+    { id: 'all', name: 'All' },
+    { id: 'development', name: 'Development' },
+    { id: 'marketing', name: 'Marketing' }
   ]
 
   const services = [
     {
       id: 1,
       category: 'development',
-      icon: Code,
-      title: 'Desarrollo Web Frontend',
-      description: 'Interfaces modernas y responsivas con las mejores tecnologías del mercado.',
-      features: ['React, Vue, Angular', 'Responsive Design', 'PWA', 'Optimización SEO'],
-      price: 'Desde $2,500',
-      duration: '4-8 semanas',
-      popular: false
+      icon: <Code className="h-8 w-8" />,
+      title: 'Web Development',
+      description: 'Custom websites and applications built with modern technologies for optimal performance.',
+      features: ['React, Vue, Angular', 'Responsive Design', 'Progressive Web Apps', 'SEO Optimization'],
+      price: 'From $2,500',
+      duration: '4-8 weeks',
+      popular: true
     },
     {
       id: 2,
       category: 'development',
-      icon: Database,
-      title: 'Desarrollo Backend & APIs',
-      description: 'Arquitecturas robustas y escalables para tu aplicación.',
-      features: ['Node.js, Python, .NET', 'APIs RESTful/GraphQL', 'Microservicios', 'Base de datos'],
-      price: 'Desde $3,500',
-      duration: '6-10 semanas',
+      icon: <Zap className="h-8 w-8" />,
+      title: 'Full-Stack Development',
+      description: 'End-to-end development services from concept to deployment.',
+      features: ['Frontend & Backend', 'Database Design', 'API Development', 'Deployment'],
+      price: 'From $6,500',
+      duration: '10-16 weeks',
       popular: true
     },
     {
       id: 3,
-      category: 'development',
-      icon: Smartphone,
-      title: 'Aplicaciones Móviles',
-      description: 'Apps nativas e híbridas para iOS y Android.',
-      features: ['React Native', 'Flutter', 'Nativo iOS/Android', 'App Store Deploy'],
-      price: 'Desde $4,000',
-      duration: '8-12 semanas',
-      popular: false
+      category: 'marketing',
+      icon: <BarChart2 className="h-8 w-8" />,
+      title: 'Digital Marketing',
+      description: 'Data-driven marketing strategies to grow your online presence.',
+      features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Analytics'],
+      price: 'From $1,500',
+      duration: 'Ongoing',
+      popular: true
     },
     {
       id: 4,
-      category: 'cloud',
-      icon: Cloud,
-      title: 'Migración a la Nube',
-      description: 'Transición segura y eficiente hacia infraestructura cloud.',
-      features: ['AWS/Azure/GCP', 'Migración de datos', 'Optimización costos', 'Monitoreo'],
-      price: 'Desde $5,000',
-      duration: '6-14 semanas',
-      popular: false
-    },
-    {
-      id: 5,
-      category: 'cloud',
-      icon: Shield,
-      title: 'DevOps & Seguridad',
-      description: 'Automatización de despliegues y seguridad integral.',
-      features: ['CI/CD Pipelines', 'Docker/Kubernetes', 'Seguridad', 'Monitoreo'],
-      price: 'Desde $3,000',
-      duration: '4-8 semanas',
-      popular: true
-    },
-    {
-      id: 6,
-      category: 'consulting',
-      icon: Users,
-      title: 'Consultoría Tecnológica',
-      description: 'Asesoramiento estratégico para la transformación digital.',
-      features: ['Arquitectura de software', 'Estrategia tecnológica', 'Code review', 'Mentoring'],
-      price: 'Desde $150/hora',
-      duration: 'Flexible',
-      popular: false
-    },
-    {
-      id: 7,
-      category: 'development',
-      icon: Zap,
-      title: 'Desarrollo Full-Stack',
-      description: 'Solución completa desde frontend hasta backend y base de datos.',
-      features: ['Stack completo', 'Diseño UX/UI', 'Backend robusto', 'Despliegue'],
-      price: 'Desde $6,500',
-      duration: '10-16 semanas',
-      popular: true
-    },
-    {
-      id: 8,
-      category: 'cloud',
-      icon: Database,
-      title: 'Big Data & Analytics',
-      description: 'Procesamiento y análisis de grandes volúmenes de datos.',
-      features: ['Data pipelines', 'Machine Learning', 'Dashboards', 'Reportes'],
-      price: 'Desde $4,500',
-      duration: '8-12 semanas',
+      category: 'marketing',
+      icon: <Target className="h-8 w-8" />,
+      title: 'Branding',
+      description: 'Create a solid brand identity that resonates with your target audience.',
+      features: ['Logo Design', 'Brand Guides', 'Visual Identity', 'Brand Strategy'],
+      price: 'From $3,000',
+      duration: '4-6 weeks',
       popular: false
     }
   ]
@@ -110,166 +73,137 @@ const Services = () => {
     ? services 
     : services.filter(service => service.category === activeCategory)
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  }
+
+  if (!isMounted) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="animate-pulse text-yellow-500">Loading services...</div>
+      </div>
+    )
+  }
+
   return (
-    <div className="min-h-screen bg-secondary-900">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-secondary-800 to-secondary-900 text-gold-400 section-padding">
-        <div className="container-custom text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Nuestros Servicios
-          </h1>
-          <p className="text-xl text-secondary-300 max-w-3xl mx-auto mb-8">
-            Ofrecemos soluciones tecnológicas completas para impulsar tu negocio. 
-            Desde desarrollo web hasta consultoría estratégica.
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200 py-16">
+      <div className="container-custom">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Custom technology solutions to take your business to the next level.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <div className="flex items-center space-x-2 bg-secondary-800 px-4 py-2 rounded-full">
-              <CheckCircle className="h-5 w-5 text-gold-400" />
-              <span className="text-secondary-200">Calidad garantizada</span>
-            </div>
-            <div className="flex items-center space-x-2 bg-secondary-800 px-4 py-2 rounded-full">
-              <CheckCircle className="h-5 w-5 text-gold-400" />
-              <span className="text-secondary-200">Soporte 24/7</span>
-            </div>
-            <div className="flex items-center space-x-2 bg-secondary-800 px-4 py-2 rounded-full">
-              <CheckCircle className="h-5 w-5 text-gold-400" />
-              <span className="text-secondary-200">Entrega a tiempo</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </motion.div>
 
-      {/* Services Filter */}
-      <section className="bg-secondary-800 border-b border-gold-600/20 sticky top-20 z-40">
-        <div className="container-custom py-6">
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-2 rounded-full font-medium transition-colors duration-200 ${
-                  activeCategory === category.id
-                    ? 'bg-gold-600 text-secondary-900'
-                    : 'bg-secondary-700 text-secondary-300 hover:bg-gold-600/20 hover:text-gold-400'
-                }`}
+        {/* Category Filter */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeCategory === category.id
+                  ? 'bg-yellow-600 text-white shadow-lg shadow-yellow-500/20'
+                  : 'text-yellow-400/90 hover:bg-yellow-500/10 hover:text-yellow-500'
+              }`}
+            >
+              {category.name}
+            </button>
+          ))}
+        </div>
+
+        {/* Services Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={activeCategory}
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {filteredServices.map((service) => (
+              <motion.div
+                key={service.id}
+                variants={item}
+                whileHover={{ y: -5 }}
+                className="group relative transform transition-all duration-500 hover:scale-105 hover:-rotate-1"
               >
-                {category.name}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
+                <div className="dark:text-white text-gray-900 rounded-3xl border-2 dark:border-yellow-600/50 border-gray-200 dark:bg-black bg-white shadow-2xl duration-700 z-10 relative backdrop-blur-xl dark:hover:border-yellow-500/70 hover:border-yellow-400/50 hover:shadow-yellow-500/30 hover:shadow-3xl h-full">
+                  <div className="absolute inset-0 z-0 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-tr dark:from-yellow-600/5 dark:via-yellow-400/10 dark:to-yellow-600/5 from-yellow-400/5 via-yellow-300/10 to-yellow-400/5 opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                    <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr dark:from-yellow-700/10 dark:via-yellow-500/15 from-yellow-300/10 via-yellow-200/15 to-transparent blur-3xl opacity-40 group-hover:opacity-60 transform group-hover:scale-110 transition-all duration-700"></div>
+                    <div className="absolute top-10 left-10 w-16 h-16 rounded-full dark:bg-yellow-600/20 bg-yellow-400/20 blur-xl animate-ping"></div>
+                    <div className="absolute bottom-16 right-16 w-12 h-12 rounded-full dark:bg-yellow-600/20 bg-yellow-400/20 blur-lg animate-ping" style={{ animationDelay: '1s' }}></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent dark:via-yellow-500/10 via-yellow-400/10 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
+                  </div>
 
-      {/* Services Grid */}
-      <section className="section-padding bg-secondary-900">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredServices.map((service) => {
-              const IconComponent = service.icon
-              return (
-                <div key={service.id} className="relative bg-secondary-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gold-600/20 hover:border-gold-500/40">
-                  {service.popular && (
-                    <div className="absolute top-4 right-4 bg-gold-600 text-secondary-900 px-3 py-1 rounded-full text-sm font-medium">
-                      Popular
-                    </div>
-                  )}
-                  
-                  <div className="p-8">
-                    <div className="flex items-center justify-center w-16 h-16 bg-gold-600 rounded-2xl mb-6">
-                      <IconComponent className="h-8 w-8 text-secondary-900" />
-                    </div>
-                    
-                    <h3 className="text-2xl font-bold text-gold-400 mb-4">{service.title}</h3>
-                    <p className="text-secondary-300 mb-6">{service.description}</p>
-                    
-                    <ul className="space-y-2 mb-6">
-                      {service.features.map((feature, index) => (
-                        <li key={index} className="flex items-center space-x-3">
-                          <CheckCircle className="h-4 w-4 text-gold-400 flex-shrink-0" />
-                          <span className="text-secondary-300 text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    <div className="border-t border-gold-600/20 pt-6">
-                      <div className="flex justify-between items-center mb-4">
-                        <div>
-                          <div className="text-2xl font-bold text-gold-400">{service.price}</div>
-                          <div className="text-sm text-secondary-400">{service.duration}</div>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="h-4 w-4 text-gold-400 fill-current" />
-                          ))}
-                        </div>
+                  <div className="relative z-10 p-8 h-full flex flex-col">
+                    {service.popular && (
+                      <div className="absolute top-4 right-4 bg-gradient-to-r dark:from-yellow-600 dark:to-yellow-700 from-yellow-500 to-yellow-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                        Popular!
                       </div>
-                      
+                    )}
+                    
+                    <div className="w-14 h-14 flex items-center justify-center rounded-xl dark:bg-yellow-500/10 bg-yellow-100 dark:text-yellow-500 text-yellow-600 mb-6 group-hover:bg-yellow-500/20 transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                      {service.icon}
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold dark:text-yellow-400 text-gray-800 mb-3">{service.title}</h3>
+                    <p className="dark:text-yellow-300/80 text-gray-600 mb-6 flex-grow">{service.description}</p>
+                    
+                    <div className="mb-6">
+                      <h4 className="dark:text-yellow-400 text-gray-800 font-medium mb-3">Includes:</h4>
+                      <ul className="space-y-2">
+                        {service.features.map((feature, index) => (
+                          <li key={index} className="flex items-center dark:text-yellow-300/80 text-gray-600 text-sm">
+                            <CheckCircle className="h-4 w-4 dark:text-yellow-500 text-yellow-600 mr-2" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div className="mt-auto pt-6 border-t dark:border-yellow-500/20 border-gray-200 flex justify-between items-center">
+                      <div>
+                        <span className="block dark:text-yellow-400 text-gray-800 font-medium">{service.price}</span>
+                        <span className="dark:text-yellow-500/70 text-gray-500 text-sm">{service.duration}</span>
+                      </div>
                       <Link 
-                        to="/registro" 
-                        className="w-full btn-primary flex items-center justify-center space-x-2"
+                        to="/contact" 
+                        className="dark:text-yellow-400 text-yellow-600 hover:text-yellow-700 dark:hover:text-yellow-300 transition-colors"
                       >
-                        <span>Solicitar Cotización</span>
-                        <ArrowRight className="h-4 w-4" />
+                        <ArrowRight className="h-5 w-5" />
                       </Link>
                     </div>
                   </div>
                 </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="section-padding bg-secondary-800">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gold-400 mb-4">
-              Nuestro Proceso de Trabajo
-            </h2>
-            <p className="text-lg text-secondary-300 max-w-2xl mx-auto">
-              Seguimos una metodología probada que garantiza resultados excepcionales
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { step: '01', title: 'Análisis', description: 'Entendemos tus necesidades y objetivos' },
-              { step: '02', title: 'Planificación', description: 'Diseñamos la estrategia y arquitectura' },
-              { step: '03', title: 'Desarrollo', description: 'Implementamos con las mejores prácticas' },
-              { step: '04', title: 'Entrega', description: 'Desplegamos y brindamos soporte continuo' }
-            ].map((phase, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-gold-600 text-secondary-900 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
-                  {phase.step}
-                </div>
-                <h3 className="text-xl font-semibold text-gold-400 mb-2">{phase.title}</h3>
-                <p className="text-secondary-300">{phase.description}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="section-padding bg-gold-600">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-secondary-900">
-            ¿No encuentras lo que buscas?
-          </h2>
-          <p className="text-xl text-secondary-800 mb-8 max-w-2xl mx-auto">
-            Contáctanos para soluciones personalizadas. Adaptamos nuestros servicios a tus necesidades específicas.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/registro" className="bg-secondary-900 hover:bg-secondary-800 text-gold-400 font-medium py-3 px-8 rounded-lg transition-colors duration-200">
-              Contactar Ahora
-            </Link>
-            <a href="tel:+15551234567" className="bg-transparent border-2 border-secondary-900 text-secondary-900 hover:bg-secondary-900 hover:text-gold-400 font-medium py-3 px-8 rounded-lg transition-colors duration-200">
-              Llamar: +1 (555) 123-4567
-            </a>
-          </div>
-        </div>
-      </section>
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </div>
   )
 }

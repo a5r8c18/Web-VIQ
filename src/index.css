@@ -3,32 +3,98 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  :root {
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #6b7280;
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f9fafb;
+  }
+  
+  .dark {
+    --color-text-primary: #f3f4f6;
+    --color-text-secondary: #9ca3af;
+    --color-bg-primary: #111827;
+    --color-bg-secondary: #1f2937;
   }
   
   body {
-    font-family: 'Inter', system-ui, sans-serif;
-    background-color: #171717;
-    color: #f0f0f0;
+    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-gray-900 dark:text-gray-100;
+  }
+
+  p, span, div {
+    @apply text-gray-600 dark:text-gray-300;
+  }
+
+  a {
+    @apply text-gold-400 dark:text-gold-400 hover:text-gold-300 transition-colors duration-200;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gold-600 hover:bg-gold-700 text-secondary-900 font-medium py-2 px-6 rounded-lg transition-colors duration-200 shadow-lg;
+    @apply bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-gray-900 dark:text-gray-100 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold-500/30 hover:-translate-y-0.5;
   }
   
   .btn-secondary {
-    @apply bg-transparent hover:bg-gold-50 text-gold-600 border border-gold-600 font-medium py-2 px-6 rounded-lg transition-colors duration-200;
+    @apply bg-transparent hover:bg-gold-900/30 text-gold-400 dark:text-gold-400 border border-gold-600/50 hover:border-gold-500 font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-gold-500/10;
   }
   
   .section-padding {
     @apply py-16 px-4 sm:px-6 lg:px-8;
   }
   
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  .animate-delay-100 {
+    animation-delay: 0.1s;
+  }
+  
+  .animate-delay-200 {
+    animation-delay: 0.2s;
+  }
+  
+  .animate-delay-300 {
+    animation-delay: 0.3s;
+  }
+  
+  .animate-delay-400 {
+    animation-delay: 0.4s;
+  }
+  
   .container-custom {
-    @apply max-w-7xl mx-auto;
+    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl w-full;
+  }
+
+  .card {
+    @apply bg-gray-800/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl border border-gray-700/50 dark:border-gray-700/50 hover:border-gold-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-gold-500/10;
   }
 }
 
@@ -59,4 +125,9 @@
   100% {
     transform: translate(0px, 0px) scale(1);
   }
+}
+
+/* Transiciones suaves para el cambio de tema */
+* {
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
