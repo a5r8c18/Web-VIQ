@@ -37,8 +37,8 @@ function App() {
         <main className="flex-grow bg-white dark:bg-gray-900 transition-colors duration-200">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/servicios" element={<Services />} />
-            <Route path="/registro" element={<Register />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </main>

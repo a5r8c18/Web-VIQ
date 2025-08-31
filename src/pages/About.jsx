@@ -55,7 +55,7 @@ const About = () => {
             
             <div className="mt-12 text-center">
               <Link 
-                to="/contact" 
+                to="/register" 
                 className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-yellow-600 hover:bg-yellow-700 transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 Get in Touch

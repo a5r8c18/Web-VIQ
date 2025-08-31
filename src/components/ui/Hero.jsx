@@ -22,7 +22,7 @@ const Hero = () => {
           className="w-full h-full object-cover"
         >
           <source src="/videos/VQS.mp4" type="video/mp4" />
-          Tu navegador no soporta el elemento de video.
+          Video dont supported.
         </video>
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-primary-900/80 via-primary-900/60 to-primary-900/90"></div>
@@ -38,12 +38,12 @@ const Hero = () => {
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight tracking-tight">
-              <span className="block">Your</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-primary-400">
+            <h1 className="text-4xl sm:text-5xl text-white/90 lg:text-6xl xl:text-7xl font-bold text-white leading-tight tracking-tight">
+              <span className="text-white/90 block">Your</span>
+              <span className="text-transparent text-white/90 bg-clip-text bg-gradient-to-r from-accent-400 to-primary-400">
                 Digital Revolution
               </span>
-              <span>Starts Here!</span>
+              <span className='text-white/90'>Starts Here!</span>
             </h1>
 
             {/* Subheading */}
@@ -58,7 +58,7 @@ const Hero = () => {
                   key={index} 
                   className="flex items-center space-x-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10"
                 >
-                  <CheckCircle className="h-4 w-4 text-accent-400" />
+                  <CheckCircle className="text-white/90 h-4 w-4 text-accent-400" />
                   <span className="text-sm text-white/90">{feature}</span>
                 </div>
               ))}
@@ -67,10 +67,10 @@ const Hero = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link 
-                to="/contact" 
+                to="/register" 
                 className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
               >
-                <span>Get Started</span>
+                <span className='text-white/90'>Get Started</span>
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <a 
@@ -80,7 +80,7 @@ const Hero = () => {
                 className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-medium rounded-lg border border-white/20 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
               >
                 <Play className="h-5 w-5 mr-2" />
-                <span>Watch on YouTube</span>
+                <span className='text-white/90'>Watch on YouTube</span>
               </a>
             </div>
 

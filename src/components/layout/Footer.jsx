@@ -13,12 +13,11 @@ const Footer = () => {
             <Link to="/" className="flex items-center space-x-3">
               <div className="p-1.5 rounded-lg">
                 <img 
-                  src="/images/Captura de pantalla (430).png" 
+                  src="/images/logo.svg" 
                   alt="Website Logo" 
-                  className="h-8 w-auto object-contain"
+                  className="h-10 w-auto object-contain"
                 />
               </div>
-              <span className="text-2xl font-bold text-blue-600 dark:text-yellow-500">Systems</span>
             </Link>
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
               Leaders in innovative technology solutions. We transform ideas into digital reality with excellence and passion.
@@ -51,7 +50,7 @@ const Footer = () => {
                 { name: 'Services', path: '/services' },
                 { name: 'Register', path: '/register' },
                 { name: 'About Us', path: '/about' },
-                { name: 'Contact', path: '/contact' }
+                { name: 'Contact', path: '/register' }
               ].map((link, index) => (
                 <li key={index}>
                   <Link 

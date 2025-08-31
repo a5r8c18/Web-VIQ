@@ -191,7 +191,7 @@ const Services = () => {
                         <span className="dark:text-yellow-500/70 text-gray-500 text-sm">{service.duration}</span>
                       </div>
                       <Link 
-                        to="/contact" 
+                        to="/register" 
                         className="dark:text-yellow-400 text-yellow-600 hover:text-yellow-700 dark:hover:text-yellow-300 transition-colors"
                       >
                         <ArrowRight className="h-5 w-5" />

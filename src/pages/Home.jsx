@@ -233,7 +233,7 @@ const Home = () => {
 
             <div className="text-center mt-12">
               <Link 
-                to="/servicios" 
+                to="/services" 
                 className="group relative inline-flex items-center justify-center px-8 py-3 bg-white text-gray-900 dark:bg-gradient-to-r dark:from-yellow-600 dark:to-yellow-600 dark:text-white font-medium rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-white/30 dark:hover:shadow-yellow-600/30"
               >
                 <span className="relative z-10">View all services</span>
@@ -493,13 +493,13 @@ const Home = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link 
-              to="/contacto" 
+              to="/register" 
               className="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-900 transition-colors"
             >
               Contact Us
             </Link>
             <Link 
-              to="/servicios" 
+              to="/services" 
               className="bg-black text-white border-2 border-black px-8 py-3 rounded-lg font-medium hover:bg-gray-900 transition-colors"
             >
               Our Services

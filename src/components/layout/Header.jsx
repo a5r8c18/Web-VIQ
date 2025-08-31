@@ -9,8 +9,8 @@ const Header = () => {
 
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Services', href: '/servicios' },
-    { name: 'Register', href: '/registro' },
+    { name: 'Services', href: '/services' },
+    { name: 'Register', href: '/register' },
   ]
 
   const isActive = (path) => location.pathname === path
@@ -23,14 +23,11 @@ const Header = () => {
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="p-1.5 rounded-lg">
               <img 
-                src="/images/Captura de pantalla (430).png" 
+                src="/images/logo.svg" 
                 alt="Website Logo" 
                 className="h-10 w-auto object-contain"
               />
             </div>
-            <span className="text-2xl font-bold text-yellow-500">
-              Systems
-            </span>
           </Link>
 
           <div className="flex items-center space-x-4">

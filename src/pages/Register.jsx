@@ -1,103 +1,16 @@
+// Register.tsx
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { 
   User, Mail, Phone, Building, Globe, MessageSquare, 
   CheckCircle, ArrowRight, Shield, Clock, Users 
 } from 'lucide-react'
-import ReactCountryFlag from 'react-country-flag'
-
-// Mapeo de códigos de país a códigos ISO y longitud de teléfono
-const countryPhoneInfo = {
-  '52': { iso: 'MX', length: 10 },  // México: 10 dígitos (2+10=12 con código)
-  '53': { iso: 'CU', length: 8 },   // Cuba: 8 dígitos (2+8=10 con código)
-  '34': { iso: 'ES', length: 9 },   // España: 9 dígitos (2+9=11 con código)
-  '54': { iso: 'AR', length: 10 },  // Argentina: 10 dígitos (2+10=12 con código)
-  '51': { iso: 'PE', length: 9 },   // Perú: 9 dígitos (2+9=11 con código)
-  '56': { iso: 'CL', length: 9 },   // Chile: 9 dígitos (2+9=11 con código)
-  '57': { iso: 'CO', length: 10 },  // Colombia: 10 dígitos (2+10=12 con código)
-  '58': { iso: 'VE', length: 10 },  // Venezuela: 10 dígitos (2+10=12 con código)
-  '503': { iso: 'SV', length: 8 },  // El Salvador: 8 dígitos (3+8=11 con código)
-  '504': { iso: 'HN', length: 8 },  // Honduras: 8 dígitos (3+8=11 con código)
-  '505': { iso: 'NI', length: 8 },  // Nicaragua: 8 dígitos (3+8=11 con código)
-  '506': { iso: 'CR', length: 8 },  // Costa Rica: 8 dígitos (3+8=11 con código)
-  '507': { iso: 'PA', length: 8 },  // Panamá: 8 dígitos (3+8=11 con código)
-  '595': { iso: 'PY', length: 9 },  // Paraguay: 9 dígitos (3+9=12 con código)
-  '598': { iso: 'UY', length: 8 },  // Uruguay: 8 dígitos (3+8=11 con código)
-  '591': { iso: 'BO', length: 8 },  // Bolivia: 8 dígitos (3+8=11 con código)
-  '593': { iso: 'EC', length: 9 }   // Ecuador: 9 dígitos (3+9=12 con código)
-};
-
-// Mapeo de códigos de país a códigos ISO (para compatibilidad)
-const countryFlagMap = Object.entries(countryPhoneInfo).reduce((acc, [code, {iso}]) => {
-  acc[code] = iso;
-  return acc;
-}, {});
-
-const getCountryName = (isoCode) => {
-  const countryNames = {
-    'US': 'United States', 'CA': 'Canada', 'RU': 'Russia', 'KZ': 'Kazakhstan',
-    'EG': 'Egypt', 'ZA': 'South Africa', 'GR': 'Greece', 'NL': 'Netherlands',
-    'BE': 'Belgium', 'FR': 'France', 'ES': 'Spain', 'IT': 'Italy',
-    'RO': 'Romania', 'CH': 'Switzerland', 'AT': 'Austria', 'GB': 'United Kingdom',
-    'DK': 'Denmark', 'SE': 'Sweden', 'NO': 'Norway', 'PL': 'Poland',
-    'DE': 'Germany', 'PE': 'Peru', 'MX': 'Mexico', 'CU': 'Cuba',
-    'AR': 'Argentina', 'BR': 'Brazil', 'CL': 'Chile', 'CO': 'Colombia',
-    'VE': 'Venezuela', 'MY': 'Malaysia', 'AU': 'Australia', 'ID': 'Indonesia',
-    'PH': 'Philippines', 'NZ': 'New Zealand', 'SG': 'Singapore', 'TH': 'Thailand',
-    'JP': 'Japan', 'KR': 'South Korea', 'VN': 'Vietnam', 'CN': 'China',
-    'TR': 'Turkey', 'IN': 'India', 'PK': 'Pakistan', 'AF': 'Afghanistan',
-    'LK': 'Sri Lanka', 'MM': 'Myanmar', 'IR': 'Iran', 'MA': 'Morocco',
-    'DZ': 'Algeria', 'TN': 'Tunisia', 'LY': 'Libya', 'GM': 'Gambia',
-    'SN': 'Senegal', 'MR': 'Mauritania', 'ML': 'Mali', 'GN': 'Guinea',
-    'CI': 'Ivory Coast', 'BF': 'Burkina Faso', 'NE': 'Niger',
-    'TG': 'Togo', 'BJ': 'Benin', 'MU': 'Mauritius', 'LR': 'Liberia',
-    'SL': 'Sierra Leone', 'GH': 'Ghana', 'NG': 'Nigeria', 'TD': 'Chad',
-    'CF': 'Central African Republic', 'CM': 'Cameroon', 'CV': 'Cape Verde',
-    'ST': 'Sao Tome and Principe', 'GQ': 'Equatorial Guinea', 'GA': 'Gabon',
-    'CG': 'Republic of the Congo', 'CD': 'Democratic Republic of the Congo',
-    'AO': 'Angola', 'GW': 'Guinea-Bissau', 'SC': 'Seychelles', 'SD': 'Sudan',
-    'RW': 'Rwanda', 'ET': 'Ethiopia', 'SO': 'Somalia', 'DJ': 'Djibouti',
-    'KE': 'Kenya', 'TZ': 'Tanzania', 'UG': 'Uganda', 'BI': 'Burundi',
-    'MZ': 'Mozambique', 'ZM': 'Zambia', 'MG': 'Madagascar', 'RE': 'Reunion',
-    'ZW': 'Zimbabwe', 'NA': 'Namibia', 'MW': 'Malawi', 'LS': 'Lesotho',
-    'BW': 'Botswana', 'SZ': 'Swaziland', 'KM': 'Comoros', 'SH': 'Saint Helena',
-    'ER': 'Eritrea', 'AW': 'Aruba', 'FO': 'Faroe Islands', 'GL': 'Greenland',
-    'GI': 'Gibraltar', 'PT': 'Portugal', 'LU': 'Luxembourg', 'IE': 'Ireland',
-    'IS': 'Iceland', 'AL': 'Albania', 'MT': 'Malta', 'CY': 'Cyprus',
-    'FI': 'Finland', 'BG': 'Bulgaria', 'LT': 'Lithuania', 'LV': 'Latvia',
-    'EE': 'Estonia', 'MD': 'Moldova', 'AM': 'Armenia', 'BY': 'Belarus',
-    'AD': 'Andorra', 'MC': 'Monaco', 'SM': 'San Marino', 'VA': 'Vatican City',
-    'UA': 'Ukraine', 'RS': 'Serbia', 'ME': 'Montenegro', 'XK': 'Kosovo',
-    'HR': 'Croatia', 'SI': 'Slovenia', 'BA': 'Bosnia and Herzegovina', 'MK': 'North Macedonia',
-    'CZ': 'Czech Republic', 'SK': 'Slovakia', 'LI': 'Liechtenstein', 'FK': 'Falkland Islands',
-    'BZ': 'Belize', 'GT': 'Guatemala', 'SV': 'El Salvador', 'HN': 'Honduras',
-    'NI': 'Nicaragua', 'CR': 'Costa Rica', 'PA': 'Panama', 'PM': 'Saint Pierre and Miquelon',
-    'HT': 'Haiti', 'GP': 'Guadeloupe', 'BO': 'Bolivia', 'GY': 'Guyana',
-    'EC': 'Ecuador', 'GF': 'French Guiana', 'PY': 'Paraguay', 'MQ': 'Martinique',
-    'SR': 'Suriname', 'UY': 'Uruguay', 'TL': 'Timor-Leste', 'NF': 'Norfolk Island',
-    'BN': 'Brunei', 'NR': 'Nauru', 'PG': 'Papua New Guinea', 'TO': 'Tonga',
-    'SB': 'Solomon Islands', 'VU': 'Vanuatu', 'FJ': 'Fiji', 'PW': 'Palau',
-    'WF': 'Wallis and Futuna', 'CK': 'Cook Islands', 'NU': 'Niue', 'WS': 'Samoa',
-    'KI': 'Kiribati', 'NC': 'New Caledonia', 'TV': 'Tuvalu', 'PF': 'French Polynesia',
-    'TK': 'Tokelau', 'FM': 'Micronesia', 'MH': 'Marshall Islands', 'KP': 'North Korea',
-    'HK': 'Hong Kong', 'MO': 'Macao', 'KH': 'Cambodia', 'LA': 'Laos',
-    'BD': 'Bangladesh', 'TW': 'Taiwan', 'MV': 'Maldives', 'LB': 'Lebanon',
-    'JO': 'Jordan', 'SY': 'Syria', 'IQ': 'Iraq', 'KW': 'Kuwait',
-    'SA': 'Saudi Arabia', 'YE': 'Yemen', 'OM': 'Oman', 'PS': 'Palestine',
-    'AE': 'United Arab Emirates', 'IL': 'Israel', 'BH': 'Bahrain', 'QA': 'Qatar',
-    'BT': 'Bhutan', 'MN': 'Mongolia', 'NP': 'Nepal', 'TJ': 'Tajikistan',
-    'TM': 'Turkmenistan', 'AZ': 'Azerbaijan', 'GE': 'Georgia', 'KG': 'Kyrgyzstan',
-    'UZ': 'Uzbekistan'
-  };
-  return countryNames[isoCode] || '';
-};
-
-const getCountryFromCode = (code) => {
-  return countryFlagMap[code] || '';
-};
+import { useForm } from '../hooks/useForm'
+import ValidatedInput from '../components/ValidatedInput'
+import PhoneInput from '../components/PhoneInput'
 
 const Register = () => {
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     firstName: '',
     lastName: '',
     email: '',
@@ -112,12 +25,21 @@ const Register = () => {
     message: '',
     newsletter: false,
     terms: false
-  })
+  }
 
-  const [errors, setErrors] = useState({})
+  const {
+    formData,
+    errors,
+    touched,
+    handleChange,
+    setFieldTouched,
+    validateForm,
+    setFieldValue
+  } = useForm(initialFormData)
+
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [submitError, setSubmitError] = useState('');
+  const [submitError, setSubmitError] = useState('')
 
   const services = [
     'Web Frontend Development',
@@ -149,191 +71,42 @@ const Register = () => {
     'Flexible'
   ]
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    
-    // Limitar a 20 caracteres para campos de texto (excepto email, teléfono, sitio web y mensaje)
-    const textFields = ['firstName', 'lastName', 'company'];
-    if (textFields.includes(name) && value.length > 20) {
-      return; // No actualizar el estado si supera el límite
-    }
-    
-    const newFormData = {
-      ...formData,
-      [name]: type === 'checkbox' ? checked : value
-    };
+  const handlePhoneChange = (phone, countryCode, countryName) => {
+    handleChange('phone', phone)
+    setFieldValue('phoneCountryCode', countryCode)
+    setFieldValue('phoneCountry', countryName)
+  }
 
-    // Si es el campo de teléfono
-    if (name === 'phone') {
-      // Eliminar todo lo que no sea número o +
-      const cleanPhone = value.replace(/[^\d+]/g, '');
-      
-      // Buscar código de país solo si empieza con +
-      if (cleanPhone.startsWith('+')) {
-        // Probar con códigos de 1 a 3 dígitos
-        for (let i = 3; i >= 1; i--) {
-          const possibleCode = cleanPhone.substring(1, 1 + i);
-          if (countryPhoneInfo[possibleCode]) {
-            const countryIso = countryPhoneInfo[possibleCode].iso;
-            const countryName = getCountryName(countryIso);
-            
-            newFormData.phoneCountry = countryName;
-            newFormData.phoneCountryCode = countryIso;
-            break;
-          }
-        }
-      } else {
-        // Si no empieza con +, limpiar los campos de país
-        newFormData.phoneCountry = '';
-        newFormData.phoneCountryCode = '';
-      }
-    }
-    
-    setFormData(newFormData);
-    
-    // Limpiar error cuando el usuario comienza a escribir
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
-    }
-  };
-
-  const handleMessageChange = (e) => {
-    const text = e.target.value;
-    const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
-    
-    if (wordCount <= 50) {
-      setFormData({
-        ...formData,
-        message: text
-      });
-    }
-    
-    // Limpiar el error si existe
-    if (errors.message) {
-      setErrors({
-        ...errors,
-        message: ''
-      });
-    }
-  };
-
-  const validateForm = () => {
-    const newErrors = {}
-
-    // Validación para nombre
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = 'First name is required';
-    } else if (formData.firstName !== formData.firstName.trim()) {
-      newErrors.firstName = 'Remove spaces at the beginning or end';
-    } else if (formData.firstName.length > 20) {
-      newErrors.firstName = 'Maximum 20 characters';
-    } else if (!/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ\s]*$/.test(formData.firstName)) {
-      newErrors.firstName = 'Start with capital letter, only letters';
-    } 
-
-    // Validación para apellido
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = 'Last name is required';
-    } else if (formData.lastName !== formData.lastName.trim()) {
-      newErrors.lastName = 'Remove spaces at the beginning or end';
-    } else if (formData.lastName.length > 20) {
-      newErrors.lastName = 'Maximum 20 characters';
-    } else if (!/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ\s'-]*$/.test(formData.lastName)) {
-      newErrors.lastName = 'Invalid characters in last name';
-    }
-
-    // Validación para email
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(formData.email)) {
-      newErrors.email = 'Only Gmail addresses (@gmail.com)';
-    } else if (formData.email.length > 50) {
-      newErrors.email = 'Maximum 50 characters';
-    }
-
-    // Validación para teléfono
-    if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone number is required';
-    } else {
-      const cleanPhone = formData.phone.replace(/[^\d+]/g, '');
-      
-      if (cleanPhone.startsWith('+')) {
-        const phoneWithoutPlus = cleanPhone.substring(1);
-        const countryCode = phoneWithoutPlus.substring(0, 3);
-        
-        if (!/^\d{10,15}$/.test(phoneWithoutPlus)) {
-          newErrors.phone = '10-15 digits with country code';
-        } else if (!countryPhoneInfo[countryCode] && 
-                  !countryPhoneInfo[countryCode.substring(0, 2)] && 
-                  !countryPhoneInfo[countryCode.substring(0, 1)]) {
-          newErrors.phone = 'Invalid country code';
-        }
-      } else if (!/^\d{10,15}$/.test(cleanPhone)) {
-        newErrors.phone = '10-15 digits required';
-      }
-    }
-
-    // Validación para empresa
-    if (!formData.company.trim()) {
-      newErrors.company = 'Company name is required';
-    } else if (formData.company.length > 50) {
-      newErrors.company = 'Maximum 50 characters';
-    } else if (!/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ0-9\s&.,-]*$/.test(formData.company)) {
-      newErrors.company = 'Invalid characters in company name';
-    }
-
-    // Validación para sitio web (opcional)
-    if (formData.website.trim() && !/^https?:\/\/.+\..+/.test(formData.website)) {
-      newErrors.website = 'Enter a valid URL (http:// or https://)';
-    }
-
-    // Validación para mensaje (opcional)
-    if (formData.message.trim()) {
-      const wordCount = formData.message.trim().split(/\s+/).filter(word => word.length > 0).length;
-      if (wordCount > 50) {
-        newErrors.message = 'Maximum 50 words';
-      }
-    }
-
-    // Validaciones de selección
-    if (!formData.service) newErrors.service = 'Select a service';
-    if (!formData.budget) newErrors.budget = 'Select a budget';
-    if (!formData.timeline) newErrors.timeline = 'Select a timeline';
-    if (!formData.terms) newErrors.terms = 'You must accept the terms';
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    handleChange(name, checked);
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     
-    if (!validateForm()) {
-      console.log('Form validation failed');
-      return;
+    const formErrors = validateForm()
+    if (Object.keys(formErrors).length > 0) {
+      // Marcar todos los campos como tocados para mostrar errores
+      Object.keys(formErrors).forEach(key => setFieldTouched(key))
+      return
     }
 
-    console.log('Form submitted, setting isSubmitting to true');
-    setIsSubmitting(true);
-    setSubmitError('');
+    setIsSubmitting(true)
+    setSubmitError('')
     
     try {
       // Simular llamada a la API con un retraso de 1 segundo
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      console.log('Form submission successful, setting isSubmitted to true');
-      setIsSubmitted(true);
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      setIsSubmitted(true)
     } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitError('Ocurrió un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+      setSubmitError('An error occurred while submitting the form. Please try again.')
     } finally {
-      console.log('Form submission process completed');
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
   }
 
   if (isSubmitted) {
-    console.log('Rendering success message');
     return (
       <div className="min-h-screen bg-white dark:bg-black flex items-center justify-center py-20">
         <div className="max-w-md w-full text-gray-900 dark:text-white rounded-3xl border-2 border-gray-200 dark:border-green-600/50 bg-white dark:bg-black shadow-2xl duration-700 z-10 relative p-8 text-center">
@@ -347,23 +120,23 @@ const Register = () => {
               <CheckCircle className="h-10 w-10 text-green-500" />
             </div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-green-400 mb-4">
-              ¡Registro Exitoso!
+              Successful Registration!
             </h2>
             <p className="text-gray-800 dark:text-green-300/80 mb-6">
-              Gracias por tu interés en nuestros servicios. Nuestro equipo se pondrá en contacto contigo en las próximas 24 horas.
+              Thank you for your interest in our services. Our team will contact you within the next 24 hours.
             </p>
             <div className="space-y-3 text-sm text-gray-700 dark:text-green-400/80 mb-6">
-              <p>Recibirás un correo de confirmación</p>
-              <p>Te llamaremos para una consulta inicial</p>
-              <p>Prepararemos una propuesta personalizada</p>
+              <p>You will receive a confirmation email</p>
+              <p>We will call you for an initial consultation</p>
+              <p>We will prepare a personalized proposal</p>
             </div>
             <Link to="/" className="inline-block w-full px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105">
-              Volver al Inicio
+              Back to Home
             </Link>
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -433,40 +206,38 @@ const Register = () => {
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
                         First Name *
                       </label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-3 h-5 w-5 text-yellow-500" />
-                        <input
-                          type="text"
-                          name="firstName"
-                          value={formData.firstName}
-                          onChange={handleInputChange}
-                          className={`w-full pl-10 pr-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400 ${
-                            errors.firstName ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
-                          }`}
-                          placeholder="Your first name"
-                        />
-                      </div>
-                      {errors.firstName && <p className="text-red-400 text-sm mt-1">{errors.firstName}</p>}
+                      <ValidatedInput
+                        type="text"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        onBlur={setFieldTouched}
+                        placeholder="Your first name"
+                        icon={<User className="h-5 w-5" />}
+                        maxLength={20}
+                      />
+                      {touched.firstName && errors.firstName && (
+                        <p className="text-red-400 text-sm mt-1">{errors.firstName}</p>
+                      )}
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
                         Last Name *
                       </label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-3 h-5 w-5 text-yellow-500" />
-                        <input
-                          type="text"
-                          name="lastName"
-                          value={formData.lastName}
-                          onChange={handleInputChange}
-                          className={`w-full pl-10 pr-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400 ${
-                            errors.lastName ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
-                          }`}
-                          placeholder="Your last name"
-                        />
-                      </div>
-                      {errors.lastName && <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>}
+                      <ValidatedInput
+                        type="text"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        onBlur={setFieldTouched}
+                        placeholder="Your last name"
+                        icon={<User className="h-5 w-5" />}
+                        maxLength={20}
+                      />
+                      {touched.lastName && errors.lastName && (
+                        <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
+                      )}
                     </div>
                   </div>
 
@@ -476,64 +247,36 @@ const Register = () => {
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
                         Email *
                       </label>
-                      <div className="relative">
-                        <Mail className="absolute left-3 top-3 h-5 w-5 text-yellow-500" />
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className={`w-full pl-10 pr-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400 ${
-                            errors.email ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
-                          }`}
-                          placeholder="your@gmail.com"
-                        />
-                      </div>
-                      {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
+                      <ValidatedInput
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        onBlur={setFieldTouched}
+                        placeholder="your@gmail.com"
+                        icon={<Mail className="h-5 w-5" />}
+                        maxLength={50}
+                      />
+                      {touched.email && errors.email && (
+                        <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                      )}
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
                         Phone Number *
                       </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
-                          {formData.phoneCountryCode ? (
-                            <div className="flex items-center space-x-1 bg-white dark:bg-black px-2 h-full rounded-l-lg border-r border-gray-200 dark:border-yellow-600/50">
-                              <ReactCountryFlag 
-                                countryCode={formData.phoneCountryCode}
-                                svg
-                                style={{
-                                  width: '1em',
-                                  height: '1em',
-                                  borderRadius: '2px',
-                                  marginRight: '4px'
-                                }}
-                                title={formData.phoneCountry}
-                              />
-                              <span className="text-xs text-yellow-400">
-                                +{Object.keys(countryPhoneInfo).find(key => countryPhoneInfo[key].iso === formData.phoneCountryCode) || ''}
-                              </span>
-                            </div>
-                          ) : (
-                            <Phone className="h-5 w-5 text-yellow-500" />
-                          )}
-                        </div>
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          className={`w-full ${formData.phoneCountryCode ? 'pl-24' : 'pl-10'} pr-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400 ${
-                            errors.phone ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
-                          }`}
-                          placeholder={formData.phoneCountryCode ? '55 1234 5678' : '+52 55 1234 5678'}
-                        />
-                      </div>
+                      <PhoneInput
+                        value={formData.phone}
+                        onChange={handlePhoneChange}
+                        onBlur={() => setFieldTouched('phone')}
+                      />
                       {formData.phoneCountry && (
                         <p className="text-xs text-yellow-400 mt-1">{formData.phoneCountry}</p>
                       )}
-                      {errors.phone && <p className="text-red-400 text-sm mt-1">{errors.phone}</p>}
+                      {touched.phone && errors.phone && (
+                        <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+                      )}
                     </div>
                   </div>
 
@@ -543,40 +286,37 @@ const Register = () => {
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
                         Company *
                       </label>
-                      <div className="relative">
-                        <Building className="absolute left-3 top-3 h-5 w-5 text-yellow-500" />
-                        <input
-                          type="text"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleInputChange}
-                          className={`w-full pl-10 pr-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400 ${
-                            errors.company ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
-                          }`}
-                          placeholder="Company name"
-                        />
-                      </div>
-                      {errors.company && <p className="text-red-400 text-sm mt-1">{errors.company}</p>}
+                      <ValidatedInput
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        onBlur={setFieldTouched}
+                        placeholder="Company name"
+                        icon={<Building className="h-5 w-5" />}
+                        maxLength={50}
+                      />
+                      {touched.company && errors.company && (
+                        <p className="text-red-400 text-sm mt-1">{errors.company}</p>
+                      )}
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
                         Website
                       </label>
-                      <div className="relative">
-                        <Globe className="absolute left-3 top-3 h-5 w-5 text-yellow-500" />
-                        <input
-                          type="url"
-                          name="website"
-                          value={formData.website}
-                          onChange={handleInputChange}
-                          className={`w-full pl-10 pr-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400 ${
-                            errors.website ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
-                          }`}
-                          placeholder="https://yourcompany.com"
-                        />
-                      </div>
-                      {errors.website && <p className="text-red-400 text-sm mt-1">{errors.website}</p>}
+                      <ValidatedInput
+                        type="url"
+                        name="website"
+                        value={formData.website}
+                        onChange={handleChange}
+                        onBlur={setFieldTouched}
+                        placeholder="https://yourcompany.com"
+                        icon={<Globe className="h-5 w-5" />}
+                      />
+                      {touched.website && errors.website && (
+                        <p className="text-red-400 text-sm mt-1">{errors.website}</p>
+                      )}
                     </div>
                   </div>
 
@@ -588,20 +328,18 @@ const Register = () => {
                     <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
                       Service of Interest *
                     </label>
-                    <select
+                    <ValidatedInput
+                      type="select"
                       name="service"
                       value={formData.service}
-                      onChange={handleInputChange}
-                      className={`w-full px-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white ${
-                        errors.service ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
-                      }`}
-                    >
-                      <option value="">Select a service</option>
-                      {services.map((service, index) => (
-                        <option key={index} value={service}>{service}</option>
-                      ))}
-                    </select>
-                    {errors.service && <p className="text-red-400 text-sm mt-1">{errors.service}</p>}
+                      onChange={handleChange}
+                      onBlur={setFieldTouched}
+                      placeholder="Select a service"
+                      options={services}
+                    />
+                    {touched.service && errors.service && (
+                      <p className="text-red-400 text-sm mt-1">{errors.service}</p>
+                    )}
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -609,40 +347,30 @@ const Register = () => {
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
                         Budget *
                       </label>
-                      <select
+                      <ValidatedInput
+                        type="select"
                         name="budget"
                         value={formData.budget}
-                        onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white ${
-                          errors.budget ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
-                        }`}
-                      >
-                        <option value="">Select budget</option>
-                        {budgetRanges.map((budget, index) => (
-                          <option key={index} value={budget}>{budget}</option>
-                        ))}
-                      </select>
-                      {errors.budget && <p className="text-red-400 text-sm mt-1">{errors.budget}</p>}
+                        onChange={handleChange}
+                        onBlur={setFieldTouched}
+                        placeholder="Select budget"
+                        options={budgetRanges}
+                      />
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
                         Timeline *
                       </label>
-                      <select
+                      <ValidatedInput
+                        type="select"
                         name="timeline"
                         value={formData.timeline}
-                        onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white ${
-                          errors.timeline ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
-                        }`}
-                      >
-                        <option value="">Select timeline</option>
-                        {timelineOptions.map((timeline, index) => (
-                          <option key={index} value={timeline}>{timeline}</option>
-                        ))}
-                      </select>
-                      {errors.timeline && <p className="text-red-400 text-sm mt-1">{errors.timeline}</p>}
+                        onChange={handleChange}
+                        onBlur={setFieldTouched}
+                        placeholder="Select timeline"
+                        options={timelineOptions}
+                      />
                     </div>
                   </div>
 
@@ -651,21 +379,22 @@ const Register = () => {
                     <label className="block text-sm font-medium text-gray-900 dark:text-yellow-400 mb-2">
                       Describe your project
                     </label>
-                    <div className="relative">
-                      <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-yellow-500" />
-                      <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleMessageChange}
-                        rows={4}
-                        className={`w-full pl-10 pr-4 py-3 bg-white dark:bg-black border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400 ${
-                          errors.message ? 'border-red-500' : 'border-gray-200 dark:border-yellow-600/50'
-                        }`}
-                        placeholder="Tell us more about your project, objectives, and any specific requirements..."
-                      />
-                      <p className="text-xs text-yellow-400 mt-1">{formData.message.trim().split(/\s+/).filter(word => word.length > 0).length} / 50 words</p>
-                    </div>
-                    {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
+                    <ValidatedInput
+                      type="textarea"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      onBlur={setFieldTouched}
+                      placeholder="Tell us more about your project, objectives, and any specific requirements..."
+                      icon={<MessageSquare className="h-5 w-5" />}
+                      maxLength={200}
+                    />
+                    <p className="text-xs text-yellow-400 mt-1">
+                      {formData.message.length} / 200 characters
+                    </p>
+                    {touched.message && errors.message && (
+                      <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+                    )}
                   </div>
 
                   {/* Checkboxes */}
@@ -675,7 +404,7 @@ const Register = () => {
                         type="checkbox"
                         name="newsletter"
                         checked={formData.newsletter}
-                        onChange={handleInputChange}
+                        onChange={handleCheckboxChange}
                         className="mt-1 h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-yellow-600/50 rounded bg-white dark:bg-black"
                       />
                       <span className="text-sm text-yellow-600 dark:text-yellow-400">
@@ -688,7 +417,8 @@ const Register = () => {
                         type="checkbox"
                         name="terms"
                         checked={formData.terms}
-                        onChange={handleInputChange}
+                        onChange={handleCheckboxChange}
+                        onBlur={() => setFieldTouched('terms')}
                         className="mt-1 h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-yellow-600/50 rounded bg-white dark:bg-black"
                       />
                       <span className="text-sm text-yellow-600 dark:text-yellow-400">
@@ -703,14 +433,16 @@ const Register = () => {
                         *
                       </span>
                     </label>
-                    {errors.terms && <p className="text-red-400 text-sm">{errors.terms}</p>}
+                    {touched.terms && errors.terms && (
+                      <p className="text-red-400 text-sm">{errors.terms}</p>
+                    )}
                   </div>
 
                   {/* Submit Button */}
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full px-6 py-3 bg-yellow-600 hover:bg-yellow-500 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-6 py-3 bg-yellow-600 hover:bg-yellow-500 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -724,6 +456,10 @@ const Register = () => {
                       </>
                     )}
                   </button>
+
+                  {submitError && (
+                    <p className="text-red-400 text-sm text-center">{submitError}</p>
+                  )}
                 </form>
               </div>
             </div>
