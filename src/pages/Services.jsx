@@ -111,8 +111,8 @@ const Services = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-yellow-500 dark:text-yellow-400 mb-4">Our Services</h2>
+          <p className="text-xl text-yellow-600 dark:text-yellow-500/90 max-w-3xl mx-auto">
             Custom technology solutions to take your business to the next level.
           </p>
         </motion.div>

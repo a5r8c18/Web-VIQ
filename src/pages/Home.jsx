@@ -15,12 +15,12 @@ const Home = () => {
       popular: true
     },
     {
-      icon: Users,
-      title: 'FULL-STACK DEVELOPMENT',
-      description: 'Desarrollo completo de aplicaciones web desde el frontend hasta el backend.',
+      icon: Smartphone,
+      title: 'MOBILE APPLICATIONS',
+      description: 'Native and cross-platform mobile applications for iOS and Android.',
       features: ['React Native', 'Flutter', 'Native iOS/Android', 'App Store Publishing'],
-      price: 'Desde $6,500',
-      timeline: '10-16 semanas',
+      price: 'From $5,000',
+      timeline: '8-12 weeks',
       popular: true
     },
     {
@@ -30,14 +30,6 @@ const Home = () => {
       features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Analytics'],
       price: 'From $1,500',
       timeline: 'Ongoing'
-    },
-    {
-      icon: Award,
-      title: 'BRANDING',
-      description: 'Create a solid brand identity that resonates with your target audience.',
-      features: ['Logo Design', 'Brand Guides', 'Visual Identity'],
-      price: 'From $3,000',
-      timeline: '4-8 weeks'
     }
   ];
 
@@ -89,6 +81,153 @@ const Home = () => {
   const handleMouseEnter = () => setIsPaused(true);
   const handleMouseLeave = () => setIsPaused(false);
 
+  // Estado para el carrusel de testimonios
+  const [testimonialOffset, setTestimonialOffset] = useState(0);
+  const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
+  const [direction, setDirection] = useState(-1); // -1 para derecha a izquierda, 1 para izquierda a derecha
+  const [testimonials, setTestimonials] = useState([
+    {
+      quote: "Incredible work. The team exceeded all our expectations with their professionalism and attention to detail.",
+      author: "María González",
+      position: "CEO, TechSolutions",
+      rating: 5
+    },
+    {
+      quote: "The best investment we've made. Their focus on user experience is exceptional.",
+      author: "Carlos Méndez",
+      position: "Director of Marketing, DigitalPlus",
+      rating: 5
+    },
+    {
+      quote: "Exceptional support and customized solutions that really understand our needs.",
+      author: "Ana Ramírez",
+      position: "IT Manager, InnovateCorp",
+      rating: 5
+    }
+  ]);
+
+  useEffect(() => {
+    // Crear un array con los testimonios suficientes para el carrusel (duplicamos para infinito)
+    const itemsNeeded = Math.ceil(window.innerWidth / (320 + 24)) * 2 + 2;
+    const repeatedTestimonials = [];
+    
+    for (let i = 0; i < itemsNeeded; i++) {
+      repeatedTestimonials.push(...testimonials);
+    }
+    
+    setTestimonials(repeatedTestimonials);
+  }, []);
+
+  useEffect(() => {
+    if (isTestimonialPaused || testimonials.length === 0) return;
+
+    let animationId;
+    const animate = () => {
+      setTestimonialOffset(prevOffset => {
+        const cardWithGap = 320 + 24;
+        const totalWidth = cardWithGap * testimonials.length;
+        const maxOffset = totalWidth - (4 * cardWithGap);
+        let newOffset = prevOffset + (1 * direction);
+
+        // Invertir dirección al llegar a límites
+        if (newOffset >= maxOffset && direction > 0) {
+          setDirection(-1); // Cambiar a derecha -> izquierda
+          newOffset = maxOffset;
+        } else if (newOffset <= 0 && direction < 0) {
+          setDirection(1); // Cambiar a izquierda -> derecha
+          newOffset = 0;
+        }
+
+        return newOffset;
+      });
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, [isTestimonialPaused, testimonials.length, direction]);
+
+  const handleTestimonialNav = (dir) => {
+    const step = 320 + 24;
+    setTestimonialOffset(prevOffset => {
+      const cardWithGap = 320 + 24;
+      const maxOffset = (cardWithGap * testimonials.length) - (4 * cardWithGap);
+      let newOffset;
+      if (dir === 'prev') {
+        newOffset = Math.max(0, prevOffset - step);
+      } else {
+        newOffset = Math.min(maxOffset, prevOffset + step);
+      }
+      return newOffset;
+    });
+  };
+
+  // Configuración del carrusel
+  const carouselConfig = {
+    cardWidth: 320,
+    gap: 24,
+    padding: 60,
+    speed: 1, // Velocidad ajustada para smoothness
+    breakpoints: {
+      lg: {
+        cards: 4,
+        cardWidth: 320
+      },
+      md: {
+        cards: 2,
+        cardWidth: 350
+      },
+      sm: {
+        cards: 1.5,
+        cardWidth: 320
+      },
+      xs: {
+        cards: 1,
+        cardWidth: 300
+      }
+    }
+  };
+
+  // Estado para las dimensiones del carrusel
+  const [dimensions, setDimensions] = useState({
+    containerWidth: 0,
+    visibleCards: 5,      // Por defecto mostrar 5 tarjetas
+    cardWidth: 260,       // Ancho por defecto
+    maxOffset: 0
+  });
+
+  // Calcular dimensiones del carrusel
+  useEffect(() => {
+    const updateDimensions = () => {
+      const viewportWidth = window.innerWidth;
+      let breakpoint = 'lg';
+      
+      // Determinar el breakpoint actual
+      if (viewportWidth < 1280) breakpoint = 'lg';
+      if (viewportWidth < 1024) breakpoint = 'md';
+      if (viewportWidth < 768) breakpoint = 'sm';
+      if (viewportWidth < 480) breakpoint = 'xs';
+      
+      const { cards, cardWidth } = carouselConfig.breakpoints[breakpoint];
+      
+      const containerWidth = viewportWidth;
+      const maxOffset = Math.max(0, (cardWidth + carouselConfig.gap) * (testimonials.length - cards) + (carouselConfig.padding * 2));
+      
+      setDimensions({
+        containerWidth,
+        visibleCards: cards,
+        cardWidth,
+        maxOffset
+      });
+    };
+
+    // Actualizar dimensiones al cargar y al redimensionar
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+    
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, [testimonials.length]);
+
   return (
     <div>
       <Hero />
@@ -111,134 +250,167 @@ const Home = () => {
         </div>
 
         <div className="relative z-10 w-full">
-          {/* VIQ Systems Section */}
-          <div className="py-16 bg-gradient-to-b from-transparent to-black/30">
-            <div className="container-custom text-center">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-                VIQ <span className="text-yellow-400">Systems</span>
-              </h2>
-              <div className="max-w-4xl mx-auto space-y-6 text-lg text-white/90 px-4">
-                <p className="leading-relaxed">
-                  We're passionate about leveraging technology to help businesses thrive in the digital age. With over nine years of experience in the industry, we've honed our expertise in providing cutting-edge solutions that empower our clients to succeed online.
-                </p>
-                <p className="leading-relaxed">
-                  Since our inception in 2020, we've been committed to delivering exceptional results and exceeding our clients' expectations. Over the past nine years, we've evolved and adapted to meet the ever-changing needs of the digital landscape, staying ahead of the curve with innovative solutions and best practices.
-                </p>
+          {/* VIQ Systems Section with Video Background */}
+          <div className="relative overflow-hidden">
+            {/* Video Background */}
+            <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+              <div className="absolute inset-0 w-full h-full">
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="w-full h-full object-cover min-h-screen"
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    minWidth: '100%',
+                    minHeight: '100%',
+                    width: 'auto',
+                    height: 'auto',
+                  }}
+                >
+                  <source src="/videos/14159465_3840_2160_25fps (2).mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className="absolute inset-0 bg-black/70"></div>
               </div>
             </div>
-          </div>
 
-          {/* Our Services Section */}
-          <div className="relative py-16 bg-gradient-to-b from-black/30 to-transparent">
-            <div className="text-center mb-16 container-custom">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Our Services
-              </h2>
-              <p className="text-lg text-white/90 max-w-2xl mx-auto">
-                Complete technological solutions to boost your business to the next level
-              </p>
-            </div>
+            <div className="relative z-10">
+              <div className="py-16">
+                <div className="container-custom text-center">
+                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+                    VIQ <span className="text-white">Systems</span>
+                  </h2>
+                  <div className="max-w-4xl mx-auto space-y-6 text-lg text-white/90 px-4">
+                    <p className="leading-relaxed">
+                      We're passionate about leveraging technology to help businesses thrive in the digital age. With over nine years of experience in the industry, we've honed our expertise in providing cutting-edge solutions that empower our clients to succeed online.
+                    </p>
+                    <p className="leading-relaxed">
+                      Since our inception in 2020, we've been committed to delivering exceptional results and exceeding our clients' expectations. Over the past nine years, we've evolved and adapted to meet the ever-changing needs of the digital landscape, staying ahead of the curve with innovative solutions and best practices.
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-            <div 
-              className="relative w-full overflow-hidden py-8"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div 
-                ref={containerRef}
-                className="flex whitespace-nowrap"
-                style={{
-                  transform: `translateX(-${offset}px)`,
-                  transition: isPaused ? 'transform 0.3s ease-out' : 'transform 0.1s linear'
-                }}
-              >
-                {items.map((service, index) => (
+              {/* Our Services Section */}
+              <div className="py-16">
+                <div className="relative z-10">
+                  <div className="text-center mb-16 container-custom">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                      Our Services
+                    </h2>
+                    <p className="text-lg text-white/90 max-w-2xl mx-auto">
+                      Complete technological solutions to boost your business to the next level
+                    </p>
+                  </div>
+
                   <div 
-                    key={`${service.title}-${index}`}
-                    className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-4"
+                    className="relative w-full overflow-hidden py-8"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                   >
-                    <div className="text-white dark:text-gray-800 rounded-3xl border border-white/10 dark:border-white/10 bg-white dark:bg-gradient-to-br dark:from-[#010101] dark:via-[#090909] dark:to-[#010101] shadow-2xl duration-700 z-10 relative backdrop-blur-xl hover:border-white/25 dark:hover:border-white/25 overflow-hidden hover:shadow-white/5 hover:shadow-3xl w-[350px] h-full">
-                      {/* Background effects */}
-                      <div className="absolute inset-0 z-0 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-white/10 dark:from-white/5 dark:to-white/10 opacity-40 dark:opacity-40 group-hover:opacity-60 dark:group-hover:opacity-60 transition-opacity duration-500"></div>
+                    <div 
+                      ref={containerRef}
+                      className="flex whitespace-nowrap"
+                      style={{
+                        transform: `translateX(-${offset}px)`,
+                        transition: isPaused ? 'transform 0.3s ease-out' : 'transform 0.1s linear'
+                      }}
+                    >
+                      {items.map((service, index) => (
                         <div 
-                          style={{ animationDelay: '0.5s' }}
-                          className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-white/10 to-transparent dark:from-white/10 dark:to-transparent blur-3xl opacity-30 dark:opacity-30 group-hover:opacity-50 dark:group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"
-                        ></div>
-                        <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-white/5 dark:bg-white/5 blur-xl animate-ping"></div>
-                        <div 
-                          style={{ animationDelay: '1s' }}
-                          className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-white/5 dark:bg-white/5 blur-lg animate-ping"
-                        ></div>
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent dark:from-transparent dark:via-white/5 dark:to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
-                      </div>
+                          key={`${service.title}-${index}`}
+                          className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-4"
+                        >
+                          <div className="text-white dark:text-gray-800 rounded-3xl border border-white/10 dark:border-white/10 bg-white dark:bg-gradient-to-br dark:from-[#010101] dark:via-[#090909] dark:to-[#010101] shadow-2xl duration-700 z-10 relative backdrop-blur-xl hover:border-white/25 dark:hover:border-white/25 overflow-hidden hover:shadow-white/5 hover:shadow-3xl w-[350px] h-full">
+                            {/* Background effects */}
+                            <div className="absolute inset-0 z-0 overflow-hidden">
+                              <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-white/10 dark:from-white/5 dark:to-white/10 opacity-40 dark:opacity-40 group-hover:opacity-60 dark:group-hover:opacity-60 transition-opacity duration-500"></div>
+                              <div 
+                                style={{ animationDelay: '0.5s' }}
+                                className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-white/10 to-transparent dark:from-white/10 dark:to-transparent blur-3xl opacity-30 dark:opacity-30 group-hover:opacity-50 dark:group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"
+                              ></div>
+                              <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-white/5 dark:bg-white/5 blur-xl animate-ping"></div>
+                              <div 
+                                style={{ animationDelay: '1s' }}
+                                className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-white/5 dark:bg-white/5 blur-lg animate-ping"
+                              ></div>
+                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent dark:from-transparent dark:via-white/5 dark:to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
+                            </div>
 
-                      {/* Card content */}
-                      <div className="p-8 relative z-10">
-                        <div className="flex flex-col items-center text-center">
-                          <div className="relative mb-6">
-                            <div className="absolute inset-0 rounded-full border-2 border-white/20 dark:border-white/20 animate-ping"></div>
-                            <div 
-                              style={{ animationDelay: '0.5s' }}
-                              className="absolute inset-0 rounded-full border border-white/10 dark:border-white/10 animate-pulse"
-                            ></div>
-                            <div className="p-4 rounded-full backdrop-blur-lg border border-white/20 dark:border-white/20 bg-gradient-to-br from-white/90 to-white/70 dark:from-black/80 dark:to-black/60 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 hover:shadow-white/20">
-                              <div className="transform group-hover:rotate-180 transition-transform duration-700">
-                                <service.icon className="w-8 h-8 text-blue-600 dark:text-yellow-500 group-hover:text-blue-500 dark:group-hover:text-yellow-400 transition-colors duration-300 filter drop-shadow-lg" />
+                            {/* Card content */}
+                            <div className="p-8 relative z-10">
+                              <div className="flex flex-col items-center text-center">
+                                <div className="relative mb-6">
+                                  <div className="absolute inset-0 rounded-full border-2 border-white/20 dark:border-white/20 animate-ping"></div>
+                                  <div 
+                                    style={{ animationDelay: '0.5s' }}
+                                    className="absolute inset-0 rounded-full border border-white/10 dark:border-white/10 animate-pulse"
+                                  ></div>
+                                  <div className="p-4 rounded-full backdrop-blur-lg border border-white/20 dark:border-white/20 bg-gradient-to-br from-white/90 to-white/70 dark:from-black/80 dark:to-black/60 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 hover:shadow-white/20">
+                                    <div className="transform group-hover:rotate-180 transition-transform duration-700">
+                                      <service.icon className="w-8 h-8 text-blue-600 dark:text-yellow-500 group-hover:text-blue-500 dark:group-hover:text-yellow-400 transition-colors duration-300 filter drop-shadow-lg" />
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="mb-4 transform group-hover:scale-105 transition-transform duration-300">
+                                  <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
+                                    {service.title}
+                                  </h3>
+                                </div>
+
+                                <div className="space-y-1 max-w-sm">
+                                  <ul className="space-y-2">
+                                    {service.features.map((feature, i) => (
+                                      <li key={i} className="flex items-center text-sm text-gray-700 dark:text-gray-300">
+                                        <svg className="w-4 h-4 mr-2 text-blue-500 dark:text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>{feature}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+
+                                <div className="mt-6 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-gray-800 to-transparent dark:from-transparent dark:via-white dark:to-transparent rounded-full transform group-hover:w-1/2 group-hover:h-1 transition-all duration-500 animate-pulse"></div>
+
+                                <div className="flex space-x-2 mt-4 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                                  {[0, 0.1, 0.2].map((delay) => (
+                                    <div 
+                                      key={delay}
+                                      style={{ animationDelay: `${delay}s` }}
+                                      className="w-2 h-2 bg-white rounded-full animate-bounce"
+                                    />
+                                  ))}
+                                </div>
                               </div>
                             </div>
-                          </div>
 
-                          <div className="mb-4 transform group-hover:scale-105 transition-transform duration-300">
-                            <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
-                              {service.title}
-                            </h3>
-                          </div>
-
-                          <div className="space-y-1 max-w-sm">
-                            <ul className="space-y-2">
-                              {service.features.map((feature, i) => (
-                                <li key={i} className="flex items-center text-sm text-gray-700 dark:text-gray-300">
-                                  <svg className="w-4 h-4 mr-2 text-blue-500 dark:text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                  </svg>
-                                  <span>{feature}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-
-                          <div className="mt-6 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-gray-800 to-transparent dark:from-transparent dark:via-white dark:to-transparent rounded-full transform group-hover:w-1/2 group-hover:h-1 transition-all duration-500 animate-pulse"></div>
-
-                          <div className="flex space-x-2 mt-4 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                            {[0, 0.1, 0.2].map((delay) => (
-                              <div 
-                                key={delay}
-                                style={{ animationDelay: `${delay}s` }}
-                                className="w-2 h-2 bg-white rounded-full animate-bounce"
-                              />
-                            ))}
+                            {/* Corner accents */}
+                            <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-white/10 to-transparent dark:from-white/10 dark:to-transparent rounded-br-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-white/10 to-transparent dark:from-white/10 dark:to-transparent rounded-tl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                           </div>
                         </div>
-                      </div>
-
-                      {/* Corner accents */}
-                      <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-white/10 to-transparent dark:from-white/10 dark:to-transparent rounded-br-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-white/10 to-transparent dark:from-white/10 dark:to-transparent rounded-tl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      ))}
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
 
-            <div className="text-center mt-12">
-              <Link 
-                to="/services" 
-                className="group relative inline-flex items-center justify-center px-8 py-3 bg-white text-gray-900 dark:bg-gradient-to-r dark:from-yellow-600 dark:to-yellow-600 dark:text-white font-medium rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-white/30 dark:hover:shadow-yellow-600/30"
-              >
-                <span className="relative z-10">View all services</span>
-                <ArrowRight className="w-5 h-5 ml-2 text-gray-900 dark:text-white group-hover:translate-x-1 transition-transform" />
-              </Link>
+                  <div className="text-center mt-12">
+                    <Link 
+                      to="/services" 
+                      className="group relative inline-flex items-center justify-center px-8 py-3 bg-yellow-600 hover:bg-yellow-500 text-white font-medium rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-yellow-600/30"
+                    >
+                      <span className="relative z-10 text-white">View all services</span>
+                      <ArrowRight className="w-5 h-5 ml-2 text-white group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -256,7 +428,7 @@ const Home = () => {
 
         <div className="container-custom relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-black dark:text-gold-600 mb-4">Why Choose Us?</h2>
+            <h2 className="text-4xl font-bold text-white mb-4">Why Choose Us?</h2>
             <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
               Over 5 years of experience offering top-level technological solutions
             </p>
@@ -268,52 +440,89 @@ const Home = () => {
                 icon: <Code className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
                 title: "Cutting-Edge Technology",
                 description: "We use the latest technologies and frameworks on the market to offer you modern and scalable solutions.",
-                bgGradient: "from-blue-100 via-blue-50 to-transparent dark:from-gold-600/5 dark:via-gold-500/10 dark:to-transparent"
               },
               {
                 icon: <Users className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
                 title: "Specialized Team",
                 description: "Our team of experts is highly trained to face any technological challenge.",
-                bgGradient: "from-blue-100 via-blue-50 to-transparent dark:from-gold-600/5 dark:via-gold-500/10 dark:to-transparent"
-              },
-              {
-                icon: <Shield className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
-                title: "Guaranteed Security",
-                description: "We implement the highest security standards to protect your data and that of your clients.",
-                bgGradient: "from-blue-100 via-blue-50 to-transparent dark:from-gold-600/5 dark:via-gold-500/10 dark:to-transparent"
               },
               {
                 icon: <Clock className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
                 title: "On-Time Deliveries",
                 description: "We meet the agreed deadlines without compromising the quality of the final product.",
-                bgGradient: "from-blue-100 via-blue-50 to-transparent dark:from-gold-600/5 dark:via-gold-500/10 dark:to-transparent"
               },
               {
                 icon: <MessageCircle className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
                 title: "Clear Communication",
                 description: "We maintain constant and transparent communication throughout the project development.",
-                bgGradient: "from-blue-100 via-blue-50 to-transparent dark:from-gold-600/5 dark:via-gold-500/10 dark:to-transparent"
               },
               {
                 icon: <Award className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
                 title: "Continuous Support",
                 description: "We offer continuous technical support even after the project is finished.",
-                bgGradient: "from-blue-100 via-blue-50 to-transparent dark:from-gold-600/5 dark:via-gold-500/10 dark:to-transparent"
               }
             ].map((item, index) => (
               <div 
                 key={index}
-                className="group relative bg-white dark:bg-gray-900/80 p-6 rounded-xl overflow-hidden transition-all duration-300 shadow-xl dark:shadow-none border-2 border-gray-200 dark:border-transparent hover:bg-gray-50 dark:hover:bg-gray-800/80"
+                className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-4"
               >
-                <div className="w-16 h-16 mb-6 mx-auto bg-gradient-to-br from-blue-100 to-blue-50 dark:from-gold-600/10 dark:to-gold-500/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  {item.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-3 text-center group-hover:text-blue-600 dark:group-hover:text-yellow-500 transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-center">{item.description}</p>
-                <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-blue-100/50 to-transparent dark:from-gold-600/5 dark:via-gold-500/10 dark:to-transparent rounded-xl"></div>
+                <div className="text-white dark:text-gray-800 rounded-3xl border border-white/10 dark:border-white/10 bg-white dark:bg-gradient-to-br dark:from-[#010101] dark:via-[#090909] dark:to-[#010101] shadow-2xl duration-700 z-10 relative backdrop-blur-xl hover:border-white/25 dark:hover:border-white/25 overflow-hidden hover:shadow-white/5 hover:shadow-3xl w-full h-full">
+                  {/* Background effects */}
+                  <div className="absolute inset-0 z-0 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-white/10 dark:from-white/5 dark:to-white/10 opacity-40 dark:opacity-40 group-hover:opacity-60 dark:group-hover:opacity-60 transition-opacity duration-500"></div>
+                    <div 
+                      style={{ animationDelay: '0.5s' }}
+                      className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-white/10 to-transparent dark:from-white/10 dark:to-transparent blur-3xl opacity-30 dark:opacity-30 group-hover:opacity-50 dark:group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"
+                    ></div>
+                    <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-white/5 dark:bg-white/5 blur-xl animate-ping"></div>
+                    <div 
+                      style={{ animationDelay: '1s' }}
+                      className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-white/5 dark:bg-white/5 blur-lg animate-ping"
+                    ></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent dark:from-transparent dark:via-white/5 dark:to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
+                  </div>
+
+                  {/* Card content */}
+                  <div className="p-8 relative z-10">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="relative mb-6">
+                        <div className="absolute inset-0 rounded-full border-2 border-white/20 dark:border-white/20 animate-ping"></div>
+                        <div 
+                          style={{ animationDelay: '0.5s' }}
+                          className="absolute inset-0 rounded-full border border-white/10 dark:border-white/10 animate-pulse"
+                        ></div>
+                        <div className="p-4 rounded-full backdrop-blur-lg border border-white/20 dark:border-white/20 bg-gradient-to-br from-white/90 to-white/70 dark:from-black/80 dark:to-black/60 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 hover:shadow-white/20">
+                          <div className="transform group-hover:rotate-180 transition-transform duration-700">
+                            {item.icon}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mb-4 transform group-hover:scale-105 transition-transform duration-300">
+                        <h3 className="text-xl font-bold bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
+                          {item.title}
+                        </h3>
+                      </div>
+
+                      <p className="text-gray-600 dark:text-gray-400">{item.description}</p>
+
+                      <div className="mt-6 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-gray-800 to-transparent dark:from-transparent dark:via-white dark:to-transparent rounded-full transform group-hover:w-1/2 group-hover:h-1 transition-all duration-500 animate-pulse"></div>
+
+                      <div className="flex space-x-2 mt-4 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                        {[0, 0.1, 0.2].map((delay) => (
+                          <div 
+                            key={delay}
+                            style={{ animationDelay: `${delay}s` }}
+                            className="w-2 h-2 bg-white rounded-full animate-bounce"
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Corner accents */}
+                  <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-white/10 to-transparent dark:from-white/10 dark:to-transparent rounded-br-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-white/10 to-transparent dark:from-white/10 dark:to-transparent rounded-tl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
               </div>
             ))}
@@ -405,71 +614,131 @@ const Home = () => {
       </section>
 
       {/* Sección Testimonios */}
-      <section className="relative py-20 overflow-hidden">
-        {/* Video de fondo */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            muted
-            loop
+      <section className="relative py-24 overflow-hidden bg-gray-900 w-full">
+        {/* Video Background */}
+        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+          <video 
+            autoPlay 
+            loop 
+            muted 
             playsInline
             className="w-full h-full object-cover"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              minWidth: '100%',
+              minHeight: '100%',
+              width: 'auto',
+              height: 'auto',
+            }}
           >
             <source src="/videos/8725948-uhd_3840_2160_25fps.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 via-gray-900/80 to-gray-900/90"></div>
+          <div className="absolute inset-0 bg-black/70"></div>
         </div>
 
-        <div className="container-custom relative z-10">
-          <div className="text-center mb-16">
+        <div className="relative z-10 w-full px-0 mx-auto">
+          <div className="text-center mb-12 px-4 sm:px-6 lg:px-8">
             <h2 className="text-4xl font-bold text-white mb-4">What Our Clients Say</h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Testimonials from companies that have trusted our services
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                quote: "Incredible work. The team exceeded all our expectations with their professionalism and attention to detail.",
-                author: "María González",
-                position: "CEO, TechSolutions",
-                rating: 5
-              },
-              {
-                quote: "The best investment we've made. Their focus on user experience is exceptional.",
-                author: "Carlos Méndez",
-                position: "Director of Marketing, DigitalPlus",
-                rating: 5
-              },
-              {
-                quote: "Exceptional support and customized solutions that really understand our needs.",
-                author: "Ana Ramírez",
-                position: "IT Manager, InnovateCorp",
-                rating: 5
-              }
-            ].map((testimonial, index) => (
-              <div 
-                key={index}
-                className="bg-white dark:bg-gray-800 p-8 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 shadow-xl dark:shadow-none border-2 border-gray-200 dark:border-transparent"
-              >
-                <div className="flex mb-4 text-yellow-500">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className={`w-5 h-5 ${i < testimonial.rating ? 'fill-current' : 'text-gray-300 dark:text-gray-600'}`} />
-                  ))}
-                </div>
-                <p className="text-gray-700 dark:text-gray-300 italic mb-6">"{testimonial.quote}"</p>
-                <div className="flex items-center">
-                  <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-gold-600/20 flex items-center justify-center text-blue-600 dark:text-gold-500 font-bold text-xl mr-4">
-                    {testimonial.author.charAt(0)}
+          <div 
+            className="relative w-full overflow-hidden py-8"
+            onMouseEnter={() => setIsTestimonialPaused(true)}
+            onMouseLeave={() => setIsTestimonialPaused(false)}
+          >
+            <div 
+              className="flex transition-transform duration-0 ease-linear"
+              style={{
+                gap: `${24}px`,
+                transform: `translateX(-${testimonialOffset}px)`,
+                width: `${(320 + 24) * testimonials.length}px`,
+              }}
+            >
+              {testimonials.map((testimonial, index) => (
+                <div 
+                  key={`${testimonial.author}-${index}`}
+                  className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1"
+                  style={{ 
+                    width: `${350}px`,
+                  }}
+                >
+                  <div className="h-full text-gold-500 rounded-2xl border border-gold-200/50 bg-black shadow-lg duration-300 z-10 relative overflow-hidden hover:shadow-xl hover:shadow-gold-500/20">
+                    {/* Card content */}
+                    <div className="p-8 relative z-10">
+                      <div className="flex flex-col items-center text-center">
+                        <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                          <div className="p-4 rounded-full bg-gold-500/10 shadow-md transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
+                            <MessageCircle className="w-10 h-10 text-gold-500 group-hover:scale-110 transition-transform" />
+                          </div>
+                        </div>
+
+                        <div className="relative flex-grow mb-6">
+                          <p className="text-gold-400/90 italic relative z-10 text-base">
+                            "{testimonial.quote}"
+                          </p>
+                        </div>
+
+                        <div className="w-1/3 h-0.5 bg-gradient-to-r from-gold-500 to-gold-300 rounded-full my-6 transform group-hover:scale-x-150 transition-transform duration-300"></div>
+
+                        <div className="w-full">
+                          <div className="flex items-center justify-center space-x-4">
+                            <div className="relative">
+                              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-500/20 to-gold-600/30 flex items-center justify-center text-gold-400 font-bold text-xl transform group-hover:scale-110 transition-transform duration-300">
+                                {testimonial.author.charAt(0)}
+                              </div>
+                            </div>
+                            <div className="text-left">
+                              <h4 className="font-semibold text-gold-300">{testimonial.author}</h4>
+                              <p className="text-sm text-gold-400/80">{testimonial.position}</p>
+                              <div className="flex mt-1 space-x-1">
+                                {[...Array(5)].map((_, i) => (
+                                  <Star 
+                                    key={i} 
+                                    className={`w-4 h-4 ${i < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gold-600'}`} 
+                                  />
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Hover effects */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                      <div className="absolute inset-0 bg-gradient-to-br from-gold-500/5 to-transparent"></div>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white">{testimonial.author}</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.position}</p>
-                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Flechas de navegación */}
+            <button 
+              onClick={() => handleTestimonialNav('prev')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300"
+              aria-label="Previous testimonial"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button 
+              onClick={() => handleTestimonialNav('next')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300"
+              aria-label="Next testimonial"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         </div>
       </section>
@@ -494,15 +763,15 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link 
               to="/register" 
-              className="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-900 transition-colors"
+              className="bg-yellow-600 hover:bg-yellow-500 text-white px-8 py-3 rounded-lg font-medium transition-colors"
             >
-              Contact Us
+              <span className="text-white">Contact Us</span>
             </Link>
             <Link 
               to="/services" 
-              className="bg-black text-white border-2 border-black px-8 py-3 rounded-lg font-medium hover:bg-gray-900 transition-colors"
+              className="bg-yellow-600 hover:bg-yellow-500 text-white border-2 border-yellow-600 hover:border-yellow-500 px-8 py-3 rounded-lg font-medium transition-colors"
             >
-              Our Services
+              <span className="text-white">Our Services</span>
             </Link>
           </div>
         </div>

@@ -20,34 +20,37 @@ const Hero = () => {
           loop
           playsInline
           className="w-full h-full object-cover"
+          style={{
+            filter: 'brightness(0.8) contrast(1.1)'
+          }}
         >
           <source src="/videos/VQS.mp4" type="video/mp4" />
           Video dont supported.
         </video>
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-900/80 via-primary-900/60 to-primary-900/90"></div>
+        {/* Lighter gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 via-gray-900/75 to-gray-900/80"></div>
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-32">
         <div className="max-w-4xl mx-auto text-center">
           <div className="space-y-8">
             {/* Badge */}
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/90 text-sm font-medium">
-              <span className="w-2 h-2 rounded-full bg-accent-400 mr-2"></span>
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/30 backdrop-blur-md text-white font-medium shadow-lg">
+              <span className="w-2.5 h-2.5 rounded-full bg-accent-400 mr-2"></span>
               Leading Digital Solutions Provider
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl text-white/90 lg:text-6xl xl:text-7xl font-bold text-white leading-tight tracking-tight">
-              <span className="text-white/90 block">Your</span>
-              <span className="text-transparent text-white/90 bg-clip-text bg-gradient-to-r from-accent-400 to-primary-400">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white dark:text-transparent leading-tight tracking-tight drop-shadow-xl">
+              <span className="block font-semibold text-white">Your</span>
+              <span className="text-white dark:bg-clip-text dark:bg-gradient-to-r dark:from-accent-300 dark:to-primary-300 drop-shadow-2xl">
                 Digital Revolution
               </span>
-              <span className='text-white/90'>Starts Here!</span>
+              <span className="block font-semibold text-white">Starts Here!</span>
             </h1>
 
             {/* Subheading */}
-            <p className="text-2xl md:text-3xl font-medium text-white/90 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-2xl md:text-3xl font-semibold text-white max-w-2xl mx-auto leading-relaxed drop-shadow-xl">
               Your Vision, our Expertise, your Success!
             </p>
 
@@ -56,10 +59,10 @@ const Hero = () => {
               {features.map((feature, index) => (
                 <div 
                   key={index} 
-                  className="flex items-center space-x-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10"
+                  className="flex items-center space-x-2 bg-white/30 backdrop-blur-md px-5 py-2.5 rounded-full border-2 border-white/30 shadow-xl"
                 >
-                  <CheckCircle className="text-white/90 h-4 w-4 text-accent-400" />
-                  <span className="text-sm text-white/90">{feature}</span>
+                  <CheckCircle className="h-5 w-5 text-accent-300" />
+                  <span className="text-sm font-semibold text-white">{feature}</span>
                 </div>
               ))}
             </div>
@@ -85,16 +88,14 @@ const Hero = () => {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 gap-6 pt-12 max-w-2xl mx-auto">
               {[
-                { value: '500+', label: 'Projects Completed' },
-                { value: '98%', label: 'Client Satisfaction' },
-                { value: '10+', label: 'Years Experience' },
-                { value: '50+', label: 'Team Members' }
+                { value: '100%', label: 'Client Satisfaction' },
+                { value: '5+', label: 'Years Experience' }
               ].map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-white">{stat.value}</div>
-                  <div className="text-sm text-white/70 mt-1">{stat.label}</div>
+                  <div className="text-2xl md:text-3xl font-bold text-white drop-shadow-lg">{stat.value}</div>
+                  <div className="text-sm font-medium text-white/90 mt-1 drop-shadow">{stat.label}</div>
                 </div>
               ))}
             </div>

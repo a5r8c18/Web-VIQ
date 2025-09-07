@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Code, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Github } from 'lucide-react';
+import { Code, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Github, MessageCircle, Instagram } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -22,20 +22,71 @@ const Footer = () => {
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
               Leaders in innovative technology solutions. We transform ideas into digital reality with excellence and passion.
             </p>
-            <div className="flex space-x-4 pt-2">
+            <div className="flex space-x-2 pt-2">
               {[
-                { icon: Facebook, url: '#' },
-                { icon: Twitter, url: '#' },
-                { icon: Linkedin, url: '#' },
-                { icon: Github, url: '#' }
+                { 
+                  icon: Facebook, 
+                  url: '#',
+                  color: 'text-gray-600 group-hover:text-amber-600 dark:text-gray-300 dark:group-hover:text-amber-400',
+                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-amber-50/50 dark:group-hover:bg-amber-900/10',
+                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50'
+                },
+                { 
+                  icon: Twitter, 
+                  url: '#',
+                  color: 'text-gray-600 group-hover:text-amber-600 dark:text-gray-300 dark:group-hover:text-amber-400',
+                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-amber-50/50 dark:group-hover:bg-amber-900/10',
+                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50'
+                },
+                { 
+                  icon: Linkedin, 
+                  url: '#',
+                  color: 'text-gray-600 group-hover:text-amber-600 dark:text-gray-300 dark:group-hover:text-amber-400',
+                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-amber-50/50 dark:group-hover:bg-amber-900/10',
+                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50'
+                },
+                { 
+                  icon: Instagram, 
+                  url: '#',
+                  color: 'text-gray-600 group-hover:text-amber-600 dark:text-gray-300 dark:group-hover:text-amber-400',
+                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-amber-50/50 dark:group-hover:bg-amber-900/10',
+                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50',
+                  gradient: 'from-amber-500 to-amber-300'
+                },
+                { 
+                  icon: MessageCircle, 
+                  url: 'https://wa.me/1234567890',
+                  color: 'text-gray-600 group-hover:text-amber-600 dark:text-gray-300 dark:group-hover:text-amber-400',
+                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-amber-50/50 dark:group-hover:bg-amber-900/10',
+                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50'
+                },
+                { 
+                  icon: Github, 
+                  url: '#',
+                  color: 'text-gray-600 group-hover:text-amber-600 dark:text-gray-300 dark:group-hover:text-amber-400',
+                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-amber-50/50 dark:group-hover:bg-amber-900/10',
+                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50'
+                }
               ].map((social, index) => (
                 <a 
                   key={index}
                   href={social.url}
-                  className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-yellow-500 transition-colors p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+                  className="group relative p-0.5 rounded-full transition-all duration-500 hover:scale-105"
                   aria-label={social.icon.name}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <social.icon className="h-5 w-5" />
+                  <div className={`relative p-2 rounded-full ${social.bg} ${social.border} border transition-all duration-500 group-hover:shadow-md group-hover:shadow-amber-500/10`}>
+                    <div className="relative z-10">
+                      <div className="transform transition-transform duration-500 group-hover:rotate-[-15deg]">
+                        <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${social.gradient || 'from-amber-400 to-amber-300/80'} opacity-0 group-hover:opacity-70 transition-opacity duration-300`}></div>
+                        <social.icon className={`h-5 w-5 relative z-10 ${social.color} transition-colors duration-300`} />
+                      </div>
+                    </div>
+                    <div className="absolute inset-0 rounded-full border border-transparent group-hover:border-amber-300/30 dark:group-hover:border-amber-600/30 transition-all duration-300"></div>
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-transparent via-amber-500/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-1000"></div>
+                  </div>
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-500/0 via-amber-500/10 to-amber-500/0 opacity-0 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-1000"></div>
                 </a>
               ))}
             </div>
@@ -72,9 +123,6 @@ const Footer = () => {
               {[
                 'Web Development',
                 'Mobile Applications',
-                'Cloud Computing',
-                'IT Consulting',
-                'Cybersecurity',
                 'Digital Marketing'
               ].map((service, index) => (
                 <li key={index}>
