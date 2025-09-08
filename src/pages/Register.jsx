@@ -20,7 +20,6 @@ const Register = () => {
     company: '',
     website: '',
     service: '',
-    budget: '',
     timeline: '',
     message: '',
     newsletter: false,
@@ -51,15 +50,6 @@ const Register = () => {
     'Full-Stack Development',
     'Big Data & Analytics',
     'Other (specify in message)'
-  ]
-
-  const budgetRanges = [
-    'Less than $5,000',
-    '$5,000 - $15,000',
-    '$15,000 - $50,000',
-    '$50,000 - $100,000',
-    'More than $100,000',
-    'To be determined'
   ]
 
   const timelineOptions = [
@@ -343,21 +333,6 @@ const Register = () => {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
-                        Budget *
-                      </label>
-                      <ValidatedInput
-                        type="select"
-                        name="budget"
-                        value={formData.budget}
-                        onChange={handleChange}
-                        onBlur={setFieldTouched}
-                        placeholder="Select budget"
-                        options={budgetRanges}
-                      />
-                    </div>
-
                     <div>
                       <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
                         Timeline *

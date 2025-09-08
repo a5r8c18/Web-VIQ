@@ -272,7 +272,7 @@ const Home = () => {
                     height: 'auto',
                   }}
                 >
-                  <source src="/videos/14159465_3840_2160_25fps (2).mp4" type="video/mp4" />
+                  <source src="/videos/14159465_3840_2160_25fps (1).mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black/70"></div>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Code, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Github, MessageCircle, Instagram } from 'lucide-react';
+import { Code, Mail, Phone, MapPin, Facebook, Linkedin, MessageCircle, Instagram } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -32,11 +32,12 @@ const Footer = () => {
                   border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50'
                 },
                 { 
-                  icon: Twitter, 
+                  icon: null, 
                   url: '#',
-                  color: 'text-gray-600 group-hover:text-amber-600 dark:text-gray-300 dark:group-hover:text-amber-400',
-                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-amber-50/50 dark:group-hover:bg-amber-900/10',
-                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50'
+                  color: 'text-gray-600 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-white',
+                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-gray-100 dark:group-hover:bg-gray-700/30',
+                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-gray-300 dark:group-hover:border-gray-600',
+                  customIcon: true
                 },
                 { 
                   icon: Linkedin, 
@@ -59,20 +60,13 @@ const Footer = () => {
                   color: 'text-gray-600 group-hover:text-amber-600 dark:text-gray-300 dark:group-hover:text-amber-400',
                   bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-amber-50/50 dark:group-hover:bg-amber-900/10',
                   border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50'
-                },
-                { 
-                  icon: Github, 
-                  url: '#',
-                  color: 'text-gray-600 group-hover:text-amber-600 dark:text-gray-300 dark:group-hover:text-amber-400',
-                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-amber-50/50 dark:group-hover:bg-amber-900/10',
-                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50'
                 }
               ].map((social, index) => (
                 <a 
                   key={index}
                   href={social.url}
                   className="group relative p-0.5 rounded-full transition-all duration-500 hover:scale-105"
-                  aria-label={social.icon.name}
+                  aria-label={social.icon ? social.icon.name : 'X'}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -80,7 +74,15 @@ const Footer = () => {
                     <div className="relative z-10">
                       <div className="transform transition-transform duration-500 group-hover:rotate-[-15deg]">
                         <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${social.gradient || 'from-amber-400 to-amber-300/80'} opacity-0 group-hover:opacity-70 transition-opacity duration-300`}></div>
-                        <social.icon className={`h-5 w-5 relative z-10 ${social.color} transition-colors duration-300`} />
+                        {social.customIcon ? (
+                          <div className="relative z-10">
+                            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
+                              <path d="M18.205 2.25h3.308l-7.227 8.26 8.502 11.24H16.13l-5.214-6.817L4.95 21.75H1.64l7.73-8.835L1.215 2.25H8.04l4.713 6.231zm-1.161 17.52h1.833L7.045 4.126H5.078z"/>
+                            </svg>
+                          </div>
+                        ) : (
+                          <social.icon className={`h-5 w-5 relative z-10 ${social.color} transition-colors duration-300`} />
+                        )}
                       </div>
                     </div>
                     <div className="absolute inset-0 rounded-full border border-transparent group-hover:border-amber-300/30 dark:group-hover:border-amber-600/30 transition-all duration-300"></div>
