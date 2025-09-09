@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Code, Mail, Phone, MapPin, Facebook, Linkedin, MessageCircle, Instagram } from 'lucide-react';
+import { Code, Mail, Phone, MapPin, Facebook, Linkedin, MessageCircle, Instagram, Youtube } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-white text-gray-900 border-t border-gray-200 shadow-2xl dark:bg-black dark:text-white dark:border-gray-800">
+    <footer className="bg-gray-800 text-gray-100 border-t border-gray-700 shadow-2xl dark:bg-gray-900 dark:text-white">
       <div className="container-custom py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
@@ -19,7 +19,7 @@ const Footer = () => {
                 />
               </div>
             </Link>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            <p className="text-gray-300 dark:text-gray-400 text-sm leading-relaxed">
               Leaders in innovative technology solutions. We transform ideas into digital reality with excellence and passion.
             </p>
             <div className="flex space-x-2 pt-2">
@@ -27,90 +27,114 @@ const Footer = () => {
                 { 
                   icon: Facebook, 
                   url: '#',
-                  color: 'text-gray-600 group-hover:text-amber-600 dark:text-gray-300 dark:group-hover:text-amber-400',
-                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-amber-50/50 dark:group-hover:bg-amber-900/10',
-                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50'
+                  color: 'text-gray-400 group-hover:text-yellow-400',
+                  bg: 'bg-gray-700/50 group-hover:bg-yellow-500/10',
+                  border: 'border-gray-600 group-hover:border-yellow-500/30'
                 },
                 { 
                   icon: null, 
-                  url: '#',
-                  color: 'text-gray-600 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-white',
-                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-gray-100 dark:group-hover:bg-gray-700/30',
-                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-gray-300 dark:group-hover:border-gray-600',
-                  customIcon: true
+                  url: 'https://www.tiktok.com/@viqsystems',
+                  color: 'text-gray-400 group-hover:text-white',
+                  bg: 'bg-gray-700/50 group-hover:bg-gray-600/50',
+                  border: 'border-gray-600 group-hover:border-gray-500',
+                  customIcon: true,
+                  customIconPath: (
+                    <>
+                      <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.18 1.99 1.3 3.02 3.3 3.12 1.5.08 3.04.04 4.26-.01 2.1-.07 3.25-.3 3.3-3.1.1-4.2.03-8.4.03-12.6h-5.8c0 2.08-.01 4.17 0 6.26-.01.7-.1 1.3-.6 1.7-.5.4-1.1.5-1.8.4-1.6-.2-2.9-1.4-3.2-3-.1-.7-.1-1.3-.1-2 0-2.2 0-4.4.01-6.58h-5.8v19.57c0 1.1.03 2.2-.02 3.3-.1 1.8-1 3.1-2.6 3.6-1.4.5-2.9.4-4.3-.2-1.4-.6-2.2-1.7-2.6-3.1-.3-1.1-.3-2.2-.4-3.3 0-1.1 0-2.2.1-3.3.2-1.6 1.1-2.8 2.6-3.4 1.1-.4 2.2-.4 3.3-.2.7.1 1.3.6 1.6 1.2.4.7.4 1.4.5 2.1.1 1.1.1 2.3 0 3.4-.1.9-.1 1.8.8 1.8.9 0 .9-.9.9-1.7.1-1.3.1-2.5 0-3.8 0-.5-.1-1.1-.5-1.5-.4-.4-1-.5-1.5-.5-1.5-.1-2.6.6-2.9 2.1-.2 1.1-.2 2.2-.2 3.3v3.3c0 1.1 0 2.2.2 3.3.3 1.5 1.4 2.2 2.9 2.1 1.6-.1 2.6-1.1 2.8-2.7.1-1.1.1-2.2 0-3.3V6.73c0-1.1 0-2.2-.1-3.3-.1-1.1-.4-2.1-1.4-2.7-.9-.6-1.9-.8-3-.7-1.1.1-2.1.5-2.9 1.3-.8.8-1.2 1.8-1.3 2.9-.1 1.1-.1 2.2-.1 3.3v1.8c0 1.1 0 2.2.1 3.3.1 1.1.4 2.1 1.4 2.7.9.6 1.9.8 3 .7 1.1-.1 2.1-.5 2.9-1.3.8-.8 1.2-1.8 1.3-2.9.1-1.1.1-2.2.1-3.3V.02z" fill="currentColor"/>
+                    </>
+                  )
                 },
                 { 
                   icon: Linkedin, 
-                  url: '#',
-                  color: 'text-gray-600 group-hover:text-amber-600 dark:text-gray-300 dark:group-hover:text-amber-400',
-                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-amber-50/50 dark:group-hover:bg-amber-900/10',
-                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50'
+                  url: 'https://www.linkedin.com/company/viqsystems',
+                  color: 'text-gray-400 group-hover:text-yellow-400',
+                  bg: 'bg-gray-700/50 group-hover:bg-yellow-500/10',
+                  border: 'border-gray-600 group-hover:border-yellow-500/30'
                 },
                 { 
                   icon: Instagram, 
-                  url: '#',
-                  color: 'text-gray-600 group-hover:text-amber-600 dark:text-gray-300 dark:group-hover:text-amber-400',
-                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-amber-50/50 dark:group-hover:bg-amber-900/10',
-                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50',
-                  gradient: 'from-amber-500 to-amber-300'
+                  url: 'https://www.instagram.com/viq.systems',
+                  color: 'text-gray-400 group-hover:text-yellow-400',
+                  bg: 'bg-gray-700/50 group-hover:bg-yellow-500/10',
+                  border: 'border-gray-600 group-hover:border-yellow-500/30'
+                },
+                { 
+                  icon: Youtube, 
+                  url: 'https://www.youtube.com/channel/UCqwGR2DEiXghq0gYXUi1U8g',
+                  color: 'text-gray-400 group-hover:text-red-400',
+                  bg: 'bg-gray-700/50 group-hover:bg-red-500/10',
+                  border: 'border-gray-600 group-hover:border-red-500/30'
+                },
+                { 
+                  icon: null, 
+                  url: 'https://twitter.com/viqsystems',
+                  color: 'text-gray-400 group-hover:text-white',
+                  bg: 'bg-gray-700/50 group-hover:bg-gray-600/50',
+                  border: 'border-gray-600 group-hover:border-gray-500',
+                  customIcon: true,
+                  customIconPath: (
+                    <path d="M18.205 2.25h3.308l-7.227 8.26 8.502 11.24H16.13l-5.214-6.817L4.95 21.75H1.64l7.73-8.835L1.215 2.25H8.04l4.713 6.231zm-1.161 17.52h1.833L7.045 4.126H5.078z"/>
+                  )
                 },
                 { 
                   icon: MessageCircle, 
-                  url: 'https://wa.me/1234567890',
-                  color: 'text-gray-600 group-hover:text-amber-600 dark:text-gray-300 dark:group-hover:text-amber-400',
-                  bg: 'bg-gray-50 dark:bg-gray-800/30 group-hover:bg-amber-50/50 dark:group-hover:bg-amber-900/10',
-                  border: 'border-gray-200 dark:border-gray-700 group-hover:border-amber-200 dark:group-hover:border-amber-800/50'
+                  url: 'https://wa.link/rpkawi',
+                  color: 'text-gray-400 group-hover:text-yellow-400',
+                  bg: 'bg-gray-700/50 group-hover:bg-yellow-500/10',
+                  border: 'border-gray-600 group-hover:border-yellow-500/30'
                 }
               ].map((social, index) => (
                 <a 
                   key={index}
                   href={social.url}
                   className="group relative p-0.5 rounded-full transition-all duration-500 hover:scale-105"
-                  aria-label={social.icon ? social.icon.name : 'X'}
+                  aria-label={social.icon ? social.icon.name : social.url.includes('tiktok') ? 'TikTok' : 'X'}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <div className={`relative p-2 rounded-full ${social.bg} ${social.border} border transition-all duration-500 group-hover:shadow-md group-hover:shadow-amber-500/10`}>
+                  <div className={`relative p-2 rounded-full ${social.bg} ${social.border} border transition-all duration-500 group-hover:shadow-md group-hover:shadow-yellow-500/10`}>
                     <div className="relative z-10">
                       <div className="transform transition-transform duration-500 group-hover:rotate-[-15deg]">
-                        <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${social.gradient || 'from-amber-400 to-amber-300/80'} opacity-0 group-hover:opacity-70 transition-opacity duration-300`}></div>
+                        <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${social.url.includes('youtube') ? 'from-red-400 to-red-300/80' : social.url.includes('tiktok') ? 'from-gray-400 to-gray-600/80' : 'from-yellow-400 to-yellow-300/80'} opacity-0 group-hover:opacity-70 transition-opacity duration-300`}></div>
                         {social.customIcon ? (
                           <div className="relative z-10">
-                            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
-                              <path d="M18.205 2.25h3.308l-7.227 8.26 8.502 11.24H16.13l-5.214-6.817L4.95 21.75H1.64l7.73-8.835L1.215 2.25H8.04l4.713 6.231zm-1.161 17.52h1.833L7.045 4.126H5.078z"/>
+                            <svg 
+                              className={`w-5 h-5 ${social.color} transition-colors duration-300`} 
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                            >
+                              {social.customIconPath}
                             </svg>
                           </div>
                         ) : (
-                          <social.icon className={`h-5 w-5 relative z-10 ${social.color} transition-colors duration-300`} />
+                          <social.icon className={`w-5 h-5 ${social.color} transition-colors duration-300`} />
                         )}
                       </div>
                     </div>
-                    <div className="absolute inset-0 rounded-full border border-transparent group-hover:border-amber-300/30 dark:group-hover:border-amber-600/30 transition-all duration-300"></div>
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-transparent via-amber-500/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-1000"></div>
                   </div>
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-500/0 via-amber-500/10 to-amber-500/0 opacity-0 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-1000"></div>
                 </a>
               ))}
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Links</h3>
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-6">Quick Links</h3>
             <ul className="space-y-3">
               {[
                 { name: 'Home', path: '/' },
                 { name: 'Services', path: '/services' },
-                { name: 'Register', path: '/register' },
                 { name: 'About Us', path: '/about' },
-                { name: 'Contact', path: '/register' }
+                { name: 'Contact', path: '/register' },
+                { name: 'Blog', path: '#' },
+                { name: 'Portfolio', path: '#' },
               ].map((link, index) => (
                 <li key={index}>
                   <Link 
-                    to={link.path} 
-                    className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-yellow-500 transition-colors text-sm flex items-center group"
+                    to={link.path}
+                    className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm flex items-center group"
                   >
-                    <span className="w-1.5 h-1.5 bg-blue-600/0 group-hover:bg-blue-600 dark:group-hover:bg-yellow-500 rounded-full mr-2 transition-all"></span>
+                    <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                     {link.name}
                   </Link>
                 </li>
@@ -119,20 +143,23 @@ const Footer = () => {
           </div>
 
           {/* Services */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Services</h3>
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-6">Services</h3>
             <ul className="space-y-3">
               {[
                 'Web Development',
-                'Mobile Applications',
-                'Digital Marketing'
+                'Mobile App Development',
+                'UI/UX Design',
+                'Digital Marketing',
+                'Cloud Solutions',
+                'IT Consulting'
               ].map((service, index) => (
                 <li key={index}>
                   <a 
                     href="#" 
-                    className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-yellow-500 transition-colors text-sm flex items-center group"
+                    className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm flex items-center group"
                   >
-                    <span className="w-1.5 h-1.5 bg-blue-600/0 group-hover:bg-blue-600 dark:group-hover:bg-yellow-500 rounded-full mr-2 transition-all"></span>
+                    <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                     {service}
                   </a>
                 </li>
@@ -141,60 +168,38 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Contact Us</h3>
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-6">Contact Us</h3>
             <ul className="space-y-4">
-              <li className="flex items-start space-x-3">
-                <div className="mt-0.5">
-                  <Mail className="h-5 w-5 text-blue-600 dark:text-yellow-500" />
-                </div>
-                <div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Email</span>
-                  <p className="text-gray-900 dark:text-white text-sm">info@viqsystems.com</p>
-                </div>
+              <li className="flex items-start">
+                <MapPin className="h-5 w-5 text-yellow-400 mt-0.5 mr-3 flex-shrink-0" />
+                <span className="text-gray-300 text-sm">123 Tech Street, Silicon Valley, CA 94025</span>
               </li>
-              <li className="flex items-start space-x-3">
-                <div className="mt-0.5">
-                  <Phone className="h-5 w-5 text-blue-600 dark:text-yellow-500" />
-                </div>
-                <div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Phone</span>
-                  <p className="text-gray-900 dark:text-white text-sm">+1 234 567 890</p>
-                </div>
+              <li className="flex items-center">
+                <Mail className="h-5 w-5 text-yellow-400 mr-3 flex-shrink-0" />
+                <a href="mailto:info@viqsystems.com" className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm">info@viqsystems.com</a>
               </li>
-              <li className="flex items-start space-x-3">
-                <div className="mt-0.5">
-                  <MapPin className="h-5 w-5 text-blue-600 dark:text-yellow-500" />
-                </div>
-                <div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Address</span>
-                  <p className="text-gray-900 dark:text-white text-sm">123 Main St, City, Country</p>
-                </div>
+              <li className="flex items-center">
+                <Phone className="h-5 w-5 text-yellow-400 mr-3 flex-shrink-0" />
+                <a href="tel:+11234567890" className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm">+1 (123) 456-7890</a>
+              </li>
+              <li className="flex items-center">
+                <Code className="h-5 w-5 text-yellow-400 mr-3 flex-shrink-0" />
+                <span className="text-gray-300 text-sm">Mon - Fri: 9:00 - 18:00</span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-200 dark:border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            Copyright &copy; {currentYear} VIQSystems INC. All Rights Reserved.
+        {/* Copyright */}
+        <div className="border-t border-gray-700 mt-16 pt-8 text-center">
+          <p className="text-gray-400 text-sm">
+            &copy; {currentYear} VIQ Systems. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-sm text-gray-500 hover:text-blue-600 dark:hover:text-yellow-500 transition-colors">
-              Terms of Service
-            </a>
-            <a href="#" className="text-sm text-gray-500 hover:text-blue-600 dark:hover:text-yellow-500 transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-sm text-gray-500 hover:text-blue-600 dark:hover:text-yellow-500 transition-colors">
-              Cookie Policy
-            </a>
-          </div>
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
 export default Footer;

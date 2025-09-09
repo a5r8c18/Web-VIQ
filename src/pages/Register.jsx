@@ -20,7 +20,6 @@ const Register = () => {
     company: '',
     website: '',
     service: '',
-    timeline: '',
     message: '',
     newsletter: false,
     terms: false
@@ -50,15 +49,6 @@ const Register = () => {
     'Full-Stack Development',
     'Big Data & Analytics',
     'Other (specify in message)'
-  ]
-
-  const timelineOptions = [
-    'Less than 1 month',
-    '1-3 months',
-    '3-6 months',
-    '6-12 months',
-    'More than 1 year',
-    'Flexible'
   ]
 
   const handlePhoneChange = (phone, countryCode, countryName) => {
@@ -98,18 +88,19 @@ const Register = () => {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-white dark:bg-black flex items-center justify-center py-20">
-        <div className="max-w-md w-full text-yellow-500 dark:text-yellow-400 rounded-3xl border-2 border-gray-200 dark:border-yellow-600/50 bg-white dark:bg-black shadow-2xl duration-700 z-10 relative p-8 text-center">
+      <div className="min-h-screen bg-gray-800 dark:bg-black flex items-center justify-center py-20">
+        <div className="max-w-md w-full text-yellow-400 dark:text-yellow-400 rounded-3xl border-2 border-gray-700 dark:border-yellow-600/50 bg-gray-700/80 dark:bg-black shadow-2xl duration-700 z-10 relative p-8 text-center backdrop-blur-sm">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-tr from-yellow-600/5 via-yellow-400/10 to-yellow-600/5 opacity-60 dark:opacity-60"></div>
+            <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-yellow-700/10 via-yellow-500/15 to-transparent blur-3xl opacity-40"></div>
             <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-yellow-700/10 via-yellow-500/15 to-transparent blur-3xl opacity-40"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/10 to-transparent transform -skew-x-12"></div>
           </div>
           <div className="relative z-10">
             <div className="w-20 h-20 bg-yellow-100 dark:bg-yellow-500/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-yellow-500/20 transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
-              <CheckCircle className="h-10 w-10 text-yellow-500" />
+              <CheckCircle className="h-10 w-10 text-yellow-400" />
             </div>
-            <h2 className="text-2xl font-bold text-yellow-500 dark:text-yellow-400 mb-4">
+            <h2 className="text-2xl font-bold text-yellow-400 dark:text-yellow-400 mb-4">
               Successful Registration!
             </h2>
             <p className="text-yellow-600 dark:text-yellow-300/80 mb-6">
@@ -130,20 +121,19 @@ const Register = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-gray-800 dark:bg-black text-gray-100">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/5 via-yellow-400/10 to-yellow-600/5 opacity-60 dark:opacity-60"></div>
-          <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-yellow-700/10 via-yellow-500/15 to-transparent blur-3xl opacity-40"></div>
-          <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-yellow-600/20 blur-xl animate-ping dark:block hidden"></div>
+          <div className="absolute inset-0 bg-gray-800 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-yellow-500/5 via-transparent to-transparent"></div>
         </div>
         
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <span className="inline-block px-3 py-1 text-sm font-medium text-yellow-600 dark:text-yellow-500 bg-yellow-100 dark:bg-yellow-500/10 rounded-full mb-4">
             Contact Us
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-yellow-500 dark:text-yellow-400 mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-yellow-400 dark:text-yellow-400 mb-6">
             Start Your Project
           </h1>
           <p className="text-xl text-yellow-600 dark:text-yellow-300/80 max-w-3xl mx-auto mb-8">
@@ -170,14 +160,15 @@ const Register = () => {
       {/* Registration Form */}
       <section className="relative py-16">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/5 via-yellow-400/10 to-yellow-600/5 opacity-60 dark:opacity-60"></div>
+          <div className="absolute inset-0 bg-gray-800 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-yellow-500/5 via-transparent to-transparent"></div>
           <div className="absolute -bottom-20 -right-20 w-48 h-48 rounded-full bg-gradient-to-tr from-yellow-700/10 via-yellow-500/15 to-transparent blur-3xl opacity-40"></div>
           <div className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-yellow-600/20 blur-lg animate-ping dark:block hidden" style={{ animationDelay: '1s' }}></div>
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
-            <div className="text-yellow-500 dark:text-yellow-400 rounded-3xl border-2 border-gray-200 dark:border-yellow-600/50 bg-white dark:bg-black shadow-2xl duration-700 z-10 relative overflow-hidden">
+            <div className="text-yellow-400 dark:text-yellow-400 rounded-3xl border-2 border-gray-700 dark:border-yellow-600/50 bg-gray-700/80 dark:bg-black shadow-2xl duration-700 z-10 relative overflow-hidden backdrop-blur-sm">
               <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-gradient-to-tr from-yellow-600/5 via-yellow-400/10 to-yellow-600/5 opacity-60 dark:opacity-60"></div>
                 <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-yellow-700/10 via-yellow-500/15 to-transparent blur-3xl opacity-40"></div>
@@ -185,7 +176,7 @@ const Register = () => {
               </div>
               
               <div className="relative z-10 p-8">
-                <h2 className="text-2xl font-bold text-yellow-500 dark:text-yellow-400 mb-6">
+                <h2 className="text-2xl font-bold text-yellow-400 dark:text-yellow-400 mb-6">
                   Project Information
                 </h2>
                 
@@ -203,8 +194,9 @@ const Register = () => {
                         onChange={handleChange}
                         onBlur={setFieldTouched}
                         placeholder="Your first name"
-                        icon={<User className="h-5 w-5" />}
+                        icon={<User className="h-5 w-5 text-gray-400" />}
                         maxLength={20}
+                        className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
                       />
                       {touched.firstName && errors.firstName && (
                         <p className="text-red-400 text-sm mt-1">{errors.firstName}</p>
@@ -222,8 +214,9 @@ const Register = () => {
                         onChange={handleChange}
                         onBlur={setFieldTouched}
                         placeholder="Your last name"
-                        icon={<User className="h-5 w-5" />}
+                        icon={<User className="h-5 w-5 text-gray-400" />}
                         maxLength={20}
+                        className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
                       />
                       {touched.lastName && errors.lastName && (
                         <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
@@ -244,8 +237,9 @@ const Register = () => {
                         onChange={handleChange}
                         onBlur={setFieldTouched}
                         placeholder="your@gmail.com"
-                        icon={<Mail className="h-5 w-5" />}
+                        icon={<Mail className="h-5 w-5 text-gray-400" />}
                         maxLength={50}
+                        className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
                       />
                       {touched.email && errors.email && (
                         <p className="text-red-400 text-sm mt-1">{errors.email}</p>
@@ -283,8 +277,9 @@ const Register = () => {
                         onChange={handleChange}
                         onBlur={setFieldTouched}
                         placeholder="Company name"
-                        icon={<Building className="h-5 w-5" />}
+                        icon={<Building className="h-5 w-5 text-gray-400" />}
                         maxLength={50}
+                        className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
                       />
                       {touched.company && errors.company && (
                         <p className="text-red-400 text-sm mt-1">{errors.company}</p>
@@ -302,7 +297,8 @@ const Register = () => {
                         onChange={handleChange}
                         onBlur={setFieldTouched}
                         placeholder="https://yourcompany.com"
-                        icon={<Globe className="h-5 w-5" />}
+                        icon={<Globe className="h-5 w-5 text-gray-400" />}
+                        className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
                       />
                       {touched.website && errors.website && (
                         <p className="text-red-400 text-sm mt-1">{errors.website}</p>
@@ -312,64 +308,50 @@ const Register = () => {
 
                   {/* Project Details */}
                   <div>
-                    <h3 className="text-lg font-semibold text-yellow-500 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
+                    <h3 className="text-lg font-semibold text-yellow-400 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
                       Project Details
                     </h3>
-                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
-                      Service of Interest *
-                    </label>
-                    <ValidatedInput
-                      type="select"
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      onBlur={setFieldTouched}
-                      placeholder="Select a service"
-                      options={services}
-                    />
-                    {touched.service && errors.service && (
-                      <p className="text-red-400 text-sm mt-1">{errors.service}</p>
-                    )}
-                  </div>
+                    
+                    {/* Message */}
+                    <div className="mb-6">
+                      <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                        Describe your project
+                      </label>
+                      <ValidatedInput
+                        type="textarea"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        onBlur={setFieldTouched}
+                        placeholder="Tell us more about your project, objectives, and any specific requirements..."
+                        className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
+                      />
+                      <p className="text-xs text-yellow-600 mt-1">
+                        {formData.message.length} / 200 characters
+                      </p>
+                      {touched.message && errors.message && (
+                        <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+                      )}
+                    </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Service of Interest */}
                     <div>
                       <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
-                        Timeline *
+                        Service of Interest *
                       </label>
                       <ValidatedInput
                         type="select"
-                        name="timeline"
-                        value={formData.timeline}
+                        name="service"
+                        value={formData.service}
                         onChange={handleChange}
                         onBlur={setFieldTouched}
-                        placeholder="Select timeline"
-                        options={timelineOptions}
+                        placeholder="Select a service"
+                        options={services}
                       />
+                      {touched.service && errors.service && (
+                        <p className="text-red-400 text-sm mt-1">{errors.service}</p>
+                      )}
                     </div>
-                  </div>
-
-                  {/* Message */}
-                  <div>
-                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
-                      Describe your project
-                    </label>
-                    <ValidatedInput
-                      type="textarea"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      onBlur={setFieldTouched}
-                      placeholder="Tell us more about your project, objectives, and any specific requirements..."
-                      icon={<MessageSquare className="h-5 w-5" />}
-                      maxLength={200}
-                    />
-                    <p className="text-xs text-yellow-600 mt-1">
-                      {formData.message.length} / 200 characters
-                    </p>
-                    {touched.message && errors.message && (
-                      <p className="text-red-400 text-sm mt-1">{errors.message}</p>
-                    )}
                   </div>
 
                   {/* Checkboxes */}
@@ -380,7 +362,7 @@ const Register = () => {
                         name="newsletter"
                         checked={formData.newsletter}
                         onChange={handleCheckboxChange}
-                        className="mt-1 h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-yellow-600/50 rounded bg-white dark:bg-black"
+                        className="mt-1 h-4 w-4 text-yellow-400 focus:ring-yellow-500 border-gray-600 rounded bg-gray-700 dark:bg-black"
                       />
                       <span className="text-sm text-yellow-600 dark:text-yellow-400">
                         I want to receive news and updates about technology
@@ -394,7 +376,7 @@ const Register = () => {
                         checked={formData.terms}
                         onChange={handleCheckboxChange}
                         onBlur={() => setFieldTouched('terms')}
-                        className="mt-1 h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-yellow-600/50 rounded bg-white dark:bg-black"
+                        className="mt-1 h-4 w-4 text-yellow-400 focus:ring-yellow-500 border-gray-600 rounded bg-gray-700 dark:bg-black"
                       />
                       <span className="text-sm text-yellow-600 dark:text-yellow-400">
                         I accept the{' '}
@@ -417,7 +399,7 @@ const Register = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full flex justify-center items-center px-6 py-3 bg-yellow-600 hover:bg-yellow-500 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full flex justify-center items-center px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-medium rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       'Processing...'

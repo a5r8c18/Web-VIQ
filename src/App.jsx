@@ -32,9 +32,9 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div className={`min-h-screen flex flex-col ${theme}`}>
+      <div className={`min-h-screen flex flex-col ${theme} bg-gray-800 text-gray-100`}>
         <Header />
-        <main className="flex-grow bg-white dark:bg-gray-900 transition-colors duration-200">
+        <main className="flex-grow bg-gray-800 dark:bg-gray-900 transition-colors duration-200">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />

@@ -20,6 +20,19 @@ export default {
           DEFAULT: '#FFD700', // Dorado principal
           dark: '#B8860B',   // Dorado oscuro para hover/efectos
         },
+        // Escala de grises personalizada para el tema claro
+        gray: {
+          50: '#f8f9fa',
+          100: '#e9ecef',
+          200: '#dee2e6',
+          300: '#ced4da',
+          400: '#adb5bd',
+          500: '#6c757d',
+          600: '#495057',
+          700: '#343a40',
+          800: '#212529',
+          900: '#1a1e21',
+        },
         // Escala completa de colores dorados
         gold: {
           50: '#FFFBEB',  // Muy claro
@@ -38,10 +51,12 @@ export default {
       backgroundColor: (theme) => ({
         ...theme('colors'),
         'secondary-hover': theme('colors.secondary.dark'),
+        'light': theme('colors.gray.800'), // Fondo gris oscuro para el tema claro
+        'card': theme('colors.gray.700'), // Fondo para tarjetas en tema claro
       }),
       // Asegurar contraste en textos
       textColor: {
-        primary: 'var(--color-text-primary, #000000)',
+        primary: 'var(--color-text-primary, #f8f9fa)', // Texto claro para mejor contraste
         secondary: 'var(--color-text-secondary, #FFD700)',
       },
       fontFamily: {

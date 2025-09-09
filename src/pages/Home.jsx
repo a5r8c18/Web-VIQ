@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Hero from '../components/ui/Hero';
 import { Link } from 'react-router-dom';
-import { Code, Smartphone, Cloud, Users, ArrowRight, Star, Shield, BarChart2, Clock, MessageCircle, Award } from 'lucide-react';
+import { Code, Smartphone, Cloud, Users, ArrowRight, Star, Shield, BarChart2, Clock, MessageCircle, Award, Brain } from 'lucide-react';
 
 const Home = () => {
   const services = [
@@ -229,7 +229,7 @@ const Home = () => {
   }, [testimonials.length]);
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-800 text-gray-100">
       <Hero />
       
       {/* Sección Servicios con Video y Carrusel */}
@@ -417,10 +417,10 @@ const Home = () => {
       </section>
 
       {/* Sección ¿Por qué elegirnos? */}
-      <section className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+      <section className="py-20 bg-gray-700/50 dark:bg-gray-900 relative overflow-hidden">
         {/* Fondo con efecto de partículas */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-white dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-900"></div>
+          <div className="absolute inset-0 bg-gray-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-900"></div>
           <div className="absolute inset-0 opacity-20 dark:opacity-20" style={{
             backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
           }}></div>
@@ -429,8 +429,8 @@ const Home = () => {
         <div className="container-custom relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">Why Choose Us?</h2>
-            <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-              Over 5 years of experience offering top-level technological solutions
+            <p className="text-xl text-gray-300 dark:text-gray-400 max-w-3xl mx-auto">
+              Over 10 years of experience offering top-level technological solutions
             </p>
           </div>
 
@@ -460,26 +460,31 @@ const Home = () => {
                 icon: <Award className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
                 title: "Continuous Support",
                 description: "We offer continuous technical support even after the project is finished.",
+              },
+              {
+                icon: <Brain className="w-10 h-10 text-blue-600 dark:text-gold-500 group-hover:scale-110 transition-transform" />,
+                title: "AI Producer",
+                description: "We create cutting-edge AI solutions tailored to your business needs, from machine learning models to intelligent automation systems.",
               }
             ].map((item, index) => (
               <div 
                 key={index}
                 className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-4"
               >
-                <div className="text-white dark:text-gray-800 rounded-3xl border border-white/10 dark:border-white/10 bg-white dark:bg-gradient-to-br dark:from-[#010101] dark:via-[#090909] dark:to-[#010101] shadow-2xl duration-700 z-10 relative backdrop-blur-xl hover:border-white/25 dark:hover:border-white/25 overflow-hidden hover:shadow-white/5 hover:shadow-3xl w-full h-full">
+                <div className="text-gray-900 dark:text-gray-800 rounded-3xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-gradient-to-br dark:from-[#010101] dark:via-[#090909] dark:to-[#010101] shadow-2xl duration-700 z-10 relative backdrop-blur-xl hover:border-gray-300 dark:hover:border-white/25 overflow-hidden hover:shadow-gray-500/10 hover:shadow-3xl w-full h-full">
                   {/* Background effects */}
                   <div className="absolute inset-0 z-0 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-white/10 dark:from-white/5 dark:to-white/10 opacity-40 dark:opacity-40 group-hover:opacity-60 dark:group-hover:opacity-60 transition-opacity duration-500"></div>
+                    <div className="absolute inset-0 bg-gradient-to-tr from-gray-100/5 to-gray-100/10 dark:from-white/5 dark:to-white/10 opacity-40 dark:opacity-40 group-hover:opacity-60 dark:group-hover:opacity-60 transition-opacity duration-500"></div>
                     <div 
                       style={{ animationDelay: '0.5s' }}
-                      className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-white/10 to-transparent dark:from-white/10 dark:to-transparent blur-3xl opacity-30 dark:opacity-30 group-hover:opacity-50 dark:group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"
+                      className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-gray-200/10 to-transparent dark:from-white/10 dark:to-transparent blur-3xl opacity-30 dark:opacity-30 group-hover:opacity-50 dark:group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"
                     ></div>
-                    <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-white/5 dark:bg-white/5 blur-xl animate-ping"></div>
+                    <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-gray-200/5 dark:bg-white/5 blur-xl animate-ping"></div>
                     <div 
                       style={{ animationDelay: '1s' }}
-                      className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-white/5 dark:bg-white/5 blur-lg animate-ping"
+                      className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-gray-200/5 dark:bg-white/5 blur-lg animate-ping"
                     ></div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent dark:from-transparent dark:via-white/5 dark:to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-100/5 to-transparent dark:from-transparent dark:via-white/5 dark:to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
                   </div>
 
                   {/* Card content */}
@@ -744,9 +749,9 @@ const Home = () => {
       </section>
 
       {/* Sección Listo para cambiar tu negocio */}
-      <section className="py-20 bg-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-black relative overflow-hidden">
+      <section className="py-20 bg-gray-50 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black relative overflow-hidden">
         <div className="absolute inset-0 z-0 dark:hidden">
-          <div className="absolute inset-0 bg-white"></div>
+          <div className="absolute inset-0 bg-gray-50"></div>
         </div>
         <div className="absolute inset-0 z-0 hidden dark:block">
           <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/5 via-transparent to-yellow-600/5"></div>
