@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Hero from '../components/ui/Hero';
 import { Link } from 'react-router-dom';
-import { Code, Smartphone, Cloud, Users, ArrowRight, Star, Shield, BarChart2, Clock, MessageCircle, Award, Brain } from 'lucide-react';
+import { Code, Smartphone, Cloud, Users, ArrowRight, Star, Shield, BarChart2, Clock, MessageCircle, Award, Brain, Server } from 'lucide-react';
 
 const Home = () => {
   const services = [
@@ -30,6 +30,15 @@ const Home = () => {
       features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Analytics'],
       price: 'From $1,500',
       timeline: 'Ongoing'
+    },
+    {
+      icon: Server,
+      title: 'IT INFRASTRUCTURE',
+      description: 'Complete technological solutions to boost your business to the next level.',
+      features: ['Cloud Solutions', 'Network Management', 'Security & Compliance', 'System Administration'],
+      price: 'From $3,500',
+      timeline: 'Varies by project',
+      popular: true
     }
   ];
 
@@ -86,22 +95,24 @@ const Home = () => {
   const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
   const [direction, setDirection] = useState(-1); // -1 para derecha a izquierda, 1 para izquierda a derecha
   const [testimonials, setTestimonials] = useState([
+    
+   
     {
-      quote: "Incredible work. The team exceeded all our expectations with their professionalism and attention to detail.",
-      author: "María González",
-      position: "CEO, TechSolutions",
+      quote: "As an IT director of HSBOX, I've worked with numerous vendors, but this company stands out. They provide reliable, scalable solutions with exceptional support. With their help, we've streamlined operations and focused on driving our business forward. Highly recommend their services to any enterprise looking for a trusted IT partner!",
+      author: "David Chen",
+      position: "IT Director, HSBOX",
       rating: 5
     },
     {
-      quote: "The best investment we've made. Their focus on user experience is exceptional.",
-      author: "Carlos Méndez",
-      position: "Director of Marketing, DigitalPlus",
+      quote: "Working with VIQSystems has been a game-changer for our business! Their expertise in web development and digital marketing helped us revamp our online presence and reach new customers. What truly sets them apart is their personalized approach and attention to detail. They took the time to understand our brand and objectives, and the results speak for themselves. Highly recommend!",
+      author: "Alex Johnson",
+      position: "Business Owner, NextGen Solutions",
       rating: 5
     },
     {
-      quote: "Exceptional support and customized solutions that really understand our needs.",
-      author: "Ana Ramírez",
-      position: "IT Manager, InnovateCorp",
+      quote: "Working with Don Jesus and his development team has been an absolute pleasure. Their depth of technical knowledge and collaborative approach has been instrumental in bringing our vision to life. From the initial planning stages to the final implementation, they demonstrated a strong commitment to quality and excellence.",
+      author: "Michael Rodriguez",
+      position: "CTO, Visionary Tech",
       rating: 5
     }
   ]);
@@ -244,7 +255,7 @@ const Home = () => {
             className="w-full h-full object-cover"
             ref={videoRef => videoRef && (videoRef.playbackRate = 0.4)}
           >
-            <source src="/videos/14159465_3840_2160_25fps.mp4" type="video/mp4" />
+            <source src="/videos/2278095-hd_1920_1080_30fps.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 via-gray-900/80 to-gray-900/90"></div>
         </div>
@@ -262,17 +273,14 @@ const Home = () => {
                   playsInline
                   className="w-full h-full object-cover min-h-screen"
                   style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    minWidth: '100%',
-                    minHeight: '100%',
-                    width: 'auto',
+                    objectPosition: 'center',
+                    transform: 'scale(1.1)',
+                    filter: 'brightness(0.7)',
+                    width: '100%',
                     height: 'auto',
                   }}
                 >
-                  <source src="/videos/14159465_3840_2160_25fps (1).mp4" type="video/mp4" />
+                  <source src="/videos/2278095-hd_1920_1080_30fps.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black/70"></div>
@@ -693,22 +701,24 @@ const Home = () => {
                         <div className="w-1/3 h-0.5 bg-gradient-to-r from-gold-500 to-gold-300 rounded-full my-6 transform group-hover:scale-x-150 transition-transform duration-300"></div>
 
                         <div className="w-full">
-                          <div className="flex items-center justify-center space-x-4">
-                            <div className="relative">
-                              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-500/20 to-gold-600/30 flex items-center justify-center text-gold-400 font-bold text-xl transform group-hover:scale-110 transition-transform duration-300">
+                          <div className="flex items-center justify-center space-x-4 h-[120px]">
+                            <div className="relative flex-shrink-0 w-12">
+                              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-500/20 to-gold-600/30 flex items-center justify-center text-gold-400 font-bold text-xl">
                                 {testimonial.author.charAt(0)}
                               </div>
                             </div>
-                            <div className="text-left">
-                              <h4 className="font-semibold text-gold-300">{testimonial.author}</h4>
-                              <p className="text-sm text-gold-400/80">{testimonial.position}</p>
-                              <div className="flex mt-1 space-x-1">
-                                {[...Array(5)].map((_, i) => (
-                                  <Star 
-                                    key={i} 
-                                    className={`w-4 h-4 ${i < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gold-600'}`} 
-                                  />
-                                ))}
+                            <div className="flex-1 min-w-0">
+                              <div className="h-[72px] flex flex-col justify-center">
+                                <h4 className="font-semibold text-gold-300 text-base leading-tight">{testimonial.author}</h4>
+                                <p className="text-sm text-gold-400/80 leading-tight">{testimonial.position}</p>
+                                <div className="flex mt-1 space-x-1">
+                                  {[...Array(5)].map((_, i) => (
+                                    <Star 
+                                      key={i} 
+                                      className={`w-4 h-4 ${i < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gold-600'}`} 
+                                    />
+                                  ))}
+                                </div>
                               </div>
                             </div>
                           </div>

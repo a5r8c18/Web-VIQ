@@ -19,7 +19,8 @@ const Services = () => {
   const categories = [
     { id: 'all', name: 'All' },
     { id: 'development', name: 'Development' },
-    { id: 'marketing', name: 'Marketing' }
+    { id: 'marketing', name: 'Marketing' },
+    { id: 'infrastructure', name: 'Infrastructure' }
   ]
 
   const services = [
@@ -30,19 +31,15 @@ const Services = () => {
       title: 'Web Development',
       description: 'Custom websites and applications built with modern technologies for optimal performance.',
       features: ['React, Vue, Angular', 'Responsive Design', 'Progressive Web Apps', 'SEO Optimization'],
-      price: 'From $2,500',
-      duration: '4-8 weeks',
       popular: true
     },
     {
       id: 2,
       category: 'development',
-      icon: <Zap className="h-8 w-8" />,
-      title: 'Full-Stack Development',
-      description: 'End-to-end development services from concept to deployment.',
-      features: ['Frontend & Backend', 'Database Design', 'API Development', 'Deployment'],
-      price: 'From $6,500',
-      duration: '10-16 weeks',
+      icon: <Smartphone className="h-8 w-8" />,
+      title: 'Mobile Applications',
+      description: 'Cross-platform and native mobile applications for iOS and Android.',
+      features: ['React Native', 'Flutter', 'Native iOS/Android', 'App Store Publishing'],
       popular: true
     },
     {
@@ -52,19 +49,24 @@ const Services = () => {
       title: 'Digital Marketing',
       description: 'Data-driven marketing strategies to grow your online presence.',
       features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Analytics'],
-      price: 'From $1,500',
-      duration: 'Ongoing',
       popular: true
     },
     {
       id: 4,
+      category: 'infrastructure',
+      icon: <Server className="h-8 w-8" />,
+      title: 'IT Infrastructure',
+      description: 'Robust and scalable IT infrastructure solutions for your business needs.',
+      features: ['Cloud Solutions', 'Network Management', 'Security & Compliance', 'System Administration'],
+      popular: true
+    },
+    {
+      id: 5,
       category: 'marketing',
       icon: <Target className="h-8 w-8" />,
       title: 'Branding',
       description: 'Create a solid brand identity that resonates with your target audience.',
       features: ['Logo Design', 'Brand Guides', 'Visual Identity', 'Brand Strategy'],
-      price: 'From $3,000',
-      duration: '4-6 weeks',
       popular: false
     }
   ]
@@ -185,11 +187,7 @@ const Services = () => {
                       </ul>
                     </div>
                     
-                    <div className="mt-auto pt-6 border-t dark:border-yellow-500/20 border-gray-200 flex justify-between items-center">
-                      <div>
-                        <span className="block dark:text-yellow-400 text-gray-800 font-medium">{service.price}</span>
-                        <span className="dark:text-yellow-500/70 text-gray-500 text-sm">{service.duration}</span>
-                      </div>
+                    <div className="mt-auto pt-6 border-t dark:border-yellow-500/20 border-gray-200 flex justify-end">
                       <Link 
                         to="/register" 
                         className="dark:text-yellow-400 text-yellow-600 hover:text-yellow-700 dark:hover:text-yellow-300 transition-colors"

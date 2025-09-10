@@ -48,6 +48,8 @@ const Register = () => {
     'Technology Consulting',
     'Full-Stack Development',
     'Big Data & Analytics',
+    'Digital Marketing',
+    'Business Analysis',
     'Other (specify in message)'
   ]
 

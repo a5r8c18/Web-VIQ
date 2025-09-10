@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import ThemeToggle from '../ui/ThemeToggle'
@@ -6,6 +6,11 @@ import ThemeToggle from '../ui/ThemeToggle'
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
+
+  // Efecto para desplazar al inicio al cambiar de ruta
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -15,20 +20,32 @@ const Header = () => {
 
   const isActive = (path) => location.pathname === path
 
+  const handleNavigation = () => {
+    // Cerrar el menú móvil si está abierto
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="bg-white/90 dark:bg-black/90 backdrop-blur-sm shadow-lg sticky top-0 z-50 border-b border-gray-200 dark:border-white/10">
       <div className="container-custom">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <div className="p-1.5 rounded-lg">
+          <div className="flex items-center space-x-3 group">
+            <a 
+              href="https://viqsystems.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="p-1.5 rounded-lg"
+            >
               <img 
                 src="/images/logo.svg" 
-                alt="Website Logo" 
+                alt="VIQSystems INC | Web & Software Development, Digital Marketing, and Branding Services"
                 className="h-10 w-auto object-contain"
+                title="VIQSystems INC | Web & Software Development, Digital Marketing, and Branding Services"
               />
-            </div>
-          </Link>
+            </a>
+          </div>
 
           <div className="flex items-center space-x-4">
             {/* Desktop Navigation */}
@@ -37,6 +54,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={item.href}
+                  onClick={handleNavigation}
                   className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 text-sm ${
                     isActive(item.href)
                       ? 'bg-gradient-to-br from-yellow-600/80 to-yellow-800/80 text-white shadow-lg shadow-yellow-900/30 transform -translate-y-0.5'
@@ -79,7 +97,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={handleNavigation}
                   className={`block px-3 py-2 rounded-md text-base font-medium ${
                     isActive(item.href)
                       ? 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-700 dark:text-yellow-400'

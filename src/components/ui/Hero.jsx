@@ -7,7 +7,8 @@ const Hero = () => {
     '10+ years of experience',
     'Custom Solutions',
     '24/7 Support',
-    'Proven Results'
+    'Proven Results',
+    'Leading Digital Solutions Provider'
   ]
 
   return (
@@ -34,21 +35,6 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-32">
         <div className="max-w-4xl mx-auto text-center">
           <div className="space-y-8">
-            {/* Features */}
-            <div className="flex flex-wrap justify-center gap-4">
-              {features.map((feature, index) => (
-                <div 
-                  key={index} 
-                  className="flex items-center space-x-2 bg-white/30 backdrop-blur-md px-5 py-2.5 rounded-full border-2 border-white/30 shadow-xl"
-                >
-                  <CheckCircle className="h-5 w-5 text-accent-300" />
-                  <span className="text-sm font-semibold text-white">
-                    {feature}
-                  </span>
-                </div>
-              ))}
-            </div>
-
             {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white dark:text-transparent leading-tight tracking-tight drop-shadow-xl">
               <span className="whitespace-nowrap">
@@ -58,8 +44,25 @@ const Hero = () => {
               </span>
             </h1>
             <p className="text-2xl sm:text-3xl text-white/80 font-medium mt-2 mb-4">
-              joined hand create futures!
+              Joined hands create futures!
             </p>
+
+            {/* Features */}
+            <div className="w-full px-4">
+              <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+                {features.map((feature, index) => (
+                  <div 
+                    key={index} 
+                    className="flex-shrink-0 flex items-center space-x-2 bg-white/30 backdrop-blur-md px-4 py-1.5 rounded-full border-2 border-white/30 shadow-xl"
+                  >
+                    <CheckCircle className="h-5 w-5 text-accent-300 flex-shrink-0" />
+                    <span className="text-sm sm:text-base font-semibold text-white whitespace-nowrap">
+                      {feature}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
