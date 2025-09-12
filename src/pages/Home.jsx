@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Hero from '../components/ui/Hero';
 import { Link } from 'react-router-dom';
 import { Code, Smartphone, Cloud, Users, ArrowRight, Star, Shield, BarChart2, Clock, MessageCircle, Award, Brain, Server } from 'lucide-react';
+import Testimonials from '../components/testimonials/Testimonials';
 
 const Home = () => {
   const services = [
@@ -626,137 +627,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Sección Testimonios */}
-      <section className="relative py-24 overflow-hidden bg-gray-900 w-full">
-        {/* Video Background */}
-        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="w-full h-full object-cover"
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              minWidth: '100%',
-              minHeight: '100%',
-              width: 'auto',
-              height: 'auto',
-            }}
-          >
-            <source src="/videos/8725948-uhd_3840_2160_25fps.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <div className="absolute inset-0 bg-black/70"></div>
-        </div>
-
-        <div className="relative z-10 w-full px-0 mx-auto">
-          <div className="text-center mb-12 px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-white mb-4">What Our Clients Say</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Testimonials from companies that have trusted our services
-            </p>
-          </div>
-
-          <div 
-            className="relative w-full overflow-hidden py-8"
-            onMouseEnter={() => setIsTestimonialPaused(true)}
-            onMouseLeave={() => setIsTestimonialPaused(false)}
-          >
-            <div 
-              className="flex transition-transform duration-0 ease-linear"
-              style={{
-                gap: `${24}px`,
-                transform: `translateX(-${testimonialOffset}px)`,
-                width: `${(320 + 24) * testimonials.length}px`,
-              }}
-            >
-              {testimonials.map((testimonial, index) => (
-                <div 
-                  key={`${testimonial.author}-${index}`}
-                  className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1"
-                  style={{ 
-                    width: `${350}px`,
-                  }}
-                >
-                  <div className="h-full text-gold-500 rounded-2xl border border-gold-200/50 bg-black shadow-lg duration-300 z-10 relative overflow-hidden hover:shadow-xl hover:shadow-gold-500/20">
-                    {/* Card content */}
-                    <div className="p-8 relative z-10">
-                      <div className="flex flex-col items-center text-center">
-                        <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                          <div className="p-4 rounded-full bg-gold-500/10 shadow-md transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
-                            <MessageCircle className="w-10 h-10 text-gold-500 group-hover:scale-110 transition-transform" />
-                          </div>
-                        </div>
-
-                        <div className="relative flex-grow mb-6">
-                          <p className="text-gold-400/90 italic relative z-10 text-base">
-                            "{testimonial.quote}"
-                          </p>
-                        </div>
-
-                        <div className="w-1/3 h-0.5 bg-gradient-to-r from-gold-500 to-gold-300 rounded-full my-6 transform group-hover:scale-x-150 transition-transform duration-300"></div>
-
-                        <div className="w-full">
-                          <div className="flex items-center justify-center space-x-4 h-[120px]">
-                            <div className="relative flex-shrink-0 w-12">
-                              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-500/20 to-gold-600/30 flex items-center justify-center text-gold-400 font-bold text-xl">
-                                {testimonial.author.charAt(0)}
-                              </div>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="h-[72px] flex flex-col justify-center">
-                                <h4 className="font-semibold text-gold-300 text-base leading-tight">{testimonial.author}</h4>
-                                <p className="text-sm text-gold-400/80 leading-tight">{testimonial.position}</p>
-                                <div className="flex mt-1 space-x-1">
-                                  {[...Array(5)].map((_, i) => (
-                                    <Star 
-                                      key={i} 
-                                      className={`w-4 h-4 ${i < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gold-600'}`} 
-                                    />
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Hover effects */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                      <div className="absolute inset-0 bg-gradient-to-br from-gold-500/5 to-transparent"></div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Flechas de navegación */}
-            <button 
-              onClick={() => handleTestimonialNav('prev')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300"
-              aria-label="Previous testimonial"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button 
-              onClick={() => handleTestimonialNav('next')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300"
-              aria-label="Next testimonial"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* Testimonials Section */}
+      <Testimonials />
 
       {/* Sección Listo para cambiar tu negocio */}
       <section className="py-20 bg-gray-50 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black relative overflow-hidden">
