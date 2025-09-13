@@ -426,19 +426,29 @@ const Home = () => {
       </section>
 
       {/* Sección ¿Por qué elegirnos? */}
-      <section className="py-20 bg-gray-700/50 dark:bg-gray-900 relative overflow-hidden">
-        {/* Fondo con efecto de partículas */}
+      <section className="relative py-20 overflow-hidden">
+        {/* Video Background */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gray-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-900 dark:to-gray-900"></div>
-          <div className="absolute inset-0 opacity-20 dark:opacity-20" style={{
-            backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
-          }}></div>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            style={{
+              filter: 'brightness(0.8) contrast(1.1)'
+            }}
+          >
+            <source src="/videos/7989667-hd_1080_1920_25fps.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 via-gray-900/75 to-gray-900/80"></div>
         </div>
 
         <div className="container-custom relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">Why Choose Us?</h2>
-            <p className="text-xl text-gray-300 dark:text-gray-400 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Over 10 years of experience offering top-level technological solutions
             </p>
           </div>
