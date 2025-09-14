@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const ServiceCard = ({ service }) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -52,13 +53,13 @@ const ServiceCard = ({ service }) => {
           </ul>
           
           <div className="mt-auto pt-6 border-t dark:border-yellow-500/20 border-gray-200 text-center">
-            <a 
-              href="#contact" 
+            <Link 
+              to="/register"
               className="inline-flex items-center justify-center px-6 py-2 rounded-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white text-sm font-medium hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               <span className="text-white">Get started</span>
               <ArrowRight className="ml-2 h-4 w-4 text-white" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

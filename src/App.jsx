@@ -1,5 +1,6 @@
 import { useState, createContext, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { ThemeProvider } from './contexts/ThemeContext'
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import Home from './pages/Home'
@@ -11,7 +12,6 @@ export const ThemeContext = createContext()
 
 function App() {
   const [theme, setTheme] = useState(() => {
-    // Verificar si hay una preferencia de tema guardada
     if (typeof window !== 'undefined') {
       return localStorage.getItem('theme') || 'light'
     }
@@ -31,10 +31,10 @@ function App() {
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div className={`min-h-screen flex flex-col ${theme} bg-gray-800 text-gray-100`}>
+    <ThemeProvider value={{ theme, toggleTheme }}>
+      <div className={`min-h-screen flex flex-col ${theme} bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
         <Header />
-        <main className="flex-grow bg-gray-800 dark:bg-gray-900 transition-colors duration-200">
+        <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
@@ -44,7 +44,7 @@ function App() {
         </main>
         <Footer />
       </div>
-    </ThemeContext.Provider>
+    </ThemeProvider>
   )
 }
 

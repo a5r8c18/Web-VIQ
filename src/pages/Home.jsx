@@ -289,12 +289,12 @@ const Home = () => {
             </div>
 
             <div className="relative z-10">
-              <div className="py-16">
+              <div className="pt-16 pb-2">
                 <div className="container-custom text-center">
                   <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
                     VIQ <span className="text-white">Systems</span>
                   </h2>
-                  <div className="max-w-4xl mx-auto space-y-6 text-lg text-white/90 px-4">
+                  <div className="max-w-4xl mx-auto space-y-4 text-lg text-white/90 px-4">
                     <p className="leading-relaxed">
                       We're passionate about leveraging technology to help businesses thrive in the digital age. With over nine years of experience in the industry, we've honed our expertise in providing cutting-edge solutions that empower our clients to succeed online.
                     </p>
@@ -306,10 +306,10 @@ const Home = () => {
               </div>
 
               {/* Our Services Section */}
-              <div className="py-16">
+              <div className="pt-2 pb-16">
                 <div className="relative z-10">
-                  <div className="text-center mb-16 container-custom">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  <div className="text-center mb-8 container-custom">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
                       Our Services
                     </h2>
                     <p className="text-lg text-white/90 max-w-2xl mx-auto">

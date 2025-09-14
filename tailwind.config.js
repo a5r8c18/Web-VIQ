@@ -77,6 +77,11 @@ export default {
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
       },
+      backgroundImage: {
+        'gradient-to-r-custom-amber': 'linear-gradient(to right, rgba(245, 158, 11, 0.25), transparent)',
+        'gradient-to-r-custom-yellow': 'linear-gradient(to right, rgba(250, 204, 21, 0.25), transparent)',
+        'gradient-to-r-custom-orange': 'linear-gradient(to right, rgba(249, 115, 22, 0.25), transparent)',
+      },
     },
   },
   plugins: [

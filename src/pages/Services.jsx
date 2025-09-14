@@ -44,15 +44,6 @@ const Services = () => {
       popular: true
     },
     {
-      id: 3,
-      category: 'marketing',
-      icon: <BarChart2 className="h-6 w-6" />,
-      title: 'Digital Marketing',
-      description: 'Data-driven marketing strategies to grow your online presence.',
-      features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Analytics'],
-      popular: false
-    },
-    {
       id: 4,
       category: 'infrastructure',
       icon: <Server className="h-6 w-6" />,
@@ -62,12 +53,12 @@ const Services = () => {
       popular: true
     },
     {
-      id: 5,
-      category: 'development',
-      icon: <Database className="h-6 w-6" />,
-      title: 'Database Design',
-      description: 'Optimized database solutions for performance and scalability.',
-      features: ['SQL/NoSQL', 'Data Modeling', 'Performance Tuning', 'Migrations'],
+      id: 3,
+      category: 'marketing',
+      icon: <BarChart2 className="h-6 w-6" />,
+      title: 'Digital Marketing',
+      description: 'Data-driven marketing strategies to grow your online presence.',
+      features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Analytics'],
       popular: false
     },
     {
@@ -77,6 +68,15 @@ const Services = () => {
       title: 'Brand Strategy',
       description: 'Building strong brand identities that resonate with your audience.',
       features: ['Brand Identity', 'Positioning', 'Messaging', 'Visual Design'],
+      popular: false
+    },
+    {
+      id: 5,
+      category: 'development',
+      icon: <Database className="h-6 w-6" />,
+      title: 'Database Design',
+      description: 'Optimized database solutions for performance and scalability.',
+      features: ['SQL/NoSQL', 'Data Modeling', 'Performance Tuning', 'Migrations'],
       popular: false
     }
   ]

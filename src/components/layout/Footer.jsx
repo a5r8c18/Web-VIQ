@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Code, Mail, Phone, MapPin, Facebook, Linkedin, MessageCircle, Instagram, Youtube } from 'lucide-react';
+import { Code, Mail, Phone, MapPin } from 'lucide-react';
+import SocialMediaButton from '../ui/SocialMediaButton';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -23,106 +24,8 @@ const Footer = () => {
             <p className="text-gray-300 dark:text-gray-400 text-sm leading-relaxed">
               Leaders in innovative technology solutions. We transform ideas into digital reality with excellence and passion.
             </p>
-            <div className="flex space-x-2 pt-2 -ml-4">
-              {[
-                { 
-                  icon: Facebook, 
-                  url: 'https://www.facebook.com/viqsystems',
-                  color: 'text-gray-400 group-hover:text-blue-400',
-                  bg: 'bg-gray-700/50 group-hover:bg-blue-500/10',
-                  border: 'border-gray-600 group-hover:border-blue-500/30',
-                  label: 'Facebook'
-                },
-                { 
-                  icon: null, 
-                  url: 'https://www.tiktok.com/@viqsystems',
-                  color: 'text-gray-400 group-hover:text-black',
-                  bg: 'bg-gray-700/50 group-hover:bg-white/90',
-                  border: 'border-gray-600 group-hover:border-gray-300',
-                  customIcon: true,
-                  customIconPath: (
-                    <>
-                      <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.18 1.99 1.3 3.02 3.3 3.12 1.5.08 3.04.04 4.26-.01 2.1-.07 3.25-.3 3.3-3.1.1-4.2.03-8.4.03-12.6h-5.8c0 2.08-.01 4.17 0 6.26-.01.7-.1 1.3-.6 1.7-.5.4-1.1.5-1.8.4-1.6-.2-2.9-1.4-3.2-3-.1-.7-.1-1.3-.1-2 0-2.2 0-4.4.01-6.58h-5.8v19.57c0 1.1.03 2.2-.02 3.3-.1 1.8-1 3.1-2.6 3.6-1.4.5-2.9.4-4.3-.2-1.4-.6-2.2-1.7-2.6-3.1-.3-1.1-.3-2.2-.4-3.3 0-1.1 0-2.2.1-3.3.2-1.6 1.1-2.8 2.6-3.4 1.1-.4 2.2-.4 3.3-.2.7.1 1.3.6 1.6 1.2.4.7.4 1.4.5 2.1.1 1.1.1 2.3 0 3.4-.1.9-.1 1.8.8 1.8.9 0 .9-.9.9-1.7.1-1.3.1-2.5 0-3.8 0-.5-.1-1.1-.5-1.5-.4-.4-1-.5-1.5-.5-1.5-.1-2.6.6-2.9 2.1-.2 1.1-.2 2.2-.2 3.3v3.3c0 1.1 0 2.2.2 3.3.3 1.5 1.4 2.2 2.9 2.1 1.6-.1 2.6-1.1 2.8-2.7.1-1.1.1-2.2 0-3.3V6.73c0-1.1 0-2.2-.1-3.3-.1-1.1-.4-2.1-1.4-2.7-.9-.6-1.9-.8-3-.7-1.1.1-2.1.5-2.9 1.3-.8.8-1.2 1.8-1.3 2.9-.1 1.1-.1 2.2-.1 3.3v1.8c0 1.1 0 2.2.1 3.3.1 1.1.4 2.1 1.4 2.7.9.6 1.9.8 3 .7 1.1-.1 2.1-.5 2.9-1.3.8-.8 1.2-1.8 1.3-2.9.1-1.1.1-2.2.1-3.3V.02z" fill="currentColor"/>
-                    </>
-                  ),
-                  label: 'TikTok'
-                },
-                { 
-                  icon: Linkedin, 
-                  url: 'https://www.linkedin.com/company/viqsystems',
-                  color: 'text-gray-400 group-hover:text-blue-500',
-                  bg: 'bg-gray-700/50 group-hover:bg-blue-500/10',
-                  border: 'border-gray-600 group-hover:border-blue-500/30',
-                  label: 'LinkedIn'
-                },
-                { 
-                  icon: Instagram, 
-                  url: 'https://www.instagram.com/viq.systems',
-                  color: 'text-gray-400 group-hover:text-pink-500',
-                  bg: 'bg-gray-700/50 group-hover:bg-pink-500/10',
-                  border: 'border-gray-600 group-hover:border-pink-500/30',
-                  label: 'Instagram'
-                },
-                { 
-                  icon: Youtube, 
-                  url: 'https://www.youtube.com/channel/UCqwGR2DEiXghq0gYXUi1U8g',
-                  color: 'text-gray-400 group-hover:text-red-500',
-                  bg: 'bg-gray-700/50 group-hover:bg-red-500/10',
-                  border: 'border-gray-600 group-hover:border-red-500/30',
-                  label: 'YouTube'
-                },
-                { 
-                  icon: null, 
-                  url: 'https://twitter.com/viqsystems',
-                  color: 'text-gray-400 group-hover:text-black',
-                  bg: 'bg-gray-700/50 group-hover:bg-white/90',
-                  border: 'border-gray-600 group-hover:border-gray-300',
-                  customIcon: true,
-                  customIconPath: (
-                    <path d="M18.205 2.25h3.308l-7.227 8.26 8.502 11.24H16.13l-5.214-6.817L4.95 21.75H1.64l7.73-8.835L1.215 2.25H8.04l4.713 6.231zm-1.161 17.52h1.833L7.045 4.126H5.078z"/>
-                  ),
-                  label: 'X (Twitter)'
-                },
-                { 
-                  icon: MessageCircle, 
-                  url: 'https://wa.link/rpkawi',
-                  color: 'text-gray-400 group-hover:text-green-500',
-                  bg: 'bg-gray-700/50 group-hover:bg-green-500/10',
-                  border: 'border-gray-600 group-hover:border-green-500/30',
-                  label: 'WhatsApp'
-                }
-              ].map((social, index) => (
-                <a 
-                  key={index}
-                  href={social.url}
-                  className="group relative p-0.5 rounded-full transition-all duration-500 hover:scale-105"
-                  aria-label={social.label || (social.icon ? social.icon.name : 'Social link')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={social.label || ''}
-                >
-                  <div className={`relative p-2 rounded-full ${social.bg} ${social.border} border transition-all duration-500 group-hover:shadow-md ${social.url.includes('youtube') ? 'group-hover:shadow-red-500/10' : social.url.includes('tiktok') ? 'group-hover:shadow-gray-500/10' : social.url.includes('whatsapp') ? 'group-hover:shadow-green-500/10' : social.url.includes('linkedin') ? 'group-hover:shadow-blue-500/10' : social.url.includes('instagram') ? 'group-hover:shadow-pink-500/10' : 'group-hover:shadow-yellow-500/10'}`}>
-                    <div className="relative z-10">
-                      <div className="transform transition-transform duration-500 group-hover:rotate-[-15deg]">
-                        <div className={`absolute inset-0 rounded-full ${social.url.includes('youtube') ? 'bg-gradient-to-br from-red-500 to-red-300/80' : social.url.includes('tiktok') ? 'bg-gradient-to-br from-gray-100 to-gray-400/80' : social.url.includes('whatsapp') ? 'bg-gradient-to-br from-green-500 to-green-300/80' : social.url.includes('linkedin') ? 'bg-gradient-to-br from-blue-500 to-blue-300/80' : social.url.includes('instagram') ? 'bg-gradient-to-br from-pink-500 via-purple-500 to-yellow-300/80' : 'bg-gradient-to-br from-yellow-500 to-yellow-300/80'} opacity-0 group-hover:opacity-70 transition-opacity duration-300`}></div>
-                        {social.customIcon ? (
-                          <div className="relative z-10">
-                            <svg 
-                              className={`w-5 h-5 ${social.color} transition-colors duration-300`} 
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                            >
-                              {social.customIconPath}
-                            </svg>
-                          </div>
-                        ) : (
-                          <social.icon className={`w-5 h-5 ${social.color} transition-colors duration-300`} />
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              ))}
+            <div className="mt-6">
+              <SocialMediaButton />
             </div>
           </div>
 
@@ -180,7 +83,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-yellow-400 mt-0.5 mr-3 flex-shrink-0" />
-                <span className="text-yellow-400 text-sm">123 Tech Street, Silicon Valley, CA 94025</span>
+                <span className="text-gray-300">123 Tech Street, Silicon Valley, CA 94025</span>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-yellow-400 mr-3 flex-shrink-0" />

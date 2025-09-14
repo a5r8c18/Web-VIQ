@@ -40,6 +40,7 @@ const Register = () => {
   const [submitError, setSubmitError] = useState('')
 
   const services = [
+    'Other (specify in message)',
     'Web Frontend Development',
     'Backend & API Development',
     'Mobile Applications',
@@ -49,8 +50,7 @@ const Register = () => {
     'Full-Stack Development',
     'Big Data & Analytics',
     'Digital Marketing',
-    'Business Analysis',
-    'Other (specify in message)'
+    'Business Analysis'
   ]
 
   const handlePhoneChange = (phone, countryCode, countryName) => {
@@ -123,307 +123,320 @@ const Register = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-800 dark:bg-black text-gray-100">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-20">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gray-800 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-yellow-500/5 via-transparent to-transparent"></div>
+    <div className="min-h-screen bg-gray-900 text-gray-100 relative overflow-hidden">
+      {/* Fondo con textura de vidrio esmerilado */}
+      <div className="absolute inset-0">
+        {/* Capa base con textura sutil */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02),transparent_70%)">
+          <div className="absolute inset-0 opacity-30" style={{
+            backgroundImage: 'radial-gradient(circle at 25% 25%, #fff 0.5px, transparent 0.5px), radial-gradient(circle at 75% 75%, #fff 0.5px, transparent 0.5px)',
+            backgroundSize: '40px 40px',
+            maskImage: 'radial-gradient(ellipse at center, black 0%, transparent 70%)'
+          }}></div>
         </div>
         
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <span className="inline-block px-3 py-1 text-sm font-medium text-yellow-600 dark:text-yellow-500 bg-yellow-100 dark:bg-yellow-500/10 rounded-full mb-4">
-            Contact Us
-          </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-yellow-400 dark:text-yellow-400 mb-6">
-            Start Your Project
-          </h1>
-          <p className="text-xl text-yellow-600 dark:text-yellow-300/80 max-w-3xl mx-auto mb-8">
-            Tell us about your project and we will help you turn your ideas into reality. 
-            Get a free consultation and personalized proposal.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <div className="flex items-center space-x-2 bg-yellow-100 dark:bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 px-4 py-2 rounded-full">
-              <Shield className="h-5 w-5" />
-              <span className="text-sm">Free Consultation</span>
-            </div>
-            <div className="flex items-center space-x-2 bg-yellow-100 dark:bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 px-4 py-2 rounded-full">
-              <Clock className="h-5 w-5" />
-              <span className="text-sm">Response within 24h</span>
-            </div>
-            <div className="flex items-center space-x-2 bg-yellow-100 dark:bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 px-4 py-2 rounded-full">
-              <Users className="h-5 w-5" />
-              <span className="text-sm">Expert Team</span>
+        {/* Capa de color con gradiente suave */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+          {/* Efectos de iluminación */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(251,191,36,0.1),transparent_40%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(217,119,6,0.1),transparent_40%)]"></div>
+        </div>
+      </div>
+
+      {/* Elementos de vidrio flotantes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -left-1/4 -top-1/4 w-[80%] h-[80%] opacity-20">
+          <div className="w-full h-full bg-gradient-to-br from-amber-500/30 to-transparent rounded-full blur-3xl"></div>
+        </div>
+        <div className="absolute -right-1/4 -bottom-1/4 w-[80%] h-[80%] opacity-20">
+          <div className="w-full h-full bg-gradient-to-tr from-yellow-500/30 to-transparent rounded-full blur-3xl"></div>
+        </div>
+      </div>
+
+      {/* Contenido principal */}
+      <div className="relative z-10">
+        {/* Hero Section */}
+        <section className="relative py-16 md:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span className="inline-block px-3 py-1 text-sm font-medium text-yellow-600 dark:text-yellow-500 bg-yellow-100 dark:bg-yellow-500/10 rounded-full mb-4">
+              Contact Us
+            </span>
+            <h1 className="text-4xl md:text-5xl font-bold text-yellow-400 dark:text-yellow-400 mb-6">
+              Start Your Project
+            </h1>
+            <p className="text-xl text-yellow-600/90 dark:text-yellow-300/80 max-w-3xl mx-auto mb-8">
+              Tell us about your project and we will help you turn your ideas into reality. 
+              Get a free consultation and personalized proposal.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex items-center space-x-2 bg-yellow-100/10 dark:bg-yellow-500/10 text-yellow-400 dark:text-yellow-400 px-4 py-2 rounded-full backdrop-blur-sm">
+                <Shield className="h-5 w-5" />
+                <span className="text-sm">Free Consultation</span>
+              </div>
+              <div className="flex items-center space-x-2 bg-yellow-100/10 dark:bg-yellow-500/10 text-yellow-400 dark:text-yellow-400 px-4 py-2 rounded-full backdrop-blur-sm">
+                <Clock className="h-5 w-5" />
+                <span className="text-sm">24/7 Support</span>
+              </div>
+              <div className="flex items-center space-x-2 bg-yellow-100/10 dark:bg-yellow-500/10 text-yellow-400 dark:text-yellow-400 px-4 py-2 rounded-full backdrop-blur-sm">
+                <Users className="h-5 w-5" />
+                <span className="text-sm">Expert Team</span>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Registration Form */}
-      <section className="relative py-16">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gray-800 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-yellow-500/5 via-transparent to-transparent"></div>
-          <div className="absolute -bottom-20 -right-20 w-48 h-48 rounded-full bg-gradient-to-tr from-yellow-700/10 via-yellow-500/15 to-transparent blur-3xl opacity-40"></div>
-          <div className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-yellow-600/20 blur-lg animate-ping dark:block hidden" style={{ animationDelay: '1s' }}></div>
-        </div>
-        
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-yellow-400 dark:text-yellow-400 rounded-3xl border-2 border-gray-700 dark:border-yellow-600/50 bg-gray-700/80 dark:bg-black shadow-2xl duration-700 z-10 relative overflow-hidden backdrop-blur-sm">
-              <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-gradient-to-tr from-yellow-600/5 via-yellow-400/10 to-yellow-600/5 opacity-60 dark:opacity-60"></div>
-                <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-yellow-700/10 via-yellow-500/15 to-transparent blur-3xl opacity-40"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/10 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
-              </div>
+        {/* Formulario */}
+        <section className="relative py-12 md:py-16">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 shadow-xl border border-gray-700/50">
+              <h2 className="text-2xl font-bold text-yellow-400 mb-6 text-center">
+                Get in Touch
+              </h2>
               
-              <div className="relative z-10 p-8">
-                <h2 className="text-2xl font-bold text-yellow-400 dark:text-yellow-400 mb-6">
-                  Project Information
-                </h2>
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Personal Information */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
-                        First Name *
-                      </label>
-                      <ValidatedInput
-                        type="text"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        onBlur={setFieldTouched}
-                        placeholder="Your first name"
-                        icon={<User className="h-5 w-5 text-gray-400" />}
-                        maxLength={20}
-                        className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
-                      />
-                      {touched.firstName && errors.firstName && (
-                        <p className="text-red-400 text-sm mt-1">{errors.firstName}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
-                        Last Name *
-                      </label>
-                      <ValidatedInput
-                        type="text"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        onBlur={setFieldTouched}
-                        placeholder="Your last name"
-                        icon={<User className="h-5 w-5 text-gray-400" />}
-                        maxLength={20}
-                        className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
-                      />
-                      {touched.lastName && errors.lastName && (
-                        <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Contact Information */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
-                        Email *
-                      </label>
-                      <ValidatedInput
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        onBlur={setFieldTouched}
-                        placeholder="your@gmail.com"
-                        icon={<Mail className="h-5 w-5 text-gray-400" />}
-                        maxLength={50}
-                        className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
-                      />
-                      {touched.email && errors.email && (
-                        <p className="text-red-400 text-sm mt-1">{errors.email}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
-                        Phone Number *
-                      </label>
-                      <PhoneInput
-                        value={formData.phone}
-                        onChange={handlePhoneChange}
-                        onBlur={() => setFieldTouched('phone')}
-                      />
-                      {formData.phoneCountry && (
-                        <p className="text-xs text-yellow-600 mt-1">{formData.phoneCountry}</p>
-                      )}
-                      {touched.phone && errors.phone && (
-                        <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Company Information */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
-                        Company *
-                      </label>
-                      <ValidatedInput
-                        type="text"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        onBlur={setFieldTouched}
-                        placeholder="Company name"
-                        icon={<Building className="h-5 w-5 text-gray-400" />}
-                        maxLength={50}
-                        className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
-                      />
-                      {touched.company && errors.company && (
-                        <p className="text-red-400 text-sm mt-1">{errors.company}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
-                        Website
-                      </label>
-                      <ValidatedInput
-                        type="url"
-                        name="website"
-                        value={formData.website}
-                        onChange={handleChange}
-                        onBlur={setFieldTouched}
-                        placeholder="https://yourcompany.com"
-                        icon={<Globe className="h-5 w-5 text-gray-400" />}
-                        className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
-                      />
-                      {touched.website && errors.website && (
-                        <p className="text-red-400 text-sm mt-1">{errors.website}</p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Project Details */}
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Personal Information */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="text-lg font-semibold text-yellow-400 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
-                      Project Details
-                    </h3>
-                    
-                    {/* Message */}
-                    <div className="mb-6">
-                      <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
-                        Describe your project
-                      </label>
-                      <ValidatedInput
-                        type="textarea"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        onBlur={setFieldTouched}
-                        placeholder="Tell us more about your project, objectives, and any specific requirements..."
-                        className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
-                      />
-                      <p className="text-xs text-yellow-600 mt-1">
-                        {formData.message.length} / 200 characters
-                      </p>
-                      {touched.message && errors.message && (
-                        <p className="text-red-400 text-sm mt-1">{errors.message}</p>
-                      )}
-                    </div>
-
-                    {/* Service of Interest */}
-                    <div>
-                      <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
-                        Service of Interest *
-                      </label>
-                      <ValidatedInput
-                        type="select"
-                        name="service"
-                        value={formData.service}
-                        onChange={handleChange}
-                        onBlur={setFieldTouched}
-                        placeholder="Select a service"
-                        options={services}
-                      />
-                      {touched.service && errors.service && (
-                        <p className="text-red-400 text-sm mt-1">{errors.service}</p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Checkboxes */}
-                  <div className="space-y-4">
-                    <label className="flex items-start space-x-3">
-                      <input
-                        type="checkbox"
-                        name="newsletter"
-                        checked={formData.newsletter}
-                        onChange={handleCheckboxChange}
-                        className="mt-1 h-4 w-4 text-yellow-400 focus:ring-yellow-500 border-gray-600 rounded bg-gray-700 dark:bg-black"
-                      />
-                      <span className="text-sm text-yellow-600 dark:text-yellow-400">
-                        I want to receive news and updates about technology
-                      </span>
+                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                      First Name *
                     </label>
-
-                    <label className="flex items-start space-x-3">
-                      <input
-                        type="checkbox"
-                        name="terms"
-                        checked={formData.terms}
-                        onChange={handleCheckboxChange}
-                        onBlur={() => setFieldTouched('terms')}
-                        className="mt-1 h-4 w-4 text-yellow-400 focus:ring-yellow-500 border-gray-600 rounded bg-gray-700 dark:bg-black"
-                      />
-                      <span className="text-sm text-yellow-600 dark:text-yellow-400">
-                        I accept the{' '}
-                        <a href="#" className="text-yellow-500 hover:text-yellow-400">
-                          terms and conditions
-                        </a>{' '}
-                        and{' '}
-                        <a href="#" className="text-yellow-500 hover:text-yellow-400">
-                          privacy policy
-                        </a>
-                        *
-                      </span>
-                    </label>
-                    {touched.terms && errors.terms && (
-                      <p className="text-red-400 text-sm">{errors.terms}</p>
+                    <ValidatedInput
+                      type="text"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      onBlur={setFieldTouched}
+                      placeholder="Your first name"
+                      icon={<User className="h-5 w-5 text-gray-400" />}
+                      maxLength={20}
+                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
+                    />
+                    {touched.firstName && errors.firstName && (
+                      <p className="text-red-400 text-sm mt-1">{errors.firstName}</p>
                     )}
                   </div>
 
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full flex justify-center items-center px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-medium rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? (
-                      'Processing...'
-                    ) : (
-                      <>
-                        Submit Request
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                      </>
+                  <div>
+                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                      Last Name *
+                    </label>
+                    <ValidatedInput
+                      type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      onBlur={setFieldTouched}
+                      placeholder="Your last name"
+                      icon={<User className="h-5 w-5 text-gray-400" />}
+                      maxLength={20}
+                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
+                    />
+                    {touched.lastName && errors.lastName && (
+                      <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
                     )}
-                  </button>
+                  </div>
+                </div>
 
-                  {submitError && (
-                    <p className="text-red-400 text-sm text-center">{submitError}</p>
+                {/* Contact Information */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                      Email *
+                    </label>
+                    <ValidatedInput
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onBlur={setFieldTouched}
+                      placeholder="your@gmail.com"
+                      icon={<Mail className="h-5 w-5 text-gray-400" />}
+                      maxLength={50}
+                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
+                    />
+                    {touched.email && errors.email && (
+                      <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                      Phone Number *
+                    </label>
+                    <PhoneInput
+                      value={formData.phone}
+                      onChange={handlePhoneChange}
+                      onBlur={() => setFieldTouched('phone')}
+                    />
+                    {formData.phoneCountry && (
+                      <p className="text-xs text-yellow-600 mt-1">{formData.phoneCountry}</p>
+                    )}
+                    {touched.phone && errors.phone && (
+                      <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Company Information */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                      Company *
+                    </label>
+                    <ValidatedInput
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      onBlur={setFieldTouched}
+                      placeholder="Company name"
+                      icon={<Building className="h-5 w-5 text-gray-400" />}
+                      maxLength={50}
+                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
+                    />
+                    {touched.company && errors.company && (
+                      <p className="text-red-400 text-sm mt-1">{errors.company}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                      Website
+                    </label>
+                    <ValidatedInput
+                      type="url"
+                      name="website"
+                      value={formData.website}
+                      onChange={handleChange}
+                      onBlur={setFieldTouched}
+                      placeholder="https://yourcompany.com"
+                      icon={<Globe className="h-5 w-5 text-gray-400" />}
+                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
+                    />
+                    {touched.website && errors.website && (
+                      <p className="text-red-400 text-sm mt-1">{errors.website}</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Service of Interest */}
+                <div>
+                  <h3 className="text-lg font-semibold text-yellow-400 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
+                    Service of Interest
+                  </h3>
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                      Select a service *
+                    </label>
+                    <ValidatedInput
+                      type="select"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      onBlur={setFieldTouched}
+                      placeholder="Select a service"
+                      options={services}
+                    />
+                    {touched.service && errors.service && (
+                      <p className="text-red-400 text-sm mt-1">{errors.service}</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Project Details */}
+                <div>
+                  <h3 className="text-lg font-semibold text-yellow-400 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
+                    Project Details
+                  </h3>
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                      Describe your project
+                    </label>
+                    <ValidatedInput
+                      type="textarea"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      onBlur={setFieldTouched}
+                      placeholder="Tell us more about your project, objectives, and any specific requirements..."
+                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
+                    />
+                    <p className="text-xs text-yellow-600 mt-1">
+                      {formData.message.length} / 200 characters
+                    </p>
+                    {touched.message && errors.message && (
+                      <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Checkboxes */}
+                <div className="space-y-4">
+                  <label className="flex items-start space-x-3">
+                    <input
+                      type="checkbox"
+                      name="newsletter"
+                      checked={formData.newsletter}
+                      onChange={handleCheckboxChange}
+                      className="mt-1 h-4 w-4 text-yellow-400 focus:ring-yellow-500 border-gray-600 rounded bg-gray-700 dark:bg-black"
+                    />
+                    <span className="text-sm text-yellow-600 dark:text-yellow-400">
+                      I want to receive news and updates about technology
+                    </span>
+                  </label>
+
+                  <label className="flex items-start space-x-3">
+                    <input
+                      type="checkbox"
+                      name="terms"
+                      checked={formData.terms}
+                      onChange={handleCheckboxChange}
+                      onBlur={() => setFieldTouched('terms')}
+                      className="mt-1 h-4 w-4 text-yellow-400 focus:ring-yellow-500 border-gray-600 rounded bg-gray-700 dark:bg-black"
+                    />
+                    <span className="text-sm text-yellow-600 dark:text-yellow-400">
+                      I accept the{' '}
+                      <a href="#" className="text-yellow-500 hover:text-yellow-400">
+                        terms and conditions
+                      </a>{' '}
+                      and{' '}
+                      <a href="#" className="text-yellow-500 hover:text-yellow-400">
+                        privacy policy
+                      </a>
+                      *
+                    </span>
+                  </label>
+                  {touched.terms && errors.terms && (
+                    <p className="text-red-400 text-sm">{errors.terms}</p>
                   )}
-                </form>
-              </div>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full flex justify-center items-center px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-medium rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    'Processing...'
+                  ) : (
+                    <>
+                      Submit Request
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </>
+                  )}
+                </button>
+
+                {submitError && (
+                  <p className="text-red-400 text-sm text-center">{submitError}</p>
+                )}
+              </form>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   )
 }
 
-export default Register
+export default Register;
