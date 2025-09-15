@@ -13,8 +13,8 @@ const ServiceCard = ({ service }) => {
     >
       <div className={`relative w-full h-full transition-all duration-700 [transform-style:preserve-3d] ${isFlipped ? '[transform:rotateY(180deg)]' : ''}`}>
         {/* Front of the card - Our Services style */}
-        <div className="absolute inset-0 w-full h-full p-8 rounded-3xl border-2 dark:border-yellow-600/30 border-gray-200 dark:bg-gray-900/50 bg-white/80 shadow-lg backdrop-blur-sm duration-700 z-10 [backface-visibility:hidden] flex flex-col items-center text-center">
-          <div className="w-16 h-16 flex items-center justify-center rounded-2xl dark:bg-yellow-500/10 bg-yellow-100 dark:text-yellow-400 text-yellow-600 mb-6 transition-all duration-300 group-hover:bg-yellow-500/20 group-hover:rotate-6 group-hover:scale-110">
+        <div className="absolute inset-0 w-full h-full p-8 rounded-3xl border-2 dark:border-yellow-600/30 border-yellow-400/30 dark:bg-gray-900/50 bg-white/30 shadow-lg backdrop-blur-sm duration-700 z-10 [backface-visibility:hidden] flex flex-col items-center text-center">
+          <div className="w-16 h-16 flex items-center justify-center rounded-2xl dark:bg-yellow-500/10 bg-yellow-400/20 dark:text-yellow-400 text-yellow-600 mb-6 transition-all duration-300 group-hover:bg-yellow-500/30 group-hover:rotate-6 group-hover:scale-110">
             {service.icon}
           </div>
           
@@ -22,7 +22,7 @@ const ServiceCard = ({ service }) => {
             {service.title}
           </h3>
           
-          <p className="dark:text-yellow-300/80 text-gray-600 mb-6">
+          <p className="dark:text-yellow-300/80 text-gray-700 mb-6">
             {service.description}
           </p>
           
@@ -36,7 +36,7 @@ const ServiceCard = ({ service }) => {
         </div>
         
         {/* Back of the card */}
-        <div className="absolute inset-0 w-full h-full p-8 rounded-3xl border-2 dark:border-yellow-500/50 border-yellow-400/30 dark:bg-gray-900/80 bg-white/90 shadow-lg [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col">
+        <div className="absolute inset-0 w-full h-full p-8 rounded-3xl border-2 dark:border-yellow-500/50 border-yellow-400/30 dark:bg-gray-900/80 bg-white/50 shadow-lg backdrop-blur-sm [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col">
           <h3 className="text-xl font-bold dark:text-yellow-400 text-gray-800 mb-6 text-center">
             {service.title} Features
           </h3>
@@ -52,13 +52,13 @@ const ServiceCard = ({ service }) => {
             ))}
           </ul>
           
-          <div className="mt-auto pt-6 border-t dark:border-yellow-500/20 border-gray-200 text-center">
+          <div className="mt-auto pt-4 border-t border-yellow-400/20">
             <Link 
-              to="/register"
-              className="inline-flex items-center justify-center px-6 py-2 rounded-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white text-sm font-medium hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              to={service.ctaLink || '#'} 
+              className="w-full inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-gray-800 dark:text-yellow-400 bg-yellow-400/80 dark:bg-yellow-600/20 hover:bg-yellow-400 dark:hover:bg-yellow-500/30 rounded-lg transition-colors duration-200"
             >
-              <span className="text-white">Get started</span>
-              <ArrowRight className="ml-2 h-4 w-4 text-white" />
+              {service.ctaText || 'Get started'}
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </div>
         </div>

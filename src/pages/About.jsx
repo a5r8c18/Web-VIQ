@@ -24,10 +24,10 @@ const About = () => {
           className="bg-gray-700/80 dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-10 mb-12 backdrop-blur-sm"
         >
           <div className="prose dark:prose-invert max-w-none">
-            <p className="text-lg text-gray-200 dark:text-gray-300 mb-6 leading-relaxed">
+            <p className="text-lg text-gray-800 dark:text-gray-300 mb-6 leading-relaxed">
               We're passionate about leveraging technology to help businesses thrive in the digital age. With over nine years of experience in the industry, we've honed our expertise in providing cutting-edge solutions that empower our clients to succeed online.
             </p>
-            <p className="text-lg text-gray-200 dark:text-gray-300 mb-8 leading-relaxed">
+            <p className="text-lg text-gray-800 dark:text-gray-300 mb-8 leading-relaxed">
               Since our inception in 2020, we've been committed to delivering exceptional results and exceeding our clients' expectations. Over the past nine years, we've evolved and adapted to meet the ever-changing needs of the digital landscape, staying ahead of the curve with innovative solutions and best practices.
             </p>
             

@@ -35,34 +35,34 @@ const Hero = () => {
         <div className="max-w-5xl mx-auto text-center px-4 py-8">
           {/* Main Heading with new styling */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight tracking-tight whitespace-nowrap">
-            <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 
+            <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 
               animate-text-shimmer bg-[length:200%_100%] bg-left 
-              drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
+              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
               Digital
             </span>
             {' '}
-            <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 
+            <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 
               animate-text-shimmer bg-[length:200%_100%] bg-left 
-              drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
+              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
               Revolution
             </span>
             {' '}
-            <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 
+            <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 
               animate-text-shimmer bg-[length:200%_100%] bg-left 
-              drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
+              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
               Starts Here!
             </span>
           </h1>
           <p className="mt-2 mb-4">
             <span className="text-2xl sm:text-3xl font-medium whitespace-nowrap">
-              <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 
+              <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 
                 animate-text-shimmer bg-[length:200%_100%] bg-left 
-                drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
+                drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
                 Joined hands 
               </span>
-              <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 
+              <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 
                 animate-text-shimmer bg-[length:200%_100%] bg-left 
-                drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
+                drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
                 create futures!
               </span>
             </span>

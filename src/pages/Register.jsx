@@ -146,10 +146,10 @@ const Register = () => {
       {/* Elementos de vidrio flotantes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -left-1/4 -top-1/4 w-[80%] h-[80%] opacity-20">
-          <div className="w-full h-full bg-gradient-to-br from-amber-500/30 to-transparent rounded-full blur-3xl"></div>
+          <div className="w-full h-full bg-gradient-to-br from-gray-400/30 dark:from-amber-500/30 to-transparent rounded-full blur-3xl"></div>
         </div>
         <div className="absolute -right-1/4 -bottom-1/4 w-[80%] h-[80%] opacity-20">
-          <div className="w-full h-full bg-gradient-to-tr from-yellow-500/30 to-transparent rounded-full blur-3xl"></div>
+          <div className="w-full h-full bg-gradient-to-tr from-gray-500/30 dark:from-yellow-500/30 to-transparent rounded-full blur-3xl"></div>
         </div>
       </div>
 
@@ -158,9 +158,6 @@ const Register = () => {
         {/* Hero Section */}
         <section className="relative py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <span className="inline-block px-3 py-1 text-sm font-medium text-yellow-600 dark:text-yellow-500 bg-yellow-100 dark:bg-yellow-500/10 rounded-full mb-4">
-              Contact Us
-            </span>
             <h1 className="text-4xl md:text-5xl font-bold text-yellow-400 dark:text-yellow-400 mb-6">
               Start Your Project
             </h1>
@@ -185,11 +182,12 @@ const Register = () => {
           </div>
         </section>
 
-        {/* Formulario */}
-        <section className="relative py-12 md:py-16">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 shadow-xl border border-gray-700/50">
-              <h2 className="text-2xl font-bold text-yellow-400 mb-6 text-center">
+        {/* Form Section */}
+        <section className="relative py-12 md:py-20 bg-gray-100 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl mx-4 md:mx-8 lg:mx-auto max-w-5xl shadow-xl overflow-hidden">
+          <div className="absolute inset-0 bg-grid-gray-300/30 dark:bg-grid-gray-700/20 [mask-image:linear-gradient(0deg,transparent,white,transparent)]" aria-hidden="true"></div>
+          <div className="relative px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 dark:text-yellow-400 mb-8">
                 Get in Touch
               </h2>
               
@@ -197,7 +195,7 @@ const Register = () => {
                 {/* Personal Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
                       First Name *
                     </label>
                     <ValidatedInput
@@ -209,7 +207,7 @@ const Register = () => {
                       placeholder="Your first name"
                       icon={<User className="h-5 w-5 text-gray-400" />}
                       maxLength={20}
-                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
+                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
                     />
                     {touched.firstName && errors.firstName && (
                       <p className="text-red-400 text-sm mt-1">{errors.firstName}</p>
@@ -217,7 +215,7 @@ const Register = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
                       Last Name *
                     </label>
                     <ValidatedInput
@@ -229,7 +227,7 @@ const Register = () => {
                       placeholder="Your last name"
                       icon={<User className="h-5 w-5 text-gray-400" />}
                       maxLength={20}
-                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
+                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
                     />
                     {touched.lastName && errors.lastName && (
                       <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
@@ -240,7 +238,7 @@ const Register = () => {
                 {/* Contact Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
                       Email *
                     </label>
                     <ValidatedInput
@@ -251,8 +249,7 @@ const Register = () => {
                       onBlur={setFieldTouched}
                       placeholder="your@gmail.com"
                       icon={<Mail className="h-5 w-5 text-gray-400" />}
-                      maxLength={50}
-                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
+                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
                     />
                     {touched.email && errors.email && (
                       <p className="text-red-400 text-sm mt-1">{errors.email}</p>
@@ -260,7 +257,7 @@ const Register = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
                       Phone Number *
                     </label>
                     <PhoneInput
@@ -280,7 +277,7 @@ const Register = () => {
                 {/* Company Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
                       Company *
                     </label>
                     <ValidatedInput
@@ -291,8 +288,7 @@ const Register = () => {
                       onBlur={setFieldTouched}
                       placeholder="Company name"
                       icon={<Building className="h-5 w-5 text-gray-400" />}
-                      maxLength={50}
-                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
+                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
                     />
                     {touched.company && errors.company && (
                       <p className="text-red-400 text-sm mt-1">{errors.company}</p>
@@ -300,7 +296,7 @@ const Register = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
                       Website
                     </label>
                     <ValidatedInput
@@ -311,7 +307,7 @@ const Register = () => {
                       onBlur={setFieldTouched}
                       placeholder="https://yourcompany.com"
                       icon={<Globe className="h-5 w-5 text-gray-400" />}
-                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
+                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
                     />
                     {touched.website && errors.website && (
                       <p className="text-red-400 text-sm mt-1">{errors.website}</p>
@@ -321,11 +317,11 @@ const Register = () => {
 
                 {/* Service of Interest */}
                 <div>
-                  <h3 className="text-lg font-semibold text-yellow-400 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
                     Service of Interest
                   </h3>
                   <div className="mb-6">
-                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
                       Select a service *
                     </label>
                     <ValidatedInput
@@ -336,6 +332,7 @@ const Register = () => {
                       onBlur={setFieldTouched}
                       placeholder="Select a service"
                       options={services}
+                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
                     />
                     {touched.service && errors.service && (
                       <p className="text-red-400 text-sm mt-1">{errors.service}</p>
@@ -345,11 +342,11 @@ const Register = () => {
 
                 {/* Project Details */}
                 <div>
-                  <h3 className="text-lg font-semibold text-yellow-400 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
                     Project Details
                   </h3>
                   <div className="mb-6">
-                    <label className="block text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-2">
+                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
                       Describe your project
                     </label>
                     <ValidatedInput
@@ -359,7 +356,7 @@ const Register = () => {
                       onChange={handleChange}
                       onBlur={setFieldTouched}
                       placeholder="Tell us more about your project, objectives, and any specific requirements..."
-                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-white placeholder-gray-400"
+                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
                     />
                     <p className="text-xs text-yellow-600 mt-1">
                       {formData.message.length} / 200 characters

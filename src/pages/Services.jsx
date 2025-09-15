@@ -115,7 +115,7 @@ const Services = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black py-20 relative overflow-hidden">
+    <div className="min-h-screen bg-background-primary bg-gradient-to-b from-background-secondary to-background-primary dark:from-gray-900 dark:to-black py-20 relative overflow-hidden">
       {/* Fondo de ondas doradas */}
       <div className="absolute inset-0 pointer-events-none">
         <svg className="w-full h-full text-slate-950/10 dark:text-yellow-500/10" viewBox="-2400 -800 4800 1600" fill="none" preserveAspectRatio="xMidYMid slice">
@@ -137,24 +137,24 @@ const Services = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16 px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-yellow-500 dark:text-yellow-400 mb-6">
-            Our <span className="text-yellow-500 dark:text-yellow-400">Services</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-yellow-400 mb-6">
+            Our <span className="text-gray-900 dark:text-yellow-400">Services</span>
           </h2>
-          <p className="text-lg text-yellow-600 dark:text-yellow-500/90 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-800 dark:text-yellow-500/90 max-w-3xl mx-auto">
             Custom technology solutions to take your business to the next level.
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
+        <div className="flex flex-wrap justify-center gap-3 mb-16 px-4">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                 activeCategory === category.id
-                  ? 'bg-yellow-600 text-white shadow-lg shadow-yellow-500/20'
-                  : 'text-yellow-400/90 hover:bg-yellow-500/10 hover:text-yellow-500'
+                  ? 'bg-yellow-500 text-gray-900 shadow-md'
+                  : 'bg-white/30 dark:bg-gray-800/50 text-gray-800 dark:text-yellow-400 hover:bg-white/50 dark:hover:bg-gray-800/70'
               }`}
             >
               {category.name}
