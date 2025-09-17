@@ -153,8 +153,8 @@ const Services = () => {
               onClick={() => setActiveCategory(category.id)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                 activeCategory === category.id
-                  ? 'bg-yellow-500 text-gray-900 shadow-md'
-                  : 'bg-white/30 dark:bg-gray-800/50 text-gray-800 dark:text-yellow-400 hover:bg-white/50 dark:hover:bg-gray-800/70'
+                  ? 'bg-amber-300/80 text-amber-900 shadow-md hover:bg-amber-300/90 dark:bg-yellow-500 dark:text-gray-900 dark:hover:bg-yellow-500/90'
+                  : 'bg-white/30 text-gray-800 hover:bg-white/50 dark:bg-gray-800/50 dark:text-yellow-400 dark:hover:bg-gray-800/70'
               }`}
             >
               {category.name}

@@ -55,7 +55,7 @@ const ServiceCard = ({ service }) => {
           <div className="mt-auto pt-4 border-t border-yellow-400/20">
             <Link 
               to={service.ctaLink || '#'} 
-              className="w-full inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-gray-800 dark:text-yellow-400 bg-yellow-400/80 dark:bg-yellow-600/20 hover:bg-yellow-400 dark:hover:bg-yellow-500/30 rounded-lg transition-colors duration-200"
+              className="w-full inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-gray-800 dark:text-yellow-400 bg-amber-300/70 hover:bg-amber-300/90 dark:bg-yellow-600/20 dark:hover:bg-yellow-500/30 rounded-lg transition-colors duration-200"
             >
               {service.ctaText || 'Get started'}
               <ArrowRight className="ml-2 h-4 w-4" />
