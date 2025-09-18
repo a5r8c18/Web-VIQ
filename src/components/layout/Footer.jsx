@@ -83,19 +83,15 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-yellow-400 mt-0.5 mr-3 flex-shrink-0" />
-                <span className="text-gray-300">123 Tech Street, Silicon Valley, CA 94025</span>
-              </li>
-              <li className="flex items-center">
-                <Mail className="h-5 w-5 text-yellow-400 mr-3 flex-shrink-0" />
-                <a href="mailto:info@viqsystems.com" className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm">info@viqsystems.com</a>
+                <span className="text-gray-300">9260 SW 34th St 33165, Miami, Florida</span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 text-yellow-400 mr-3 flex-shrink-0" />
-                <a href="tel:+11234567890" className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm">+1 (123) 456-7890</a>
+                <a href="tel:+17866432616" className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm">+1 786-643-2616</a>
               </li>
               <li className="flex items-center">
-                <Code className="h-5 w-5 text-yellow-400 mr-3 flex-shrink-0" />
-                <span className="text-gray-300 text-sm">Mon - Fri: 9:00 - 18:00</span>
+                <Mail className="h-5 w-5 text-yellow-400 mr-3 flex-shrink-0" />
+                <a href="mailto:infoviq@viqsystems.com" className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-sm">infoviq@viqsystems.com</a>
               </li>
             </ul>
           </div>

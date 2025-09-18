@@ -60,8 +60,8 @@ const Header = () => {
                 to={item.href}
                 className={`${
                   isActive(item.href)
-                    ? 'text-text-primary border-b-2 border-accent'
-                    : 'text-text-secondary hover:text-text-primary'
+                    ? 'text-black dark:text-white border-b-2 border-accent'
+                    : 'text-gray-800 dark:text-gray-300 hover:text-black dark:hover:text-white'
                 } px-3 py-2 text-sm font-medium transition-colors duration-200`}
                 onClick={handleNavigation}
               >
@@ -100,8 +100,8 @@ const Header = () => {
                 to={item.href}
                 className={`block px-4 py-3 rounded-md text-base font-medium ${
                   isActive(item.href)
-                    ? 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                    ? 'bg-yellow-500/10 text-black dark:text-yellow-400'
+                    : 'text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white'
                 }`}
                 onClick={handleNavigation}
               >

@@ -5,11 +5,38 @@ const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const isLightMode = theme === 'light';
+  const particleColorClass = isLightMode ? 'bg-amber-300' : 'bg-white';
 
-  // Evitar hidratación no coincidente
+  // CSS for the star particles
+  const starStyles = `
+    @keyframes twinkling-star-anim {
+      0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1) rotate(180deg);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  `;
+
+  // Prevent hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Apply theme class to the document element
+  useEffect(() => {
+    if (mounted) {
+      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.add(theme);
+    }
+  }, [theme, mounted]);
 
   if (!mounted) {
     return (
@@ -17,158 +44,130 @@ const ThemeToggle = () => {
     );
   }
 
-  const handleToggle = () => {
-    toggleTheme();
-  };
-
   return (
-    <button
-      onClick={handleToggle}
-      className={`relative group overflow-hidden h-16 w-[140px] rounded-xl flex items-center justify-center transition-all duration-500 shadow-[0_2px_8px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.15)] backdrop-blur-xs ${
-        isLightMode ? 'bg-amber-50' : 'bg-gray-800'
-      }`}
-      tabIndex="0"
-      aria-label={isLightMode ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'}
-    >
-      <div className="absolute inset-0 opacity-50 transition-opacity duration-500 bg-gradient-to-r from-amber-200/50 to-orange-200/50"></div>
-      <div className="relative w-full px-4">
-        <div className="relative flex items-center justify-between">
-          {/* Contenido del Modo Claro */}
-          <div
-            className="flex flex-col items-center gap-1 transition-all duration-500"
-            style={{
-              transform: isLightMode ? 'scale(1)' : 'scale(0.7)',
-              opacity: isLightMode ? 1 : 0.5,
-            }}
-          >
-            <div className="h-7 flex items-center justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className={`lucide lucide-sun w-7 h-7 ${isLightMode ? 'text-amber-500' : 'text-gray-100'}`}
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="4"></circle>
-                <path d="M12 2v2"></path>
-                <path d="M12 20v2"></path>
-                <path d="m4.93 4.93 1.41 1.41"></path>
-                <path d="m17.66 17.66 1.41 1.41"></path>
-                <path d="M2 12h2"></path>
-                <path d="M20 12h2"></path>
-                <path d="m6.34 17.66-1.41 1.41"></path>
-                <path d="m19.07 4.93-1.41 1.41"></path>
-              </svg>
-            </div>
-            <span className={`text-xs font-medium translate-y-0.5 ${isLightMode ? 'text-amber-600' : 'text-gray-100'}`}>
-              Light
-            </span>
-          </div>
-
-          {/* Contenido del Modo Oscuro */}
-          <div
-            className="flex flex-col items-center gap-1 transition-all duration-500"
-            style={{
-              transform: isLightMode ? 'scale(0.7)' : 'scale(1)',
-              opacity: isLightMode ? 0.5 : 1,
-            }}
-          >
-            <div className="h-7 flex items-center justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className={`lucide lucide-moon w-7 h-7 ${isLightMode ? 'text-indigo-400/50' : 'text-white'}`}
-                aria-hidden="true"
-              >
-                <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path>
-              </svg>
-            </div>
-            <span className={`text-xs font-medium translate-y-0.5 ${isLightMode ? 'text-indigo-400/50' : 'text-white'}`}>
-              Dark
-            </span>
-          </div>
-
-          {/* Control deslizante */}
-          <div
-            className={`absolute top-[1px] w-9 h-9 rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.1)] transition-transform duration-500 ${
-              isLightMode ? 'bg-gradient-to-br from-amber-300 to-orange-300' : 'bg-gray-700'
-            }`}
-            style={{
-              transform: isLightMode ? 'translateX(-1px)' : 'translateX(65px)',
-            }}
-          >
-            <div className={`absolute inset-0 rounded-full ${isLightMode ? 'bg-amber-300' : 'bg-gray-700'}`}></div>
-            <div className={`absolute inset-0 rounded-full ${isLightMode ? 'bg-gradient-to-br from-amber-300 to-orange-300' : ''}`}></div>
-            <div
-              className="absolute inset-0 rounded-full"
-              style={{ boxShadow: isLightMode ? 'rgba(251, 191, 36, 0.6) 0px 0px 12px' : '' }}
-            ></div>
-          </div>
-        </div>
-      </div>
-
-      {/* Efecto de estrellas/partículas - Solo visible en modo claro */}
-      <div
-        className="absolute inset-0 transition-opacity duration-300 pointer-events-none"
-        style={{ opacity: isLightMode ? 1 : 0 }}
+    <>
+      <style>{starStyles}</style>
+      <button
+        onClick={toggleTheme}
+        className={`relative group h-16 w-[140px] rounded-xl flex items-center justify-center transition-all duration-500 shadow-[0_2px_8px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.15)] backdrop-blur-xs
+          ${isLightMode ? 'bg-amber-50' : 'bg-gray-800'}
+          after:content-[''] after:absolute after:inset-0 after:rounded-xl after:transition-all after:duration-500 after:z-[-1] after:blur-md
+          ${isLightMode ? 'after:bg-amber-200' : 'after:bg-gray-700'}`}
+        tabIndex="0"
+        aria-label={isLightMode ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'}
       >
+        <div className="absolute inset-0 opacity-50 transition-opacity duration-500 bg-gradient-to-r from-amber-200/50 to-orange-200/50"></div>
+        <div className="relative w-full flex items-center justify-center">
+          {isLightMode ? (
+            <div className="flex flex-col items-center gap-1 transition-all duration-500">
+              <div className="h-7 flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-sun w-7 h-7 text-amber-500"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 2v2"></path>
+                  <path d="M12 20v2"></path>
+                  <path d="m4.93 4.93 1.41 1.41"></path>
+                  <path d="m17.66 17.66 1.41 1.41"></path>
+                  <path d="M2 12h2"></path>
+                  <path d="M20 12h2"></path>
+                  <path d="m6.34 17.66-1.41 1.41"></path>
+                  <path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+              </div>
+              <span className="text-xs font-medium translate-y-0.5 text-amber-600">Light</span>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center gap-1 transition-all duration-500">
+              <div className="h-7 flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-moon w-7 h-7 text-white"
+                  aria-hidden="true"
+                >
+                  <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path>
+                </svg>
+              </div>
+              <span className="text-xs font-medium translate-y-0.5 text-white">Dark</span>
+            </div>
+          )}
+        </div>
+
+        {/* Star/particle effect */}
         <div
-          className="absolute w-1 h-1 bg-amber-300 rounded-full"
-          style={{
-            opacity: 0,
-            transform: 'translateX(-5.85172px) translateY(-2.87157px) scale(0.965347)',
-          }}
-        ></div>
-        <div
-          className="absolute w-1 h-1 bg-amber-300 rounded-full"
-          style={{
-            opacity: 0,
-            transform: 'translateX(2.63356px) translateY(-2.43594px) scale(0.453611)',
-          }}
-        ></div>
-        <div
-          className="absolute w-1 h-1 bg-amber-300 rounded-full"
-          style={{
-            opacity: 0,
-            transform: 'translateX(-11.9091px) translateY(-19.7656px) scale(0.0130814)',
-          }}
-        ></div>
-        <div
-          className="absolute w-1 h-1 bg-amber-300 rounded-full"
-          style={{
-            opacity: 0,
-            transform: 'translateX(12.4175px) translateY(-14.5326px) scale(0.238923)',
-          }}
-        ></div>
-        <div
-          className="absolute w-1 h-1 bg-amber-300 rounded-full"
-          style={{
-            opacity: 0,
-            transform: 'translateX(-2.18633px) translateY(-13.5985px) scale(0.650833)',
-          }}
-        ></div>
-        <div
-          className="absolute w-1 h-1 bg-amber-300 rounded-full"
-          style={{
-            opacity: 0,
-            transform: 'translateX(2.52168px) translateY(-7.17348px) scale(1.19238)',
-          }}
-        ></div>
-      </div>
-    </button>
+          key={theme} // Force re-render to restart animations on theme change
+          className="absolute inset-0 transition-opacity duration-300 pointer-events-none"
+        >
+          {/* Particles */}
+          <div
+            className={`absolute w-1 h-1 rounded-full animate-[twinkling-star-anim_2s_linear_infinite] ${particleColorClass}`}
+            style={{
+              left: '20%',
+              top: '30%',
+              animationDelay: '0.1s',
+            }}
+          ></div>
+          <div
+            className={`absolute w-1 h-1 rounded-full animate-[twinkling-star-anim_2s_linear_infinite] ${particleColorClass}`}
+            style={{
+              left: '75%',
+              top: '50%',
+              animationDelay: '0.4s',
+            }}
+          ></div>
+          <div
+            className={`absolute w-1 h-1 rounded-full animate-[twinkling-star-anim_2s_linear_infinite] ${particleColorClass}`}
+            style={{
+              left: '40%',
+              top: '80%',
+              animationDelay: '0.7s',
+            }}
+          ></div>
+          <div
+            className={`absolute w-1 h-1 rounded-full animate-[twinkling-star-anim_2s_linear_infinite] ${particleColorClass}`}
+            style={{
+              left: '50%',
+              top: '15%',
+              animationDelay: '0.2s',
+            }}
+          ></div>
+          <div
+            className={`absolute w-1 h-1 rounded-full animate-[twinkling-star-anim_2s_linear_infinite] ${particleColorClass}`}
+            style={{
+              left: '80%',
+              top: '80%',
+              animationDelay: '0.9s',
+            }}
+          ></div>
+          <div
+            className={`absolute w-1 h-1 rounded-full animate-[twinkling-star-anim_2s_linear_infinite] ${particleColorClass}`}
+            style={{
+              left: '10%',
+              top: '70%',
+              animationDelay: '0.5s',
+            }}
+          ></div>
+        </div>
+      </button>
+    </>
   );
 };
 

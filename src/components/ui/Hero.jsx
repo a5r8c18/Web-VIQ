@@ -36,18 +36,8 @@ const Hero = () => {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-snug tracking-tight">
             <span className="block italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
               animate-text-shimmer bg-[length:200%_100%] bg-left 
-              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)] pb-1">
-              Digital
-            </span>
-            <span className="block italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 
-              animate-text-shimmer bg-[length:200%_100%] bg-left 
-              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)] mt-2">
-              Revolution
-            </span>
-            <span className="block italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 
-              animate-text-shimmer bg-[length:200%_100%] bg-left 
-              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)] mt-2">
-              Starts Here!
+              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+              Digital Revolution Starts Here!
             </span>
           </h1>
           
@@ -56,12 +46,7 @@ const Hero = () => {
               <span className="block italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 
                 animate-text-shimmer bg-[length:200%_100%] bg-left 
                 drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
-                Joined hands 
-              </span>
-              <span className="block italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-100 to-amber-300 
-                animate-text-shimmer bg-[length:200%_100%] bg-left 
-                drop-shadow-[0_0_8px_rgba(251,191,36,0.4)] mt-1">
-                create futures!
+                Joined hands create futures!
               </span>
             </span>
           </p>

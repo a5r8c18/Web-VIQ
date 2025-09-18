@@ -305,7 +305,9 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* Our Services Section */}
+              {/* Add two lines of space before Our Services */}
+              <div className="h-16"></div>
+
               <div className="pt-2 pb-16">
                 <div className="relative z-10">
                   <div className="text-center mb-8 container-custom">
@@ -524,21 +526,16 @@ const Home = () => {
       </section>
 
       {/* Successful Digital Projects Section */}
-      <section className="py-16 bg-[var(--color-bg-secondary)] dark:bg-gradient-to-b dark:from-gray-900 dark:to-black relative overflow-hidden">
-        {/* Fondo para modo claro */}
-        <div className="absolute inset-0 bg-[var(--color-bg-secondary)] dark:hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-400/30 via-transparent to-gray-400/30"></div>
-          <div className="absolute inset-0 opacity-30" style={{
-            backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(75, 85, 99, 0.2) 0%, transparent 60%)',
-          }}></div>
-        </div>
+      <section className="py-16 bg-gray-400 dark:bg-gray-900 relative overflow-hidden">
+        {/* Light mode background */}
+        <div className="absolute inset-0 bg-gray-400 dark:hidden"></div>
         
-        {/* Fondo para modo oscuro */}
+        {/* Dark mode background */}
         <div className="absolute inset-0 hidden dark:block">
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/5 via-transparent to-yellow-600/5"></div>
-          <div className="absolute inset-0 opacity-20" style={{
-            backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(217, 119, 6, 0.2) 0%, transparent 50%)',
-          }}></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(251,191,36,0.1),transparent_40%)]"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(217,119,6,0.1),transparent_40%)]"></div>
+          </div>
         </div>
 
         <div className="container-custom relative z-10">
@@ -626,21 +623,16 @@ const Home = () => {
       <Testimonials />
 
       {/* Sección Listo para cambiar tu negocio */}
-      <section className="py-20 relative overflow-hidden bg-[var(--color-bg-secondary)] dark:bg-gradient-to-b dark:from-gray-900 dark:to-black">
-        {/* Fondo para modo claro */}
-        <div className="absolute inset-0 bg-[var(--color-bg-secondary)] dark:hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-300/20 via-transparent to-gray-300/20"></div>
-          <div className="absolute inset-0 opacity-10" style={{
-            backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(107, 114, 128, 0.1) 0%, transparent 50%)',
-          }}></div>
-        </div>
+      <section className="py-16 md:py-20 bg-gray-400 dark:bg-gray-900 relative overflow-hidden">
+        {/* Light mode background */}
+        <div className="absolute inset-0 bg-gray-400 dark:hidden"></div>
         
-        {/* Fondo para modo oscuro */}
+        {/* Dark mode background */}
         <div className="absolute inset-0 hidden dark:block">
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/5 via-transparent to-yellow-600/5"></div>
-          <div className="absolute inset-0 opacity-20" style={{
-            backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(217, 119, 6, 0.2) 0%, transparent 50%)',
-          }}></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(251,191,36,0.1),transparent_40%)]"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(217,119,6,0.1),transparent_40%)]"></div>
+          </div>
         </div>
 
         <div className="container-custom relative z-10 text-center">
