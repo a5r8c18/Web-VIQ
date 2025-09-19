@@ -98,7 +98,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-700 mt-16 pt-8 text-center">
+        <div className="border-t border-gray-200 mt-16 pt-8 text-center">
           <p className="text-gray-400 text-sm">
             &copy; {currentYear} VIQ Systems. All rights reserved.
           </p>

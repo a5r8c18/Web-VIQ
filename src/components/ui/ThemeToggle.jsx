@@ -49,7 +49,7 @@ const ThemeToggle = () => {
       <style>{starStyles}</style>
       <button
         onClick={toggleTheme}
-        className={`relative group h-16 w-[140px] rounded-xl flex items-center justify-center transition-all duration-500 shadow-[0_2px_8px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.15)] backdrop-blur-xs
+        className={`relative group h-16 w-[140px] rounded-xl flex items-center justify-center transition-all duration-500 shadow-[0_2px_8px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.15)] backdrop-blur-xs border border-gray-200 dark:border-gray-600
           ${isLightMode ? 'bg-amber-50' : 'bg-gray-800'}
           after:content-[''] after:absolute after:inset-0 after:rounded-xl after:transition-all after:duration-500 after:z-[-1] after:blur-md
           ${isLightMode ? 'after:bg-amber-200' : 'after:bg-gray-700'}`}

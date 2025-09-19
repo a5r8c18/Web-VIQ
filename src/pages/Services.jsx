@@ -115,7 +115,7 @@ const Services = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-300 to-gray-400 dark:from-gray-900 dark:to-black py-20 relative overflow-hidden">
+    <div className="min-h-screen bg-[oklch(92.2%_0_0)] dark:bg-gradient-to-b dark:from-gray-900 dark:to-black py-20 relative overflow-hidden">
       {/* Fondo de ondas doradas para ambos modos */}
       <div className="absolute inset-0 pointer-events-none">
         <svg className="w-full h-full text-gray-300/80 dark:text-yellow-500/10" viewBox="-2400 -800 4800 1600" fill="none" preserveAspectRatio="xMidYMid slice">
