@@ -9,17 +9,23 @@ const Home = () => {
     {
       icon: Code,
       title: 'WEB DEVELOPMENT',
-      description: 'Custom websites and applications built with modern technologies for optimal performance.',
-      features: ['React, Vue, Angular', 'Responsive Design', 'Progressive Web Apps', 'SEO Optimization'],
+      description: 'We craft dynamic, user-centric web experiences that bring your digital vision to life with creativity and technical excellence.',
       price: 'From $2,500',
       timeline: '4-8 weeks',
       popular: true
     },
     {
+      icon: Server,
+      title: 'ENTERPRISE MODERNIZATION',
+      description: 'We transform legacy systems into secure, scalable cloud platforms with faster releases, fewer incidents, and lower costs.',
+      price: 'From $15,000',
+      timeline: '12-24 weeks',
+      popular: true
+    },
+    {
       icon: Smartphone,
       title: 'MOBILE APPLICATIONS',
-      description: 'Native and cross-platform mobile applications for iOS and Android.',
-      features: ['React Native', 'Flutter', 'Native iOS/Android', 'App Store Publishing'],
+      description: 'Our expert team builds custom mobile solutions\nthat deliver seamless experiences across iOS and\nAndroid platforms.',
       price: 'From $5,000',
       timeline: '8-12 weeks',
       popular: true
@@ -27,17 +33,32 @@ const Home = () => {
     {
       icon: BarChart2,
       title: 'DIGITAL MARKETING',
-      description: 'Data-driven marketing strategies to grow your online presence.',
-      features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Analytics'],
+      description: 'We build impactful online presences through strategic digital marketing that connects you with your target audience.',
       price: 'From $1,500',
-      timeline: 'Ongoing'
+      timeline: 'Ongoing',
+      popular: true
     },
     {
-      icon: Server,
+      icon: Shield,
+      title: 'BRANDING',
+      description: 'We craft unique brand identities and visual assets that set you apart and resonate with your target market.',
+      price: 'From $3,000',
+      timeline: '6-10 weeks',
+      popular: true
+    },
+    {
+      icon: Cloud,
       title: 'IT INFRASTRUCTURE',
-      description: 'Complete technological solutions to boost your business to the next level.',
-      features: ['Cloud Solutions', 'Network Management', 'Security & Compliance', 'System Administration'],
+      description: 'Reliable hosting and VPS solutions that deliver the performance and security your business demands.',
       price: 'From $3,500',
+      timeline: 'Varies by project',
+      popular: true
+    },
+    {
+      icon: Users,
+      title: 'SOFTWARE TEAM',
+      description: 'Our dedicated developers work closely with you to build custom software solutions that drive your business forward.',
+      price: 'From $10,000',
       timeline: 'Varies by project',
       popular: true
     }
@@ -335,9 +356,9 @@ const Home = () => {
                       {items.map((service, index) => (
                         <div 
                           key={`${service.title}-${index}`}
-                          className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-4"
+                          className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-3"
                         >
-                          <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 shadow-2xl duration-300 z-10 relative overflow-hidden hover:shadow-amber-500/10 hover:shadow-3xl w-full h-full">
+                          <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 shadow-2xl duration-300 z-10 relative overflow-hidden hover:shadow-amber-500/10 hover:shadow-3xl w-[280px] h-[380px] flex flex-col">
                             {/* Background effects */}
                             <div className="absolute inset-0 z-0 overflow-hidden">
                               <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/5 to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
@@ -354,41 +375,32 @@ const Home = () => {
                             </div>
 
                             {/* Card content */}
-                            <div className="p-8 relative z-10">
-                              <div className="flex flex-col items-center text-center">
-                                <div className="relative mb-6">
-                                  <div className="p-4 rounded-full backdrop-blur-lg border border-amber-500/20 bg-black/80 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 group-hover:shadow-amber-500/20">
+                            <div className="p-6 relative z-10 flex-1 flex flex-col">
+                              <div className="flex flex-col items-center text-center flex-1">
+                                <div className="relative mb-4">
+                                  <div className="p-3 rounded-full backdrop-blur-lg border border-amber-500/20 bg-black/80 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 group-hover:shadow-amber-500/20">
                                     <div className="transform group-hover:rotate-180 transition-transform duration-700">
-                                      <service.icon className="w-8 h-8 text-amber-400 group-hover:text-amber-300 transition-colors duration-300 filter drop-shadow-lg" />
+                                      <service.icon className="w-6 h-6 text-amber-400 group-hover:text-amber-300 transition-colors duration-300 filter drop-shadow-lg" />
                                     </div>
                                   </div>
                                 </div>
 
-                                <h3 className="text-2xl font-bold text-white mb-4">
+                                <h3 className="text-xl font-bold text-white mb-3">
                                   {service.title}
                                 </h3>
 
-                                <div className="space-y-1 max-w-sm">
-                                  <ul className="space-y-2">
-                                    {service.features.map((feature, i) => (
-                                      <li key={i} className="flex items-center text-sm text-gray-300">
-                                        <svg className="w-4 h-4 mr-2 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>{feature}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
+                                <p className="text-gray-300 text-base leading-relaxed text-center w-full flex-1 whitespace-pre-line">
+                                  {service.description}
+                                </p>
 
-                                <div className="mt-6 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-amber-500/50 to-transparent rounded-full transform group-hover:w-1/2 group-hover:h-1 transition-all duration-500 animate-pulse"></div>
+                                <div className="mt-4 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-amber-500/50 to-transparent rounded-full transform group-hover:w-1/2 group-hover:h-1 transition-all duration-500 animate-pulse"></div>
 
-                                <div className="flex space-x-2 mt-4 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="flex space-x-1.5 mt-3 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
                                   {[0, 0.1, 0.2].map((delay) => (
                                     <div 
                                       key={delay}
                                       style={{ animationDelay: `${delay}s` }}
-                                      className="w-2 h-2 bg-amber-400 rounded-full animate-bounce"
+                                      className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-bounce"
                                     />
                                   ))}
                                 </div>
@@ -480,7 +492,7 @@ const Home = () => {
               const IconComponent = item.icon;
               return (
                 <div 
-                  key={index}
+                  key={index} 
                   className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-4"
                 >
                   <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 shadow-2xl duration-300 z-10 relative overflow-hidden hover:shadow-amber-500/10 hover:shadow-3xl w-full h-full">
@@ -504,15 +516,17 @@ const Home = () => {
                       <div className="flex flex-col items-center text-center">
                         <div className="relative mb-6">
                           <div className="p-4 rounded-full backdrop-blur-lg border border-amber-500/20 bg-black/80 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 group-hover:shadow-amber-500/20">
-                            <IconComponent className="w-8 h-8 text-amber-400 group-hover:text-amber-300 transition-colors duration-300 filter drop-shadow-lg" />
+                            <div className="transform group-hover:rotate-180 transition-transform duration-700">
+                              <IconComponent className="w-8 h-8 text-amber-400 group-hover:text-amber-300 transition-colors duration-300 filter drop-shadow-lg" />
+                            </div>
                           </div>
                         </div>
 
-                        <h3 className="text-xl font-bold text-white mb-4">
+                        <h3 className="text-2xl font-bold text-white mb-4">
                           {item.title}
                         </h3>
 
-                        <p className="text-gray-300">
+                        <p className="text-gray-300 text-base leading-relaxed text-center w-full">
                           {item.description}
                         </p>
                       </div>

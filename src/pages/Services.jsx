@@ -44,16 +44,31 @@ const Services = () => {
       popular: true
     },
     {
-      id: 4,
+      id: 3,
       category: 'infrastructure',
       icon: <Server className="h-6 w-6" />,
+      title: 'Enterprise System Modernization',
+      description: 'We transform legacy systems into secure, scalable cloud-ready platforms - faster releases, fewer incidents, lower cost',
+      features: [
+        'Modernize without disruption',
+        'Modern Architecture, Same Business Logic',
+        'Zero-Downtime Migration'
+      ],
+      popular: true,
+      ctaText: 'Modernize Now',
+      ctaLink: '/contact'
+    },
+    {
+      id: 4,
+      category: 'infrastructure',
+      icon: <Cloud className="h-6 w-6" />,
       title: 'Cloud Solutions',
       description: 'Scalable and secure cloud infrastructure for your applications.',
       features: ['AWS/GCP/Azure', 'DevOps', 'CI/CD Pipelines', 'Containerization'],
       popular: true
     },
     {
-      id: 3,
+      id: 5,
       category: 'marketing',
       icon: <BarChart2 className="h-6 w-6" />,
       title: 'Digital Marketing',
@@ -71,7 +86,7 @@ const Services = () => {
       popular: false
     },
     {
-      id: 5,
+      id: 7,
       category: 'development',
       icon: <Database className="h-6 w-6" />,
       title: 'Database Design',

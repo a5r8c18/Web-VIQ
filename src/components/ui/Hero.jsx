@@ -4,8 +4,9 @@ import { ArrowRight, Play, CheckCircle } from 'lucide-react'
 const Hero = () => {
   const features = [
     'Leading Digital Solutions Provider',
-    'Proven Results',
-    'Custom Solutions',
+    'Accelerate Time to Market',
+    'Friendly and Reliable',
+    'Quality Deliverables',
     '24/7 Support'
   ]
 
@@ -33,10 +34,10 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 md:py-32">
         <div className="max-w-5xl mx-auto text-center px-4 py-8">
           {/* Main Heading with responsive styling */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-snug tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">
             <span className="block italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
               animate-text-shimmer bg-[length:200%_100%] bg-left 
-              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)] pb-2">
               Digital Revolution Starts Here!
             </span>
           </h1>
