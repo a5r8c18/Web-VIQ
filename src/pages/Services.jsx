@@ -31,7 +31,7 @@ const Services = () => {
       icon: <Code className="h-6 w-6" />,
       title: 'Web Development',
       description: 'Custom websites and applications built with modern technologies for optimal performance.',
-      features: ['React, Vue, Angular', 'Responsive Design', 'Progressive Web Apps', 'SEO Optimization'],
+      features: ['Custom Solutions', 'Responsive Design', 'High Performance', 'SEO Friendly'],
       popular: true
     },
     {
@@ -40,7 +40,7 @@ const Services = () => {
       icon: <Smartphone className="h-6 w-6" />,
       title: 'Mobile Applications',
       description: 'Cross-platform and native mobile applications for iOS and Android.',
-      features: ['React Native', 'Flutter', 'Native iOS/Android', 'App Store Publishing'],
+      features: ['Cross-Platform Solutions', 'Native Performance', 'Intuitive UI/UX', 'App Store Ready'],
       popular: true
     },
     {
@@ -51,8 +51,9 @@ const Services = () => {
       description: 'We transform legacy systems into secure, scalable cloud-ready platforms - faster releases, fewer incidents, lower cost',
       features: [
         'Modernize without disruption',
-        'Modern Architecture, Same Business Logic',
-        'Zero-Downtime Migration'
+        'Modern Architecture',
+        'Zero-Downtime Migration',
+        'Enhanced Security'
       ],
       popular: true,
       ctaText: 'Modernize Now',
@@ -64,7 +65,7 @@ const Services = () => {
       icon: <Cloud className="h-6 w-6" />,
       title: 'Cloud Solutions',
       description: 'Scalable and secure cloud infrastructure for your applications.',
-      features: ['AWS/GCP/Azure', 'DevOps', 'CI/CD Pipelines', 'Containerization'],
+      features: ['Cloud Migration', 'Scalable Architecture', 'High Availability', 'Disaster Recovery'],
       popular: true
     },
     {
@@ -73,7 +74,7 @@ const Services = () => {
       icon: <BarChart2 className="h-6 w-6" />,
       title: 'Digital Marketing',
       description: 'Data-driven marketing strategies to grow your online presence.',
-      features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Analytics'],
+      features: ['Search Engine Optimization', 'Social Media Strategy', 'Content Marketing', 'Performance Analytics'],
       popular: false
     },
     {
@@ -82,7 +83,7 @@ const Services = () => {
       icon: <Target className="h-6 w-6" />,
       title: 'Brand Strategy',
       description: 'Building strong brand identities that resonate with your audience.',
-      features: ['Brand Identity', 'Positioning', 'Messaging', 'Visual Design'],
+      features: ['Brand Identity', 'Market Positioning', 'Strategic Messaging', 'Visual Branding'],
       popular: false
     },
     {
@@ -91,7 +92,7 @@ const Services = () => {
       icon: <Database className="h-6 w-6" />,
       title: 'Database Design',
       description: 'Optimized database solutions for performance and scalability.',
-      features: ['SQL/NoSQL', 'Data Modeling', 'Performance Tuning', 'Migrations'],
+      features: ['Custom Database Design', 'Performance Optimization', 'Data Security', 'Scalable Architecture'],
       popular: false
     }
   ]

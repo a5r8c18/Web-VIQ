@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Hero from '../components/ui/Hero';
 import { Link } from 'react-router-dom';
-import { Code, Smartphone, Cloud, Users, ArrowRight, Star, Shield, BarChart2, Clock, MessageCircle, Award, Brain, Server } from 'lucide-react';
+import { Code, Smartphone, Cloud, Users, ArrowRight, Star, Shield, BarChart2, Clock, MessageCircle, Award, Brain, Server, ChevronLeft, ChevronRight } from 'lucide-react';
 import Testimonials from '../components/testimonials/Testimonials';
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
     },
     {
       icon: Server,
-      title: 'ENTERPRISE MODERNIZATION',
+      title: 'ENTERPRISE\nSYSTEM MODERNIZATION',
       description: 'We transform legacy systems into secure, scalable cloud platforms with faster releases, fewer incidents, and lower costs.',
       price: 'From $15,000',
       timeline: '12-24 weeks',
@@ -111,6 +111,20 @@ const Home = () => {
 
   const handleMouseEnter = () => setIsPaused(true);
   const handleMouseLeave = () => setIsPaused(false);
+
+  const handleServiceNav = (dir) => {
+    const step = itemWidth + gap;
+    setOffset(prevOffset => {
+      const maxOffset = (itemWidth + gap) * services.length;
+      let newOffset;
+      if (dir === 'prev') {
+        newOffset = Math.max(0, prevOffset - step);
+      } else {
+        newOffset = Math.min(maxOffset, prevOffset + step);
+      }
+      return newOffset;
+    });
+  };
 
   // Estado para el carrusel de testimonios
   const [testimonialOffset, setTestimonialOffset] = useState(0);
@@ -345,6 +359,16 @@ const Home = () => {
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
+                    {/* Flecha izquierda */}
+                    <button 
+                      onClick={() => handleServiceNav('prev')}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-amber-500/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50"
+                      aria-label="Previous service"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+
+                    {/* Contenedor del carrusel */}
                     <div 
                       ref={containerRef}
                       className="flex whitespace-nowrap"
@@ -385,7 +409,7 @@ const Home = () => {
                                   </div>
                                 </div>
 
-                                <h3 className="text-xl font-bold text-white mb-3">
+                                <h3 className="text-xl font-bold text-white mb-3 whitespace-pre-line">
                                   {service.title}
                                 </h3>
 
@@ -410,6 +434,15 @@ const Home = () => {
                         </div>
                       ))}
                     </div>
+
+                    {/* Flecha derecha */}
+                    <button 
+                      onClick={() => handleServiceNav('next')}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-amber-500/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50"
+                      aria-label="Next service"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
                   </div>
 
                   <div className="text-center mt-12">
@@ -488,53 +521,50 @@ const Home = () => {
                 title: "AI Producer",
                 description: "We create cutting-edge AI solutions tailored to your business needs, from machine learning models to intelligent automation systems.",
               }
-            ].map((item, index) => {
-              const IconComponent = item.icon;
-              return (
-                <div 
-                  key={index} 
-                  className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-4"
-                >
-                  <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 shadow-2xl duration-300 z-10 relative overflow-hidden hover:shadow-amber-500/10 hover:shadow-3xl w-full h-full">
-                    {/* Background effects */}
-                    <div className="absolute inset-0 z-0 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/5 to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
-                      <div 
-                        style={{ animationDelay: '0.5s' }}
-                        className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-amber-500/10 to-transparent blur-3xl opacity-30 group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"
-                      ></div>
-                      <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-amber-500/5 blur-xl animate-ping"></div>
-                      <div 
-                        style={{ animationDelay: '1s' }}
-                        className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-amber-500/5 blur-lg animate-ping"
-                      ></div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
-                    </div>
+            ].map((item, index) => (
+              <div 
+                key={index} 
+                className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-4"
+              >
+                <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 shadow-2xl duration-300 z-10 relative overflow-hidden hover:shadow-amber-500/10 hover:shadow-3xl w-full h-full">
+                  {/* Background effects */}
+                  <div className="absolute inset-0 z-0 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/5 to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
+                    <div 
+                      style={{ animationDelay: '0.5s' }}
+                      className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-amber-500/10 to-transparent blur-3xl opacity-30 group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"
+                    ></div>
+                    <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-amber-500/5 blur-xl animate-ping"></div>
+                    <div 
+                      style={{ animationDelay: '1s' }}
+                      className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-amber-500/5 blur-lg animate-ping"
+                    ></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
+                  </div>
 
-                    {/* Card content */}
-                    <div className="p-8 relative z-10">
-                      <div className="flex flex-col items-center text-center">
-                        <div className="relative mb-6">
-                          <div className="p-4 rounded-full backdrop-blur-lg border border-amber-500/20 bg-black/80 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 group-hover:shadow-amber-500/20">
-                            <div className="transform group-hover:rotate-180 transition-transform duration-700">
-                              <IconComponent className="w-8 h-8 text-amber-400 group-hover:text-amber-300 transition-colors duration-300 filter drop-shadow-lg" />
-                            </div>
+                  {/* Card content */}
+                  <div className="p-8 relative z-10">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="relative mb-6">
+                        <div className="p-4 rounded-full backdrop-blur-lg border border-amber-500/20 bg-black/80 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 group-hover:shadow-amber-500/20">
+                          <div className="transform group-hover:rotate-180 transition-transform duration-700">
+                            <item.icon className="w-8 h-8 text-amber-400 group-hover:text-amber-300 transition-colors duration-300 filter drop-shadow-lg" />
                           </div>
                         </div>
-
-                        <h3 className="text-2xl font-bold text-white mb-4">
-                          {item.title}
-                        </h3>
-
-                        <p className="text-gray-300 text-base leading-relaxed text-center w-full">
-                          {item.description}
-                        </p>
                       </div>
+
+                      <h3 className="text-2xl font-bold text-white mb-4">
+                        {item.title}
+                      </h3>
+
+                      <p className="text-gray-300 text-base leading-relaxed text-center w-full">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
