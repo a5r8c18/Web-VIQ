@@ -2,12 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
 
 const ThemeToggle = () => {
+  // Código comentado temporalmente para forzar tema oscuro
+  /*
   const { theme, toggleTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const isLightMode = theme === 'light';
   const particleColorClass = isLightMode ? 'bg-amber-300' : 'bg-white';
+  */
+  
+  // Código actual para forzar tema oscuro
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const isLightMode = false; // Siempre falso para forzar tema oscuro
+  const particleColorClass = 'bg-white'; // Partículas blancas para tema oscuro
 
-  // CSS for the star particles
+  // CSS para las partículas de estrellas
   const starStyles = `
     @keyframes twinkling-star-anim {
       0% {
@@ -25,16 +34,16 @@ const ThemeToggle = () => {
     }
   `;
 
-  // Prevent hydration mismatch
+  // Prevenir desajuste de hidratación
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Apply theme class to the document element
+  // Aplicar la clase del tema al elemento del documento
   useEffect(() => {
     if (mounted) {
-      document.documentElement.classList.remove('light', 'dark');
-      document.documentElement.classList.add(theme);
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
     }
   }, [theme, mounted]);
 
@@ -47,6 +56,9 @@ const ThemeToggle = () => {
   return (
     <>
       <style>{starStyles}</style>
+      
+      {/* Botón de tema comentado temporalmente */}
+      {/*
       <button
         onClick={toggleTheme}
         className={`relative group h-16 w-[140px] rounded-xl flex items-center justify-center transition-all duration-500 shadow-[0_2px_8px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.15)] backdrop-blur-xs border border-gray-200 dark:border-gray-600
@@ -110,13 +122,45 @@ const ThemeToggle = () => {
             </div>
           )}
         </div>
+      </button>
+      */}
+      
+      {/* Versión actual con tema oscuro fijo */}
+      <div 
+        className={`relative h-16 w-[140px] rounded-xl flex items-center justify-center transition-all duration-500 shadow-[0_2px_8px_rgba(0,0,0,0.1)] backdrop-blur-xs border border-gray-600
+          bg-gray-800
+          after:content-[''] after:absolute after:inset-0 after:rounded-xl after:transition-all after:duration-500 after:z-[-1] after:blur-md
+          after:bg-gray-700`}
+        aria-label="Modo oscuro (Predeterminado)"
+      >
+        <div className="relative w-full flex items-center justify-center">
+          <div className="flex flex-col items-center gap-1 transition-all duration-500">
+            <div className="h-7 flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-moon w-7 h-7 text-white"
+                aria-hidden="true"
+              >
+                <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path>
+              </svg>
+            </div>
+            <span className="text-xs font-medium translate-y-0.5 text-white">Dark</span>
+          </div>
+        </div>
 
-        {/* Star/particle effect */}
+        {/* Efecto de partículas de estrellas */}
         <div
-          key={theme} // Force re-render to restart animations on theme change
           className="absolute inset-0 transition-opacity duration-300 pointer-events-none"
         >
-          {/* Particles */}
+          {/* Partículas */}
           <div
             className={`absolute w-1 h-1 rounded-full animate-[twinkling-star-anim_2s_linear_infinite] ${particleColorClass}`}
             style={{
@@ -166,7 +210,7 @@ const ThemeToggle = () => {
             }}
           ></div>
         </div>
-      </button>
+      </div>
     </>
   );
 };

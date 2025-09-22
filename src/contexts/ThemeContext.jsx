@@ -3,42 +3,54 @@ import { createContext, useState, useEffect, useContext } from 'react';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light');
+  // Set default theme to 'dark'
+  const [theme, setTheme] = useState('dark');
   const [isMounted, setIsMounted] = useState(false);
 
-  // Cargar el tema guardado al montar el componente
+  // Load saved theme on component mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(savedTheme);
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    // Always set to 'dark' theme regardless of saved preference
+    setTheme('dark');
+    document.documentElement.classList.add('dark');
     setIsMounted(true);
   }, []);
 
-  // Aplicar el tema cuando cambie
+  // Apply theme when it changes
   useEffect(() => {
     if (!isMounted) return;
     
     const root = document.documentElement;
     
-    // Aplicar la clase 'dark' al elemento raíz
-    root.classList.toggle('dark', theme === 'dark');
+    // Always apply dark theme
+    root.classList.add('dark');
     
-    // Guardar preferencia
-    localStorage.setItem('theme', theme);
+    // Save preference (always 'dark')
+    localStorage.setItem('theme', 'dark');
     
-    // Aplicar variables CSS según el tema
+    // Apply dark theme CSS variables
+    root.style.setProperty('--color-bg-primary', '#111827');
+    root.style.setProperty('--color-bg-secondary', '#1f2937');
+    root.style.setProperty('--color-bg-tertiary', '#374151');
+    root.style.setProperty('--color-text-primary', '#f9fafb');
+    root.style.setProperty('--color-text-secondary', '#e5e7eb');
+    root.style.setProperty('--color-text-muted', '#9ca3af');
+    root.style.setProperty('--color-border-default', '#374151');
+    root.style.setProperty('--color-border-muted', '#4b5563');
+    
+    // Commented out light theme code
+    /* Light theme code (commented out but preserved)
     if (theme === 'light') {
-      // Modo claro en tonos grises más oscuros
-      root.style.setProperty('--color-bg-primary', '#d1d5db');      // Gris más oscuro
-      root.style.setProperty('--color-bg-secondary', '#9ca3af');    // Gris oscuro
-      root.style.setProperty('--color-bg-tertiary', '#6b7280');     // Gris muy oscuro
-      root.style.setProperty('--color-text-primary', '#111827');    // Casi negro
-      root.style.setProperty('--color-text-secondary', '#1f2937');  // Gris muy oscuro
-      root.style.setProperty('--color-text-muted', '#4b5563');      // Gris oscuro
-      root.style.setProperty('--color-border-default', '#6b7280');  // Gris muy oscuro
-      root.style.setProperty('--color-border-muted', '#9ca3af');    // Gris oscuro
+      // Light mode in darker gray tones
+      root.style.setProperty('--color-bg-primary', '#d1d5db');      // Darker gray
+      root.style.setProperty('--color-bg-secondary', '#9ca3af');    // Dark gray
+      root.style.setProperty('--color-bg-tertiary', '#6b7280');     // Very dark gray
+      root.style.setProperty('--color-text-primary', '#111827');    // Almost black
+      root.style.setProperty('--color-text-secondary', '#1f2937');  // Very dark gray
+      root.style.setProperty('--color-text-muted', '#4b5563');      // Dark gray
+      root.style.setProperty('--color-border-default', '#6b7280');  // Very dark gray
+      root.style.setProperty('--color-border-muted', '#9ca3af');    // Dark gray
     } else {
-      // Modo oscuro
+      // Dark mode
       root.style.setProperty('--color-bg-primary', '#111827');
       root.style.setProperty('--color-bg-secondary', '#1f2937');
       root.style.setProperty('--color-bg-tertiary', '#374151');
@@ -48,14 +60,19 @@ export const ThemeProvider = ({ children }) => {
       root.style.setProperty('--color-border-default', '#374151');
       root.style.setProperty('--color-border-muted', '#4b5563');
     }
-  }, [theme, isMounted]);
+    */
+  }, [isMounted]);
 
+  // Keep the toggle function but make it a no-op or remove it if not needed
+  // Commented out but preserved for future use
+  /*
   const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+    // No-op since we're forcing dark mode
   };
+  */
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme: () => {} }}>
       {children}
     </ThemeContext.Provider>
   );

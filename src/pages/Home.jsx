@@ -326,8 +326,12 @@ const Home = () => {
             <div className="relative z-10">
               <div className="pt-16 pb-2">
                 <div className="container-custom text-center">
-                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-                    VIQ <span className="text-white">Systems</span>
+                  <h2 className="text-4xl md:text-5xl font-bold mb-8">
+                    <span className="italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                      animate-text-shimmer bg-[length:200%_100%] bg-left 
+                      drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+                      VIQ <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300">Systems</span>
+                    </span>
                   </h2>
                   <div className="max-w-4xl mx-auto space-y-4 text-lg text-white px-4">
                     <p className="leading-relaxed">
@@ -345,12 +349,26 @@ const Home = () => {
 
               <div className="pt-2 pb-16">
                 <div className="relative z-10">
-                  <div className="text-center mb-8 container-custom">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                      Our Services
+                  <div className="text-center mb-12 container-custom">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                      <span className="italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                        animate-text-shimmer bg-[length:200%_100%] bg-left 
+                        drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+                        Our
+                      </span>
+                      <br />
+                      <span className="italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                        animate-text-shimmer bg-[length:200%_100%] bg-left 
+                        drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+                        Services
+                      </span>
                     </h2>
-                    <p className="text-lg text-white max-w-2xl mx-auto">
-                      Complete technological solutions to boost your business to the next level
+                    <p className="text-lg max-w-2xl mx-auto">
+                      <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                        animate-text-shimmer bg-[length:200%_100%] bg-left 
+                        drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]">
+                        Complete technological solutions to boost your business to the next level
+                      </span>
                     </p>
                   </div>
 
@@ -483,9 +501,19 @@ const Home = () => {
 
         <div className="container-custom relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">Why Choose Us?</h2>
-            <p className="text-xl text-white max-w-3xl mx-auto">
-              Over 10 years of experience offering top-level technological solutions
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                animate-text-shimmer bg-[length:200%_100%] bg-left 
+                drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+                Why Choose Us?
+              </span>
+            </h2>
+            <p className="text-xl max-w-3xl mx-auto">
+              <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                animate-text-shimmer bg-[length:200%_100%] bg-left 
+                drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]">
+                Over 10 years of experience offering top-level technological solutions
+              </span>
             </p>
           </div>
 
@@ -585,8 +613,19 @@ const Home = () => {
         <div className="container-custom relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Our Successful Digital Projects
+              <span className="italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                animate-text-shimmer bg-[length:200%_100%] bg-left 
+                drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+                Our Successful Digital Projects
+              </span>
             </h2>
+            <p className="text-xl max-w-3xl mx-auto">
+              <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                animate-text-shimmer bg-[length:200%_100%] bg-left 
+                drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]">
+                We have helped more than 50 companies transform their digital presence
+              </span>
+            </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
@@ -680,9 +719,19 @@ const Home = () => {
         </div>
 
         <div className="container-custom relative z-10 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Ready to Transform Your Business?</h2>
-          <p className="text-xl text-gray-800 dark:text-white/90 mb-8 max-w-2xl mx-auto">
-            Contact us today and discover how we can help you achieve your technological goals.
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="block italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+              animate-text-shimmer bg-[length:200%_100%] bg-left 
+              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+              Ready to Transform Your Business?
+            </span>
+          </h2>
+          <p className="text-xl max-w-3xl mx-auto mb-8">
+            <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+              animate-text-shimmer bg-[length:200%_100%] bg-left 
+              drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]">
+              Contact us today and discover how we can help you achieve your technological goals.
+            </span>
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link 

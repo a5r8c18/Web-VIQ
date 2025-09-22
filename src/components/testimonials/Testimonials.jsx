@@ -69,9 +69,19 @@ const Testimonials = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">What Our Clients Say</h2>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-            Hear from businesses that have transformed their operations with our solutions
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="block italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+              animate-text-shimmer bg-[length:200%_100%] bg-left 
+              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+              What Our Clients Say
+            </span>
+          </h2>
+          <p className="text-xl max-w-3xl mx-auto">
+            <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+              animate-text-shimmer bg-[length:200%_100%] bg-left 
+              drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]">
+              Hear from businesses that have transformed their operations with our solutions
+            </span>
           </p>
         </div>
 

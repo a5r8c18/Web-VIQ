@@ -158,12 +158,20 @@ const Register = () => {
         {/* Hero Section */}
         <section className="relative py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-yellow-400 dark:text-yellow-400 mb-6">
-              Start Your Project
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="block italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                animate-text-shimmer bg-[length:200%_100%] bg-left 
+                drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+                Start Your Project
+              </span>
             </h1>
-            <p className="text-xl text-yellow-600/90 dark:text-yellow-300/80 max-w-3xl mx-auto mb-8">
-              Tell us about your project and we will help you turn your ideas into reality. 
-              Get a free consultation and personalized proposal.
+            <p className="text-xl max-w-3xl mx-auto mb-8">
+              <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                animate-text-shimmer bg-[length:200%_100%] bg-left 
+                drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]">
+                Tell us about your project and we will help you turn your ideas into reality. 
+                Get a free consultation and personalized proposal.
+              </span>
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <div className="flex items-center space-x-2 bg-yellow-100/10 dark:bg-yellow-500/10 text-yellow-400 dark:text-yellow-400 px-4 py-2 rounded-full backdrop-blur-sm">

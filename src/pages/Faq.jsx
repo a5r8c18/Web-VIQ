@@ -206,11 +206,19 @@ const Faq = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-extrabold text-amber-300 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            Frequently Asked Questions
+          <h1 className="text-4xl font-extrabold sm:text-5xl sm:tracking-tight lg:text-6xl">
+            <span className="block italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+              animate-text-shimmer bg-[length:200%_100%] bg-left 
+              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+              Frequently Asked Questions
+            </span>
           </h1>
-          <p className="mt-5 max-w-2xl mx-auto text-xl text-gray-200">
-            Find answers to common questions about our services and processes.
+          <p className="mt-5 max-w-2xl mx-auto text-xl">
+            <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+              animate-text-shimmer bg-[length:200%_100%] bg-left 
+              drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]">
+              Find answers to common questions about our services and processes.
+            </span>
           </p>
         </motion.div>
 

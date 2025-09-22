@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import SocialMediaButton from '../ui/SocialMediaButton';
 import { useTheme } from '../../contexts/ThemeContext';
-import ThemeToggle from '../ui/ThemeToggle';
+// import ThemeToggle from '../ui/ThemeToggle'; // Comentado temporalmente
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -86,8 +86,8 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Theme Toggle */}
-          <ThemeToggle />
+          {/* Theme Toggle - Oculto temporalmente */}
+          {/* <ThemeToggle /> */}
         </div>
       </div>
 

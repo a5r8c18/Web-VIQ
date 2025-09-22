@@ -132,9 +132,10 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-[oklch(92.2%_0_0)] dark:bg-gradient-to-b dark:from-gray-900 dark:to-black py-20 relative overflow-hidden">
-      {/* Fondo de ondas doradas para ambos modos */}
+      {/* Fondo con ondas doradas decorativas */}
       <div className="absolute inset-0 pointer-events-none">
         <svg className="w-full h-full text-gray-300/80 dark:text-yellow-500/10" viewBox="-2400 -800 4800 1600" fill="none" preserveAspectRatio="xMidYMid slice">
+          {/* Definición del gradiente dorado para las ondas */}
           <defs>
             <linearGradient id="sharedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#FFD700"></stop>
@@ -142,6 +143,7 @@ const Services = () => {
               <stop offset="100%" stopColor="#DAA520"></stop>
             </linearGradient>
           </defs>
+          {/* Grupo de ondas decorativas con diferentes opacidades */}
           <g className="primary-waves">
             <path d="M 2400 845 C 2035.2 845, 1852.8 605.85, 1488 605.85 C 1161.6 605.85, 998.4 306.05, 672 306.05 C 384 306.05, 240 4.81, -48 4.81 C -297.6 4.81, -422.4 -248.38, -672 -248.38 C -883.2 -248.38, -988.8 -446.5, -1200 -446.5 C -1372.8 -446.5, -1459.2 -592.95, -1632 -592.95 C -1766.4 -592.95, -1833.6 -679.62, -1968 -679.62 C -2064 -679.62, -2112 -711.13, -2208 -711.13 C -2265.6 -711.13, -2294.4 -726.9, -2352 -726.9 C -2371.2 -726.9, -2380.8 -768.5, -2400 -768.5" stroke="url(#sharedGradient)" strokeWidth="4" strokeLinecap="round" className="opacity-40 dark:opacity-15" />
             <path d="M 2400 870.92 C 2035.2 870.92, 1852.8 616.5, 1488 616.5 C 1161.6 616.5, 998.4 304.62, 672 304.62 C 384 304.62, 240 3.24, -48 3.24 C -297.6 3.24, -422.4 -242.56, -672 -242.56 C -883.2 -242.56, -988.8 -431.44, -1200 -431.44 C -1372.8 -431.44, -1459.2 -568.32, -1632 -568.32 C -1766.4 -568.32, -1833.6 -647.14, -1968 -647.14 C -2064 -647.14, -2112 -677.99, -2208 -677.99 C -2265.6 -677.99, -2294.4 -702.54, -2352 -702.54 C -2371.2 -702.54, -2380.8 -754.56, -2400 -754.56" stroke="url(#sharedGradient)" strokeWidth="4.3" strokeLinecap="round" className="opacity-45 dark:opacity-17" />
@@ -151,17 +153,29 @@ const Services = () => {
         </svg>
       </div>
 
+      {/* Contenedor principal del contenido */}
       <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Encabezado principal con gradiente animado */}
         <div className="text-center mb-16 px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-600 dark:text-amber-400 mb-6">
-            Our Services
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            {/* Primera línea con efecto de gradiente y brillo */}
+            <span className="block italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+              animate-text-shimmer bg-[length:200%_100%] bg-left 
+              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)] pb-2">
+              Solutions!
+            </span>
           </h2>
-          <p className="text-lg text-gray-700 dark:text-yellow-500/90 max-w-3xl mx-auto">
-            Custom technology solutions to take your business to the next level.
+          {/* Subtítulo descriptivo con efectos mejorados */}
+          <p className="text-xl max-w-3xl mx-auto">
+            <span className="italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+              animate-text-shimmer bg-[length:200%_100%] bg-left 
+              drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]">
+              Take your business to the next level with our cutting-edge solutions
+            </span>
           </p>
         </div>
 
-        {/* Category Filter */}
+        {/* Filtro de categorías */}
         <div className="flex flex-wrap justify-center gap-3 mb-16 px-4">
           {categories.map((category) => (
             <button
@@ -178,8 +192,9 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Services Grid */}
+        {/* Cuadrícula de servicios */}
         <div className="px-4 sm:px-6 lg:px-8 py-12">
+          {/* Animación de entrada para la cuadrícula */}
           <AnimatePresence mode="wait">
             <motion.div 
               key={activeCategory}
