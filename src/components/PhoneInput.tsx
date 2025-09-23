@@ -84,7 +84,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ value, onChange, onBlur }) => {
             }}
             title={country.name}
           />
-          <span className="text-xs text-yellow-400">
+          <span className="text-xs text-gray-400 dark:text-gray-400">
             {country.dialCode}
           </span>
         </div>
@@ -94,7 +94,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ value, onChange, onBlur }) => {
         value={inputValue}
         onChange={handleInputChange}
         onBlur={handleBlur}
-        className="w-full pl-24 pr-4 py-3 bg-white dark:bg-black border border-gray-200 dark:border-yellow-600/50 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-yellow-400"
+        className="w-full pl-24 pr-4 py-3 bg-white dark:bg-black border border-gray-200 dark:border-yellow-600/50 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 dark:text-white placeholder-gray-400"
         placeholder={country.placeholder}
       />
     </div>

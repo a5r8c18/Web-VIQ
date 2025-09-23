@@ -100,18 +100,10 @@ const Testimonials = () => {
 
                 <div className="p-6 relative z-10 flex flex-col h-full">
                   <div className="flex flex-col items-center text-center flex-grow">
-                    <div className="relative mb-6">
-                      <div className="absolute inset-0 rounded-full border-2 border-amber-500/20 animate-ping"></div>
-                      <div className="absolute inset-0 rounded-full border border-amber-500/10 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                      <div className="p-4 rounded-full backdrop-blur-lg border border-amber-500/20 bg-black shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 hover:shadow-amber-500/20">
-                        <div className="transform group-hover:rotate-180 transition-transform duration-700">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10 text-amber-400 group-hover:scale-110 transition-transform">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                          </svg>
-                        </div>
+                    <div className="mb-6">
+                      <div className="relative">
+                        <div className="absolute inset-0 rounded-full border-2 border-amber-500/20 animate-ping"></div>
+                        <div className="absolute inset-0 rounded-full border border-amber-500/10 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
                       </div>
                     </div>
 

@@ -279,200 +279,168 @@ const Home = () => {
     <div className="min-h-screen bg-gray-800 text-white">
       <Hero />
       
-      {/* Sección Servicios con Video y Carrusel */}
-      <section className="relative overflow-hidden min-h-screen flex items-center bg-gray-900">
-        {/* Video de fondo */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-            ref={videoRef => videoRef && (videoRef.playbackRate = 0.4)}
-          >
-            <source src="/videos/2278095-hd_1920_1080_30fps.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 via-gray-900/80 to-gray-900/90"></div>
+      {/* Sección VIQ Systems y Our Services con fondo unificado */}
+      <section className="relative overflow-hidden bg-gray-400 dark:bg-gray-900">
+        {/* Light mode background */}
+        <div className="absolute inset-0 bg-gray-400 dark:hidden"></div>
+        
+        {/* Dark mode background */}
+        <div className="absolute inset-0 hidden dark:block">
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(251,191,36,0.1),transparent_40%)]"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(217,119,6,0.1),transparent_40%)]"></div>
+          </div>
         </div>
 
-        <div className="relative z-10 w-full">
-          {/* VIQ Systems Section with Video Background */}
-          <div className="relative overflow-hidden">
-            {/* Video Background */}
-            <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-              <div className="absolute inset-0 w-full h-full">
-                <video 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline
-                  className="w-full h-full object-cover min-h-screen"
-                  style={{
-                    objectPosition: 'center',
-                    transform: 'scale(1.1)',
-                    filter: 'brightness(0.7)',
-                    width: '100%',
-                    height: 'auto',
-                  }}
-                >
-                  <source src="/videos/2278095-hd_1920_1080_30fps.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <div className="absolute inset-0 bg-black/70"></div>
-              </div>
-            </div>
-
-            <div className="relative z-10">
-              <div className="pt-16 pb-2">
-                <div className="container-custom text-center">
-                  <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                    <span className="italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
-                      animate-text-shimmer bg-[length:200%_100%] bg-left 
-                      drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
-                      VIQ <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300">Systems</span>
-                    </span>
-                  </h2>
-                  <div className="max-w-4xl mx-auto space-y-4 text-lg text-white px-4">
-                    <p className="leading-relaxed">
-                      We're passionate about leveraging technology to help businesses thrive in the digital age. With over nine years of experience in the industry, we've honed our expertise in providing cutting-edge solutions that empower our clients to succeed online.
-                    </p>
-                    <p className="leading-relaxed">
-                      Since our inception in 2020, we've been committed to delivering exceptional results and exceeding our clients' expectations. Over the past nine years, we've evolved and adapted to meet the ever-changing needs of the digital landscape, staying ahead of the curve with innovative solutions and best practices.
-                    </p>
-                  </div>
+        <div className="relative z-10">
+          {/* Sección VIQ Systems */}
+          <div className="min-h-[60vh] flex items-center">
+            <div className="w-full pt-10 pb-8">
+              <div className="container-custom text-center">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                  <span className="italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                    animate-text-shimmer bg-[length:200%_100%] bg-left 
+                    drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+                    VIQ <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300">Systems</span>
+                  </span>
+                </h2>
+                <div className="max-w-4xl mx-auto space-y-4 text-lg text-gray-800 dark:text-white px-4">
+                  <p className="leading-relaxed">
+                    We're passionate about leveraging technology to help businesses thrive in the digital age. With over nine years of experience in the industry, we've honed our expertise in providing cutting-edge solutions that empower our clients to succeed online.
+                  </p>
+                  <p className="leading-relaxed">
+                    Since our inception in 2020, we've been committed to delivering exceptional results and exceeding our clients' expectations. Over the past nine years, we've evolved and adapted to meet the ever-changing needs of the digital landscape, staying ahead of the curve with innovative solutions and best practices.
+                  </p>
                 </div>
               </div>
+            </div>
+          </div>
 
-              {/* Add two lines of space before Our Services */}
-              <div className="h-16"></div>
+          {/* Sección Our Services */}
+          <div className="pb-16">
+            <div className="relative z-10">
+              <div className="text-center mb-10 container-custom">
+                <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                  <span className="italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                    animate-text-shimmer bg-[length:200%_100%] bg-left 
+                    drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+                    Our
+                  </span>
+                  <br />
+                  <span className="italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                    animate-text-shimmer bg-[length:200%_100%] bg-left 
+                    drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+                    Services
+                  </span>
+                </h2>
+                <p className="text-lg max-w-2xl mx-auto">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+                    animate-text-shimmer bg-[length:200%_100%] bg-left 
+                    drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]">
+                    Complete technological solutions to boost your business to the next level
+                  </span>
+                </p>
+              </div>
 
-              <div className="pt-2 pb-16">
-                <div className="relative z-10">
-                  <div className="text-center mb-12 container-custom">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                      <span className="italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
-                        animate-text-shimmer bg-[length:200%_100%] bg-left 
-                        drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
-                        Our
-                      </span>
-                      <br />
-                      <span className="italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
-                        animate-text-shimmer bg-[length:200%_100%] bg-left 
-                        drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
-                        Services
-                      </span>
-                    </h2>
-                    <p className="text-lg max-w-2xl mx-auto">
-                      <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
-                        animate-text-shimmer bg-[length:200%_100%] bg-left 
-                        drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]">
-                        Complete technological solutions to boost your business to the next level
-                      </span>
-                    </p>
-                  </div>
+              <div 
+                className="relative w-full overflow-hidden py-8"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                {/* Flecha izquierda */}
+                <button 
+                  onClick={() => handleServiceNav('prev')}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-amber-500/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50"
+                  aria-label="Previous service"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
 
-                  <div 
-                    className="relative w-full overflow-hidden py-8"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    {/* Flecha izquierda */}
-                    <button 
-                      onClick={() => handleServiceNav('prev')}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-amber-500/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50"
-                      aria-label="Previous service"
-                    >
-                      <ChevronLeft className="w-6 h-6" />
-                    </button>
-
-                    {/* Contenedor del carrusel */}
+                {/* Contenedor del carrusel */}
+                <div 
+                  ref={containerRef}
+                  className="flex whitespace-nowrap"
+                  style={{
+                    transform: `translateX(-${offset}px)`,
+                    transition: isPaused ? 'transform 0.3s ease-out' : 'transform 0.1s linear'
+                  }}
+                >
+                  {items.map((service, index) => (
                     <div 
-                      ref={containerRef}
-                      className="flex whitespace-nowrap"
-                      style={{
-                        transform: `translateX(-${offset}px)`,
-                        transition: isPaused ? 'transform 0.3s ease-out' : 'transform 0.1s linear'
-                      }}
+                      key={`${service.title}-${index}`}
+                      className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-3"
                     >
-                      {items.map((service, index) => (
-                        <div 
-                          key={`${service.title}-${index}`}
-                          className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-3"
-                        >
-                          <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 shadow-2xl duration-300 z-10 relative overflow-hidden hover:shadow-amber-500/10 hover:shadow-3xl w-[280px] h-[380px] flex flex-col">
-                            {/* Background effects */}
-                            <div className="absolute inset-0 z-0 overflow-hidden">
-                              <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/5 to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
-                              <div 
-                                style={{ animationDelay: '0.5s' }}
-                                className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-amber-500/10 to-transparent blur-3xl opacity-30 group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"
-                              ></div>
-                              <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-amber-500/5 blur-xl animate-ping"></div>
-                              <div 
-                                style={{ animationDelay: '1s' }}
-                                className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-amber-500/5 blur-lg animate-ping"
-                              ></div>
-                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
-                            </div>
+                      <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 shadow-2xl duration-300 z-10 relative overflow-hidden hover:shadow-amber-500/10 hover:shadow-3xl w-[280px] h-[380px] flex flex-col">
+                        {/* Background effects */}
+                        <div className="absolute inset-0 z-0 overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/5 to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
+                          <div 
+                            style={{ animationDelay: '0.5s' }}
+                            className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-amber-500/10 to-transparent blur-3xl opacity-30 group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"
+                          ></div>
+                          <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-amber-500/5 blur-xl animate-ping"></div>
+                          <div 
+                            style={{ animationDelay: '1s' }}
+                            className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-amber-500/5 blur-lg animate-ping"
+                          ></div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
+                        </div>
 
-                            {/* Card content */}
-                            <div className="p-6 relative z-10 flex-1 flex flex-col">
-                              <div className="flex flex-col items-center text-center flex-1">
-                                <div className="relative mb-4">
-                                  <div className="p-3 rounded-full backdrop-blur-lg border border-amber-500/20 bg-black/80 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 group-hover:shadow-amber-500/20">
-                                    <div className="transform group-hover:rotate-180 transition-transform duration-700">
-                                      <service.icon className="w-6 h-6 text-amber-400 group-hover:text-amber-300 transition-colors duration-300 filter drop-shadow-lg" />
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <h3 className="text-xl font-bold text-white mb-3 whitespace-pre-line">
-                                  {service.title}
-                                </h3>
-
-                                <p className="text-gray-300 text-base leading-relaxed text-center w-full flex-1 whitespace-pre-line">
-                                  {service.description}
-                                </p>
-
-                                <div className="mt-4 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-amber-500/50 to-transparent rounded-full transform group-hover:w-1/2 group-hover:h-1 transition-all duration-500 animate-pulse"></div>
-
-                                <div className="flex space-x-1.5 mt-3 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                                  {[0, 0.1, 0.2].map((delay) => (
-                                    <div 
-                                      key={delay}
-                                      style={{ animationDelay: `${delay}s` }}
-                                      className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-bounce"
-                                    />
-                                  ))}
+                        {/* Card content */}
+                        <div className="p-6 relative z-10 flex-1 flex flex-col">
+                          <div className="flex flex-col items-center text-center flex-1">
+                            <div className="relative mb-4">
+                              <div className="p-3 rounded-full backdrop-blur-lg border border-amber-500/20 bg-black/80 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 group-hover:shadow-amber-500/20">
+                                <div className="transform group-hover:rotate-180 transition-transform duration-700">
+                                  <service.icon className="w-6 h-6 text-amber-400 group-hover:text-amber-300 transition-colors duration-300 filter drop-shadow-lg" />
                                 </div>
                               </div>
                             </div>
+
+                            <h3 className="text-xl font-bold text-white mb-3 whitespace-pre-line">
+                              {service.title}
+                            </h3>
+
+                            <p className="text-gray-300 text-base leading-relaxed text-center w-full flex-1 whitespace-pre-line">
+                              {service.description}
+                            </p>
+
+                            <div className="mt-4 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-amber-500/50 to-transparent rounded-full transform group-hover:w-1/2 group-hover:h-1 transition-all duration-500 animate-pulse"></div>
+
+                            <div className="flex space-x-1.5 mt-3 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                              {[0, 0.1, 0.2].map((delay) => (
+                                <div 
+                                  key={delay}
+                                  style={{ animationDelay: `${delay}s` }}
+                                  className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-bounce"
+                                />
+                              ))}
+                            </div>
                           </div>
                         </div>
-                      ))}
+                      </div>
                     </div>
-
-                    {/* Flecha derecha */}
-                    <button 
-                      onClick={() => handleServiceNav('next')}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-amber-500/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50"
-                      aria-label="Next service"
-                    >
-                      <ChevronRight className="w-6 h-6" />
-                    </button>
-                  </div>
-
-                  <div className="text-center mt-12">
-                    <Link 
-                      to="/services" 
-                      className="group relative inline-flex items-center justify-center px-8 py-3 bg-yellow-600 hover:bg-yellow-500 text-white font-medium rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-yellow-600/30"
-                    >
-                      <span className="relative z-10 text-white">View all services</span>
-                      <ArrowRight className="w-5 h-5 ml-2 text-white group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
+                  ))}
                 </div>
+
+                {/* Flecha derecha */}
+                <button 
+                  onClick={() => handleServiceNav('next')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-amber-500/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50"
+                  aria-label="Next service"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="text-center mt-12">
+                <Link 
+                  to="/services" 
+                  className="group relative inline-flex items-center justify-center px-8 py-3 bg-yellow-600 hover:bg-yellow-500 text-white font-medium rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-yellow-600/30"
+                >
+                  <span className="relative z-10 text-white">View all services</span>
+                  <ArrowRight className="w-5 h-5 ml-2 text-white group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
             </div>
           </div>

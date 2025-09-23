@@ -191,251 +191,264 @@ const Register = () => {
         </section>
 
         {/* Form Section */}
-        <section className="relative py-12 md:py-20 bg-gray-100 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl mx-4 md:mx-8 lg:mx-auto max-w-5xl shadow-xl overflow-hidden">
-          <div className="absolute inset-0 bg-grid-gray-300/30 dark:bg-grid-gray-700/20 [mask-image:linear-gradient(0deg,transparent,white,transparent)]" aria-hidden="true"></div>
-          <div className="relative px-4 sm:px-6 lg:px-8">
+        <section className="relative py-12 md:py-20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 dark:text-yellow-400 mb-8">
-                Get in Touch
-              </h2>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Personal Information */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
-                      First Name *
-                    </label>
-                    <ValidatedInput
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      onBlur={setFieldTouched}
-                      placeholder="Your first name"
-                      icon={<User className="h-5 w-5 text-gray-400" />}
-                      maxLength={20}
-                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
-                    />
-                    {touched.firstName && errors.firstName && (
-                      <p className="text-red-400 text-sm mt-1">{errors.firstName}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
-                      Last Name *
-                    </label>
-                    <ValidatedInput
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      onBlur={setFieldTouched}
-                      placeholder="Your last name"
-                      icon={<User className="h-5 w-5 text-gray-400" />}
-                      maxLength={20}
-                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
-                    />
-                    {touched.lastName && errors.lastName && (
-                      <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
-                    )}
-                  </div>
+              <div className="rounded-3xl border border-amber-400/30 bg-gradient-to-br from-black/30 to-black/20 shadow-lg backdrop-blur-sm overflow-hidden relative">
+                {/* Golden border glow effect */}
+                <div className="absolute inset-0 rounded-3xl border border-amber-400/20 pointer-events-none"></div>
+                
+                {/* Background effects */}
+                <div className="absolute inset-0 z-0">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/5 to-transparent opacity-10"></div>
+                  <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-amber-500/3 to-transparent blur-3xl opacity-5"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/3 to-transparent transform -skew-x-12"></div>
                 </div>
 
-                {/* Contact Information */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
-                      Email *
-                    </label>
-                    <ValidatedInput
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      onBlur={setFieldTouched}
-                      placeholder="your@gmail.com"
-                      icon={<Mail className="h-5 w-5 text-gray-400" />}
-                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
-                    />
-                    {touched.email && errors.email && (
-                      <p className="text-red-400 text-sm mt-1">{errors.email}</p>
-                    )}
-                  </div>
+                <div className="relative z-10 p-8 md:p-12">
+                  <h2 className="text-3xl font-bold text-center text-yellow-400 mb-8">
+                    Get in Touch
+                  </h2>
+                  
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Personal Information */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
+                          First Name *
+                        </label>
+                        <ValidatedInput
+                          type="text"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleChange}
+                          onBlur={setFieldTouched}
+                          placeholder="Your first name"
+                          icon={<User className="h-5 w-5 text-gray-400" />}
+                          maxLength={20}
+                          className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
+                        />
+                        {touched.firstName && errors.firstName && (
+                          <p className="text-red-400 text-sm mt-1">{errors.firstName}</p>
+                        )}
+                      </div>
 
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
-                      Phone Number *
-                    </label>
-                    <PhoneInput
-                      value={formData.phone}
-                      onChange={handlePhoneChange}
-                      onBlur={() => setFieldTouched('phone')}
-                    />
-                    {formData.phoneCountry && (
-                      <p className="text-xs text-yellow-600 mt-1">{formData.phoneCountry}</p>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
+                          Last Name *
+                        </label>
+                        <ValidatedInput
+                          type="text"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          onBlur={setFieldTouched}
+                          placeholder="Your last name"
+                          icon={<User className="h-5 w-5 text-gray-400" />}
+                          maxLength={20}
+                          className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
+                        />
+                        {touched.lastName && errors.lastName && (
+                          <p className="text-red-400 text-sm mt-1">{errors.lastName}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Contact Information */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
+                          Email *
+                        </label>
+                        <ValidatedInput
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          onBlur={setFieldTouched}
+                          placeholder="your@gmail.com"
+                          icon={<Mail className="h-5 w-5 text-gray-400" />}
+                          className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
+                        />
+                        {touched.email && errors.email && (
+                          <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
+                          Phone Number *
+                        </label>
+                        <PhoneInput
+                          value={formData.phone}
+                          onChange={handlePhoneChange}
+                          onBlur={() => setFieldTouched('phone')}
+                        />
+                        {formData.phoneCountry && (
+                          <p className="text-xs text-yellow-600 mt-1">{formData.phoneCountry}</p>
+                        )}
+                        {touched.phone && errors.phone && (
+                          <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Company Information */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
+                          Company *
+                        </label>
+                        <ValidatedInput
+                          type="text"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleChange}
+                          onBlur={setFieldTouched}
+                          placeholder="Company name"
+                          icon={<Building className="h-5 w-5 text-gray-400" />}
+                          className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
+                        />
+                        {touched.company && errors.company && (
+                          <p className="text-red-400 text-sm mt-1">{errors.company}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
+                          Website
+                        </label>
+                        <ValidatedInput
+                          type="url"
+                          name="website"
+                          value={formData.website}
+                          onChange={handleChange}
+                          onBlur={setFieldTouched}
+                          placeholder="https://yourcompany.com"
+                          icon={<Globe className="h-5 w-5 text-gray-400" />}
+                          className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
+                        />
+                        {touched.website && errors.website && (
+                          <p className="text-red-400 text-sm mt-1">{errors.website}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Service of Interest */}
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
+                        Service of Interest
+                      </h3>
+                      <div className="mb-6">
+                        <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
+                          Select a service *
+                        </label>
+                        <ValidatedInput
+                          type="select"
+                          name="service"
+                          value={formData.service}
+                          onChange={handleChange}
+                          onBlur={setFieldTouched}
+                          placeholder="Select a service"
+                          options={services}
+                          className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
+                        />
+                        {touched.service && errors.service && (
+                          <p className="text-red-400 text-sm mt-1">{errors.service}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Project Details */}
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
+                        Project Details
+                      </h3>
+                      <div className="mb-6">
+                        <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
+                          Describe your project
+                        </label>
+                        <ValidatedInput
+                          type="textarea"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          onBlur={setFieldTouched}
+                          placeholder="Tell us more about your project, objectives, and any specific requirements..."
+                          className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
+                        />
+                        <p className="text-xs text-yellow-600 mt-1">
+                          {formData.message.length} / 200 characters
+                        </p>
+                        {touched.message && errors.message && (
+                          <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Checkboxes */}
+                    <div className="space-y-4">
+                      <label className="flex items-start space-x-3">
+                        <input
+                          type="checkbox"
+                          name="newsletter"
+                          checked={formData.newsletter}
+                          onChange={handleCheckboxChange}
+                          className="mt-1 h-4 w-4 text-yellow-400 focus:ring-yellow-500 border-gray-600 rounded bg-gray-700 dark:bg-black"
+                        />
+                        <span className="text-sm text-yellow-600 dark:text-yellow-400">
+                          I want to receive news and updates about technology
+                        </span>
+                      </label>
+
+                      <label className="flex items-start space-x-3">
+                        <input
+                          type="checkbox"
+                          name="terms"
+                          checked={formData.terms}
+                          onChange={handleCheckboxChange}
+                          onBlur={() => setFieldTouched('terms')}
+                          className="mt-1 h-4 w-4 text-yellow-400 focus:ring-yellow-500 border-gray-600 rounded bg-gray-700 dark:bg-black"
+                        />
+                        <span className="text-sm text-yellow-600 dark:text-yellow-400">
+                          I accept the{' '}
+                          <a href="#" className="text-yellow-500 hover:text-yellow-400">
+                            terms and conditions
+                          </a>{' '}
+                          and{' '}
+                          <a href="#" className="text-yellow-500 hover:text-yellow-400">
+                            privacy policy
+                          </a>
+                          *
+                        </span>
+                      </label>
+                      {touched.terms && errors.terms && (
+                        <p className="text-red-400 text-sm">{errors.terms}</p>
+                      )}
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full flex justify-center items-center px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-medium rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        'Processing...'
+                      ) : (
+                        <>
+                          Submit Request
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                        </>
+                      )}
+                    </button>
+
+                    {submitError && (
+                      <p className="text-red-400 text-sm text-center">{submitError}</p>
                     )}
-                    {touched.phone && errors.phone && (
-                      <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
-                    )}
-                  </div>
+                  </form>
                 </div>
-
-                {/* Company Information */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
-                      Company *
-                    </label>
-                    <ValidatedInput
-                      type="text"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      onBlur={setFieldTouched}
-                      placeholder="Company name"
-                      icon={<Building className="h-5 w-5 text-gray-400" />}
-                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
-                    />
-                    {touched.company && errors.company && (
-                      <p className="text-red-400 text-sm mt-1">{errors.company}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
-                      Website
-                    </label>
-                    <ValidatedInput
-                      type="url"
-                      name="website"
-                      value={formData.website}
-                      onChange={handleChange}
-                      onBlur={setFieldTouched}
-                      placeholder="https://yourcompany.com"
-                      icon={<Globe className="h-5 w-5 text-gray-400" />}
-                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
-                    />
-                    {touched.website && errors.website && (
-                      <p className="text-red-400 text-sm mt-1">{errors.website}</p>
-                    )}
-                  </div>
-                </div>
-
-                {/* Service of Interest */}
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
-                    Service of Interest
-                  </h3>
-                  <div className="mb-6">
-                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
-                      Select a service *
-                    </label>
-                    <ValidatedInput
-                      type="select"
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      onBlur={setFieldTouched}
-                      placeholder="Select a service"
-                      options={services}
-                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
-                    />
-                    {touched.service && errors.service && (
-                      <p className="text-red-400 text-sm mt-1">{errors.service}</p>
-                    )}
-                  </div>
-                </div>
-
-                {/* Project Details */}
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-yellow-400 mb-6 mt-10 pt-6 border-t border-gray-200 dark:border-yellow-900/30">
-                    Project Details
-                  </h3>
-                  <div className="mb-6">
-                    <label className="block text-sm font-semibold text-gray-900 dark:text-yellow-400 mb-2">
-                      Describe your project
-                    </label>
-                    <ValidatedInput
-                      type="textarea"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      onBlur={setFieldTouched}
-                      placeholder="Tell us more about your project, objectives, and any specific requirements..."
-                      className="bg-gray-600/50 border-gray-600 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 dark:text-white placeholder-gray-800 dark:placeholder-gray-400"
-                    />
-                    <p className="text-xs text-yellow-600 mt-1">
-                      {formData.message.length} / 200 characters
-                    </p>
-                    {touched.message && errors.message && (
-                      <p className="text-red-400 text-sm mt-1">{errors.message}</p>
-                    )}
-                  </div>
-                </div>
-
-                {/* Checkboxes */}
-                <div className="space-y-4">
-                  <label className="flex items-start space-x-3">
-                    <input
-                      type="checkbox"
-                      name="newsletter"
-                      checked={formData.newsletter}
-                      onChange={handleCheckboxChange}
-                      className="mt-1 h-4 w-4 text-yellow-400 focus:ring-yellow-500 border-gray-600 rounded bg-gray-700 dark:bg-black"
-                    />
-                    <span className="text-sm text-yellow-600 dark:text-yellow-400">
-                      I want to receive news and updates about technology
-                    </span>
-                  </label>
-
-                  <label className="flex items-start space-x-3">
-                    <input
-                      type="checkbox"
-                      name="terms"
-                      checked={formData.terms}
-                      onChange={handleCheckboxChange}
-                      onBlur={() => setFieldTouched('terms')}
-                      className="mt-1 h-4 w-4 text-yellow-400 focus:ring-yellow-500 border-gray-600 rounded bg-gray-700 dark:bg-black"
-                    />
-                    <span className="text-sm text-yellow-600 dark:text-yellow-400">
-                      I accept the{' '}
-                      <a href="#" className="text-yellow-500 hover:text-yellow-400">
-                        terms and conditions
-                      </a>{' '}
-                      and{' '}
-                      <a href="#" className="text-yellow-500 hover:text-yellow-400">
-                        privacy policy
-                      </a>
-                      *
-                    </span>
-                  </label>
-                  {touched.terms && errors.terms && (
-                    <p className="text-red-400 text-sm">{errors.terms}</p>
-                  )}
-                </div>
-
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full flex justify-center items-center px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-medium rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? (
-                    'Processing...'
-                  ) : (
-                    <>
-                      Submit Request
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </>
-                  )}
-                </button>
-
-                {submitError && (
-                  <p className="text-red-400 text-sm text-center">{submitError}</p>
-                )}
-              </form>
+              </div>
             </div>
           </div>
         </section>
