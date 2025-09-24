@@ -5,7 +5,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 const Faq = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [showTitle, setShowTitle] = useState(false);
-  const [showItems, setShowItems] = useState(Array(17).fill(false));
+  const [showItems, setShowItems] = useState(Array(5).fill(false));
   const [particles, setParticles] = useState([]);
 
   useEffect(() => {
@@ -95,68 +95,20 @@ const Faq = () => {
       answer: 'No. We guide you through the process and explain technical details in simple terms. Your focus should be on your business goals and vision, while we handle the technical execution.'
     },
     {
+      question: 'Can you take over or "rescue" an existing project?',
+      answer: 'Absolutely. We audit code, stabilize issues, and create a roadmap to get you back on track.'
+    },
+    {
+      question: 'Do you sign NDAs?',
+      answer: 'Yes, we take confidentiality seriously. We can sign NDAs before discussing your project details to ensure your ideas and information remain protected.'
+    },
+    {
       question: 'Which industries do you serve?',
       answer: 'We\'re industry-agnostic and have experience across transportation, e-commerce, education, Hospitality / Foodservice / Travel, logistics and professional services.'
     },
     {
       question: 'How much does software development cost?',
       answer: 'Costs depend on factors like project scope, technology stack, and team expertise. We offer flexible pricing models (e.g., Fixed Price, Time & Materials, or Dedicated Team) to suit your budget.'
-    },
-    {
-      question: 'Can you take over or "rescue" an existing project?',
-      answer: 'Absolutely. We audit code, stabilize issues, and create a roadmap to get you back on track.'
-    },
-    {
-      question: 'How long does a typical project take?',
-      answer: 'Small MVPs: 4–12 weeks. Mid-size products: 3–6 months. Enterprise builds vary by complexity.'
-    },
-    {
-      question: 'Do you offer ongoing maintenance?',
-      answer: 'Yes. We provide support plans for updates, monitoring, bug fixes, and minor enhancements.'
-    },
-    {
-      question: 'How do you handle security?',
-      answer: 'We follow OWASP best practices, secure auth (e.g., JWT/OAuth2), encryption in transit/at rest, secrets management, and least-privilege access.'
-    },
-    {
-      question: 'Who owns the source code?',
-      answer: 'You do, once invoices are paid as per contract. We deliver code, documentation, and access credentials.'
-    },
-    {
-      question: 'How do you handle intellectual property (IP)?',
-      answer: 'You retain full ownership of the IP created during the project. We ensure all work products are transferred to you upon completion.'
-    },
-    {
-      question: 'Where will my app be hosted?',
-      answer: 'Your choice: AWS, GCP, Azure, or your preferred provider. We can set up and manage infrastructure because we have our own, or hand it off to your team.'
-    },
-    {
-      question: 'Can you help prepare for investors or due diligence?',
-      answer: 'We can document architecture, security practices, metrics, and a roadmap to support fundraising.'
-    },
-    {
-      question: 'Do you handle on-site meetings?',
-      answer: 'We\'re primarily remote, but on-site workshops in South Florida can be arranged.'
-    },
-    {
-      question: 'Do you also handle marketing and branding?',
-      answer: 'Yes. Alongside development, VIQSystems INC offers brand strategy, visual identity (logo, color system, typography), messaging, and marketing assets (landing pages, pitch decks, social kits).'
-    },
-    {
-      question: 'Do you create content for ads and social?',
-      answer: 'Yes—ad creatives, copy, short-form video briefs, and creative guidelines so your team (or ours) can produce consistent assets.'
-    },
-    {
-      question: 'Can you refresh our brand without a full rebrand?',
-      answer: 'Absolutely. We do brand "lift" projects (updated logo variants, tone of voice, design system tweaks) that align with your current product and roadmap.'
-    },
-    {
-      question: 'Do you outsource custom software development?',
-      answer: 'No, our company does not outsource. All of the work is done in-house by VIQSystems employees who undergo rigorous interviews and training. Our software developers participate in continuous education to ensure they are always up to date on best practices.'
-    },
-    {
-      question: 'Do you sign NDAs?',
-      answer: 'Yes. We prioritize confidentiality and are happy to sign Non-Disclosure Agreements to protect your intellectual property.'
     }
   ];
 
@@ -270,15 +222,16 @@ const Faq = () => {
                       exit={{ opacity: 0, height: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-5 pt-0 text-amber-900 bg-amber-50/90 border-t border-amber-200">
+                      <div className="px-6 pb-5 pt-0 text-black bg-amber-50/90 border-t border-amber-200">
                         <motion.p 
-                          className="mt-2"
+                          className="mt-2 text-sm sm:text-base"
                           initial={{ opacity: 0 }}
                           animate={{ 
-                            opacity: 1,
-                            transition: {
-                              delay: 0.2,
-                              duration: 0.5
+                            opacity: activeIndex === index ? 1 : 0,
+                            height: activeIndex === index ? 'auto' : 0,
+                            transition: { 
+                              duration: 0.3,
+                              ease: 'easeInOut'
                             }
                           }}
                         >

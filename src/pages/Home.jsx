@@ -65,78 +65,72 @@ const Home = () => {
   ];
 
   // Estado para el carrusel
-  const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
   const itemWidth = 350; // Ancho de cada tarjeta
   const gap = 32; // Espacio entre tarjetas
-  const [isTransitioning, setIsTransitioning] = useState(true);
-  const [items] = useState(services);
   const [modalImage, setModalImage] = useState(null);
-
-  // Función para navegar a la siguiente tarjeta
-  const nextSlide = useCallback(() => {
-    setCurrentIndex(prevIndex => {
-      if (prevIndex >= items.length - 1) {
-        // Si llegamos al final, reiniciamos sin animación
-        setTimeout(() => {
-          setIsTransitioning(false);
-          setCurrentIndex(0);
-          // Forzar un reflow para reiniciar la transición
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              setIsTransitioning(true);
-            });
-          });
-        }, 500); // Tiempo de espera para la transición
-        return items.length - 1;
-      }
-      return prevIndex + 1;
-    });
-  }, [items.length]);
-
-  // Función para navegar a la tarjeta anterior
-  const prevSlide = useCallback(() => {
-    setCurrentIndex(prevIndex => {
-      if (prevIndex <= 0) {
-        // Si estamos al principio, vamos al final sin animación
-        setTimeout(() => {
-          setIsTransitioning(false);
-          setCurrentIndex(items.length - 1);
-          // Forzar un reflow para reiniciar la transición
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              setIsTransitioning(true);
-            });
-          });
-        }, 500); // Tiempo de espera para la transición
-        return 0;
-      }
-      return prevIndex - 1;
-    });
-  }, [items.length]);
+  
+  // Estado para controlar el desplazamiento
+  const [offset, setOffset] = useState(0);
+  const animationRef = useRef(null);
+  const lastTimeRef = useRef(0);
+  const speed = 0.1; // Velocidad de desplazamiento (más lenta para mejor visualización)
+  
+  // Tamaño total de un conjunto completo de servicios
+  const itemSize = itemWidth + gap;
+  const totalItems = services.length;
+  const totalWidth = itemSize * totalItems;
 
   // Efecto para la animación automática
   useEffect(() => {
-    if (isPaused || items.length === 0) return;
-    
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 3000);
-    
-    return () => clearInterval(interval);
-  }, [isPaused, items.length, nextSlide]);
+    if (isPaused) return;
 
-  // Calcular el desplazamiento basado en el índice actual
-  const offset = -currentIndex * (itemWidth + gap);
+    const animate = (timestamp) => {
+      if (!lastTimeRef.current) {
+        lastTimeRef.current = timestamp;
+      }
+      
+      const deltaTime = timestamp - lastTimeRef.current;
+      lastTimeRef.current = timestamp;
+      
+      setOffset(prevOffset => {
+        // Incrementamos el desplazamiento sin reiniciar
+        return prevOffset + (speed * deltaTime);
+      });
+      
+      animationRef.current = requestAnimationFrame(animate);
+    };
+    
+    animationRef.current = requestAnimationFrame(animate);
+    
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isPaused]);
+
+  // Función para obtener el desplazamiento visual usando módulo
+  const getVisualOffset = (currentOffset) => {
+    return currentOffset % totalWidth;
+  };
+
+  // Función para navegar a la siguiente tarjeta
+  const nextSlide = useCallback(() => {
+    setOffset(prev => prev + itemSize);
+  }, [itemSize]);
+
+  // Función para navegar a la tarjeta anterior
+  const prevSlide = useCallback(() => {
+    setOffset(prev => prev - itemSize);
+  }, [itemSize]);
 
   // Estado para el carrusel de testimonios
   const [testimonialOffset, setTestimonialOffset] = useState(0);
   const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
   const [direction, setDirection] = useState(-1); // -1 para derecha a izquierda, 1 para izquierda a derecha
   const [testimonials, setTestimonials] = useState([
-    
-   
     {
       quote: "As an IT director of HSBOX, I've worked with numerous vendors, but this company stands out. They provide reliable, scalable solutions with exceptional support. With their help, we've streamlined operations and focused on driving our business forward. Highly recommend their services to any enterprise looking for a trusted IT partner!",
       author: "David Chen",
@@ -363,71 +357,80 @@ const Home = () => {
                 {/* Contenedor del carrusel */}
                 <div 
                   ref={containerRef}
-                  className="flex transition-transform duration-500 ease-in-out px-4"
+                  className="flex transition-transform duration-100 ease-linear px-4"
                   style={{
-                    transform: `translateX(${offset}px)`,
+                    transform: `translateX(-${getVisualOffset(offset)}px)`,
                     gap: `${gap}px`,
                     width: 'max-content',
-                    transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none'
                   }}
+                  onMouseEnter={() => setIsPaused(true)}
+                  onMouseLeave={() => setIsPaused(false)}
                 >
-                  {items.map((service, index) => (
-                    <div 
-                      key={`${service.title}-${index}`}
-                      className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 flex-shrink-0"
-                      style={{ width: `${itemWidth}px` }}
-                    >
-                      <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 shadow-2xl duration-300 z-10 relative overflow-hidden hover:shadow-amber-500/10 hover:shadow-3xl w-full h-[380px] flex flex-col">
-                        {/* Background effects */}
-                        <div className="absolute inset-0 z-0 overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/5 to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
-                          <div 
-                            style={{ animationDelay: '0.5s' }}
-                            className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-amber-500/10 to-transparent blur-3xl opacity-30 group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"
-                          ></div>
-                          <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-amber-500/5 blur-xl animate-ping"></div>
-                          <div 
-                            style={{ animationDelay: '1s' }}
-                            className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-amber-500/5 blur-lg animate-ping"
-                          ></div>
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
-                        </div>
+                  {/* Renderizamos los elementos suficientes para cubrir el área visible */}
+                  {[...services, ...services, ...services].map((service, index) => {
+                    // Calculamos el índice real para mostrar los servicios en orden
+                    const realIndex = index % services.length;
+                    const serviceToShow = services[realIndex];
+                    
+                    return (
+                      <div 
+                        key={`${serviceToShow.title}-${index}`}
+                        className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 flex-shrink-0"
+                        style={{ width: `${itemWidth}px` }}
+                      >
+                        {/* Contenido de la tarjeta */}
+                        <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 shadow-2xl duration-300 z-10 relative overflow-hidden hover:shadow-amber-500/10 hover:shadow-3xl w-full h-[380px] flex flex-col">
+                          {/* Background effects */}
+                          <div className="absolute inset-0 z-0 overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/5 to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
+                            <div 
+                              style={{ animationDelay: '0.5s' }}
+                              className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-amber-500/10 to-transparent blur-3xl opacity-30 group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"
+                            ></div>
+                            <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-amber-500/5 blur-xl animate-ping"></div>
+                            <div 
+                              style={{ animationDelay: '1s' }}
+                              className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-amber-500/5 blur-lg animate-ping"
+                            ></div>
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
+                          </div>
 
-                        {/* Card content */}
-                        <div className="p-6 relative z-10 flex-1 flex flex-col">
-                          <div className="flex flex-col items-center text-center flex-1">
-                            <div className="relative mb-4">
-                              <div className="p-3 rounded-full backdrop-blur-lg border border-amber-500/20 bg-black/80 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 group-hover:shadow-amber-500/20">
-                                <div className="transform group-hover:rotate-180 transition-transform duration-700">
-                                  <service.icon className="w-6 h-6 text-amber-400 group-hover:text-amber-300 transition-colors duration-300 filter drop-shadow-lg" />
+                          {/* Card content */}
+                          <div className="p-6 relative z-10 flex-1 flex flex-col">
+                            <div className="flex flex-col items-center text-center flex-1">
+                              <div className="relative mb-4">
+                                <div className="p-3 rounded-full backdrop-blur-lg border border-amber-500/20 bg-black/80 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 group-hover:shadow-amber-500/20">
+                                  <div className="transform group-hover:rotate-180 transition-transform duration-700">
+                                    <service.icon className="w-6 h-6 text-amber-400 group-hover:text-amber-300 transition-colors duration-300 filter drop-shadow-lg" />
+                                  </div>
                                 </div>
                               </div>
-                            </div>
 
-                            <h3 className="text-xl font-bold text-white mb-3 whitespace-pre-line">
-                              {service.title}
-                            </h3>
+                              <h3 className="text-xl font-bold text-white mb-3 whitespace-pre-line">
+                                {serviceToShow.title}
+                              </h3>
 
-                            <p className="text-gray-300 text-base leading-relaxed text-center w-full flex-1 whitespace-pre-line">
-                              {service.description}
-                            </p>
+                              <p className="text-gray-300 text-base leading-relaxed text-center w-full flex-1 whitespace-pre-line">
+                                {serviceToShow.description}
+                              </p>
 
-                            <div className="mt-4 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-amber-500/50 to-transparent rounded-full transform group-hover:w-1/2 group-hover:h-1 transition-all duration-500 animate-pulse"></div>
+                              <div className="mt-4 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-amber-500/50 to-transparent rounded-full transform group-hover:w-1/2 group-hover:h-1 transition-all duration-500 animate-pulse"></div>
 
-                            <div className="flex space-x-1.5 mt-3 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                              {[0, 0.1, 0.2].map((delay) => (
-                                <div 
-                                  key={delay}
-                                  style={{ animationDelay: `${delay}s` }}
-                                  className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-bounce"
-                                />
-                              ))}
+                              <div className="flex space-x-1.5 mt-3 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                                {[0, 0.1, 0.2].map((delay) => (
+                                  <div 
+                                    key={delay}
+                                    style={{ animationDelay: `${delay}s` }}
+                                    className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-bounce"
+                                  />
+                                ))}
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 {/* Flecha derecha */}

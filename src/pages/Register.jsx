@@ -173,26 +173,79 @@ const Register = () => {
                 Get a free consultation and personalized proposal.
               </span>
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <div className="flex items-center space-x-2 bg-yellow-100/10 dark:bg-yellow-500/10 text-yellow-400 dark:text-yellow-400 px-4 py-2 rounded-full backdrop-blur-sm">
-                <Shield className="h-5 w-5" />
-                <span className="text-sm">Free Consultation</span>
-              </div>
-              <div className="flex items-center space-x-2 bg-yellow-100/10 dark:bg-yellow-500/10 text-yellow-400 dark:text-yellow-400 px-4 py-2 rounded-full backdrop-blur-sm">
-                <Clock className="h-5 w-5" />
-                <span className="text-sm">24/7 Support</span>
-              </div>
-              <div className="flex items-center space-x-2 bg-yellow-100/10 dark:bg-yellow-500/10 text-yellow-400 dark:text-yellow-400 px-4 py-2 rounded-full backdrop-blur-sm">
-                <Users className="h-5 w-5" />
-                <span className="text-sm">Expert Team</span>
-              </div>
+            <div className="flex flex-wrap justify-center gap-8">
+              {[
+                {
+                  emoji: "🚀",
+                  text: "Fast Delivery",
+                  gradient: "from-blue-500 to-cyan-400"
+                },
+                {
+                  emoji: "⏱️",
+                  text: "24/7 Support",
+                  gradient: "from-purple-500 to-pink-400"
+                },
+                {
+                  emoji: "👥",
+                  text: "Friendly Team",
+                  gradient: "from-amber-500 to-yellow-400"
+                }
+              ].map((item, index) => (
+                <div 
+                  key={index} 
+                  className="group relative flex flex-col items-center transition-all duration-300"
+                >
+                  <div className={`
+                    text-4xl mb-2 transition-transform duration-300 
+                    group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)]
+                  `}>
+                    {item.emoji}
+                  </div>
+                  <span className={`
+                    text-sm font-medium mb-1 text-yellow-400
+                    bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent
+                    transition-all duration-300
+                  `}>
+                    {item.text}
+                  </span>
+                  <div className={`
+                    h-0.5 w-0 bg-gradient-to-r ${item.gradient} 
+                    transition-all duration-300 group-hover:w-full
+                  `}></div>
+                </div>
+              ))}
             </div>
+
+            <style jsx global>{`
+              @keyframes float {
+                0%, 100% {
+                  transform: translateY(0px) rotate(0deg);
+                }
+                33% {
+                  transform: translateY(-3px) rotate(0.5deg);
+                }
+                66% {
+                  transform: translateY(2px) rotate(-0.5deg);
+                }
+              }
+              
+              .group:hover {
+                animation-play-state: paused;
+              }
+            `}</style>
           </div>
         </section>
 
+        {/* Sin espacio adicional */}
+        
         {/* Form Section */}
-        <section className="relative py-12 md:py-20">
+        <section className="relative pt-2 pb-8 md:pt-4 md:pb-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-400">
+                Get in Touch
+              </span>
+            </h2>
             <div className="max-w-3xl mx-auto">
               <div className="rounded-3xl border border-amber-400/30 bg-gradient-to-br from-black/30 to-black/20 shadow-lg backdrop-blur-sm overflow-hidden relative">
                 {/* Golden border glow effect */}
@@ -206,10 +259,6 @@ const Register = () => {
                 </div>
 
                 <div className="relative z-10 p-8 md:p-12">
-                  <h2 className="text-3xl font-bold text-center text-yellow-400 mb-8">
-                    Get in Touch
-                  </h2>
-                  
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Personal Information */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

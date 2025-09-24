@@ -7,27 +7,27 @@ const Hero = () => {
     { 
       text: 'Leading Digital Solutions Provider',
       icon: '🚀',
-      color: 'text-purple-400 hover:text-purple-300'
+      color: 'text-amber-400 hover:text-amber-300'
     },
     { 
       text: 'Accelerate Time to Market',
       icon: '⚡',
-      color: 'text-yellow-400 hover:text-yellow-300'
+      color: 'text-amber-400 hover:text-amber-300'
     },
     { 
       text: 'Friendly and Reliable',
       icon: '🤝',
-      color: 'text-green-400 hover:text-green-300'
+      color: 'text-amber-400 hover:text-amber-300'
     },
     { 
       text: 'Quality Deliverables',
       icon: '⭐',
-      color: 'text-amber-300 hover:text-amber-200'
+      color: 'text-amber-400 hover:text-amber-300'
     },
     { 
       text: '24/7 Support',
       icon: '🌙',
-      color: 'text-blue-400 hover:text-blue-300'
+      color: 'text-amber-400 hover:text-amber-300'
     }
   ]
 
