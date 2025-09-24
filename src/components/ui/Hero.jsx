@@ -1,14 +1,57 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Play, CheckCircle } from 'lucide-react'
+import { ArrowRight, Play } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const Hero = () => {
   const features = [
-    'Leading Digital Solutions Provider',
-    'Accelerate Time to Market',
-    'Friendly and Reliable',
-    'Quality Deliverables',
-    '24/7 Support'
+    { 
+      text: 'Leading Digital Solutions Provider',
+      icon: '🚀',
+      color: 'text-purple-400 hover:text-purple-300'
+    },
+    { 
+      text: 'Accelerate Time to Market',
+      icon: '⚡',
+      color: 'text-yellow-400 hover:text-yellow-300'
+    },
+    { 
+      text: 'Friendly and Reliable',
+      icon: '🤝',
+      color: 'text-green-400 hover:text-green-300'
+    },
+    { 
+      text: 'Quality Deliverables',
+      icon: '⭐',
+      color: 'text-amber-300 hover:text-amber-200'
+    },
+    { 
+      text: '24/7 Support',
+      icon: '🌙',
+      color: 'text-blue-400 hover:text-blue-300'
+    }
   ]
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }
+
+  const item = {
+    hidden: { opacity: 0, y: 10 },
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 120
+      }
+    }
+  }
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -52,25 +95,33 @@ const Hero = () => {
             </span>
           </p>
 
-          {/* Features - Responsive grid */}
-          <div className="w-full px-2">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-nowrap lg:justify-center gap-3 max-w-4xl mx-auto">
-              {features.map((feature, index) => (
-                <div 
-                  key={index} 
-                  className="flex items-center justify-center sm:justify-start space-x-2 bg-white/30 backdrop-blur-md px-3 py-2 sm:px-4 sm:py-1.5 rounded-full border-2 border-white/30 shadow-xl"
-                >
-                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-accent-300 flex-shrink-0" />
-                  <span className="text-xs sm:text-sm font-semibold text-white text-center sm:text-left">
-                    {feature}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Features as interactive text */}
+          <motion.div 
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-8 px-2 text-lg"
+          >
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                variants={item}
+                className={`inline-flex items-center group cursor-default ${feature.color} transition-colors duration-300`}
+                whileHover={{ scale: 1.05 }}
+              >
+                <span className="mr-2 transform group-hover:scale-110 transition-transform">
+                  {feature.icon}
+                </span>
+                <span className="relative">
+                  {feature.text}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-current to-transparent group-hover:w-full transition-all duration-300"></span>
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
 
           {/* CTA Buttons - Stack on mobile */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-6 md:pt-8 px-2">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-2 md:pt-4 px-2">
             <Link 
               to="/register" 
               className="group inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:bg-white/10 hover:from-transparent hover:to-transparent hover:border hover:border-primary-400/50 text-white font-medium rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg text-sm sm:text-base"
@@ -101,13 +152,6 @@ const Hero = () => {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-        <div className="animate-bounce w-6 h-10 sm:w-8 sm:h-14 border-2 border-white/30 rounded-full flex justify-center p-1">
-          <div className="w-1 h-3 bg-white rounded-full"></div>
         </div>
       </div>
     </section>
