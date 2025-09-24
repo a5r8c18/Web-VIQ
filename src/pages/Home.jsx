@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Hero from '../components/ui/Hero';
 import { Link } from 'react-router-dom';
 import { Code, Smartphone, Cloud, Users, ArrowRight, Star, Shield, BarChart2, Clock, MessageCircle, Award, Brain, Server, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -65,66 +65,70 @@ const Home = () => {
   ];
 
   // Estado para el carrusel
-  const [offset, setOffset] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
-  const itemWidth = 350; // Ancho de cada tarjeta (ajustado al ancho real)
+  const itemWidth = 350; // Ancho de cada tarjeta
   const gap = 32; // Espacio entre tarjetas
-  const speed = 0.5; // Velocidad del desplazamiento
-  const [items, setItems] = useState([]);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const [items] = useState(services);
   const [modalImage, setModalImage] = useState(null);
 
-  useEffect(() => {
-    // Crear un array con los servicios suficientes para el carrusel
-    const itemsNeeded = Math.ceil(window.innerWidth / (itemWidth + gap)) + 2;
-    const repeatedItems = [];
-    
-    for (let i = 0; i < itemsNeeded; i++) {
-      repeatedItems.push(...services);
-    }
-    
-    setItems(repeatedItems);
-  }, []);
+  // Función para navegar a la siguiente tarjeta
+  const nextSlide = useCallback(() => {
+    setCurrentIndex(prevIndex => {
+      if (prevIndex >= items.length - 1) {
+        // Si llegamos al final, reiniciamos sin animación
+        setTimeout(() => {
+          setIsTransitioning(false);
+          setCurrentIndex(0);
+          // Forzar un reflow para reiniciar la transición
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              setIsTransitioning(true);
+            });
+          });
+        }, 500); // Tiempo de espera para la transición
+        return items.length - 1;
+      }
+      return prevIndex + 1;
+    });
+  }, [items.length]);
 
+  // Función para navegar a la tarjeta anterior
+  const prevSlide = useCallback(() => {
+    setCurrentIndex(prevIndex => {
+      if (prevIndex <= 0) {
+        // Si estamos al principio, vamos al final sin animación
+        setTimeout(() => {
+          setIsTransitioning(false);
+          setCurrentIndex(items.length - 1);
+          // Forzar un reflow para reiniciar la transición
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              setIsTransitioning(true);
+            });
+          });
+        }, 500); // Tiempo de espera para la transición
+        return 0;
+      }
+      return prevIndex - 1;
+    });
+  }, [items.length]);
+
+  // Efecto para la animación automática
   useEffect(() => {
     if (isPaused || items.length === 0) return;
+    
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [isPaused, items.length, nextSlide]);
 
-    let animationId;
-    const animate = () => {
-      setOffset(prevOffset => {
-        const maxOffset = (itemWidth + gap) * services.length;
-        let newOffset = prevOffset + speed;
-        
-        // Reiniciar la posición cuando llegue al final
-        if (newOffset >= maxOffset) {
-          newOffset = 0;
-        }
-        
-        return newOffset;
-      });
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animationId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationId);
-  }, [isPaused, items.length]);
-
-  const handleMouseEnter = () => setIsPaused(true);
-  const handleMouseLeave = () => setIsPaused(false);
-
-  const handleServiceNav = (dir) => {
-    const step = itemWidth + gap;
-    setOffset(prevOffset => {
-      const maxOffset = (itemWidth + gap) * services.length;
-      let newOffset;
-      if (dir === 'prev') {
-        newOffset = Math.max(0, prevOffset - step);
-      } else {
-        newOffset = Math.min(maxOffset, prevOffset + step);
-      }
-      return newOffset;
-    });
-  };
+  // Calcular el desplazamiento basado en el índice actual
+  const offset = -currentIndex * (itemWidth + gap);
 
   // Estado para el carrusel de testimonios
   const [testimonialOffset, setTestimonialOffset] = useState(0);
@@ -344,12 +348,12 @@ const Home = () => {
 
               <div 
                 className="relative w-full overflow-hidden py-8"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
               >
                 {/* Flecha izquierda */}
                 <button 
-                  onClick={() => handleServiceNav('prev')}
+                  onClick={prevSlide}
                   className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-amber-500/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50"
                   aria-label="Previous service"
                 >
@@ -359,18 +363,21 @@ const Home = () => {
                 {/* Contenedor del carrusel */}
                 <div 
                   ref={containerRef}
-                  className="flex whitespace-nowrap"
+                  className="flex transition-transform duration-500 ease-in-out px-4"
                   style={{
-                    transform: `translateX(-${offset}px)`,
-                    transition: isPaused ? 'transform 0.3s ease-out' : 'transform 0.1s linear'
+                    transform: `translateX(${offset}px)`,
+                    gap: `${gap}px`,
+                    width: 'max-content',
+                    transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none'
                   }}
                 >
                   {items.map((service, index) => (
                     <div 
                       key={`${service.title}-${index}`}
-                      className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 px-3"
+                      className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 flex-shrink-0"
+                      style={{ width: `${itemWidth}px` }}
                     >
-                      <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 shadow-2xl duration-300 z-10 relative overflow-hidden hover:shadow-amber-500/10 hover:shadow-3xl w-[280px] h-[380px] flex flex-col">
+                      <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 shadow-2xl duration-300 z-10 relative overflow-hidden hover:shadow-amber-500/10 hover:shadow-3xl w-full h-[380px] flex flex-col">
                         {/* Background effects */}
                         <div className="absolute inset-0 z-0 overflow-hidden">
                           <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/5 to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
@@ -425,7 +432,7 @@ const Home = () => {
 
                 {/* Flecha derecha */}
                 <button 
-                  onClick={() => handleServiceNav('next')}
+                  onClick={nextSlide}
                   className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-amber-500/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50"
                   aria-label="Next service"
                 >

@@ -1,0 +1,204 @@
+.super-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: linear-gradient(145deg, #0f0f0f, #1c1c1c);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 100px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 0 20px rgba(184, 134, 11, 0.2);
+  backdrop-filter: blur(8px);
+  z-index: 1;
+  min-width: 160px;
+  outline: none;
+}
+
+.super-button::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, #ffd700, #daa520, #ffd700);
+  animation: rotate 4s linear infinite;
+  z-index: -2;
+  opacity: 0.8;
+}
+
+.super-button::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: #1a1a1a;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.super-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(184, 134, 11, 0.4);
+  border-color: rgba(218, 165, 32, 0.5);
+}
+
+.super-button:hover .arrow {
+  transform: translateX(6px);
+  color: #ffd700;
+}
+
+.arrow {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.3s ease-in-out, color 0.3s ease;
+  color: #daa520;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilos para los íconos de redes sociales */
+.relative.inline-flex {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.absolute.left-full {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 100px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  transition: all 0.3s ease;
+  animation: fadeIn 0.3s ease-out;
+  z-index: 20;
+}
+
+.absolute.left-full a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(251, 191, 36, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.absolute.left-full a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(145deg, rgba(251, 191, 36, 0.3), rgba(217, 119, 6, 0.2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.absolute.left-full a:hover {
+  transform: translateY(-3px);
+  background: rgba(251, 191, 36, 0.1);
+  border-color: rgba(251, 191, 36, 0.4);
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2);
+}
+
+.absolute.left-full a:hover::before {
+  opacity: 1;
+}
+
+.absolute.left-full a svg {
+  transition: all 0.3s ease;
+}
+
+.absolute.left-full a:hover svg {
+  color: #fbbf24;
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-10px, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
+
+/* Efecto de borde dorado al pasar el ratón */
+.absolute.left-full::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 100px;
+  padding: 2px;
+  background: linear-gradient(145deg, rgba(251, 191, 36, 0.6), rgba(217, 119, 6, 0.4));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.absolute.left-full:hover::after {
+  opacity: 1;
+}
+
+/* Ajustes para modo oscuro */
+.dark .absolute.left-full {
+  background: rgba(17, 24, 39, 0.9);
+  border-color: rgba(251, 191, 36, 0.1);
+}
+
+.dark .absolute.left-full a {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(251, 191, 36, 0.1);
+}
+
+.dark .absolute.left-full a:hover {
+  background: rgba(251, 191, 36, 0.15);
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+/* Ajustes para modo oscuro */
+.dark .super-button {
+  background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .super-button::after {
+  background: #111;
+}

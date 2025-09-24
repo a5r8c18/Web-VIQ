@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle, Linkedin, Facebook, Instagram, Youtube } from 'lucide-react';
+import './SocialMediaButton.css';
 
 const SocialMediaButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -83,56 +84,50 @@ const SocialMediaButton = () => {
   ];
 
   return (
-    <div className="relative inline-block" onBlur={closeMenu} tabIndex="0">
+    <div className="relative inline-flex items-center" onBlur={closeMenu} tabIndex="0">
       <button
         onClick={toggleMenu}
-        className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 cursor-pointer h-10 px-4 py-2 min-w-40 relative bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-black dark:text-white border border-black/10 dark:border-white/10 transition-all duration-300 shadow-sm hover:shadow-md"
+        className="super-button"
       >
-        <span className="flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-link w-4 h-4" aria-hidden="true">
-            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-          </svg>
-          {isOpen ? 'Cerrar' : 'Social'}
-        </span>
+        <span>Social Media</span>
+        <svg fill="none" viewBox="0 0 24 24" className="arrow">
+          <path
+            strokeLinejoin="round"
+            strokeLinecap="round"
+            strokeWidth="2"
+            stroke="currentColor"
+            d="M5 12h14M13 6l6 6-6 6"
+          />
+        </svg>
       </button>
 
-      <div
-        className={`absolute top-0 left-full ml-2 flex h-10 overflow-hidden transition-all duration-300 ease-out ${
-          isOpen ? 'w-60 opacity-100' : 'w-0 opacity-0 pointer-events-none'
-        }`}
-      >
-        {socialLinks.map((social, index) => (
-          <a
-            key={index}
-            href={social.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`h-10 w-10 flex items-center justify-center bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm border border-gray-300/40 dark:border-gray-600/50 text-gray-700 dark:text-gray-300 transition-all duration-300 transform hover:scale-105 ${
-              social.color
-            } ${
-              index === 0 ? 'rounded-l-md' : index === socialLinks.length - 1 ? 'rounded-r-md' : ''
-            }`}
-            title={social.label}
-            aria-label={social.label}
-          >
-            {social.icon ? (
-              <social.icon className="w-5 h-5" />
-            ) : social.customIcon ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox={social.viewBox || '0 0 24 24'}
-                fill="currentColor"
-                className={social.iconClass || "w-5 h-5"}
-              >
-                {social.customIconPath}
-              </svg>
-            ) : null}
-          </a>
-        ))}
-      </div>
+      {isOpen && (
+        <div className="absolute left-full ml-2 flex items-center space-x-1">
+          {socialLinks.map((social, index) => (
+            <a
+              key={index}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center justify-center p-2 rounded-full transition-all duration-200 text-white/90 hover:bg-white/10 ${social.color}`}
+              title={social.label}
+            >
+              {social.icon ? (
+                <social.icon className="w-5 h-5" />
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox={social.viewBox || "0 0 24 24"}
+                  fill="currentColor"
+                  className={`${social.iconClass || 'w-5 h-5'}`}
+                >
+                  {social.customIconPath}
+                </svg>
+              )}
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
