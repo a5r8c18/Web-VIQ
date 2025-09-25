@@ -241,8 +241,8 @@ const Register = () => {
 
         <section className="relative pt-0 pb-2 md:pt-0 md:pb-2"></section>
         {/* Form Section */}
-        <section className="relative pt-0 pb-8 md:pt-0 md:pb-10">
-  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative pt-0 pb-8 md:pt-2 md:pb-10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
   
             <div className="max-w-3xl mx-auto">
               <div className="rounded-3xl border border-amber-400/30 bg-gradient-to-br from-black/30 to-black/20 shadow-lg backdrop-blur-sm overflow-hidden relative">

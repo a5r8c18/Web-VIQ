@@ -205,35 +205,43 @@ const Faq = () => {
                 <AnimatePresence>
                   {activeIndex === index && (
                     <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ 
-                        opacity: 1, 
-                        height: 'auto',
-                        transition: { 
-                          duration: 0.4,
-                          ease: "easeOut"
-                        }
-                      }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="overflow-hidden"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="fixed inset-0 z-50 flex items-center justify-center"
                     >
-                      {/* Fondo dorado claro (no blanco) */}
-                      <div className="px-6 pb-5 pt-0 text-amber-900 bg-amber-100/90 border-t border-amber-300 backdrop-blur-sm">
-                        <motion.p 
-                          className="mt-2 text-base sm:text-lg leading-relaxed italic tracking-wide text-amber-900 font-medium selection:bg-amber-200/60 selection:text-amber-900"
-                          initial={{ opacity: 0 }}
-                          animate={{ 
-                            opacity: activeIndex === index ? 1 : 0,
-                            height: activeIndex === index ? 'auto' : 0,
-                            transition: { 
-                              duration: 0.3,
-                              ease: 'easeInOut' 
-                            }
-                          }}
+                      {/* Overlay para cerrar */}
+                      <div
+                        className="absolute inset-0 bg-black/60 backdrop-blur-[2px] transition-opacity"
+                        onClick={() => setActiveIndex(null)}
+                      />
+
+                      {/* Contenido del modal */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 20, scale: 0.95, rotateX: -10 }}
+                        animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0, transition: { type: 'spring', stiffness: 220, damping: 20 } }}
+                        exit={{ opacity: 0, y: 10, scale: 0.96, rotateX: -5 }}
+                        className="relative z-10 w-[92%] max-w-2xl rounded-2xl bg-amber-100/90 text-amber-900 shadow-2xl border border-amber-300 p-6 gold-glow overflow-hidden"
+                      >
+                        {/* Capa shimmer animada */}
+                        <div className="pointer-events-none absolute inset-0 modal-shimmer rounded-2xl"></div>
+                        {/* Botón cerrar */}
+                        <button
+                          aria-label="Cerrar"
+                          className="group absolute top-3 right-3 rounded-full p-2 text-amber-800 hover:text-amber-900 hover:bg-amber-200/60 transition"
+                          onClick={() => setActiveIndex(null)}
                         >
+                          <svg className="h-5 w-5 transition-transform duration-300 ease-out group-hover:rotate-180 group-active:rotate-[360deg]" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M15.898,4.045c-0.271-0.272-0.713-0.272-0.986,0l-4.71,4.711L5.493,4.045c-0.272-0.272-0.714-0.272-0.986,0s-0.272,0.714,0,0.986l4.709,4.711l-4.71,4.711c-0.272,0.271-0.272,0.713,0,0.986c0.136,0.136,0.314,0.203,0.492,0.203c0.179,0,0.357-0.067,0.493-0.203l4.711-4.711l4.71,4.711c0.137,0.136,0.314,0.203,0.494,0.203c0.178,0,0.355-0.067,0.492-0.203c0.273-0.273,0.273-0.715,0-0.986l-4.711-4.711l4.711-4.711C16.172,4.759,16.172,4.317,15.898,4.045z" />
+                          </svg>
+                        </button>
+
+                        {/* Contenido del modal */}
+                        <h3 className="text-xl font-semibold mb-3">{faq.question}</h3>
+                        <p className="text-base sm:text-lg leading-relaxed italic tracking-wide selection:bg-amber-200/60">
                           {faq.answer}
-                        </motion.p>
-                      </div>
+                        </p>
+                      </motion.div>
                     </motion.div>
                   )}
                 </AnimatePresence>
