@@ -40,7 +40,7 @@ const Faq = () => {
     
     // Crear partículas alrededor del perímetro del botón
     const newParticles = [];
-    const colors = ['#FFD700', '#FFED4E', '#FFF176', '#FFEE58', '#FFEB3B'];
+    const colors = ['#B8860B', '#DAA520', '#CD853F', '#F4A460', '#DEB887'];
     
     // Crear partículas en los lados y arriba del botón
     const numParticles = 25;
@@ -106,19 +106,26 @@ const Faq = () => {
       question: 'Which industries do you serve?',
       answer: 'We\'re industry-agnostic and have experience across transportation, e-commerce, education, Hospitality / Foodservice / Travel, logistics and professional services.'
     },
-    {
-      question: 'How much does software development cost?',
-      answer: 'Costs depend on factors like project scope, technology stack, and team expertise. We offer flexible pricing models (e.g., Fixed Price, Time & Materials, or Dedicated Team) to suit your budget.'
-    }
+   
   ];
 
   return (
-    <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden wave-background">
-      {/* Ondulaciones (Waves) */}
-      <div className="wave wave-1"></div>
-      <div className="wave wave-2"></div>
-      <div className="wave wave-3"></div>
-      <div className="wave wave-4"></div>
+    <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-gray-900">
+      {/* Fondo animado con cuadrados dorados más oscuros */}
+      <div className="area">
+        <ul className="circles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
       
       {/* Partículas */}
       {particles.map(particle => (
@@ -138,18 +145,6 @@ const Faq = () => {
         />
       ))}
       
-      {/* Elementos decorativos con múltiples tonalidades */}
-      <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
-        {/* Tonos dorados muy sutiles */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-amber-100/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-amber-100/25 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-2/3 left-1/2 w-72 h-72 bg-amber-50/30 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        
-        {/* Tonos blancos */}
-        <div className="absolute top-1/3 right-1/3 w-60 h-60 bg-white/5 rounded-full blur-3xl animate-pulse delay-500"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-70 h-70 bg-white/10 rounded-full blur-3xl animate-pulse delay-1500"></div>
-      </div>
-      
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Título con efecto de aparición */}
         <motion.div 
@@ -159,16 +154,16 @@ const Faq = () => {
           className="text-center mb-12"
         >
           <h1 className="text-4xl font-extrabold sm:text-5xl sm:tracking-tight lg:text-6xl">
-            <span className="block italic text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+            <span className="block italic text-transparent bg-clip-text bg-gradient-to-br from-amber-300 via-amber-200 to-amber-400 
               animate-text-shimmer bg-[length:200%_100%] bg-left 
-              drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]">
+              drop-shadow-[0_0_8px_rgba(184,134,11,0.4)]">
               Frequently Asked Questions
             </span>
           </h1>
           <p className="mt-5 max-w-2xl mx-auto text-xl">
-            <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-200 via-amber-100 to-amber-300 
+            <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-300 via-amber-200 to-amber-400 
               animate-text-shimmer bg-[length:200%_100%] bg-left 
-              drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]">
+              drop-shadow-[0_0_8px_rgba(184,134,11,0.3)]">
               Find answers to common questions about our services and processes.
             </span>
           </p>
@@ -196,13 +191,13 @@ const Faq = () => {
                   
                   {/* Contenido del botón */}
                   <div className="flex items-center justify-between w-full px-6 py-5 text-left">
-                    <h3 className="text-lg font-medium text-amber-900 group-hover:text-black transition-colors duration-500">
+                    <h3 className="text-lg font-medium text-amber-800 group-hover:text-amber-900 transition-colors duration-500">
                       {faq.question}
                     </h3>
                     {activeIndex === index ? (
-                      <ChevronUp className="h-5 w-5 text-amber-600 group-hover:text-black transition-colors duration-500 flex-shrink-0" />
+                      <ChevronUp className="h-5 w-5 text-amber-700 group-hover:text-amber-900 transition-colors duration-500 flex-shrink-0" />
                     ) : (
-                      <ChevronDown className="h-5 w-5 text-amber-600 group-hover:text-black transition-colors duration-500 flex-shrink-0" />
+                      <ChevronDown className="h-5 w-5 text-amber-700 group-hover:text-amber-900 transition-colors duration-500 flex-shrink-0" />
                     )}
                   </div>
                 </div>
@@ -222,16 +217,17 @@ const Faq = () => {
                       exit={{ opacity: 0, height: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-5 pt-0 text-black bg-amber-50/90 border-t border-amber-200">
+                      {/* Fondo dorado claro (no blanco) */}
+                      <div className="px-6 pb-5 pt-0 text-amber-900 bg-amber-100/90 border-t border-amber-300 backdrop-blur-sm">
                         <motion.p 
-                          className="mt-2 text-sm sm:text-base"
+                          className="mt-2 text-base sm:text-lg leading-relaxed italic tracking-wide text-amber-900 font-medium selection:bg-amber-200/60 selection:text-amber-900"
                           initial={{ opacity: 0 }}
                           animate={{ 
                             opacity: activeIndex === index ? 1 : 0,
                             height: activeIndex === index ? 'auto' : 0,
                             transition: { 
                               duration: 0.3,
-                              ease: 'easeInOut'
+                              ease: 'easeInOut' 
                             }
                           }}
                         >
@@ -252,95 +248,152 @@ const Faq = () => {
           transition={{ duration: 0.8, delay: 1.5 }}
           className="mt-12 text-center"
         >
-          <p className="text-amber-100 mb-6">
+          <p className="text-amber-200 mb-6">
             Still have questions? We're here to help!
           </p>
           <a
             href="/register"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-amber-900 bg-amber-300 hover:bg-amber-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition-colors duration-200"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-amber-900 bg-amber-400 hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition-colors duration-200"
           >
             Contact Us
           </a>
         </motion.div>
       </div>
 
-      {/* Estilos para las ondulaciones, efectos de brillo, partículas, fondo y botones */}
+      {/* Estilos para el fondo animado, efectos de brillo y partículas */}
       <style jsx>{`
-        .wave-background {
-          background: linear-gradient(
-            135deg, 
-            #000000 0%, 
-            #1a1a1a 15%, 
-            #2d2d2d 30%, 
-            #1a1a1a 45%, 
-            #333333 60%, 
-            #1a1a1a 75%, 
-            #000000 90%,
-            #0a0a0a 100%
-          );
-          position: relative;
+        .area {
+          background: #1a1a1a; /* Fondo más claro que negro puro */
+          width: 100%;
+          height: 100vh;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 0;
+        }
+
+        .circles {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
           overflow: hidden;
         }
-        
-        .wave {
+
+        .circles li {
           position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 200%;
-          height: 12em;
-          background: rgb(255 255 255 / 10%);
-          border-radius: 1000% 1000% 0 0;
-          transform: translate3d(0, 0, 0);
-          opacity: 0.8;
-          z-index: 1;
+          display: block;
+          list-style: none;
+          width: 20px;
+          height: 20px;
+          background: rgba(184, 134, 11, 0.6); /* Dorado oscuro y más fuerte */
+          animation: animate 25s linear infinite;
+          bottom: -150px;
+          border: 1px solid rgba(184, 134, 11, 0.8);
         }
-        
-        .wave-1 {
-          animation: wave 18s -3s linear infinite;
-          background: rgba(245, 158, 11, 0.15);
-          height: 10em;
+
+        .circles li:nth-child(1) {
+          left: 25%;
+          width: 80px;
+          height: 80px;
+          animation-delay: 0s;
+          background: rgba(184, 134, 11, 0.4);
         }
-        
-        .wave-2 {
-          animation: wave 20s -5s linear reverse infinite;
-          background: rgba(255, 255, 255, 0.1);
-          height: 12em;
-          bottom: -1.25em;
-          opacity: 0.6;
+
+        .circles li:nth-child(2) {
+          left: 10%;
+          width: 20px;
+          height: 20px;
+          animation-delay: 2s;
+          animation-duration: 12s;
+          background: rgba(184, 134, 11, 0.7);
         }
-        
-        .wave-3 {
-          animation: wave 25s -7s reverse infinite;
-          background: rgba(156, 163, 175, 0.2);
-          height: 14em;
-          bottom: -2.5em;
-          opacity: 0.4;
+
+        .circles li:nth-child(3) {
+          left: 70%;
+          width: 20px;
+          height: 20px;
+          animation-delay: 4s;
+          background: rgba(184, 134, 11, 0.5);
         }
-        
-        .wave-4 {
-          animation: wave 22s -10s linear infinite;
-          background: rgba(0, 0, 0, 0.2);
-          height: 11em;
-          bottom: -1.75em;
-          opacity: 0.3;
+
+        .circles li:nth-child(4) {
+          left: 40%;
+          width: 60px;
+          height: 60px;
+          animation-delay: 0s;
+          animation-duration: 18s;
+          background: rgba(184, 134, 11, 0.3);
         }
-        
+
+        .circles li:nth-child(5) {
+          left: 65%;
+          width: 20px;
+          height: 20px;
+          animation-delay: 0s;
+          background: rgba(184, 134, 11, 0.6);
+        }
+
+        .circles li:nth-child(6) {
+          left: 75%;
+          width: 110px;
+          height: 110px;
+          animation-delay: 3s;
+          background: rgba(184, 134, 11, 0.2);
+        }
+
+        .circles li:nth-child(7) {
+          left: 35%;
+          width: 150px;
+          height: 150px;
+          animation-delay: 7s;
+          background: rgba(184, 134, 11, 0.4);
+        }
+
+        .circles li:nth-child(8) {
+          left: 50%;
+          width: 25px;
+          height: 25px;
+          animation-delay: 15s;
+          animation-duration: 45s;
+          background: rgba(184, 134, 11, 0.7);
+        }
+
+        .circles li:nth-child(9) {
+          left: 20%;
+          width: 15px;
+          height: 15px;
+          animation-delay: 2s;
+          animation-duration: 35s;
+          background: rgba(184, 134, 11, 0.5);
+        }
+
+        .circles li:nth-child(10) {
+          left: 85%;
+          width: 150px;
+          height: 150px;
+          animation-delay: 0s;
+          animation-duration: 11s;
+          background: rgba(184, 134, 11, 0.3);
+        }
+
         .gold-glow {
-          box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+          box-shadow: 0 0 12px rgba(184, 134, 11, 0.6);
           animation: goldPulse 2s infinite;
         }
-        
+
         .particle {
           transform: translate(-50%, -50%);
           animation: particleAnimation var(--duration) ease-out forwards;
           z-index: 2;
         }
-        
+
         /* Estilos para el botón FAQ personalizado */
         .faq-button {
-          color: #D4AF37;
+          color: #B8860B; /* Dorado más oscuro */
           font-size: 16px;
-          border: 0.3em solid #D4AF37;
+          border: 0.3em solid #B8860B; /* Dorado más oscuro */
           border-radius: 0.5em;
           width: 100%;
           text-transform: uppercase;
@@ -352,13 +405,14 @@ const Faq = () => {
           z-index: 1;
           transition: 0.5s;
           cursor: pointer;
+          background: rgba(26, 26, 26, 0.8); /* Fondo que coincide con el nuevo color */
         }
-        
+
         .faq-button span {
           position: absolute;
           width: 25%;
           height: 100%;
-          background-color: #D4AF37;
+          background-color: #B8860B; /* Dorado más oscuro */
           transform: translateY(150%);
           border-radius: 50%;
           left: calc((var(--n) - 1) * 25%);
@@ -366,61 +420,57 @@ const Faq = () => {
           transition-delay: calc((var(--n) - 1) * 0.1s);
           z-index: -1;
         }
-        
+
         .faq-button:hover {
-          color: black;
+          color: #1a1a1a; /* Color de texto al hover más oscuro */
         }
-        
+
         .faq-button:hover span {
           transform: translateY(0) scale(2);
         }
-        
+
         .faq-button span:nth-child(1) {
           --n: 1;
         }
-        
+
         .faq-button span:nth-child(2) {
           --n: 2;
         }
-        
+
         .faq-button span:nth-child(3) {
           --n: 3;
         }
-        
+
         .faq-button span:nth-child(4) {
           --n: 4;
         }
-        
-        @keyframes wave {
+
+        @keyframes animate {
           0% {
-            transform: translateX(0);
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+            border-radius: 0;
           }
-          25% {
-            transform: translateX(-25%);
-          }
-          50% {
-            transform: translateX(-50%);
-          }
-          75% {
-            transform: translateX(-25%);
-          }
+
           100% {
-            transform: translateX(0);
+            transform: translateY(-1000px) rotate(720deg);
+            opacity: 0;
+            border-radius: 50%;
           }
         }
-        
+
         @keyframes goldPulse {
           0% {
-            box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+            box-shadow: 0 0 8px rgba(184, 134, 11, 0.4);
           }
           50% {
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+            box-shadow: 0 0 15px rgba(184, 134, 11, 0.7);
           }
           100% {
-            box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+            box-shadow: 0 0 8px rgba(184, 134, 11, 0.4);
           }
         }
-        
+
         @keyframes particleAnimation {
           0% {
             transform: translate(-50%, -50%);
