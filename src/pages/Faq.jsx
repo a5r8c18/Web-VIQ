@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, MessageSquare } from 'lucide-react';
 
 const Faq = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -221,14 +221,14 @@ const Faq = () => {
                         initial={{ opacity: 0, y: 20, scale: 0.95, rotateX: -10 }}
                         animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0, transition: { type: 'spring', stiffness: 220, damping: 20 } }}
                         exit={{ opacity: 0, y: 10, scale: 0.96, rotateX: -5 }}
-                        className="relative z-10 w-[92%] max-w-2xl rounded-2xl bg-black/90 text-white shadow-[0_25px_80px_rgba(0,0,0,0.65)] border border-gray-700 p-6 overflow-hidden"
+                        className="relative z-10 w-[92%] max-w-2xl rounded-2xl bg-black/90 text-white shadow-[0_25px_80px_rgba(0,0,0,0.65)] border border-gray-700 p-6 overflow-hidden ring-1 ring-cyan-400/10 hover:ring-cyan-300/20 transition"
                       >
-                        {/* Capa shimmer animada */}
-                        <div className="pointer-events-none absolute inset-0 modal-shimmer rounded-2xl"></div>
+                        {/* Grid/fondo sutil futurista */}
+                        <div className="pointer-events-none absolute inset-0 opacity-10 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_1px)] [background-size:18px_18px]"></div>
                         {/* Botón cerrar */}
                         <button
                           aria-label="Cerrar"
-                          className="group absolute top-3 right-3 rounded-full p-2 text-amber-800 hover:text-amber-900 hover:bg-amber-200/60 transition"
+                          className="group absolute top-3 right-3 rounded-full p-2 bg-white/90 text-black hover:bg-gray-200/70 transition border border-gray-300 shadow"
                           onClick={() => setActiveIndex(null)}
                         >
                           <svg className="h-5 w-5 transition-transform duration-300 ease-out group-hover:rotate-180 group-active:rotate-[360deg]" viewBox="0 0 20 20" fill="currentColor">
@@ -237,7 +237,15 @@ const Faq = () => {
                         </button>
 
                         {/* Contenido del modal */}
-                        <h3 className="text-xl font-semibold mb-3 text-white">{faq.question}</h3>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-gradient-to-br from-amber-300/20 via-amber-200/20 to-amber-400/20 text-amber-200 ring-1 ring-amber-300/40">
+                            <MessageSquare className="h-4 w-4" /> Question
+                          </span>
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold italic mb-2 text-transparent bg-clip-text bg-gradient-to-br from-amber-300 via-amber-200 to-amber-400 animate-text-shimmer bg-[length:200%_100%] bg-left drop-shadow-[0_0_8px_rgba(184,134,11,0.35)]">
+                          {faq.question}
+                        </h3>
+                        <div className="my-4 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent"></div>
                         <p className="text-base sm:text-lg leading-relaxed text-gray-100 selection:bg-gray-700 selection:text-white">
                           {faq.answer}
                         </p>
