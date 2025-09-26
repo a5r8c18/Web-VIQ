@@ -221,7 +221,7 @@ const Faq = () => {
                         initial={{ opacity: 0, y: 20, scale: 0.95, rotateX: -10 }}
                         animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0, transition: { type: 'spring', stiffness: 220, damping: 20 } }}
                         exit={{ opacity: 0, y: 10, scale: 0.96, rotateX: -5 }}
-                        className="relative z-10 w-[92%] max-w-2xl rounded-2xl bg-amber-100/90 text-amber-900 shadow-2xl border border-amber-300 p-6 gold-glow overflow-hidden"
+                        className="relative z-10 w-[92%] max-w-2xl rounded-2xl bg-black/90 text-white shadow-[0_25px_80px_rgba(0,0,0,0.65)] border border-gray-700 p-6 overflow-hidden"
                       >
                         {/* Capa shimmer animada */}
                         <div className="pointer-events-none absolute inset-0 modal-shimmer rounded-2xl"></div>
@@ -237,8 +237,8 @@ const Faq = () => {
                         </button>
 
                         {/* Contenido del modal */}
-                        <h3 className="text-xl font-semibold mb-3">{faq.question}</h3>
-                        <p className="text-base sm:text-lg leading-relaxed italic tracking-wide selection:bg-amber-200/60">
+                        <h3 className="text-xl font-semibold mb-3 text-white">{faq.question}</h3>
+                        <p className="text-base sm:text-lg leading-relaxed text-gray-100 selection:bg-gray-700 selection:text-white">
                           {faq.answer}
                         </p>
                       </motion.div>
