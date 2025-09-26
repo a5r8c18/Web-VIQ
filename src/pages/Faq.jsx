@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp, MessageSquare } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const Faq = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [showTitle, setShowTitle] = useState(false);
   const [showItems, setShowItems] = useState(Array(5).fill(false));
   const [particles, setParticles] = useState([]);
+  const [questionMarkHover, setQuestionMarkHover] = useState(false);
 
   useEffect(() => {
     // Efecto de aparición del título
@@ -156,7 +157,7 @@ const Faq = () => {
           <h1 className="text-4xl font-extrabold sm:text-5xl sm:tracking-tight lg:text-6xl">
             <span className="block italic text-transparent bg-clip-text bg-gradient-to-br from-amber-300 via-amber-200 to-amber-400 
               animate-text-shimmer bg-[length:200%_100%] bg-left 
-              drop-shadow-[0_0_8px_rgba(184,134,11,0.4)]">
+              drop-shadow-[0_0_8px_rgba(184,134,11,0.4)] pb-2">
               Frequently Asked Questions
             </span>
           </h1>
@@ -223,8 +224,6 @@ const Faq = () => {
                         exit={{ opacity: 0, y: 10, scale: 0.96, rotateX: -5 }}
                         className="relative z-10 w-[92%] max-w-2xl rounded-2xl bg-black/90 text-white shadow-[0_25px_80px_rgba(0,0,0,0.65)] border border-gray-700 p-6 overflow-hidden ring-1 ring-cyan-400/10 hover:ring-cyan-300/20 transition"
                       >
-                        {/* Grid/fondo sutil futurista */}
-                        <div className="pointer-events-none absolute inset-0 opacity-10 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_1px)] [background-size:18px_18px]"></div>
                         {/* Botón cerrar */}
                         <button
                           aria-label="Cerrar"
@@ -236,19 +235,116 @@ const Faq = () => {
                           </svg>
                         </button>
 
-                        {/* Contenido del modal */}
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-gradient-to-br from-amber-300/20 via-amber-200/20 to-amber-400/20 text-amber-200 ring-1 ring-amber-300/40">
-                            <MessageSquare className="h-4 w-4" /> Question
-                          </span>
+                        {/* Contenido del modal - Signo de interrogación interactivo */}
+                        <div className="flex flex-col items-center text-center mb-4">
+                          {/* Signo de interrogación animado e interactivo */}
+                          <motion.div
+                            className="relative mb-6"
+                            onHoverStart={() => setQuestionMarkHover(true)}
+                            onHoverEnd={() => setQuestionMarkHover(false)}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            {/* Efecto de brillo alrededor */}
+                            <motion.div
+                              className="absolute inset-0 rounded-full"
+                              animate={questionMarkHover ? 
+                                { 
+                                  boxShadow: [
+                                    "0 0 0px rgba(184, 134, 11, 0.4)",
+                                    "0 0 30px rgba(184, 134, 11, 0.9)",
+                                    "0 0 60px rgba(184, 134, 11, 0.7)",
+                                    "0 0 0px rgba(184, 134, 11, 0.4)"
+                                  ] 
+                                } : 
+                                { boxShadow: "0 0 0px rgba(184, 134, 11, 0)" }
+                              }
+                              transition={{ duration: 1.5, repeat: questionMarkHover ? Infinity : 0 }}
+                            />
+                            
+                            {/* Signo de interrogación principal - MÁS GRANDE Y COMPLETO */}
+                            <motion.div
+                              className="py-4 text-8xl md:text-9xl font-black bg-gradient-to-br from-amber-300 via-amber-200 to-amber-400 bg-clip-text text-transparent relative z-10 cursor-pointer select-none"
+                              animate={questionMarkHover ? 
+                                { 
+                                  scale: [1, 1.15, 1],
+                                  rotate: [0, -3, 3, 0],
+                                  y: [0, -5, 0]
+                                } : 
+                                { scale: 1, rotate: 0, y: 0 }
+                              }
+                              transition={{ duration: 0.6 }}
+                              onClick={() => setQuestionMarkHover(!questionMarkHover)}
+                              style={{
+                                textShadow: questionMarkHover 
+                                  ? '0 0 20px rgba(184, 134, 11, 0.8), 0 0 40px rgba(184, 134, 11, 0.6)'
+                                  : '0 0 10px rgba(184, 134, 11, 0.4)'
+                              }}
+                            >
+                              ?
+                              {/* Punto del signo de interrogación */}
+                              <motion.span
+                                className="absolute bottom-2 right-4 w-3 h-3 rounded-full bg-amber-400"
+                                animate={questionMarkHover ? 
+                                  { scale: [1, 1.5, 1], opacity: [1, 0.7, 1] } : 
+                                  { scale: 1, opacity: 1 }
+                                }
+                                transition={{ duration: 0.8, repeat: questionMarkHover ? Infinity : 0 }}
+                              />
+                            </motion.div>
+                            
+                            {/* Partículas que salen del signo al hacer hover */}
+                            <AnimatePresence>
+                              {questionMarkHover && (
+                                <>
+                                  {[...Array(12)].map((_, i) => (
+                                    <motion.div
+                                      key={i}
+                                      className="absolute w-3 h-3 rounded-full bg-amber-400"
+                                      initial={{ opacity: 0, scale: 0 }}
+                                      animate={{
+                                        opacity: [0, 1, 0],
+                                        scale: [0, 1, 0.5],
+                                        x: Math.cos((i * 30) * Math.PI / 180) * 60,
+                                        y: Math.sin((i * 30) * Math.PI / 180) * 60,
+                                      }}
+                                      exit={{ opacity: 0, scale: 0 }}
+                                      transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        delay: i * 0.15,
+                                        ease: "easeOut"
+                                      }}
+                                    />
+                                  ))}
+                                </>
+                              )}
+                            </AnimatePresence>
+                          </motion.div>
+
+                          {/* Pregunta - más espaciada del signo */}
+                          <h3 className="text-2xl md:text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-br from-amber-300 via-amber-200 to-amber-400 animate-text-shimmer bg-[length:200%_100%] bg-left drop-shadow-[0_0_8px_rgba(184,134,11,0.35)] px-4">
+                            {faq.question}
+                          </h3>
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-bold italic mb-2 text-transparent bg-clip-text bg-gradient-to-br from-amber-300 via-amber-200 to-amber-400 animate-text-shimmer bg-[length:200%_100%] bg-left drop-shadow-[0_0_8px_rgba(184,134,11,0.35)]">
-                          {faq.question}
-                        </h3>
-                        <div className="my-4 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent"></div>
-                        <p className="text-base sm:text-lg leading-relaxed text-gray-100 selection:bg-gray-700 selection:text-white">
+                        
+                        {/* Separador elegante */}
+                        <motion.div 
+                          className="my-6 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent"
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          transition={{ delay: 0.3, duration: 0.8 }}
+                        />
+                        
+                        {/* Respuesta */}
+                        <motion.p 
+                          className="text-lg sm:text-xl leading-relaxed text-gray-100 selection:bg-gray-700 selection:text-white text-center px-4"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.5, duration: 0.6 }}
+                        >
                           {faq.answer}
-                        </p>
+                        </motion.p>
                       </motion.div>
                     </motion.div>
                   )}
