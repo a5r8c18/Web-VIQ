@@ -115,16 +115,16 @@ const Faq = () => {
       {/* Fondo animado con cuadrados dorados más oscuros */}
       <div className="area">
         <ul className="circles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+          <li><img src="/logo.svg" alt="VIQ Systems" className="w-full h-full object-contain opacity-80" /></li>
+          <li><img src="/logo.svg" alt="VIQ Systems" className="w-full h-full object-contain opacity-80" /></li>
+          <li><img src="/logo.svg" alt="VIQ Systems" className="w-full h-full object-contain opacity-80" /></li>
+          <li><img src="/logo.svg" alt="VIQ Systems" className="w-full h-full object-contain opacity-80" /></li>
+          <li><img src="/logo.svg" alt="VIQ Systems" className="w-full h-full object-contain opacity-80" /></li>
+          <li><img src="/logo.svg" alt="VIQ Systems" className="w-full h-full object-contain opacity-80" /></li>
+          <li><img src="/logo.svg" alt="VIQ Systems" className="w-full h-full object-contain opacity-80" /></li>
+          <li><img src="/logo.svg" alt="VIQ Systems" className="w-full h-full object-contain opacity-80" /></li>
+          <li><img src="/logo.svg" alt="VIQ Systems" className="w-full h-full object-contain opacity-80" /></li>
+          <li><img src="/logo.svg" alt="VIQ Systems" className="w-full h-full object-contain opacity-80" /></li>
         </ul>
       </div>
       
@@ -395,99 +395,92 @@ const Faq = () => {
 
         .circles li {
           position: absolute;
-          display: block;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           list-style: none;
-          width: 20px;
-          height: 20px;
-          background: rgba(184, 134, 11, 0.6); /* Dorado oscuro y más fuerte */
+          width: 80px;
+          height: 80px;
           animation: animate 25s linear infinite;
           bottom: -150px;
-          border: 1px solid rgba(184, 134, 11, 0.8);
+          background: transparent;
+          border: none;
+          padding: 10px;
         }
 
         .circles li:nth-child(1) {
           left: 25%;
-          width: 80px;
-          height: 80px;
+          width: 100px;
+          height: 100px;
           animation-delay: 0s;
-          background: rgba(184, 134, 11, 0.4);
         }
 
         .circles li:nth-child(2) {
           left: 10%;
-          width: 20px;
-          height: 20px;
+          width: 60px;
+          height: 60px;
           animation-delay: 2s;
           animation-duration: 12s;
-          background: rgba(184, 134, 11, 0.7);
         }
 
         .circles li:nth-child(3) {
           left: 70%;
-          width: 20px;
-          height: 20px;
+          width: 50px;
+          height: 50px;
           animation-delay: 4s;
-          background: rgba(184, 134, 11, 0.5);
         }
 
         .circles li:nth-child(4) {
           left: 40%;
-          width: 60px;
-          height: 60px;
+          width: 80px;
+          height: 80px;
           animation-delay: 0s;
           animation-duration: 18s;
-          background: rgba(184, 134, 11, 0.3);
         }
 
         .circles li:nth-child(5) {
           left: 65%;
-          width: 20px;
-          height: 20px;
+          width: 60px;
+          height: 60px;
           animation-delay: 0s;
-          background: rgba(184, 134, 11, 0.6);
         }
 
         .circles li:nth-child(6) {
           left: 75%;
-          width: 110px;
-          height: 110px;
+          width: 90px;
+          height: 90px;
           animation-delay: 3s;
-          background: rgba(184, 134, 11, 0.2);
         }
 
         .circles li:nth-child(7) {
           left: 35%;
-          width: 150px;
-          height: 150px;
+          width: 120px;
+          height: 120px;
           animation-delay: 7s;
-          background: rgba(184, 134, 11, 0.4);
         }
 
         .circles li:nth-child(8) {
           left: 50%;
-          width: 25px;
-          height: 25px;
+          width: 70px;
+          height: 70px;
           animation-delay: 15s;
           animation-duration: 45s;
-          background: rgba(184, 134, 11, 0.7);
         }
 
         .circles li:nth-child(9) {
           left: 20%;
-          width: 15px;
-          height: 15px;
+          width: 50px;
+          height: 50px;
           animation-delay: 2s;
           animation-duration: 35s;
-          background: rgba(184, 134, 11, 0.5);
         }
 
         .circles li:nth-child(10) {
           left: 85%;
-          width: 150px;
-          height: 150px;
+          width: 100px;
+          height: 100px;
           animation-delay: 0s;
           animation-duration: 11s;
-          background: rgba(184, 134, 11, 0.3);
         }
 
         .gold-glow {
@@ -560,14 +553,12 @@ const Faq = () => {
         @keyframes animate {
           0% {
             transform: translateY(0) rotate(0deg);
-            opacity: 1;
-            border-radius: 0;
+            opacity: 0.8;
           }
 
           100% {
-            transform: translateY(-1000px) rotate(720deg);
+            transform: translateY(-1000px) rotate(360deg);
             opacity: 0;
-            border-radius: 50%;
           }
         }
 

@@ -82,6 +82,12 @@ const Home = () => {
   const totalItems = services.length;
   const totalWidth = itemSize * totalItems;
 
+  // Estado para el desplazamiento suavizado
+  const [smoothOffset, setSmoothOffset] = useState(0);
+  const lastUpdateTime = useRef(0);
+  const isWrapping = useRef(false);
+  const targetOffset = useRef(0);
+
   // Efecto para la animación automática
   useEffect(() => {
     if (isPaused) return;
@@ -95,8 +101,21 @@ const Home = () => {
       lastTimeRef.current = timestamp;
       
       setOffset(prevOffset => {
-        // Incrementamos el desplazamiento sin reiniciar
-        return prevOffset + (speed * deltaTime);
+        let newOffset = prevOffset + (speed * deltaTime);
+        
+        // Verificamos si estamos cerca del final
+        if (newOffset >= totalWidth && !isWrapping.current) {
+          isWrapping.current = true;
+          targetOffset.current = newOffset - totalWidth;
+          return prevOffset; // Mantenemos la posición actual
+        }
+        
+        if (isWrapping.current) {
+          // Si estamos en medio de una transición de reinicio
+          return prevOffset;
+        }
+        
+        return newOffset;
       });
       
       animationRef.current = requestAnimationFrame(animate);
@@ -109,22 +128,81 @@ const Home = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isPaused]);
+  }, [isPaused, totalWidth]);
 
-  // Función para obtener el desplazamiento visual usando módulo
-  const getVisualOffset = (currentOffset) => {
-    return currentOffset % totalWidth;
+  // Efecto para manejar la transición suave
+  useEffect(() => {
+    if (isPaused) return;
+    
+    let animationId;
+    const updateSmoothOffset = () => {
+      const now = performance.now();
+      const deltaTime = now - (lastUpdateTime.current || now - 16);
+      lastUpdateTime.current = now;
+      
+      setSmoothOffset(prev => {
+        if (isWrapping.current) {
+          // Si estamos en modo transición, movemos suavemente al objetivo
+          const diff = targetOffset.current - (prev % totalWidth);
+          const step = Math.sign(diff) * speed * deltaTime * 0.5;
+          
+          if (Math.abs(diff) < 1) {
+            // Terminamos la transición
+            isWrapping.current = false;
+            return targetOffset.current;
+          }
+          
+          return prev + step;
+        }
+        
+        // Seguimos el offset normal
+        return offset % totalWidth;
+      });
+      
+      animationId = requestAnimationFrame(updateSmoothOffset);
+    };
+    
+    animationId = requestAnimationFrame(updateSmoothOffset);
+    
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, [isPaused, offset, totalWidth]);
+
+  // Función para obtener el desplazamiento visual
+  const getVisualOffset = () => {
+    return smoothOffset;
   };
 
   // Función para navegar a la siguiente tarjeta
   const nextSlide = useCallback(() => {
+    if (isWrapping.current) {
+      // Si estamos en medio de una transición, la cancelamos
+      isWrapping.current = false;
+      setSmoothOffset(prev => {
+        // Ajustamos la posición actual para que sea consistente
+        const currentVisualOffset = prev % totalWidth;
+        return prev - currentVisualOffset + itemSize;
+      });
+    }
     setOffset(prev => prev + itemSize);
-  }, [itemSize]);
+  }, [itemSize, totalWidth]);
 
   // Función para navegar a la tarjeta anterior
   const prevSlide = useCallback(() => {
+    if (isWrapping.current) {
+      // Si estamos en medio de una transición, la cancelamos
+      isWrapping.current = false;
+      setSmoothOffset(prev => {
+        // Ajustamos la posición actual para que sea consistente
+        const currentVisualOffset = prev % totalWidth;
+        return prev - currentVisualOffset - itemSize + totalWidth;
+      });
+    }
     setOffset(prev => prev - itemSize);
-  }, [itemSize]);
+  }, [itemSize, totalWidth]);
 
   // Estado para el carrusel de testimonios
   const [testimonialOffset, setTestimonialOffset] = useState(0);

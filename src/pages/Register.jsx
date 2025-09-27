@@ -8,6 +8,7 @@ import {
 import { useForm } from '../hooks/useForm'
 import ValidatedInput from '../components/ValidatedInput'
 import PhoneInput from '../components/PhoneInput'
+import '../styles/floatingLogos.css'
 
 const Register = () => {
   const initialFormData = {
@@ -140,6 +141,15 @@ const Register = () => {
           {/* Efectos de iluminación */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(251,191,36,0.1),transparent_40%)]"></div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(217,119,6,0.1),transparent_40%)]"></div>
+          
+          {/* Logos flotantes */}
+          <div className="floating-logos">
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className="logo">
+                <img src="/logo.svg" alt="VIQ Systems" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
