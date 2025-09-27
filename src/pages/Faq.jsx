@@ -192,7 +192,7 @@ const Faq = () => {
                   
                   {/* Contenido del botón */}
                   <div className="flex items-center justify-between w-full px-6 py-5 text-left">
-                    <h3 className="text-lg font-medium text-amber-800 group-hover:text-amber-900 transition-colors duration-500">
+                    <h3 className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 animate-text-shimmer bg-[length:200%_100%] group-hover:bg-[length:100%_100%] transition-all duration-500">
                       {faq.question}
                     </h3>
                     {activeIndex === index ? (
@@ -264,7 +264,7 @@ const Faq = () => {
                             
                             {/* Signo de interrogación principal - MÁS GRANDE Y COMPLETO */}
                             <motion.div
-                              className="py-4 text-8xl md:text-9xl font-black bg-gradient-to-br from-amber-300 via-amber-200 to-amber-400 bg-clip-text text-transparent relative z-10 cursor-pointer select-none"
+                              className="py-4 px-6 text-8xl md:text-9xl font-black bg-gradient-to-br from-amber-300 via-amber-200 to-amber-400 bg-clip-text text-transparent relative z-10 cursor-pointer select-none inline-flex items-center justify-center min-w-[120px]"
                               animate={questionMarkHover ? 
                                 { 
                                   scale: [1, 1.15, 1],
@@ -323,7 +323,7 @@ const Faq = () => {
                           </motion.div>
 
                           {/* Pregunta - más espaciada del signo */}
-                          <h3 className="text-2xl md:text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-br from-amber-300 via-amber-200 to-amber-400 animate-text-shimmer bg-[length:200%_100%] bg-left drop-shadow-[0_0_8px_rgba(184,134,11,0.35)] px-4">
+                          <h3 className="text-2xl md:text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400 animate-text-shimmer bg-[length:200%_100%] px-4 tracking-tight leading-tight">
                             {faq.question}
                           </h3>
                         </div>
