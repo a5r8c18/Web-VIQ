@@ -192,7 +192,7 @@ const Faq = () => {
                   
                   {/* Contenido del botón */}
                   <div className="flex items-center justify-between w-full px-6 py-5 text-left">
-                    <h3 className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 animate-text-shimmer bg-[length:200%_100%] group-hover:bg-[length:100%_100%] transition-all duration-500">
+                    <h3 className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 animate-text-shimmer bg-[length:200%_100%] group-hover:text-black group-hover:bg-none transition-colors duration-300">
                       {faq.question}
                     </h3>
                     {activeIndex === index ? (
