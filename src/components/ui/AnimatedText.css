@@ -1,0 +1,87 @@
+/* Estilos para el texto animado */
+.animated-text-wrapper {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60px;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.animated-text {
+  position: relative;
+  display: inline-flex;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.2;
+  z-index: 2;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: letter-appear 0.5s forwards;
+  animation-delay: calc(0.1s * var(--i));
+  white-space: pre;
+}
+
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: loader 2s infinite;
+  z-index: 1;
+}
+
+@keyframes letter-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loader {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Efecto de brillo al pasar el mouse */
+.animated-text-wrapper:hover .letter {
+  text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #fbbf24;
+  transition: text-shadow 0.3s ease;
+}
+
+/* Ajustes para diferentes tamaños de pantalla */
+@media (max-width: 768px) {
+  .animated-text {
+    font-size: 0.9rem;
+  }
+  
+  .animated-text-wrapper {
+    min-height: 50px;
+  }
+}
