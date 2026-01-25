@@ -1,1 +1,0 @@
-// This file has been removed. Please use src/components/ui/ThemeToggle.jsx instead

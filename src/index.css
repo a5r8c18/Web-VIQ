@@ -1,3 +1,4 @@
+@import '@fortawesome/fontawesome-free/css/all.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -159,6 +160,17 @@
   .animation-delay-4000 {
     animation-delay: 4s;
   }
+}
+
+@keyframes ring {
+  0%, 100% { transform: rotate(0deg); }
+  10%, 30% { transform: rotate(-10deg); }
+  20%, 40% { transform: rotate(10deg); }
+  50% { transform: rotate(0deg); }
+}
+
+.animate-ring {
+  animation: ring 1s ease-in-out infinite;
 }
 
 @keyframes blob {
