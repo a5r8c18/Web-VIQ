@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Menu, X, Phone, Mail, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -7,21 +7,20 @@ const Header = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   const navigation = [
-    { name: 'Inicio', href: '/' },
+    { name: 'Home', href: '/' },
     { 
-      name: 'Servicios', 
+      name: 'Services', 
       href: '#',
       hasDropdown: true,
       dropdown: [
-        { name: 'Desarrollo Web', href: '/services/web-development' },
-        { name: 'Marketing Digital', href: '/services/digital-marketing' },
-        { name: 'Branding', href: '/services/branding' },
-        { name: 'Software a Medida', href: '/services/custom-software' }
+        { name: 'Web Development', href: '/services/web-development' },
+        { name: 'Digital Marketing', href: '/services/digital-marketing' },
+        { name: 'Branding', href: '/services/branding' }
       ]
     },
-    { name: 'Proyectos', href: '/projects' },
-    { name: 'Nosotros', href: '/about' },
-    { name: 'Contacto', href: '/contact' }
+    { name: 'Projects', href: '/projects' },
+    { name: 'About us', href: '/about-us' },
+    { name: 'Contact', href: '/contact' }
   ];
 
   return (
@@ -86,10 +85,39 @@ const Header = () => {
                 className="relative"
               >
                 {item.hasDropdown ? (
-                  <button className="flex items-center space-x-1 text-[var(--color-text-secondary)] hover:text-amber-500 transition-colors font-medium bg-transparent hover:bg-transparent">
-                    <span>{item.name}</span>
-                    <ChevronDown className="w-4 h-4" />
-                  </button>
+                  <div 
+                    className="relative"
+                    onMouseEnter={() => setIsServicesOpen(true)}
+                    onMouseLeave={() => setIsServicesOpen(false)}
+                  >
+                    <button className="flex items-center space-x-1 text-[var(--color-text-secondary)] hover:text-amber-500 transition-colors font-medium bg-transparent hover:bg-transparent">
+                      <span>{item.name}</span>
+                      <ChevronDown className="w-4 h-4" />
+                    </button>
+
+                    {/* Dropdown Menu */}
+                    <AnimatePresence>
+                      {isServicesOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute top-full left-0 mt-2 w-64 bg-[var(--color-bg-secondary)] border border-[var(--color-border-default)] rounded-lg shadow-xl shadow-amber-500/10"
+                        >
+                          {item.dropdown?.map((dropdownItem) => (
+                            <a
+                              key={dropdownItem.name}
+                              href={dropdownItem.href}
+                              className="block px-4 py-3 text-[var(--color-text-secondary)] hover:bg-amber-500/10 hover:text-amber-500 transition-colors first:rounded-t-lg last:rounded-b-lg"
+                            >
+                              {dropdownItem.name}
+                            </a>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 ) : (
                   <a 
                     href={item.href} 
@@ -98,29 +126,6 @@ const Header = () => {
                     {item.name}
                   </a>
                 )}
-
-                {/* Dropdown Menu */}
-                <AnimatePresence>
-                  {item.hasDropdown && isServicesOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-2 w-64 bg-[var(--color-bg-secondary)] border border-[var(--color-border-default)] rounded-lg shadow-xl shadow-amber-500/10"
-                    >
-                      {item.dropdown?.map((dropdownItem) => (
-                        <a
-                          key={dropdownItem.name}
-                          href={dropdownItem.href}
-                          className="block px-4 py-3 text-[var(--color-text-secondary)] hover:bg-amber-500/10 hover:text-amber-500 transition-colors first:rounded-t-lg last:rounded-b-lg"
-                        >
-                          {dropdownItem.name}
-                        </a>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </motion.div>
             ))}
           </nav>

@@ -10,8 +10,7 @@ const Footer = () => {
       links: [
         { name: 'Desarrollo Web', href: '/services/web-development' },
         { name: 'Marketing Digital', href: '/services/digital-marketing' },
-        { name: 'Branding', href: '/services/branding' },
-        { name: 'Software a Medida', href: '/services/custom-software' }
+        { name: 'Branding', href: '/services/branding' }
       ]
     },
     {
@@ -43,47 +42,6 @@ const Footer = () => {
 
   return (
     <footer className="bg-[var(--color-bg-secondary)] border-t border-[var(--color-border-default)]">
-      {/* Newsletter Section */}
-      <div className="bg-gradient-to-r from-amber-600/10 to-amber-500/10 border-b border-amber-500/20">
-        <div className="container-custom py-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.h3 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-2xl font-bold mb-4 text-[var(--color-text-primary)]"
-            >
-              ¿Listo para transformar tu presencia digital?
-            </motion.h3>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-[var(--color-text-secondary)] mb-6"
-            >
-              Suscríbete para recibir las últimas tendencias en tecnología y marketing digital.
-            </motion.p>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
-            >
-              <input
-                type="email"
-                placeholder="Tu correo electrónico"
-                className="input flex-1"
-              />
-              <button className="btn-primary whitespace-nowrap">
-                Suscribirse
-              </button>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer Content */}
       <div className="container-custom py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
