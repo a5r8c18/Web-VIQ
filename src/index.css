@@ -188,6 +188,35 @@
   }
 }
 
+/* Ocultar scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animación para carrusel */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-calc(320px * 7 + 24px * 7)); /* Ancho de 7 cards + espacio entre ellas */
+  }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
+
+/* Pausar animación al hover */
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
 /* Transiciones suaves para el cambio de tema */
 * {
   transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
