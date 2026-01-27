@@ -5,56 +5,56 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'Proyecto 1',
-      description: 'Descripción breve del primer proyecto',
+      title: 'Project 1',
+      description: 'Brief description of the first project',
       image: '/images/projects/proyect-1/cover.jpg',
       fullImage: '/images/projects/proyect-1/full.jpg',
-      category: 'Desarrollo Web'
+      category: 'Web Development'
     },
     {
       id: 2,
-      title: 'Proyecto 2',
-      description: 'Descripción breve del segundo proyecto',
+      title: 'Project 2',
+      description: 'Brief description of the second project',
       image: '/images/projects/proyect-2/cover.jpg',
-      category: 'Marketing Digital'
+      category: 'Digital Marketing'
     },
     {
       id: 3,
-      title: 'Proyecto 3',
-      description: 'Descripción breve del tercer proyecto',
+      title: 'Project 3',
+      description: 'Brief description of the third project',
       image: '/images/projects/proyect-3/cover.jpg',
       fullImage: '/images/projects/proyect-3/full.jpg',
-      category: 'Desarrollo Web'
+      category: 'Web Development'
     },
     {
       id: 4,
-      title: 'Proyecto 4',
-      description: 'Descripción breve del cuarto proyecto',
+      title: 'Project 4',
+      description: 'Brief description of the fourth project',
       image: '/images/projects/proyect-4/cover.jpg',
       category: 'Branding'
     },
     {
       id: 5,
-      title: 'Proyecto 5',
-      description: 'Descripción breve del quinto proyecto',
+      title: 'Project 5',
+      description: 'Brief description of the fifth project',
       image: '/images/projects/proyect-5/cover.jpg',
-      category: 'Software a Medida'
+      category: 'Custom Software'
     },
     {
       id: 6,
-      title: 'Proyecto 6',
-      description: 'Descripción breve del sexto proyecto',
+      title: 'Project 6',
+      description: 'Brief description of the sixth project',
       image: '/images/projects/proyect-6/cover.jpg',
       fullImage: '/images/projects/proyect-6/full.jpg',
-      category: 'Marketing Digital'
+      category: 'Digital Marketing'
     },
     {
       id: 7,
-      title: 'Proyecto 7',
-      description: 'Descripción breve del séptimo proyecto',
+      title: 'Project 7',
+      description: 'Brief description of the seventh project',
       image: '/images/projects/proyect-7/cover.jpg',
       fullImage: '/images/projects/proyect-7/full.jpg',
-      category: 'Desarrollo Web'
+      category: 'Web Development'
     }
   ];
 
@@ -68,10 +68,10 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-amber-500 to-amber-400 bg-clip-text text-transparent">
-            Nuestros Proyectos
+            Our Projects
           </h1>
           <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-            Descubre algunos de los trabajos más destacados que hemos desarrollado para nuestros clientes.
+            Discover some of the most outstanding work we have developed for our clients.
           </p>
         </motion.div>
 
@@ -104,12 +104,12 @@ const Projects = () => {
                     {project.fullImage && (
                       <button className="flex items-center space-x-2 px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors">
                         <Eye className="w-4 h-4" />
-                        <span>Ver más</span>
+                        <span>View more</span>
                       </button>
                     )}
                     <button className="flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-lg hover:bg-white/20 transition-colors">
                       <ExternalLink className="w-4 h-4" />
-                      <span>Visitar</span>
+                      <span>Visit</span>
                     </button>
                   </div>
                 </div>
