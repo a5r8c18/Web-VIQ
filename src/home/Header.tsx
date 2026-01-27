@@ -25,7 +25,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-bg-primary)]/90 backdrop-blur-md border-b border-[var(--color-border-default)]">
-      {/* Top Bar */}
+      
       <div className="bg-gradient-to-r from-amber-600/20 to-amber-500/20 border-b border-amber-500/20">
         <div className="container-custom">
           <div className="flex justify-between items-center py-2 text-sm">
