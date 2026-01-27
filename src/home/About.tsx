@@ -25,10 +25,10 @@ const About = () => {
   }, []);
 
   const stats = [
-    { number: '10+', label: 'Años de Experiencia', icon: Award, description: 'De innovación digital' },
-    { number: '500+', label: 'Proyectos Completados', icon: Target, description: 'En diversas industrias' },
-    { number: '98%', label: 'Clientes Satisfechos', icon: Users, description: 'De retención' },
-    { number: '24/7', label: 'Soporte Técnico', icon: TrendingUp, description: 'Siempre disponible' }
+    { number: '10+', label: 'Years of Experience', icon: Award, description: 'Of digital innovation' },
+    { number: '500+', label: 'Projects Completed', icon: Target, description: 'Across diverse industries' },
+    { number: '98%', label: 'Satisfied Clients', icon: Users, description: 'Retention rate' },
+    { number: '24/7', label: 'Technical Support', icon: TrendingUp, description: 'Always available' }
   ];
 
   return (
@@ -62,24 +62,24 @@ const About = () => {
                   transition={{ delay: 0.3 }}
                 >
                   <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                    Transformación Digital con <span className="text-amber-400">Impacto Real</span>
+                    Digital Transformation with <span className="text-amber-400">Real Impact</span>
                   </h2>
                   <p className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
-                    Creamos experiencias digitales que no solo se ven increíbles, sino que impulsan resultados medibles para tu negocio.
+                    We create digital experiences that not only look incredible, but drive measurable results for your business.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <a 
                       href="/contact" 
                       className="group inline-flex items-center px-8 py-4 bg-amber-500 text-white font-semibold rounded-xl hover:bg-amber-400 transition-all duration-300"
                     >
-                      Iniciar Conversación
+                      Start Conversation
                       <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                     </a>
                     <a 
                       href="/projects" 
                       className="group inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300"
                     >
-                      Ver Proyectos
+                      View Projects
                       <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                     </a>
                   </div>
@@ -99,7 +99,7 @@ const About = () => {
           <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-amber-500/20 via-amber-400/20 to-amber-500/20 rounded-full mb-8 border border-amber-500/30 backdrop-blur-sm">
             <div className="w-2 h-2 bg-amber-400 rounded-full mr-3 animate-pulse" />
             <Globe className="w-5 h-5 text-amber-400 mr-3" />
-            <span className="text-sm text-amber-300 font-semibold tracking-wide uppercase">Líderes en Transformación Digital</span>
+            <span className="text-sm text-amber-300 font-semibold tracking-wide uppercase">Leaders in Digital Transformation</span>
           </div>
           
           <div className="relative mb-8">
@@ -112,9 +112,9 @@ const About = () => {
           </div>
           
           <p className="text-xl md:text-2xl lg:text-3xl text-[var(--color-text-secondary)] max-w-5xl mx-auto leading-relaxed font-light">
-            Transformamos ideas en 
+            We transform ideas into 
             <span className="relative">
-              <span className="text-amber-400 font-bold"> soluciones digitales excepcionales</span>
+              <span className="text-amber-400 font-bold"> exceptional digital solutions that drive business growth and create memorable experiences.</span>
               <svg className="absolute bottom-0 left-0 w-full h-2 overflow-visible" viewBox="0 0 100 10" preserveAspectRatio="none">
                 <path d="M0,5 Q25,8 50,5 T100,5" stroke="url(#gradient)" strokeWidth="2" fill="none" />
                 <defs>
@@ -126,8 +126,7 @@ const About = () => {
                 </defs>
               </svg>
             </span>
-            que impulsan el crecimiento empresarial y crean experiencias memorables.
-          </p>
+            </p>
         </motion.div>
 
         {/* Enhanced Stats Grid */}
@@ -179,9 +178,9 @@ const About = () => {
           className="mb-20 -mx-4 md:-mx-6 lg:-mx-8"
         >
           <div className="text-center mb-12 px-4">
-            <h3 className="text-4xl font-bold mb-4 text-[var(--color-text-primary)]">Nuestros Proyectos Destacados</h3>
+            <h3 className="text-4xl font-bold mb-4 text-[var(--color-text-primary)]">Our Featured Projects</h3>
             <p className="text-[var(--color-text-secondary)] text-lg max-w-2xl mx-auto">
-              Un vistazo a algunos de los trabajos más recientes que hemos desarrollado
+              A look at some of the most recent work we have developed
             </p>
           </div>
           
@@ -198,19 +197,19 @@ const About = () => {
                     <div className="aspect-[16/10] overflow-hidden">
                       <img
                         src={`/images/projects/proyect-${project}/cover.jpg`}
-                        alt={`Proyecto ${project}`}
+                        alt={`Project ${project}`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <h4 className="text-xl font-semibold text-white mb-2">Proyecto {project}</h4>
-                        <p className="text-gray-300 text-sm mb-4">Solución digital personalizada</p>
+                        <h4 className="text-xl font-semibold text-white mb-2">Project {project}</h4>
+                        <p className="text-gray-300 text-sm mb-4">Custom digital solution</p>
                         <a 
                           href="/projects" 
                           className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors"
                         >
-                          Ver más
+                          View more
                           <ArrowRight className="w-4 h-4 ml-1" />
                         </a>
                       </div>
@@ -225,19 +224,19 @@ const About = () => {
                     <div className="aspect-[16/10] overflow-hidden">
                       <img
                         src={`/images/projects/proyect-${project}/cover.jpg`}
-                        alt={`Proyecto ${project}`}
+                        alt={`Project ${project}`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <h4 className="text-xl font-semibold text-white mb-2">Proyecto {project}</h4>
-                        <p className="text-gray-300 text-sm mb-4">Solución digital personalizada</p>
+                        <h4 className="text-xl font-semibold text-white mb-2">Project {project}</h4>
+                        <p className="text-gray-300 text-sm mb-4">Custom digital solution</p>
                         <a 
                           href="/projects" 
                           className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors"
                         >
-                          Ver más
+                          View more
                           <ArrowRight className="w-4 h-4 ml-1" />
                         </a>
                       </div>
@@ -253,7 +252,7 @@ const About = () => {
               href="/projects" 
               className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-400 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-amber-500/25 transition-all duration-300"
             >
-              Ver Todos los Proyectos
+              View All Projects
               <ArrowRight className="w-5 h-5 ml-2" />
             </a>
           </div>

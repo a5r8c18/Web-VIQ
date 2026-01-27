@@ -6,28 +6,28 @@ const Footer = () => {
 
   const footerSections = [
     {
-      title: 'Servicios',
+      title: 'Services',
       links: [
-        { name: 'Desarrollo Web', href: '/services/web-development' },
-        { name: 'Marketing Digital', href: '/services/digital-marketing' },
+        { name: 'Web Development', href: '/services/web-development' },
+        { name: 'Digital Marketing', href: '/services/digital-marketing' },
         { name: 'Branding', href: '/services/branding' }
       ]
     },
     {
-      title: 'Empresa',
+      title: 'Company',
       links: [
-        { name: 'Nosotros', href: '/about' },
-        { name: 'Proyectos', href: '/projects' },
-        { name: 'Testimonios', href: '/testimonials' },
+        { name: 'About Us', href: '/about' },
+        { name: 'Projects', href: '/projects' },
+        { name: 'Testimonials', href: '/testimonials' },
         { name: 'Blog', href: '/blog' }
       ]
     },
     {
       title: 'Legal',
       links: [
-        { name: 'Política de Privacidad', href: '/privacy' },
-        { name: 'Términos de Servicio', href: '/terms' },
-        { name: 'Política de Cookies', href: '/cookies' }
+        { name: 'Privacy Policy', href: '/privacy' },
+        { name: 'Terms of Service', href: '/terms' },
+        { name: 'Cookie Policy', href: '/cookies' }
       ]
     }
   ];
@@ -66,7 +66,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-[var(--color-text-secondary)] mb-6">
-              Transformamos ideas en soluciones digitales excepcionales que impulsan el crecimiento de tu negocio.
+              We transform ideas into exceptional digital solutions that drive your business growth.
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-[var(--color-text-secondary)]">
@@ -122,7 +122,7 @@ const Footer = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-6">
-              <span className="text-[var(--color-text-secondary)] text-sm">Síguenos:</span>
+              <span className="text-[var(--color-text-secondary)] text-sm">Follow us:</span>
               <div className="flex items-center space-x-4">
                 {socialLinks.map((social) => (
                   <a
@@ -137,7 +137,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="text-[var(--color-text-muted)] text-sm">
-              © {currentYear} VIQ Systems. Todos los derechos reservados.
+              © {currentYear} VIQ Systems. All rights reserved.
             </div>
           </div>
         </motion.div>
