@@ -178,9 +178,9 @@ const About = () => {
           className="mb-20 -mx-4 md:-mx-6 lg:-mx-8"
         >
           <div className="text-center mb-12 px-4">
-            <h3 className="text-4xl font-bold mb-4 text-[var(--color-text-primary)]">Our Featured Projects</h3>
+            <h3 className="text-4xl font-bold mb-4 text-[var(--color-text-primary)]">Our Clients</h3>
             <p className="text-[var(--color-text-secondary)] text-lg max-w-2xl mx-auto">
-              A look at some of the most recent work we have developed
+              We have worked with a variety of clients across different industries
             </p>
           </div>
           
@@ -249,10 +249,10 @@ const About = () => {
           
           <div className="text-center mt-8">
             <a 
-              href="/projects" 
+              href="/clients" 
               className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-400 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-amber-500/25 transition-all duration-300"
             >
-              View All Projects
+              View All Clients
               <ArrowRight className="w-5 h-5 ml-2" />
             </a>
           </div>

@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './layout/Layout';
 import Hero from './home/Hero';
 import Projects from './pages/Projects';
+import Clients from './pages/Clients';
 import WebDevelopment from './pages/WebDevelopment';
 import DigitalMarketing from './pages/DigitalMarketing';
 import Branding from './pages/Branding';
@@ -12,6 +13,7 @@ const App: React.FC = () => {
     <Layout>
       <Routes>
         <Route path="/" element={<Hero />} />
+        <Route path="/clients" element={<Clients />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/services/web-development" element={<WebDevelopment />} />
         <Route path="/services/digital-marketing" element={<DigitalMarketing />} />

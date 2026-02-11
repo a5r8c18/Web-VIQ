@@ -18,39 +18,18 @@ const Header = () => {
         { name: 'Branding', href: '/services/branding' }
       ]
     },
+    { name: 'Clients', href: '/clients' },
     { name: 'Projects', href: '/projects' },
     { name: 'About us', href: '/about-us' },
     { name: 'Contact', href: '/contact' }
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-bg-primary)]/90 backdrop-blur-md border-b border-[var(--color-border-default)]">
-      
-      <div className="bg-gradient-to-r from-amber-600/20 to-amber-500/20 border-b border-amber-500/20">
-        <div className="container-custom">
-          <div className="flex justify-between items-center py-2 text-sm">
-            <div className="flex items-center space-x-4 text-[var(--color-text-secondary)]">
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-amber-500 animate-ring" />
-                <span>+1 (305) 123-4567</span>
-              </div>
-              <div className="hidden md:flex items-center space-x-2">
-                <Mail className="w-4 h-4 text-amber-500" />
-                <span>info@viqsystems.com</span>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <button className="text-[var(--color-text-muted)] hover:text-amber-500 transition-colors text-xs opacity-75 hover:opacity-100">
-                
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-bg-primary)]/90 backdrop-blur-md">
 
       {/* Main Navigation */}
       <div className="container-custom">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-32">
           {/* Logo */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -62,14 +41,8 @@ const Header = () => {
                 <img 
                   src="/images/logo.svg" 
                   alt="VIQ Systems" 
-                  className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+                  className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
                 />
-              </div>
-              <div className="hidden lg:block">
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-amber-500 to-amber-400 bg-clip-text text-transparent">
-                  VIQ Systems
-                </h1>
-                <p className="text-xs text-[var(--color-text-muted)]">Digital Excellence</p>
               </div>
             </a>
           </motion.div>
