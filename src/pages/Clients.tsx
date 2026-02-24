@@ -91,7 +91,7 @@ const Clients = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 mb-20"
           >
             {stats.map((stat, index) => (
               <motion.div
@@ -127,7 +127,7 @@ const Clients = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {clients.map((client, index) => (
               <motion.div
                 key={client.name}

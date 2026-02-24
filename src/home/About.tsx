@@ -25,7 +25,7 @@ const About = () => {
   }, []);
 
   const stats = [
-    { number: '10+', label: 'Years of Experience', icon: Award, description: 'Of digital innovation' },
+    { number: '9+', label: 'Years of Experience', icon: Award, description: 'Delivering high-quality technology solutions' },
     { number: '500+', label: 'Projects Completed', icon: Target, description: 'Across diverse industries' },
     { number: '98%', label: 'Satisfied Clients', icon: Users, description: 'Retention rate' },
     { number: '24/7', label: 'Technical Support', icon: TrendingUp, description: 'Always available' }
@@ -39,48 +39,49 @@ const About = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative mb-20 -mx-4 md:-mx-6 lg:-mx-8"
+          className="relative mb-20"
         >
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/20 border-0">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/20 border-0" style={{ minHeight: '400px' }}>
             <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/85 to-black/90 z-10" />
             <video
               autoPlay
               muted
               loop
               playsInline
-              className="w-full h-[400px] object-cover scale-105"
+              className="w-full h-full object-cover absolute inset-0"
+              style={{ minHeight: '400px' }}
             >
               <source src="/videos/2792370-hd_1920_1080_30fps.mp4" type="video/mp4" />
             </video>
             
-            <div className="absolute inset-0 z-20 flex items-center justify-center">
-              <div className="text-center text-white max-w-4xl mx-auto px-8">
+            <div className="absolute inset-0 z-20 flex items-center justify-center p-4">
+              <div className="text-center text-white max-w-4xl mx-auto">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 }}
                 >
-                  <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
                     Digital Transformation with <span className="text-amber-400">Real Impact</span>
                   </h2>
-                  <p className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
+                  <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
                     We create digital experiences that not only look incredible, but drive measurable results for your business.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <a 
                       href="/contact" 
-                      className="group inline-flex items-center px-8 py-4 bg-amber-500 text-white font-semibold rounded-xl hover:bg-amber-400 transition-all duration-300"
+                      className="group inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-amber-500 text-white font-semibold rounded-xl hover:bg-amber-400 transition-all duration-300 text-sm sm:text-base"
                     >
                       Start Conversation
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                     </a>
                     <a 
                       href="/projects" 
-                      className="group inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300"
+                      className="group inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300 text-sm sm:text-base"
                     >
                       View Projects
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                     </a>
                   </div>
                 </motion.div>
@@ -135,7 +136,7 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 mb-20 items-stretch"
         >
           {stats.map((stat, index) => (
             <motion.div
@@ -147,7 +148,7 @@ const About = () => {
               className="group relative"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-amber-400/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl" />
-              <div className="relative bg-gradient-to-br from-[var(--color-bg-secondary)] to-[var(--color-bg-tertiary)] border border-amber-500/20 rounded-3xl p-8 hover:border-amber-400/40 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 group-hover:-translate-y-2">
+              <div className="relative bg-gradient-to-br from-[var(--color-bg-secondary)] to-[var(--color-bg-tertiary)] border border-amber-500/20 rounded-3xl p-6 sm:p-8 hover:border-amber-400/40 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 group-hover:-translate-y-2 h-full">
                 <div className="flex items-center justify-center mb-6">
                   <div className="relative">
                     <div className="absolute inset-0 bg-amber-400/20 rounded-full blur-lg" />

@@ -27,7 +27,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-amber-500 to-amber-400 bg-clip-text text-transparent"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-amber-500 to-amber-400 bg-clip-text text-transparent"
           >
             Welcome to VIQ Systems
           </motion.h1>
@@ -35,9 +35,9 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl text-white/90 mb-8 max-w-3xl mx-auto"
+            className="text-lg sm:text-xl text-white/90 mb-8 max-w-3xl mx-auto px-4"
           >
-           We transform ideas into exceptional digital solutions. Web development, digital marketing, and branding that propel your business forward.
+           With 9 years of experience in the industry, we transform ideas into exceptional digital solutions. Web development, digital marketing, and branding that propel your business forward.
           </motion.p>
           <motion.div 
             initial={{ opacity: 0, y: 30 }}

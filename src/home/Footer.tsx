@@ -41,16 +41,19 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[var(--color-bg-secondary)] border-t border-[var(--color-border-default)]">
+    <footer className="bg-[var(--color-bg-secondary)] border-t border-[var(--color-border-default)] relative">
+      {/* Fondo para bloquear partículas */}
+      <div className="absolute inset-0 bg-[var(--color-bg-secondary)]" />
+      
       {/* Main Footer Content */}
-      <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="container-custom py-16 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-1"
+            className="sm:col-span-2 lg:col-span-1"
           >
             <div className="flex items-center space-x-3 mb-6">
               <img 
@@ -92,6 +95,7 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: sectionIndex * 0.1 }}
+              className="text-center sm:text-left"
             >
               <h4 className="text-lg font-semibold text-[var(--color-text-primary)] mb-6">
                 {section.title}
@@ -120,10 +124,11 @@ const Footer = () => {
           transition={{ delay: 0.4 }}
           className="border-t border-[var(--color-border-default)] mt-12 pt-8"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-6">
-              <span className="text-[var(--color-text-secondary)] text-sm">Follow us:</span>
-              <div className="flex items-center space-x-4">
+          <div className="flex flex-col space-y-6">
+            {/* Social Media Section */}
+            <div className="text-center">
+              <span className="text-[var(--color-text-secondary)] text-sm mb-4 block">Follow us:</span>
+              <div className="flex items-center justify-center space-x-4">
                 {socialLinks.map((social) => (
                   <a
                     key={social.label}
@@ -136,8 +141,10 @@ const Footer = () => {
                 ))}
               </div>
             </div>
-            <div className="text-[var(--color-text-muted)] text-sm">
-              © {currentYear} VIQ Systems. All rights reserved.
+            
+            {/* Copyright */}
+            <div className="text-center text-[var(--color-text-muted)] text-sm">
+              © {currentYear} VIQ Systems INC. All rights reserved.
             </div>
           </div>
         </motion.div>

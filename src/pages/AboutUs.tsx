@@ -1,12 +1,43 @@
 import { motion } from 'framer-motion';
-import { Users, Target, Eye, Heart, Award, Zap, Globe, Code, Briefcase, GraduationCap, MapPin, Mail, Phone, Linkedin, Twitter } from 'lucide-react';
+import { Users, Target, Eye, Award, Briefcase, Mail, TrendingUp } from 'lucide-react';
+import FloatingParticles from '../components/FloatingParticles';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const letterVariants = {
+  hidden: { 
+    opacity: 0,
+    y: 30,
+    scale: 0.8
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring" as const,
+      damping: 15,
+      stiffness: 100,
+      duration: 0.4
+    }
+  }
+};
 
 const AboutUs = () => {
   const team = [
     {
       name: 'Alex Rodriguez',
       position: 'CEO & Founder',
-      image: '/images/team/alex.jpg',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
       bio: 'Visionary leader with 15+ years in digital transformation and business strategy.',
       skills: ['Strategic Planning', 'Business Development', 'Innovation'],
       social: { linkedin: '#', twitter: '#' }
@@ -14,7 +45,7 @@ const AboutUs = () => {
     {
       name: 'Sarah Chen',
       position: 'CTO',
-      image: '/images/team/sarah.jpg',
+      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face',
       bio: 'Tech expert specializing in scalable architectures and cutting-edge solutions.',
       skills: ['Cloud Architecture', 'AI/ML', 'System Design'],
       social: { linkedin: '#', twitter: '#' }
@@ -22,7 +53,7 @@ const AboutUs = () => {
     {
       name: 'Marcus Johnson',
       position: 'Creative Director',
-      image: '/images/team/marcus.jpg',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
       bio: 'Award-winning designer passionate about creating memorable brand experiences.',
       skills: ['Brand Design', 'UX/UI', 'Creative Strategy'],
       social: { linkedin: '#', twitter: '#' }
@@ -30,70 +61,93 @@ const AboutUs = () => {
     {
       name: 'Emily Park',
       position: 'Marketing Director',
-      image: '/images/team/emily.jpg',
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
       bio: 'Data-driven marketing specialist with proven track record in growth strategies.',
       skills: ['Digital Marketing', 'Analytics', 'Content Strategy'],
       social: { linkedin: '#', twitter: '#' }
     }
   ];
 
-  const values = [
-    {
-      icon: Heart,
-      title: 'Passion for Excellence',
-      description: 'We are driven by a relentless pursuit of excellence in everything we do.'
-    },
-    {
-      icon: Users,
-      title: 'Client-Centric Approach',
-      description: 'Our clients success is our success. We build partnerships, not just projects.'
-    },
-    {
-      icon: Zap,
-      title: 'Innovation First',
-      description: 'We embrace cutting-edge technologies and creative solutions to stay ahead.'
-    },
-    {
-      icon: Globe,
-      title: 'Global Perspective',
-      description: 'We bring diverse experiences and global insights to every challenge.'
-    }
-  ];
-
   const stats = [
-    { number: '50+', label: 'Team Members' },
-    { number: '500+', label: 'Projects Completed' },
-    { number: '15+', label: 'Years Experience' },
-    { number: '98%', label: 'Client Satisfaction' }
+    { number: '9+', label: 'Years Experience', icon: Award, description: 'Delivering high-quality technology solutions' },
+    { number: '150+', label: 'Projects Delivered', icon: Target, description: 'Across diverse industries' },
+    { number: '98%', label: 'Client Satisfaction', icon: Users, description: 'Retention rate' },
+    { number: '24/7', label: 'Technical Support', icon: TrendingUp, description: 'Always available' }
   ];
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg-primary)] pt-24">
+    <><FloatingParticles /><div className="min-h-screen pt-24 relative z-10">
       <div className="container-custom">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-20"
+          className="text-center mb-20 relative"
         >
-          <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-amber-500/20 via-amber-400/20 to-amber-500/20 rounded-full mb-8 border border-amber-500/30 backdrop-blur-sm">
-            <div className="w-2 h-2 bg-amber-400 rounded-full mr-3 animate-pulse" />
-            <Users className="w-5 h-5 text-amber-400 mr-3" />
-            <span className="text-sm text-amber-300 font-semibold tracking-wide uppercase">About VIQ Systems</span>
+          {/* Background Image */}
+          <div className="absolute inset-0 -mx-8 -mt-24 rounded-2xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-600/15 via-amber-500/10 to-transparent z-10" />
+            <img
+              src="/images/6zTkyqP0n_2000x1500__1.jpg"
+              alt="Team working together"
+              className="w-full h-full object-cover object-center scale-100" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-20" />
           </div>
-          
-          <div className="relative mb-12">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black mb-6">
-              <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 bg-clip-text text-transparent">
-                Meet Our Team
-              </span>
-            </h1>
-            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-50" />
+
+          {/* Content */}
+          <div className="relative z-30 pt-40 pb-16">
+            <div className="relative mb-12">
+              <motion.h1
+                className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <span className="bg-gradient-to-r from-amber-300 via-amber-200 to-amber-300 bg-clip-text text-transparent drop-shadow-lg inline-block">
+                  {"Meet Our Team".split("").map((char, index) => (
+                    <motion.span
+                      key={index}
+                      variants={letterVariants}
+                      className="inline-block"
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </motion.span>
+                  ))}
+                </span>
+              </motion.h1>
+            </div>
+
+            <p className="text-lg md:text-xl text-white/95 max-w-4xl mx-auto leading-relaxed font-medium drop-shadow-md">
+              We are a diverse team of passionate professionals dedicated to transforming ideas into digital excellence.
+            </p>
           </div>
-          
-          <p className="text-xl md:text-2xl text-[var(--color-text-secondary)] max-w-4xl mx-auto leading-relaxed font-light">
-            We are a diverse team of passionate professionals dedicated to transforming ideas into digital excellence.
-          </p>
+        </motion.div>
+
+        {/* Experience Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mb-20"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4 text-[var(--color-text-primary)]">Technical Expertise</h2>
+            <p className="text-[var(--color-text-secondary)] text-lg max-w-3xl mx-auto">
+              Our team stays up-to-date with the latest technologies and best practices to deliver cutting-edge solutions that future-proof your online presence.
+            </p>
+          </div>
+
+          <div className="relative bg-gradient-to-br from-[var(--color-bg-secondary)] to-[var(--color-bg-tertiary)] border border-amber-500/20 rounded-3xl p-8 md:p-12">
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-amber-400/5 to-transparent rounded-3xl opacity-50" />
+            <div className="relative z-10">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mb-6">Collaborative Approach</h3>
+                <p className="text-[var(--color-text-secondary)] text-lg max-w-3xl mx-auto">
+                  We view our clients as partners and involve them throughout the development process to ensure alignment and transparency every step of the way
+                </p>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Stats Section */}
@@ -141,7 +195,7 @@ const AboutUs = () => {
                 <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full mb-6 mx-auto">
                   <Target className="w-8 h-8 text-white" />
                 </div>
-                
+
                 <h3 className="text-3xl font-bold text-[var(--color-text-primary)] mb-4 text-center">Our Mission</h3>
                 <p className="text-[var(--color-text-secondary)] leading-relaxed text-center">
                   To empower businesses with innovative digital solutions that drive growth, enhance efficiency, and create meaningful connections with their audiences. We strive to be the catalyst for digital transformation, turning complex challenges into opportunities for excellence.
@@ -161,45 +215,13 @@ const AboutUs = () => {
                 <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full mb-6 mx-auto">
                   <Eye className="w-8 h-8 text-white" />
                 </div>
-                
+
                 <h3 className="text-3xl font-bold text-[var(--color-text-primary)] mb-4 text-center">Our Vision</h3>
                 <p className="text-[var(--color-text-secondary)] leading-relaxed text-center">
                   To be a global leader in digital innovation, setting new standards for excellence and creativity. We envision a future where technology seamlessly enhances human potential, and businesses thrive through digital empowerment and sustainable growth.
                 </p>
               </div>
             </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Core Values */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="mb-20"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 text-[var(--color-text-primary)]">Our Core Values</h2>
-            <p className="text-[var(--color-text-secondary)] text-lg">The principles that guide everything we do</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 * index }}
-                className="text-center"
-              >
-                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full mb-6 mx-auto">
-                  <value.icon className="w-8 h-8 text-white" />
-                </div>
-                
-                <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">{value.title}</h3>
-                <p className="text-[var(--color-text-secondary)] leading-relaxed">{value.description}</p>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
 
@@ -214,7 +236,7 @@ const AboutUs = () => {
             <h2 className="text-4xl font-bold mb-4 text-[var(--color-text-primary)]">Leadership Team</h2>
             <p className="text-[var(--color-text-secondary)] text-lg">The experts behind our success</p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, index) => (
               <motion.div
@@ -224,24 +246,26 @@ const AboutUs = () => {
                 transition={{ delay: 0.1 * index }}
                 className="group"
               >
-                <div className="relative bg-[var(--color-bg-secondary)] border border-amber-500/20 rounded-3xl overflow-hidden hover:border-amber-400/40 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 group-hover:-translate-y-2">
-                  {/* Placeholder Image */}
-                  <div className="relative h-48 bg-gradient-to-br from-amber-500/20 to-amber-400/20 flex items-center justify-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center">
-                      <Users className="w-10 h-10 text-white" />
-                    </div>
+                <div className="relative bg-[var(--color-bg-secondary)] border border-amber-500/20 rounded-3xl overflow-hidden hover:border-amber-400/40 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 group-hover:-translate-y-2 h-full flex flex-col">
+                  {/* Team Member Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     <div className="absolute top-4 right-4">
                       <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center">
                         <Award className="w-4 h-4 text-white" />
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-1">{member.name}</h3>
                     <p className="text-amber-400 font-medium mb-3">{member.position}</p>
                     <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed mb-4">{member.bio}</p>
-                    
+
                     {/* Skills */}
                     <div className="flex flex-wrap gap-2 mb-4">
                       {member.skills.map((skill) => (
@@ -250,20 +274,20 @@ const AboutUs = () => {
                         </span>
                       ))}
                     </div>
-                    
+
                     {/* Social Links */}
-                    <div className="flex space-x-3">
-                      <a 
+                    <div className="flex space-x-3 mt-auto">
+                      <a
                         href={member.social.linkedin}
-                        className="w-8 h-8 bg-[var(--color-bg-tertiary)] rounded-full flex items-center justify-center text-[var(--color-text-secondary)] hover:bg-amber-500/20 hover:text-amber-500 transition-colors"
+                        className="p-2 bg-[var(--color-bg-tertiary)] rounded-lg text-[var(--color-text-secondary)] hover:bg-amber-500/20 hover:text-amber-500 transition-all duration-300"
                       >
-                        <Linkedin className="w-4 h-4" />
+                        <i className="fab fa-linkedin-in"></i>
                       </a>
-                      <a 
+                      <a
                         href={member.social.twitter}
-                        className="w-8 h-8 bg-[var(--color-bg-tertiary)] rounded-full flex items-center justify-center text-[var(--color-text-secondary)] hover:bg-amber-500/20 hover:text-amber-500 transition-colors"
+                        className="p-2 bg-[var(--color-bg-tertiary)] rounded-lg text-[var(--color-text-secondary)] hover:bg-amber-500/20 hover:text-amber-500 transition-all duration-300"
                       >
-                        <Twitter className="w-4 h-4" />
+                        <i className="fab fa-x-twitter"></i>
                       </a>
                     </div>
                   </div>
@@ -278,7 +302,7 @@ const AboutUs = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2 }}
-          className="text-center"
+          className="text-center mb-20"
         >
           <div className="relative bg-gradient-to-r from-amber-600/10 via-amber-500/10 to-amber-400/10 rounded-3xl p-12 border border-amber-500/20 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 to-transparent" />
@@ -290,15 +314,15 @@ const AboutUs = () => {
                 Whether you're looking to partner with us or join our team, we'd love to hear from you.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
-                  href="/contact" 
+                <a
+                  href="/contact"
                   className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-400 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-amber-500/25 transition-all duration-300"
                 >
                   Get In Touch
                   <Mail className="w-5 h-5 ml-2" />
                 </a>
-                <a 
-                  href="/careers" 
+                <a
+                  href="/careers"
                   className="inline-flex items-center px-8 py-4 bg-[var(--color-bg-secondary)] border border-amber-500/20 text-[var(--color-text-primary)] font-semibold rounded-xl hover:border-amber-400/40 transition-all duration-300"
                 >
                   Join Our Team
@@ -309,7 +333,7 @@ const AboutUs = () => {
           </div>
         </motion.div>
       </div>
-    </div>
+    </div></>
   );
 };
 

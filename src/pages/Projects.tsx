@@ -1,65 +1,37 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Eye } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'Project 1',
-      description: 'Brief description of the first project',
-      image: '/images/projects/proyect-1/cover.jpg',
-      fullImage: '/images/projects/proyect-1/full.jpg',
-      category: 'Web Development'
+      title: 'E-Commerce Platform',
+      description: 'Modern online shopping experience with AI-powered recommendations and seamless payment integration',
+      image: '/images/logo1.png',
+      fullImage: '/images/logo1.png',
+      category: 'Web Development',
+      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+      client: 'Global Retail Group',
+      duration: '3 months',
+      results: '300% increase in online sales',
+      url: 'https://example.com/ecommerce-platform'
     },
     {
       id: 2,
-      title: 'Project 2',
-      description: 'Brief description of the second project',
-      image: '/images/projects/proyect-2/cover.jpg',
-      category: 'Digital Marketing'
-    },
-    {
-      id: 3,
-      title: 'Project 3',
-      description: 'Brief description of the third project',
-      image: '/images/projects/proyect-3/cover.jpg',
-      fullImage: '/images/projects/proyect-3/full.jpg',
-      category: 'Web Development'
-    },
-    {
-      id: 4,
-      title: 'Project 4',
-      description: 'Brief description of the fourth project',
-      image: '/images/projects/proyect-4/cover.jpg',
-      category: 'Branding'
-    },
-    {
-      id: 5,
-      title: 'Project 5',
-      description: 'Brief description of the fifth project',
-      image: '/images/projects/proyect-5/cover.jpg',
-      category: 'Custom Software'
-    },
-    {
-      id: 6,
-      title: 'Project 6',
-      description: 'Brief description of the sixth project',
-      image: '/images/projects/proyect-6/cover.jpg',
-      fullImage: '/images/projects/proyect-6/full.jpg',
-      category: 'Digital Marketing'
-    },
-    {
-      id: 7,
-      title: 'Project 7',
-      description: 'Brief description of the seventh project',
-      image: '/images/projects/proyect-7/cover.jpg',
-      fullImage: '/images/projects/proyect-7/full.jpg',
-      category: 'Web Development'
+      title: 'Fintech Mobile App',
+      description: 'Secure financial management application with real-time transactions and biometric authentication',
+      image: '/images/PrimeVIP_Logo_FullColors-7CRMU-Kr (1).svg',
+      category: 'Mobile Development',
+      technologies: ['React Native', 'Firebase', 'Stripe API'],
+      client: 'FinanceHub Inc',
+      duration: '4 months',
+      results: '50K+ active users',
+      url: 'https://example.com/fintech-app'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg-primary)] pt-24">
+    <div className="min-h-screen bg-gradient-to-b from-[var(--color-bg-primary)] to-[var(--color-bg-secondary)] pt-24 pb-20">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,61 +40,50 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-amber-500 to-amber-400 bg-clip-text text-transparent">
-            Our Projects
+            Our Portfolio
           </h1>
           <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-            Discover some of the most outstanding work we have developed for our clients.
+            Explore our latest projects and see how we've helped businesses transform their digital presence with innovative solutions.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative bg-[var(--color-bg-secondary)] border border-[var(--color-border-default)] rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-300"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {projects.map((project) => (
+            <a 
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group relative overflow-hidden rounded-xl"
             >
-              <div className="aspect-[16/10] overflow-hidden">
+              <div className="min-h-[200px] overflow-hidden relative">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 p-4 drop-shadow-[0_0_20px_rgba(34,197,94,0.8)] group-hover:drop-shadow-[0_0_30px_rgba(34,197,94,1)]"
+                  style={{
+                    filter: project.id === 1 ? 'drop-shadow(0 0 20px rgba(34, 197, 94, 0.8))' : 'none',
+                    transition: 'filter 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (project.id === 1) {
+                      e.currentTarget.style.filter = 'drop-shadow(0 0 30px rgba(34, 197, 94, 1)) brightness(1.2)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (project.id === 1) {
+                      e.currentTarget.style.filter = 'drop-shadow(0 0 20px rgba(34, 197, 94, 0.8))';
+                    }
+                  }}
                 />
-              </div>
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span className="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-medium rounded-full mb-3">
-                    {project.category}
-                  </span>
-                  <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-                  <p className="text-gray-300 text-sm mb-4">{project.description}</p>
-                  
-                  <div className="flex space-x-3">
-                    {project.fullImage && (
-                      <button className="flex items-center space-x-2 px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors">
-                        <Eye className="w-4 h-4" />
-                        <span>View more</span>
-                      </button>
-                    )}
-                    <button className="flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-lg hover:bg-white/20 transition-colors">
-                      <ExternalLink className="w-4 h-4" />
-                      <span>Visit</span>
-                    </button>
+                
+                {/* Overlay con icono de enlace */}
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-amber-500 rounded-full p-2 transform scale-0 group-hover:scale-100 transition-transform duration-300">
+                    <ExternalLink className="w-4 h-4 text-white" />
                   </div>
                 </div>
               </div>
-              
-              <div className="p-6">
-                <span className="inline-block px-3 py-1 bg-amber-500/10 text-amber-500 text-xs font-medium rounded-full mb-3">
-                  {project.category}
-                </span>
-                <h3 className="text-xl font-semibold text-[var(--color-text-primary)] mb-2">{project.title}</h3>
-                <p className="text-[var(--color-text-secondary)] text-sm">{project.description}</p>
-              </div>
-            </motion.div>
+            </a>
           ))}
         </div>
       </div>

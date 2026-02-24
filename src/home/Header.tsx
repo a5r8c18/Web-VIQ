@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Phone, Mail, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
@@ -29,7 +29,7 @@ const Header = () => {
 
       {/* Main Navigation */}
       <div className="container-custom">
-        <div className="flex justify-between items-center h-32">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -41,7 +41,7 @@ const Header = () => {
                 <img 
                   src="/images/logo.svg" 
                   alt="VIQ Systems" 
-                  className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+                  className="h-8 w-auto transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
             </a>
@@ -135,7 +135,7 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-[var(--color-bg-secondary)] border-t border-[var(--color-border-default)]"
+            className="lg:hidden bg-[var(--color-bg-secondary)] border-t border-[var(--color-border-default)] relative z-50"
           >
             <div className="container-custom py-4">
               <nav className="space-y-2">
