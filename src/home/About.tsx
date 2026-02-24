@@ -194,26 +194,13 @@ const About = () => {
               {/* First set of projects */}
               {[1, 2, 3, 4, 5, 6, 7].map((project) => (
                 <div key={project} className="flex-shrink-0 w-80">
-                  <div className="relative group overflow-hidden rounded-2xl border border-[var(--color-border-default)] hover:border-amber-500/50 transition-all duration-300">
+                  <div className="relative group overflow-hidden rounded-2xl border border-[var(--color-border-default)] hover:border-amber-400 hover:shadow-lg hover:shadow-amber-400/30 transition-all duration-300">
                     <div className="aspect-[16/10] overflow-hidden">
                       <img
                         src={`/images/projects/proyect-${project}/cover.jpg`}
                         alt={`Project ${project}`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <h4 className="text-xl font-semibold text-white mb-2">Project {project}</h4>
-                        <p className="text-gray-300 text-sm mb-4">Custom digital solution</p>
-                        <a 
-                          href="/projects" 
-                          className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors"
-                        >
-                          View more
-                          <ArrowRight className="w-4 h-4 ml-1" />
-                        </a>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -221,26 +208,13 @@ const About = () => {
               {/* Duplicate set for seamless loop */}
               {[1, 2, 3, 4, 5, 6, 7].map((project) => (
                 <div key={`duplicate-${project}`} className="flex-shrink-0 w-80">
-                  <div className="relative group overflow-hidden rounded-2xl border border-[var(--color-border-default)] hover:border-amber-500/50 transition-all duration-300">
+                  <div className="relative group overflow-hidden rounded-2xl border border-[var(--color-border-default)] hover:border-amber-400 hover:shadow-lg hover:shadow-amber-400/30 transition-all duration-300">
                     <div className="aspect-[16/10] overflow-hidden">
                       <img
                         src={`/images/projects/proyect-${project}/cover.jpg`}
                         alt={`Project ${project}`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <h4 className="text-xl font-semibold text-white mb-2">Project {project}</h4>
-                        <p className="text-gray-300 text-sm mb-4">Custom digital solution</p>
-                        <a 
-                          href="/projects" 
-                          className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors"
-                        >
-                          View more
-                          <ArrowRight className="w-4 h-4 ml-1" />
-                        </a>
-                      </div>
                     </div>
                   </div>
                 </div>
