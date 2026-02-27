@@ -68,13 +68,6 @@ const AboutUs = () => {
     }
   ];
 
-  const stats = [
-    { number: '9+', label: 'Years Experience', icon: Award, description: 'Delivering high-quality technology solutions' },
-    { number: '150+', label: 'Projects Delivered', icon: Target, description: 'Across diverse industries' },
-    { number: '98%', label: 'Client Satisfaction', icon: Users, description: 'Retention rate' },
-    { number: '24/7', label: 'Technical Support', icon: TrendingUp, description: 'Always available' }
-  ];
-
   return (
     <><FloatingParticles /><div className="min-h-screen pt-24 relative z-10">
       <div className="container-custom">
@@ -147,31 +140,6 @@ const AboutUs = () => {
                 </p>
               </div>
             </div>
-          </div>
-        </motion.div>
-
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mb-20"
-        >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 * index }}
-                className="text-center"
-              >
-                <div className="text-5xl font-black bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 bg-clip-text text-transparent mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-[var(--color-text-primary)] font-semibold">{stat.label}</div>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
 

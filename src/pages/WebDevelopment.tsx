@@ -122,7 +122,7 @@ const WebDevelopment = () => {
                           <Icon className="w-6 h-6 text-white" />
                         </div>
                         <div className="text-3xl font-black bg-gradient-to-r from-amber-300 to-amber-200 bg-clip-text text-transparent">
-                          {index === 0 ? '500+' : index === 1 ? '98%' : '24/7'}
+                          {index === 0 ? '70+' : index === 1 ? '100%' : '24/7'}
                         </div>
                         <div className="text-white/90 text-sm mt-1">
                           {index === 0 ? 'Projects Delivered' : index === 1 ? 'Client Satisfaction' : 'Support Available'}

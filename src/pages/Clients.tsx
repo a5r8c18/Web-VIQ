@@ -54,9 +54,9 @@ const Clients = () => {
   ];
 
   const stats = [
-    { number: '500+', label: 'Happy Clients', description: 'Across all industries' },
-    { number: '98%', label: 'Client Retention', description: 'Long-term partnerships' },
-    { number: '15+', label: 'Industries Served', description: 'Diverse expertise' },
+    { number: '70+', label: 'Happy Clients', description: 'Across all industries' },
+    { number: '100%', label: 'Client Retention', description: 'Long-term partnerships' },
+    { number: '11+', label: 'Industries Served', description: 'Diverse expertise' },
     { number: '24/7', label: 'Support Available', description: 'Always here to help' }
   ];
 

@@ -37,7 +37,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg sm:text-xl text-white/90 mb-8 max-w-3xl mx-auto px-4"
           >
-           With 9 years of experience in the industry, we transform ideas into exceptional digital solutions. Web development, digital marketing, and branding that propel your business forward.
+           With 11 years of experience in the industry, we transform ideas into exceptional digital solutions. Web development, digital marketing, and branding that propel your business forward.
           </motion.p>
           <motion.div 
             initial={{ opacity: 0, y: 30 }}

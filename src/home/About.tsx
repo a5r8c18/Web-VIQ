@@ -25,9 +25,9 @@ const About = () => {
   }, []);
 
   const stats = [
-    { number: '9+', label: 'Years of Experience', icon: Award, description: 'Delivering high-quality technology solutions' },
-    { number: '500+', label: 'Projects Completed', icon: Target, description: 'Across diverse industries' },
-    { number: '98%', label: 'Satisfied Clients', icon: Users, description: 'Retention rate' },
+    { number: '11+', label: 'Years of Experience', icon: Award, description: 'Delivering high-quality technology solutions' },
+    { number: '70+', label: 'Projects Completed', icon: Target, description: 'Across diverse industries' },
+    { number: '100%', label: 'Satisfied Clients', icon: Users, description: 'Retention rate' },
     { number: '24/7', label: 'Technical Support', icon: TrendingUp, description: 'Always available' }
   ];
 
