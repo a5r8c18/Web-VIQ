@@ -86,28 +86,28 @@ const WebDevelopment = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-amber-500/30 via-amber-400/30 to-amber-500/30 rounded-full mb-8 border border-amber-500/40 backdrop-blur-sm">
-                <div className="w-2 h-2 bg-amber-400 rounded-full mr-3 animate-pulse" />
-                <Code className="w-5 h-5 text-amber-300 mr-3" />
-                <span className="text-sm text-amber-200 font-semibold tracking-wide uppercase">Web Development Services</span>
+              <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-amber-500/30 via-amber-400/30 to-amber-500/30 rounded-full mb-6 border border-amber-500/40 backdrop-blur-sm">
+                <div className="w-2 h-2 bg-amber-400 rounded-full mr-2 animate-pulse" />
+                <Code className="w-4 h-4 text-amber-300 mr-2" />
+                <span className="text-xs text-amber-200 font-semibold tracking-wide uppercase">Web Development Services</span>
               </div>
               
-              <div className="relative mb-12">
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6">
+              <div className="relative mb-8">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4">
                   <span className="bg-gradient-to-r from-amber-300 via-amber-200 to-amber-300 bg-clip-text text-transparent drop-shadow-2xl">
                     Custom Web Solutions
                   </span>
                 </h1>
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-amber-300 to-transparent opacity-70" />
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-amber-300 to-transparent opacity-70" />
               </div>
               
-              <p className="text-xl md:text-2xl text-white max-w-4xl mx-auto leading-relaxed font-light mb-12 drop-shadow-lg">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white max-w-3xl mx-auto leading-relaxed font-light mb-8 drop-shadow-lg px-4">
                 Transform your ideas into powerful, scalable web applications that drive growth and deliver exceptional user experiences.
               </p>
 
               {/* Visual Hero Elements */}
-              <div className="relative max-w-4xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="relative max-w-3xl mx-auto px-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
                   {[Globe, Code, Database].map((Icon, index) => (
                     <motion.div
                       key={index}
@@ -117,14 +117,14 @@ const WebDevelopment = () => {
                       className="relative"
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-transparent rounded-2xl blur-xl" />
-                      <div className="relative bg-white/20 backdrop-blur-md border border-amber-500/40 rounded-2xl p-6 hover:border-amber-400/60 transition-all duration-300">
-                        <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-lg mb-4 mx-auto">
-                          <Icon className="w-6 h-6 text-white" />
+                      <div className="relative bg-white/20 backdrop-blur-md border border-amber-500/40 rounded-2xl p-4 sm:p-6 hover:border-amber-400/60 transition-all duration-300">
+                        <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-lg mb-3 sm:mb-4 mx-auto">
+                          <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                         </div>
-                        <div className="text-3xl font-black bg-gradient-to-r from-amber-300 to-amber-200 bg-clip-text text-transparent">
+                        <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-amber-300 to-amber-200 bg-clip-text text-transparent">
                           {index === 0 ? '70+' : index === 1 ? '100%' : '24/7'}
                         </div>
-                        <div className="text-white/90 text-sm mt-1">
+                        <div className="text-white/90 text-xs sm:text-sm mt-1">
                           {index === 0 ? 'Projects Delivered' : index === 1 ? 'Client Satisfaction' : 'Support Available'}
                         </div>
                       </div>
@@ -146,12 +146,12 @@ const WebDevelopment = () => {
           transition={{ delay: 0.2 }}
           className="mb-20"
         >
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 text-[var(--color-text-primary)]">Our Development Services</h2>
-            <p className="text-[var(--color-text-secondary)] text-lg">Comprehensive solutions for modern web challenges</p>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-[var(--color-text-primary)]">Our Development Services</h2>
+            <p className="text-base sm:text-lg text-[var(--color-text-secondary)] px-4">Comprehensive solutions for modern web challenges</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -161,21 +161,21 @@ const WebDevelopment = () => {
                 className="group relative"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-amber-400/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl" />
-                <div className="relative bg-gradient-to-br from-[var(--color-bg-secondary)] to-[var(--color-bg-tertiary)] border border-amber-500/20 rounded-3xl p-8 hover:border-amber-400/40 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 group-hover:-translate-y-2">
-                  <div className="flex items-center justify-between mb-6">
+                <div className="relative bg-gradient-to-br from-[var(--color-bg-secondary)] to-[var(--color-bg-tertiary)] border border-amber-500/20 rounded-3xl p-6 sm:p-8 hover:border-amber-400/40 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 group-hover:-translate-y-2">
+                  <div className="flex items-center justify-between mb-4 sm:mb-6">
                     <div className="relative">
                       <div className="absolute inset-0 bg-amber-400/20 rounded-full blur-lg" />
-                      <div className="relative w-14 h-14 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <service.icon className="w-7 h-7 text-white" />
+                      <div className="relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <service.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                       </div>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-amber-400/20 to-amber-600/20 flex items-center justify-center">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-amber-400/20 to-amber-600/20 flex items-center justify-center">
                       <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
                     </div>
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mb-4">{service.title}</h3>
-                  <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">{service.description}</p>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--color-text-primary)] mb-3 sm:mb-4">{service.title}</h3>
+                  <p className="text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed mb-4 sm:mb-6">{service.description}</p>
                   
                   <div className="space-y-2">
                     {service.features.map((feature) => (
