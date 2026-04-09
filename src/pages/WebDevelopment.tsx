@@ -1,7 +1,26 @@
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { Code, Database, Globe, Smartphone, Cloud, Shield, Zap, Monitor, Cpu, ArrowRight, CheckCircle, Target } from 'lucide-react';
 
 const WebDevelopment = () => {
+  const [visibleNumbers, setVisibleNumbers] = useState<number[]>([]);
+
+  useEffect(() => {
+    // Animation cycle: show numbers sequentially as the trail passes
+    const interval = setInterval(() => {
+      setVisibleNumbers([]);
+      
+      // Show numbers one by one with delay
+      [0, 1, 2, 3, 4, 5].forEach((index) => {
+        setTimeout(() => {
+          setVisibleNumbers((prev: number[]) => [...prev, index]);
+        }, 500 + (index * 500)); // 500ms delay between each number
+      });
+    }, 4000); // Reset every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   const services = [
     {
       icon: Globe,
@@ -107,17 +126,17 @@ const WebDevelopment = () => {
 
               {/* Visual Hero Elements */}
               <div className="relative max-w-3xl mx-auto px-4">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6 sm:items-stretch">
                   {[Globe, Code, Database].map((Icon, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 + index * 0.1 }}
-                      className="relative"
+                      className="relative min-h-[120px] sm:min-h-[140px]"
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-transparent rounded-2xl blur-xl" />
-                      <div className="relative bg-white/20 backdrop-blur-md border border-amber-500/40 rounded-2xl p-4 sm:p-6 hover:border-amber-400/60 transition-all duration-300">
+                      <div className="relative h-full bg-white/20 backdrop-blur-md border border-amber-500/40 rounded-2xl p-4 sm:p-6 hover:border-amber-400/60 transition-all duration-300 shadow-inner shadow-black/10">
                         <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-lg mb-3 sm:mb-4 mx-auto">
                           <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                         </div>
@@ -246,7 +265,15 @@ const WebDevelopment = () => {
           </div>
           
           <div className="relative">
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent transform -translate-y-1/2" />
+            <div className="absolute top-1/2 left-0 right-0 h-0.5 overflow-hidden transform -translate-y-1/2">
+              <div 
+                className="h-full bg-gradient-to-r from-transparent via-amber-400 to-transparent"
+                style={{
+                  animation: 'slideProgress 3s ease-in-out infinite',
+                  backgroundSize: '200% 100%'
+                }}
+              />
+            </div>
             <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-8">
               {process.map((item, index) => (
                 <motion.div
@@ -257,8 +284,22 @@ const WebDevelopment = () => {
                   className="relative text-center"
                 >
                   <div className="relative z-10">
-                    <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-black text-xl mb-4 mx-auto border-4 border-[var(--color-bg-primary)] hover:scale-110 transition-transform duration-300">
-                      {item.step}
+                    <div className="relative">
+                      {/* Animated Circle with Number */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ 
+                          opacity: visibleNumbers.includes(index) ? 1 : 0,
+                          scale: visibleNumbers.includes(index) ? 1 : 0.5
+                        }}
+                        transition={{ 
+                          opacity: { duration: 0.3 }, 
+                          scale: { duration: 0.3, type: "spring" }
+                        }}
+                        className="w-20 h-20 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-black text-xl mb-4 mx-auto border-4 border-[var(--color-bg-primary)] hover:scale-110 transition-transform duration-300"
+                      >
+                        {String(index + 1).padStart(2, '0')}
+                      </motion.div>
                     </div>
                     <div className="w-12 h-12 bg-[var(--color-bg-secondary)] border border-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
                       <item.icon className="w-6 h-6 text-amber-400" />
@@ -311,5 +352,21 @@ const WebDevelopment = () => {
     </div>
   );
 };
+
+// Add custom animation styles
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideProgress {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+`;
+if (typeof document !== 'undefined') {
+  document.head.appendChild(style);
+}
 
 export default WebDevelopment;

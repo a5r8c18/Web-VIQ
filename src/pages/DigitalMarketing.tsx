@@ -260,7 +260,7 @@ const DigitalMarketing = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1 }}
-          className="text-center"
+          className="text-center mb-20"
         >
           <div className="relative bg-gradient-to-r from-amber-600/10 via-amber-500/10 to-amber-400/10 rounded-3xl p-8 sm:p-12 border border-amber-500/20 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 to-transparent" />
