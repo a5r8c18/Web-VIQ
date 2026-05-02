@@ -119,87 +119,29 @@ const initContactWidget = () => {
     }
   };
 
-  // Función para obtener el color de una clase CSS
-  const getComputedColor = (className) => {
-    const testElement = document.createElement('div');
-    testElement.className = className;
-    testElement.style.position = 'absolute';
-    testElement.style.visibility = 'hidden';
-    testElement.style.pointerEvents = 'none';
-    document.body.appendChild(testElement);
-    
-    const computedStyle = window.getComputedStyle(testElement);
-    const backgroundColor = computedStyle.backgroundColor;
-    
-    document.body.removeChild(testElement);
-    
-    // Convertir rgb/hex a formato usable
-    if (backgroundColor && backgroundColor !== 'rgba(0, 0, 0, 0)') {
-      return backgroundColor;
-    }
-    
-    // Fallback a colores ámbar si no se puede detectar
-    return '#f59e0b';
-  };
-
-  // Obtener colores del sitio dinámicamente
-  const getSiteColors = () => {
-    try {
-      // Intentar obtener colores desde clases de botones
-      const primaryColor = getComputedColor('bg-amber-500') || getComputedColor('bg-amber-600') || '#f59e0b';
-      const secondaryColor = getComputedColor('bg-amber-600') || getComputedColor('bg-amber-700') || '#d97706';
-      const tertiaryColor = getComputedColor('bg-amber-700') || getComputedColor('bg-amber-800') || '#b45309';
-      
-      return {
-        primary: primaryColor,
-        secondary: secondaryColor,
-        tertiary: tertiaryColor,
-        success: '#10B981' // Mantener verde para éxito
-      };
-    } catch (error) {
-      console.warn('Could not detect site colors, using amber fallback');
-      return {
-        primary: '#f59e0b',
-        secondary: '#d97706',
-        tertiary: '#b45309',
-        success: '#10B981'
-      };
-    }
-  };
-
-  // Función para convertir color a rgba
-  const hexToRgba = (hex, alpha) => {
-    if (!hex || !hex.startsWith('#')) return `rgba(245, 158, 11, ${alpha})`;
-    
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-  };
-
-  const siteColors = getSiteColors();
   let siteTheme = detectSiteTheme();
 
-  // Gradiente dinámico basado en colores detectados
-  const primaryGradient = `linear-gradient(135deg, ${siteColors.primary} 0%, ${siteColors.secondary} 50%, ${siteColors.tertiary} 100%)`;
-  const btnTextColor = "#ffffff";
-  const successColor = siteColors.success;
+  // Colores usando variables CSS del sistema
+  const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+  const primaryForeground = getComputedStyle(document.documentElement).getPropertyValue('--primary-foreground').trim();
+  const cardBg = getComputedStyle(document.documentElement).getPropertyValue('--card').trim();
+  const cardFg = getComputedStyle(document.documentElement).getPropertyValue('--card-foreground').trim();
+  const border = getComputedStyle(document.documentElement).getPropertyValue('--border').trim();
+  const input = getComputedStyle(document.documentElement).getPropertyValue('--input').trim();
+  const foreground = getComputedStyle(document.documentElement).getPropertyValue('--foreground').trim();
+  const sidebar = getComputedStyle(document.documentElement).getPropertyValue('--sidebar').trim();
+  
+  // Colores para botones usando variables del sistema
+  const primaryGradient = `linear-gradient(135deg, ${primaryColor} 0%, ${primaryColor}dd 50%, ${primaryColor}bb 100%)`;
+  const btnTextColor = primaryForeground;
+  const successColor = primaryColor;
 
-  // Colores que cambian con el tema
-  let formBgColor = siteTheme.isDark
-    ? "rgba(17, 24, 39, 0.95)"
-    : "rgba(255, 255, 255, 0.95)";
-  let formTextColor = siteTheme.isDark ? "#f9fafb" : "#111827";
-  let borderColor = siteTheme.isDark
-    ? "rgba(75, 85, 99, 0.3)"
-    : "rgba(209, 213, 219, 0.5)";
-  let inputBgColor = siteTheme.isDark
-    ? "rgba(31, 41, 55, 0.5)"
-    : "rgba(249, 250, 251, 0.8)";
-  let inputFocusBgColor = siteTheme.isDark
-    ? "rgba(31, 41, 55, 0.8)"
-    : "rgba(255, 255, 255, 0.95)";
+  // Colores que cambian con el tema usando variables CSS
+  let formBgColor = cardBg + 'f0'; // Añadir transparencia
+  let formTextColor = cardFg;
+  let borderColor = border;
+  let inputBgColor = input;
+  let inputFocusBgColor = cardBg;
 
   // Create or update styles
   const updateStyles = () => {
@@ -238,16 +180,16 @@ const initContactWidget = () => {
 
       @keyframes neonPulse {
         0% { 
-          box-shadow: 0 0 5px ${hexToRgba(siteColors.primary, '0.3')},
-                     0 0 10px ${hexToRgba(siteColors.primary, '0.2')};
+          box-shadow: 0 0 5px ${primaryColor}4d,
+                     0 0 10px ${primaryColor}33;
         }
         50% { 
-          box-shadow: 0 0 15px ${hexToRgba(siteColors.primary, '0.6')},
-                     0 0 25px ${hexToRgba(siteColors.primary, '0.4')};
+          box-shadow: 0 0 15px ${primaryColor}99,
+                     0 0 25px ${primaryColor}66;
         }
         100% { 
-          box-shadow: 0 0 5px ${hexToRgba(siteColors.primary, '0.3')},
-                     0 0 10px ${hexToRgba(siteColors.primary, '0.2')};
+          box-shadow: 0 0 5px ${primaryColor}4d,
+                     0 0 10px ${primaryColor}33;
         }
       }
 
@@ -288,10 +230,26 @@ const initContactWidget = () => {
         overflow: visible;
       }
 
+      @media (max-width: 640px) {
+        .contact-widget-container {
+          bottom: 16px;
+          right: 16px;
+        }
+        .contact-widget-form {
+          position: fixed;
+          bottom: 80px;
+          right: 16px;
+          left: 16px;
+          width: auto;
+          max-height: calc(100vh - 120px);
+          transform-origin: bottom right;
+        }
+      }
+
       /* Botón principal - Estilo actualizado */
       .contact-widget-btn {
         background: ${primaryGradient};
-        color: #ffffff;
+        color: ${btnTextColor};
         border: none;
         border-radius: 12px;
         min-width: 140px;
@@ -299,7 +257,7 @@ const initContactWidget = () => {
         font-size: 16px;
         font-weight: 600;
         cursor: pointer;
-        box-shadow: 0 4px 15px ${hexToRgba(siteColors.primary, '0.3')},
+        box-shadow: 0 4px 15px ${primaryColor}4d,
                    0 2px 4px rgba(0, 0, 0, 0.1);
         transition: all ${config.animationDuration} ease;
         display: flex;
@@ -325,7 +283,7 @@ const initContactWidget = () => {
 
       .contact-widget-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px ${hexToRgba(siteColors.primary, '0.4')},
+        box-shadow: 0 8px 25px ${primaryColor}66,
                    0 4px 6px rgba(0, 0, 0, 0.1);
         animation: none;
       }
@@ -359,7 +317,7 @@ const initContactWidget = () => {
         border-radius: 16px;
         padding: 24px;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15),
-                   0 0 20px ${hexToRgba(siteColors.primary, '0.1')};
+                   0 0 20px ${primaryColor}1a;
         border: 1px solid ${borderColor};
         backdrop-filter: blur(20px);
         animation: floatIn ${
@@ -385,7 +343,7 @@ const initContactWidget = () => {
         font-size: 20px;
         font-weight: 700;
         letter-spacing: -0.02em;
-        background: linear-gradient(135deg, ${siteColors.primary}, ${siteColors.secondary});
+        background: ${primaryGradient};
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -423,9 +381,9 @@ const initContactWidget = () => {
       .contact-widget-form input:focus,
       .contact-widget-form textarea:focus {
         outline: none;
-        border-color: ${siteColors.primary};
-        box-shadow: 0 0 0 3px ${hexToRgba(siteColors.primary, '0.1')},
-                   0 0 0 1px ${siteColors.primary};
+        border-color: ${primaryColor};
+        box-shadow: 0 0 0 3px ${primaryColor}20,
+                   0 0 0 1px ${primaryColor};
         background: ${
           siteTheme.isDark
             ? "rgba(31, 41, 55, 0.8)"
@@ -454,28 +412,28 @@ const initContactWidget = () => {
         margin-left: auto;
         margin-right: auto;
         min-width: 120px;
-        box-shadow: 0 2px 8px ${hexToRgba(siteColors.primary, '0.3')};
+        box-shadow: 0 2px 8px ${primaryColor}4d;
         position: relative;
         overflow: hidden;
       }
 
       .contact-widget-submit:hover {
         transform: translateY(-1px);
-        box-shadow: 0 4px 15px ${hexToRgba(siteColors.primary, '0.4')};
+        box-shadow: 0 4px 15px ${primaryColor}66;
       }
 
       .contact-widget-submit:active {
         transform: translateY(0);
       }
 
-      /* Estados del botón de submit - Configurado para mostrar iconos animados */
+      /* Estados del botón de submit */
       .contact-widget-submit .submit-text {
-        display: none; /* Texto oculto */
+        display: inline-block;
         transition: opacity 0.3s ease;
       }
 
       .contact-widget-submit .submit-icon {
-        display: inline-block; /* Icono siempre visible */
+        display: none;
         width: 20px;
         height: 20px;
         transition: opacity 0.3s ease;
@@ -489,17 +447,14 @@ const initContactWidget = () => {
         pointer-events: none;
       }
 
-      /* Animación de parpadeo del icono */
-      .contact-widget-submit {
-        animation: iconPulse 2s infinite;
+      .contact-widget-submit.show-icon .submit-text {
+        display: none;
       }
 
-      @keyframes iconPulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.7; }
+      .contact-widget-submit.show-icon .submit-icon {
+        display: inline-block;
       }
 
-      /* Mantener animación del avión cuando se envía */
       .contact-widget-submit.animate-plane .flying-plane {
         animation: paperPlaneFly 1.5s ease-out forwards;
       }
@@ -510,10 +465,10 @@ const initContactWidget = () => {
         text-align: center;
         padding: 20px;
         color: ${successColor};
-        background: linear-gradient(135deg, ${hexToRgba(siteColors.primary, '0.1')}, ${hexToRgba(siteColors.secondary, '0.05')});
+        background: linear-gradient(135deg, ${primaryColor}1a, ${primaryColor}0d);
         border-radius: 12px;
         margin-top: 20px;
-        border: 1px solid ${hexToRgba(siteColors.primary, '0.2')};
+        border: 1px solid ${primaryColor}33;
         backdrop-filter: blur(10px);
         animation: floatIn ${config.animationDuration} ease;
       }
@@ -537,14 +492,14 @@ const initContactWidget = () => {
       }
 
       .contact-widget-footer a {
-        color: ${siteColors.primary};
+        color: ${primaryColor};
         text-decoration: none;
         font-weight: 600;
         transition: all 0.2s ease;
       }
 
       .contact-widget-footer a:hover {
-        color: ${siteColors.secondary};
+        color: ${primaryColor}dd;
         text-decoration: underline;
       }
 
@@ -774,6 +729,21 @@ const initContactWidget = () => {
 
   // Update position on window resize
   window.addEventListener("resize", adjustFormPosition);
+
+  // Close widget when clicking outside
+  document.addEventListener("click", (e) => {
+    const isClickInsideWidget = widget.contains(e.target);
+    const isFormOpen = form.style.display === "block";
+    
+    if (isFormOpen && !isClickInsideWidget) {
+      form.classList.add("closing");
+      setTimeout(() => {
+        form.style.display = "none";
+        form.classList.remove("closing");
+        toggleButton.classList.add("pulse");
+      }, parseFloat(config.animationDuration) * 1000);
+    }
+  });
 
   // Email input validation
   const emailInput = form.querySelector("#contact-email");
