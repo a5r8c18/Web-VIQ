@@ -230,19 +230,128 @@ const initContactWidget = () => {
         overflow: visible;
       }
 
+      /* Tablet */
+      @media (max-width: 768px) {
+        .contact-widget-form {
+          width: 340px;
+          padding: 20px;
+        }
+        .contact-widget-form h4 {
+          font-size: 18px;
+          margin-bottom: 16px;
+        }
+        .contact-widget-form .form-group {
+          margin-bottom: 16px;
+        }
+        .contact-widget-form input,
+        .contact-widget-form textarea {
+          padding: 10px 14px;
+          font-size: 14px;
+        }
+        .contact-widget-form textarea {
+          min-height: 100px;
+        }
+      }
+
+      /* Móvil */
       @media (max-width: 640px) {
         .contact-widget-container {
-          bottom: 16px;
-          right: 16px;
+          bottom: 12px;
+          right: 12px;
+        }
+        .contact-widget-btn {
+          min-width: auto;
+          height: 48px;
+          padding: 0 14px;
+          gap: 8px;
+          font-size: 14px;
+          border-radius: 10px;
+        }
+        .contact-widget-btn svg {
+          width: 20px;
+          height: 20px;
         }
         .contact-widget-form {
           position: fixed;
-          bottom: 80px;
-          right: 16px;
-          left: 16px;
+          top: 12px;
+          bottom: auto;
+          right: 12px;
+          left: 12px;
           width: auto;
-          max-height: calc(100vh - 120px);
+          max-height: calc(100vh - 80px);
+          max-height: calc(100dvh - 80px);
+          padding: 18px;
+          border-radius: 14px;
           transform-origin: bottom right;
+        }
+        .contact-widget-form h4 {
+          font-size: 17px;
+          margin-bottom: 14px;
+        }
+        .contact-widget-form .form-group {
+          margin-bottom: 14px;
+        }
+        .contact-widget-form label {
+          font-size: 13px;
+          margin-bottom: 6px;
+        }
+        .contact-widget-form input,
+        .contact-widget-form textarea {
+          padding: 10px 12px;
+          font-size: 14px;
+          border-radius: 8px;
+        }
+        .contact-widget-form textarea {
+          min-height: 80px;
+        }
+        .contact-widget-submit {
+          padding: 10px 20px;
+          font-size: 13px;
+          min-width: 100px;
+          width: 100%;
+        }
+        .contact-widget-success {
+          padding: 14px;
+          font-size: 13px;
+        }
+        .contact-widget-footer {
+          margin-top: 14px;
+          padding-top: 12px;
+          font-size: 11px;
+        }
+        .contact-widget-charcount {
+          font-size: 11px;
+        }
+      }
+
+      /* Móvil muy pequeño */
+      @media (max-width: 380px) {
+        .contact-widget-container {
+          bottom: 8px;
+          right: 8px;
+        }
+        .contact-widget-text {
+          display: none;
+        }
+        .contact-widget-btn {
+          min-width: 48px;
+          width: 48px;
+          height: 48px;
+          padding: 0;
+          justify-content: center;
+          border-radius: 50%;
+        }
+        .contact-widget-form {
+          top: 8px;
+          bottom: auto;
+          right: 8px;
+          left: 8px;
+          padding: 14px;
+          max-height: calc(100vh - 72px);
+          max-height: calc(100dvh - 72px);
+        }
+        .contact-widget-form h4 {
+          font-size: 16px;
         }
       }
 
@@ -310,8 +419,11 @@ const initContactWidget = () => {
         bottom: 80px;
         right: 0;
         width: ${config.formWidth};
+        max-width: calc(100vw - 24px);
         max-height: calc(100vh - 120px);
+        max-height: calc(100dvh - 120px);
         overflow-y: auto;
+        box-sizing: border-box;
         background: ${formBgColor};
         color: ${formTextColor};
         border-radius: 16px;
@@ -376,6 +488,7 @@ const initContactWidget = () => {
         };
         color: ${formTextColor};
         backdrop-filter: blur(10px);
+        box-sizing: border-box;
       }
 
       .contact-widget-form input:focus,
@@ -685,17 +798,38 @@ const initContactWidget = () => {
     });
   }
 
-  // Ensure form stays within viewport horizontally
+  // Ensure form stays within viewport
   const adjustFormPosition = () => {
     const form = widget.querySelector(".contact-widget-form");
     if (!form) return;
 
-    const rect = form.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
+    const isMobile = window.innerWidth <= 640;
 
-    form.style.right = "0";
-    if (rect.left < 20) {
-      form.style.right = `-${rect.left - 20}px`;
+    if (isMobile) {
+      // En móvil: position fixed, ocupar casi toda la pantalla
+      form.style.position = "fixed";
+      form.style.left = "12px";
+      form.style.right = "12px";
+      form.style.width = "auto";
+      form.style.top = "12px";
+      form.style.bottom = "auto";
+      form.style.maxHeight = `calc(100dvh - 80px)`;
+      form.style.maxHeight = `calc(100vh - 80px)`;
+    } else {
+      // En desktop: position absolute, alineado al botón
+      form.style.position = "absolute";
+      form.style.left = "";
+      form.style.top = "";
+      form.style.bottom = "80px";
+      form.style.right = "0";
+      form.style.width = "";
+      form.style.maxHeight = "";
+
+      // Ajustar horizontal si se sale del viewport
+      const rect = form.getBoundingClientRect();
+      if (rect.left < 20) {
+        form.style.right = `-${rect.left - 20}px`;
+      }
     }
   };
 
@@ -709,6 +843,17 @@ const initContactWidget = () => {
     return;
   }
 
+  // Limpiar estilos inline de posición
+  const resetFormPosition = () => {
+    form.style.position = "";
+    form.style.top = "";
+    form.style.bottom = "";
+    form.style.left = "";
+    form.style.right = "";
+    form.style.width = "";
+    form.style.maxHeight = "";
+  };
+
   toggleButton.addEventListener("click", () => {
     const isOpen = form.style.display === "block";
     if (isOpen) {
@@ -716,6 +861,7 @@ const initContactWidget = () => {
       setTimeout(() => {
         form.style.display = "none";
         form.classList.remove("closing");
+        resetFormPosition();
         toggleButton.classList.add("pulse");
       }, parseFloat(config.animationDuration) * 1000);
     } else {
@@ -727,8 +873,12 @@ const initContactWidget = () => {
     }
   });
 
-  // Update position on window resize
-  window.addEventListener("resize", adjustFormPosition);
+  // Update position on window resize (only if form is open)
+  window.addEventListener("resize", () => {
+    if (form.style.display === "block") {
+      adjustFormPosition();
+    }
+  });
 
   // Close widget when clicking outside
   document.addEventListener("click", (e) => {
@@ -740,6 +890,7 @@ const initContactWidget = () => {
       setTimeout(() => {
         form.style.display = "none";
         form.classList.remove("closing");
+        resetFormPosition();
         toggleButton.classList.add("pulse");
       }, parseFloat(config.animationDuration) * 1000);
     }
