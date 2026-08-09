@@ -178,19 +178,52 @@ const initContactWidget = () => {
         }
       }
 
-      @keyframes neonPulse {
-        0% { 
-          box-shadow: 0 0 5px ${primaryColor}4d,
-                     0 0 10px ${primaryColor}33;
+      @keyframes glow-breathe {
+        0%, 100% {
+          box-shadow:
+            inset 0 1px 0 rgba(255,251,230,0.09),
+            inset 0 -1px 0 rgba(0,0,0,0.25),
+            0 0 22px rgba(216,164,85,0.12);
         }
-        50% { 
-          box-shadow: 0 0 15px ${primaryColor}99,
-                     0 0 25px ${primaryColor}66;
+        50% {
+          box-shadow:
+            inset 0 1px 0 rgba(255,251,230,0.14),
+            inset 0 -1px 0 rgba(0,0,0,0.2),
+            0 0 36px rgba(216,164,85,0.28),
+            0 0 80px rgba(216,164,85,0.08);
         }
-        100% { 
-          box-shadow: 0 0 5px ${primaryColor}4d,
-                     0 0 10px ${primaryColor}33;
-        }
+      }
+
+      @keyframes shimmer-sweep {
+        0%   { transform: translateX(-110%) skewX(-15deg); }
+        100% { transform: translateX(140%) skewX(-15deg); }
+      }
+
+      @keyframes cw-p1 {
+        0%, 100% { transform: translate(0, 0) scale(1);        opacity: 0.45; }
+        25%      { transform: translate(3px, -7px) scale(1.15); opacity: 0.9; }
+        50%      { transform: translate(-2px, -3px) scale(0.9);  opacity: 0.55; }
+        75%      { transform: translate(1px, -9px) scale(1.05); opacity: 0.8; }
+      }
+      @keyframes cw-p2 {
+        0%, 100% { transform: translate(0, 0) scale(1);       opacity: 0.35; }
+        30%      { transform: translate(-4px, -6px) scale(1.2);  opacity: 0.85; }
+        60%      { transform: translate(3px, -2px) scale(0.85); opacity: 0.5; }
+      }
+      @keyframes cw-p3 {
+        0%, 100% { transform: translate(0, 0) scale(1);        opacity: 0.5; }
+        40%      { transform: translate(5px, -5px) scale(1.25); opacity: 0.95; }
+        70%      { transform: translate(-3px, -8px) scale(0.95); opacity: 0.4; }
+      }
+      @keyframes cw-p4 {
+        0%, 100% { transform: translate(0, 0) scale(1);        opacity: 0.3; }
+        35%      { transform: translate(-2px, -10px) scale(1.1); opacity: 0.8; }
+        65%      { transform: translate(4px, -1px) scale(0.9);  opacity: 0.45; }
+      }
+      @keyframes cw-p5 {
+        0%, 100% { transform: translate(0, 0) scale(1);       opacity: 0.4; }
+        45%      { transform: translate(2px, -7px) scale(1.15); opacity: 0.85; }
+        75%      { transform: translate(-5px, -3px) scale(0.9); opacity: 0.5; }
       }
 
       /* Nueva animación para el avión de papel */
@@ -262,14 +295,14 @@ const initContactWidget = () => {
         .contact-widget-btn {
           min-width: auto;
           height: 48px;
-          padding: 0 14px;
+          padding: 0 16px;
           gap: 8px;
-          font-size: 14px;
-          border-radius: 10px;
+          font-size: 12px;
+          border-radius: 9999px;
         }
         .contact-widget-btn svg {
-          width: 20px;
-          height: 20px;
+          width: 18px;
+          height: 18px;
         }
         .contact-widget-form {
           position: fixed;
@@ -339,7 +372,7 @@ const initContactWidget = () => {
           height: 48px;
           padding: 0;
           justify-content: center;
-          border-radius: 50%;
+          border-radius: 9999px;
         }
         .contact-widget-form {
           top: 8px;
@@ -355,61 +388,86 @@ const initContactWidget = () => {
         }
       }
 
-      /* Botón principal - Estilo actualizado */
+      /* Botón principal - Glass morphism + brass */
       .contact-widget-btn {
-        background: ${primaryGradient};
-        color: ${btnTextColor};
-        border: none;
-        border-radius: 12px;
-        min-width: 140px;
-        height: 56px;
-        font-size: 16px;
+        background: linear-gradient(160deg, rgba(216,164,85,0.14) 0%, rgba(180,130,50,0.06) 45%, rgba(216,164,85,0.02) 100%);
+        color: #d8a455;
+        border: 1px solid rgba(216,164,85,0.32);
+        border-radius: 9999px;
+        min-width: 160px;
+        height: 52px;
+        font-size: 13px;
         font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
         cursor: pointer;
-        box-shadow: 0 4px 15px ${primaryColor}4d,
-                   0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: all ${config.animationDuration} ease;
+        box-shadow:
+          inset 0 1px 0 rgba(255,251,230,0.09),
+          inset 0 -1px 0 rgba(0,0,0,0.25),
+          0 0 22px rgba(216,164,85,0.12);
+        transition: all 0.5s ease;
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 0 20px;
+        gap: 10px;
+        padding: 0 24px;
         position: relative;
         overflow: hidden;
-        backdrop-filter: blur(10px);
-        animation: neonPulse 3s infinite;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        animation: glow-breathe 3.5s ease-in-out infinite;
       }
 
       .contact-widget-text {
         font-weight: 600;
-        letter-spacing: -0.02em;
+        letter-spacing: 0.1em;
+        text-shadow: 0 0 8px rgba(216,164,85,0.35), 0 0 20px rgba(216,164,85,0.12);
+        position: relative;
+        z-index: 10;
       }
 
       .contact-widget-btn svg {
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
         stroke-width: 1.5;
+        position: relative;
+        z-index: 10;
       }
 
       .contact-widget-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px ${primaryColor}66,
-                   0 4px 6px rgba(0, 0, 0, 0.1);
+        border-color: rgba(216,164,85,0.65);
+        background: linear-gradient(160deg, rgba(216,164,85,0.2) 0%, rgba(180,130,50,0.08) 50%, rgba(216,164,85,0.03) 100%);
+        box-shadow:
+          inset 0 1px 0 rgba(255,251,230,0.14),
+          inset 0 -1px 0 rgba(0,0,0,0.2),
+          0 0 36px rgba(216,164,85,0.28),
+          0 0 80px rgba(216,164,85,0.08);
+        transform: scale(1.045);
         animation: none;
       }
 
+      /* Shimmer sweep */
       .contact-widget-btn::before {
         content: '';
         position: absolute;
         top: 0;
-        left: -100%;
-        width: 100%;
+        left: -110%;
+        width: 200%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transition: left 0.5s;
+        background: linear-gradient(100deg, transparent 28%, rgba(255,255,255,0.22) 46%, rgba(255,255,255,0.06) 54%, transparent 72%);
+        transform: skewX(-15deg);
+        transition: none;
       }
 
       .contact-widget-btn:hover::before {
-        left: 100%;
+        animation: shimmer-sweep 0.85s ease-out forwards;
+      }
+
+      /* Floating particles inside button */
+      .cw-particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 5;
       }
 
       /* Formulario - Estilo actualizado */
@@ -455,10 +513,8 @@ const initContactWidget = () => {
         font-size: 20px;
         font-weight: 700;
         letter-spacing: -0.02em;
-        background: ${primaryGradient};
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #d8a455;
+        text-shadow: 0 0 10px rgba(216,164,85,0.25);
       }
 
       .contact-widget-form .form-group {
@@ -509,34 +565,46 @@ const initContactWidget = () => {
         resize: vertical;
       }
 
-      /* Botón de enviar - Estilo actualizado con animación */
+      /* Botón de enviar - Glass morphism + brass */
       .contact-widget-submit {
-        background: ${primaryGradient};
-        color: ${btnTextColor};
-        border: none;
-        padding: 12px 24px;
-        border-radius: 10px;
+        background: linear-gradient(160deg, rgba(216,164,85,0.14) 0%, rgba(180,130,50,0.06) 45%, rgba(216,164,85,0.02) 100%);
+        color: #d8a455;
+        border: 1px solid rgba(216,164,85,0.32);
+        padding: 12px 28px;
+        border-radius: 9999px;
         cursor: pointer;
         font-weight: 600;
-        font-size: 14px;
-        transition: all ${config.animationDuration} ease;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: all 0.5s ease;
         margin-top: 10px;
         display: block;
         margin-left: auto;
         margin-right: auto;
-        min-width: 120px;
-        box-shadow: 0 2px 8px ${primaryColor}4d;
+        min-width: 130px;
+        box-shadow:
+          inset 0 1px 0 rgba(255,251,230,0.09),
+          inset 0 -1px 0 rgba(0,0,0,0.25),
+          0 0 18px rgba(216,164,85,0.1);
         position: relative;
         overflow: hidden;
+        text-shadow: 0 0 6px rgba(216,164,85,0.3);
       }
 
       .contact-widget-submit:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 15px ${primaryColor}66;
+        border-color: rgba(216,164,85,0.65);
+        background: linear-gradient(160deg, rgba(216,164,85,0.2) 0%, rgba(180,130,50,0.08) 50%, rgba(216,164,85,0.03) 100%);
+        box-shadow:
+          inset 0 1px 0 rgba(255,251,230,0.14),
+          inset 0 -1px 0 rgba(0,0,0,0.2),
+          0 0 30px rgba(216,164,85,0.22),
+          0 0 60px rgba(216,164,85,0.06);
+        transform: scale(1.03);
       }
 
       .contact-widget-submit:active {
-        transform: translateY(0);
+        transform: scale(0.97);
       }
 
       /* Estados del botón de submit */
@@ -631,6 +699,11 @@ const initContactWidget = () => {
   widget.className = "contact-widget-container";
   widget.innerHTML = `
     <button class="contact-widget-btn" aria-label="Open contact chat">
+      <span class="cw-particle" style="width:2px;height:2px;left:16%;top:32%;background:rgba(216,164,85,0.55);animation:cw-p1 3.5s ease-in-out infinite 0s;"></span>
+      <span class="cw-particle" style="width:1.5px;height:1.5px;left:34%;top:58%;background:rgba(216,164,85,0.55);animation:cw-p2 4.2s ease-in-out infinite 0.5s;"></span>
+      <span class="cw-particle" style="width:2.5px;height:2.5px;left:52%;top:26%;background:rgba(216,164,85,0.55);animation:cw-p3 3.8s ease-in-out infinite 0.8s;"></span>
+      <span class="cw-particle" style="width:1.5px;height:1.5px;left:70%;top:62%;background:rgba(216,164,85,0.55);animation:cw-p4 4.5s ease-in-out infinite 1.0s;"></span>
+      <span class="cw-particle" style="width:2px;height:2px;left:84%;top:36%;background:rgba(216,164,85,0.55);animation:cw-p5 3.2s ease-in-out infinite 1.2s;"></span>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M17 20.5H7C4 20.5 2 19 2 15V9C2 5 4 3.5 7 3.5H17C20 3.5 22 5 22 9V15C22 19 20 20.5 17 20.5Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>

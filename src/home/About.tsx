@@ -1,235 +1,139 @@
 import { motion } from 'framer-motion';
-import { useEffect, useRef } from 'react';
-import { Users, Target, Award, TrendingUp, Globe, ArrowRight } from 'lucide-react';
+import { ArrowRight, Globe2 } from 'lucide-react';
+import { VMark } from '../components/ui';
+import Button from '../components/Button';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: 0.08 * i, ease: [0.21, 0.47, 0.32, 0.98] as const },
+  }),
+};
+
+const stats = [
+  { number: '11+', label: 'Years of experience', note: 'Delivering in the field' },
+  { number: '70+', label: 'Projects completed', note: 'Across industries' },
+  { number: '100%', label: 'Clients retained', note: 'By working together' },
+  { number: '24/7', label: 'Technical support', note: 'Always reachable' },
+];
+
+const clients = [1, 2, 3, 4, 5, 6, 7];
 
 const About = () => {
-  const carouselRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
-
-    let scrollAmount = 0;
-    const scrollSpeed = 1;
-    const scrollInterval = setInterval(() => {
-      scrollAmount += scrollSpeed;
-      
-      if (scrollAmount >= carousel.scrollWidth / 2) {
-        scrollAmount = 0;
-      }
-      
-      carousel.scrollLeft = scrollAmount;
-    }, 30);
-
-    return () => clearInterval(scrollInterval);
-  }, []);
-
-  const stats = [
-    { number: '11+', label: 'Years of Experience', icon: Award, description: 'Delivering high-quality technology solutions' },
-    { number: '70+', label: 'Projects Completed', icon: Target, description: 'Across diverse industries' },
-    { number: '100%', label: 'Satisfied Clients', icon: Users, description: 'Retention rate' },
-    { number: '24/7', label: 'Technical Support', icon: TrendingUp, description: 'Always available' }
-  ];
-
   return (
-    <section className="section-padding bg-gradient-to-b from-[var(--color-bg-primary)] to-[var(--color-bg-secondary)]">
+    <section className="relative py-20 sm:py-28 bg-[var(--color-bg-primary)] border-t border-[var(--color-border-default)]">
       <div className="container-custom">
-        {/* Video Hero Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative mb-20"
-        >
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/20 border-0" style={{ minHeight: '400px' }}>
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/85 to-black/90 z-10" />
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover absolute inset-0"
-              style={{ minHeight: '400px' }}
-            >
-              <source src="/videos/2792370-hd_1920_1080_30fps.mp4" type="video/mp4" />
-            </video>
-            
-            <div className="absolute inset-0 z-20 flex items-center justify-center p-4">
-              <div className="text-center text-white max-w-4xl mx-auto">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                    Digital Transformation with <span className="text-amber-400">Real Impact</span>
-                  </h2>
-                  <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
-                    We create digital experiences that not only look incredible, but drive measurable results for your business.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a 
-                      href="/contact" 
-                      className="group inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-amber-500 text-white font-semibold rounded-xl hover:bg-amber-400 transition-all duration-300 text-sm sm:text-base"
-                    >
-                      Start Conversation
-                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                    </a>
-                    <a 
-                      href="/projects" 
-                      className="group inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300 text-sm sm:text-base"
-                    >
-                      View Projects
-                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                    </a>
-                  </div>
-                </motion.div>
-              </div>
+        {/* Intro — the statement of craft */}
+        <div className="grid lg:grid-cols-12 gap-10 items-start mb-20">
+          <div className="lg:col-span-4 flex items-center gap-4 lg:pt-2">
+            <VMark className="w-16 h-12 text-[#d8a455]" />
+            <div className="space-y-1">
+              <p className="eyebrow-brass">01 / OVERVIEW</p>
+              <p className="font-mono text-xs text-[var(--color-text-muted)]">
+                WEBSITE · PRODUCT · CAMPAIGN
+              </p>
             </div>
           </div>
-        </motion.div>
 
-        {/* Hero Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-amber-500/20 via-amber-400/20 to-amber-500/20 rounded-full mb-8 border border-amber-500/30 backdrop-blur-sm">
-            <div className="w-2 h-2 bg-amber-400 rounded-full mr-3 animate-pulse" />
-            <Globe className="w-5 h-5 text-amber-400 mr-3" />
-            <span className="text-sm text-amber-300 font-semibold tracking-wide uppercase">Leaders in Digital Transformation</span>
-          </div>
-          
-          <div className="relative mb-8">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black mb-6">
-              <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 bg-clip-text text-transparent drop-shadow-lg">
-                VIQ Systems
-              </span>
-            </h1>
-            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-50" />
-          </div>
-          
-          <p className="text-xl md:text-2xl lg:text-3xl text-[var(--color-text-secondary)] max-w-5xl mx-auto leading-relaxed font-light">
-            We transform ideas into 
-            <span className="relative">
-              <span className="text-amber-400 font-bold"> exceptional digital solutions that drive business growth and create memorable experiences.</span>
-              <svg className="absolute bottom-0 left-0 w-full h-2 overflow-visible" viewBox="0 0 100 10" preserveAspectRatio="none">
-                <path d="M0,5 Q25,8 50,5 T100,5" stroke="url(#gradient)" strokeWidth="2" fill="none" />
-                <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#fbbf24" stopOpacity="0" />
-                    <stop offset="50%" stopColor="#fbbf24" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#fbbf24" stopOpacity="0" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </span>
-            </p>
-        </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            variants={fadeUp}
+            className="lg:col-span-8"
+          >
+            <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-[3.25rem] leading-tight tracking-tight text-[var(--color-text-primary)] max-w-2xl">
+              Digital transformation isn't décor —{" "}
+              <span className="text-[#d8a455] font-medium italic">it's the machine</span>{" "}
+              your business runs on.
+            </h2>
+            <div className="mt-8 max-w-2xl space-y-4 text-[var(--color-text-secondary)] leading-relaxed">
+              <p>
+                VIQ Systems builds the instruments behind a strong web presence:
+                development, reach, and identity. The work is judged by one
+                question — does it move the numbers that matter to you?
+              </p>
+              <p>
+                We bring eleven years of engineering habit: honest structure,
+                measurable outcomes, and no decoration that doesn't earn its place.
+              </p>
+            </div>
+          </motion.div>
+        </div>
 
-        {/* Enhanced Stats Grid */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 mb-20 items-stretch"
+        {/* Stats — plain, un-gimmicked */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          variants={fadeUp}
+          custom={1}
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--color-border-default)] border border-[var(--color-border-default)] mb-20"
         >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 * index }}
-              className="group relative"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-amber-400/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl" />
-              <div className="relative bg-gradient-to-br from-[var(--color-bg-secondary)] to-[var(--color-bg-tertiary)] border border-amber-500/20 rounded-3xl p-6 sm:p-8 hover:border-amber-400/40 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 group-hover:-translate-y-2 h-full">
-                <div className="flex items-center justify-center mb-6">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-amber-400/20 rounded-full blur-lg" />
-                    <div className="relative w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                      <stat.icon className="w-8 h-8 text-white" />
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="space-y-3">
-                  <div className="text-5xl font-black bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 bg-clip-text text-transparent leading-none">
-                    {stat.number}
-                  </div>
-                  <div className="text-[var(--color-text-primary)] font-bold text-lg">{stat.label}</div>
-                  <div className="text-[var(--color-text-muted)] text-sm font-light">{stat.description}</div>
-                </div>
-              </div>
-            </motion.div>
+          {stats.map((stat) => (
+            <div key={stat.label} className="bg-background-secondary p-8">
+              <div className="stat-number text-5xl">{stat.number}</div>
+              <p className="mt-3 font-medium text-[var(--color-text-primary)]">{stat.label}</p>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">{stat.note}</p>
+            </div>
           ))}
         </motion.div>
 
-        {/* Projects Carousel */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 1 }}
-          className="mb-20 -mx-4 md:-mx-6 lg:-mx-8"
-        >
-          <div className="text-center mb-12 px-4">
-            <h3 className="text-4xl font-bold mb-4 text-[var(--color-text-primary)]">Our Clients</h3>
-            <p className="text-[var(--color-text-secondary)] text-lg max-w-2xl mx-auto">
-              We have worked with a variety of clients across different industries
-            </p>
+        {/* Clients — a static index, no autoplay marquee */}
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow-brass mb-3">02 / CLIENTS</p>
+            <h3 className="font-display font-bold text-2xl sm:text-3xl text-[var(--color-text-primary)]">
+              Work across industries
+            </h3>
           </div>
-          
-          <div className="relative overflow-hidden rounded-2xl">
-            <div 
-              ref={carouselRef}
-              className="flex space-x-6 overflow-x-hidden scrollbar-hide"
-              style={{ scrollBehavior: 'auto' }}
-            >
-              {/* First set of projects */}
-              {[1, 2, 3, 4, 5, 6, 7].map((project) => (
-                <div key={project} className="flex-shrink-0 w-80">
-                  <div className="relative group overflow-hidden rounded-2xl border border-[var(--color-border-default)] hover:border-amber-400 hover:shadow-lg hover:shadow-amber-400/30 transition-all duration-300">
-                    <div className="aspect-[16/10] overflow-hidden">
-                      <img
-                        src={`/images/projects/proyect-${project}/cover.jpg`}
-                        alt={`Project ${project}`}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {/* Duplicate set for seamless loop */}
-              {[1, 2, 3, 4, 5, 6, 7].map((project) => (
-                <div key={`duplicate-${project}`} className="flex-shrink-0 w-80">
-                  <div className="relative group overflow-hidden rounded-2xl border border-[var(--color-border-default)] hover:border-amber-400 hover:shadow-lg hover:shadow-amber-400/30 transition-all duration-300">
-                    <div className="aspect-[16/10] overflow-hidden">
-                      <img
-                        src={`/images/projects/proyect-${project}/cover.jpg`}
-                        alt={`Project ${project}`}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
+          <a href="/clients" className="link-strike font-mono text-xs uppercase tracking-[0.18em] text-[#d8a455]">
+            View all clients
+          </a>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-px bg-[var(--color-border-default)] border border-[var(--color-border-default)] mb-20">
+          {clients.map((p) => (
+            <div key={p} className="relative bg-background-secondary aspect-[4/3] overflow-hidden">
+              <img
+                src={`/images/projects/proyect-${p}/cover.jpg`}
+                alt={`Client project ${p}`}
+                className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300"
+                loading="lazy"
+              />
             </div>
-          </div>
-          
-          <div className="text-center mt-8">
-            <a 
-              href="/clients" 
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-400 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-amber-500/25 transition-all duration-300"
-            >
-              View All Clients
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </a>
+          ))}
+        </div>
+
+        {/* CTA band */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          variants={fadeUp}
+          custom={2}
+          className="relative overflow-hidden border border-[var(--color-border-default)] bg-background-secondary"
+        >
+          <div className="absolute inset-0 spec-grid opacity-60 pointer-events-none" />
+          <div className="relative md:flex md:items-center md:justify-between gap-10 p-8 sm:p-12">
+            <div>
+              <p className="eyebrow-brass mb-3 flex items-center gap-2">
+                <Globe2 className="w-4 h-4" /> START A CONVERSATION
+              </p>
+              <h3 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-[var(--color-text-primary)]">
+                Let's map your next system.
+              </h3>
+            </div>
+            <div className="mt-8 md:mt-0 flex flex-col sm:flex-row gap-4">
+              <Button href="/contact">
+                Contact us <ArrowRight className="w-4 h-4" />
+              </Button>
+              <Button href="/projects" variant="outline">
+                View projects
+              </Button>
+            </div>
           </div>
         </motion.div>
       </div>

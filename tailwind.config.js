@@ -1,14 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        // Usando variables CSS directamente
         background: {
           primary: 'var(--color-bg-primary)',
           secondary: 'var(--color-bg-secondary)',
@@ -23,22 +19,30 @@ export default {
           default: 'var(--color-border-default)',
           muted: 'var(--color-border-muted)',
         },
-        
-        // Colores personalizados
         primary: {
-          light: '#1f2937',    // Gris oscuro para modo claro
-          dark: '#000000',     // Negro para modo oscuro
-          DEFAULT: '#000000',
+          DEFAULT: '#0b0e14',
         },
         secondary: {
-          light: '#4b5563',    // Gris medio para modo claro
-          dark: '#f59e0b',     // Dorado para modo oscuro
-          DEFAULT: '#f59e0b',
+          DEFAULT: '#c3873f',
         },
         accent: {
-          light: '#6b7280',    // Gris más claro para acentos
-          dark: '#d97706',
-          DEFAULT: '#d97706',
+          DEFAULT: '#d8a455',
+        },
+        // Signature ramp: the logo is a bronze-to-gold "V". We repoint the
+        // entire amber scale at that range so every existing amber-* class
+        // resolves to the brand's own metal instead of the Tailwind default.
+        amber: {
+          50: '#fbf6ec',
+          100: '#f5e9cf',
+          200: '#ebd39b',
+          300: '#e2b96b',
+          400: '#d8a455',
+          500: '#c3873a',
+          600: '#a86e2c',
+          700: '#8a571f',
+          800: '#6d4318',
+          900: '#4d2e11',
+          950: '#2f1c0a',
         },
       },
       backgroundColor: theme => ({
@@ -61,6 +65,20 @@ export default {
         'border-default': 'var(--color-border-default)',
         'border-muted': 'var(--color-border-muted)',
       }),
+      fontFamily: {
+        display: ['"Space Grotesk"', 'Inter', 'sans-serif'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+      },
+      letterSpacing: {
+        eyebrow: '0.32em',
+      },
+      backgroundImage: {
+        'spec-grid':
+          'linear-gradient(to right, var(--color-grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--color-grid-line) 1px, transparent 1px)',
+        'brass-gradient':
+          'linear-gradient(135deg, #a86e2c 0%, #c3873a 35%, #d8a455 70%, #e2b96b 100%)',
+      },
     },
   },
   plugins: [],

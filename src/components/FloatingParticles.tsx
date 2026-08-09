@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
 interface Particle {
   x: number;
@@ -15,6 +16,11 @@ const FloatingParticles = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const animationRef = useRef<number>();
+  const scrollRef = useRef(0);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+  const isHomeRef = useRef(isHome);
+  isHomeRef.current = isHome;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -28,62 +34,74 @@ const FloatingParticles = () => {
       canvas.height = window.innerHeight;
     };
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    const onScroll = () => {
+      scrollRef.current = window.scrollY || 0;
+    };
 
-    // Create particles
-    const particleCount = 80;
+    resizeCanvas();
+    onScroll();
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Smaller, quieter golden specks
+    const particleCount = 28;
     const particles: Particle[] = [];
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 4 + 2,
-        speedX: (Math.random() - 0.5) * 0.5,
-        speedY: (Math.random() - 0.5) * 0.5,
-        opacity: Math.random() * 0.7 + 0.6,
+        size: Math.random() * 1.6 + 0.7,
+        speedX: (Math.random() - 0.5) * 0.35,
+        speedY: (Math.random() - 0.5) * 0.35,
+        opacity: Math.random() * 0.5 + 0.3,
         pulseSpeed: Math.random() * 0.02 + 0.01,
-        pulsePhase: Math.random() * Math.PI * 2
+        pulsePhase: Math.random() * Math.PI * 2,
       });
     }
 
     particlesRef.current = particles;
 
+    // On the home page, the hero banner fills the first viewport-height. Keep
+    // specks off-screen until the user scrolls past it.
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // Home hero occupies the first viewport — none of the band while visible.
+      if (isHomeRef.current && scrollRef.current < canvas.height) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      const h = canvas.height;
+
       particlesRef.current.forEach((particle) => {
-        // Update position
         particle.x += particle.speedX;
         particle.y += particle.speedY;
 
-        // Wrap around edges
         if (particle.x < 0) particle.x = canvas.width;
         if (particle.x > canvas.width) particle.x = 0;
-        if (particle.y < 0) particle.y = canvas.height;
-        if (particle.y > canvas.height) particle.y = 0;
+        if (particle.y < 0) particle.y = h;
+        if (particle.y > h) particle.y = 0;
 
-        // Update pulse
         particle.pulsePhase += particle.pulseSpeed;
         const pulseFactor = Math.sin(particle.pulsePhase) * 0.3 + 0.7;
 
-        // Draw particle
+        const haloR = particle.size * 3;
         const gradient = ctx.createRadialGradient(
           particle.x, particle.y, 0,
-          particle.x, particle.y, particle.size * 2
+          particle.x, particle.y, haloR,
         );
-        
+
         gradient.addColorStop(0, `rgba(251, 191, 36, ${particle.opacity * pulseFactor})`);
-        gradient.addColorStop(0.5, `rgba(245, 158, 11, ${particle.opacity * pulseFactor * 0.5})`);
+        gradient.addColorStop(0.5, `rgba(245, 158, 11, ${particle.opacity * pulseFactor * 0.4})`);
         gradient.addColorStop(1, 'rgba(251, 191, 36, 0)');
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size * 2, 0, Math.PI * 2);
+        ctx.arc(particle.x, particle.y, haloR, 0, Math.PI * 2);
         ctx.fill();
 
-        // Draw core
         ctx.fillStyle = `rgba(251, 191, 36, ${particle.opacity * pulseFactor})`;
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
@@ -97,6 +115,7 @@ const FloatingParticles = () => {
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('scroll', onScroll);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
@@ -106,8 +125,9 @@ const FloatingParticles = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
+      className="fixed inset-0 pointer-events-none z-30"
       style={{ mixBlendMode: 'screen' }}
+      aria-hidden="true"
     />
   );
 };
