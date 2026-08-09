@@ -486,7 +486,7 @@ const initContactWidget = () => {
         color: ${formTextColor};
         border-radius: 16px;
         padding: 24px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15),
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25),
                    0 0 20px ${primaryColor}1a;
         border: 1px solid ${borderColor};
         backdrop-filter: blur(20px);
@@ -494,12 +494,26 @@ const initContactWidget = () => {
           config.animationDuration
         } cubic-bezier(0.4, 0, 0.2, 1);
         transform-origin: bottom right;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(216, 164, 85, 0.55) rgba(23, 26, 34, 0.9);
       }
 
       .contact-widget-form::-webkit-scrollbar {
-        display: none;
+        width: 6px;
+      }
+
+      .contact-widget-form::-webkit-scrollbar-track {
+        background: rgba(13, 16, 22, 0.85);
+        border-radius: 9999px;
+      }
+
+      .contact-widget-form::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, rgba(216, 164, 85, 0.8), rgba(216, 164, 85, 0.4));
+        border-radius: 9999px;
+      }
+
+      .contact-widget-form::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, rgba(216, 164, 85, 1), rgba(216, 164, 85, 0.6));
       }
 
       .contact-widget-form.closing {
@@ -537,14 +551,15 @@ const initContactWidget = () => {
         border-radius: 10px;
         font-size: 14px;
         transition: all ${config.animationDuration} ease;
-        background: ${
-          siteTheme.isDark
-            ? "rgba(31, 41, 55, 0.5)"
-            : "rgba(249, 250, 251, 0.8)"
-        };
+        background: ${inputBgColor};
         color: ${formTextColor};
-        backdrop-filter: blur(10px);
         box-sizing: border-box;
+      }
+
+      .contact-widget-form input::placeholder,
+      .contact-widget-form textarea::placeholder {
+        color: ${formTextColor};
+        opacity: 0.45;
       }
 
       .contact-widget-form input:focus,
@@ -555,8 +570,8 @@ const initContactWidget = () => {
                    0 0 0 1px ${primaryColor};
         background: ${
           siteTheme.isDark
-            ? "rgba(31, 41, 55, 0.8)"
-            : "rgba(255, 255, 255, 0.95)"
+            ? "#1c2230"
+            : "#ffffff"
         };
       }
 

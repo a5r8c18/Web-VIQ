@@ -16,6 +16,13 @@
     /* One theme, deliberate. Cold ink, warm brass accent. */
     --primary: #d8a455;
     --primary-foreground: #0b0e14;
+    --card: #11151d;
+    --card-foreground: #f4f6fa;
+    --border: #20262f;
+    --input: #171a22;
+    --foreground: #f4f6fa;
+    --background: #0b0e14;
+    --sidebar: #11151d;
     --color-bg-primary: #0b0e14;
     --color-bg-secondary: #11151d;
     --color-bg-tertiary: #171a27;
