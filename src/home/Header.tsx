@@ -26,7 +26,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-bg-primary)]/85 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-bg-primary)]/95">
       <div className="container-custom">
         <div className="flex justify-between items-center h-16">
           <a href="/" className="flex items-center gap-3">

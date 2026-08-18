@@ -138,6 +138,18 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+  .border-strobe-gold {
+    animation: strobe-gold 3s ease-in-out infinite;
+  }
+}
+
+@keyframes strobe-gold {
+  0%, 100% {
+    border-color: rgba(216, 164, 85, 0.15);
+  }
+  50% {
+    border-color: rgba(216, 164, 85, 1);
+  }
 }
 
 /* Show the rule + reveal only when motion is allowed */
@@ -164,8 +176,6 @@
   position: relative;
   overflow: hidden;
   border-radius: 9999px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
 }
 
 /* ── brass variant ──────────────────────────────────────────────────────── */

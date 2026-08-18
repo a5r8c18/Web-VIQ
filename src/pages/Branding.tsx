@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Palette, Sparkles, Target, Eye, Lightbulb, PenTool, Zap, Award } from 'lucide-react';
 import { SectionHeading } from '../components/ui';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -66,6 +67,10 @@ const deliverables = [
 const Branding = () => {
   return (
     <div className="min-h-screen bg-[var(--color-bg-primary)] pt-28">
+      <SEO
+        title="Branding & Visual Identity Services"
+        description="Strategic brand identity design, logo design, visual guidelines, and brand strategy engineered to make a lasting impression."
+      />
       <div className="container-custom">
         {/* Page header */}
         <div className="grid lg:grid-cols-12 gap-10 items-end mb-16 sm:mb-20">

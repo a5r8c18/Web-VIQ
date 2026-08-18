@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { SectionHeading } from '../components/ui';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -50,6 +51,10 @@ const projects = [
 const Projects = () => {
   return (
     <div className="min-h-screen bg-[var(--color-bg-primary)] pt-28 pb-24">
+      <SEO
+        title="Selected Projects & Case Studies"
+        description="Explore selected web development, digital product, branding, and marketing campaigns delivered by VIQ Systems."
+      />
       <div className="container-custom">
         <SectionHeading
           eyebrow="Selected work"

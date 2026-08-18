@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import About from './About';
 import { VMark } from '../components/ui';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 
 const MEDIA_DURATION = 5000;
 const MAX_VIDEO_SECONDS = 10;
@@ -15,7 +16,7 @@ const slides = [
   { type: 'video', src: '/videos/VQS.mp4' },
   { type: 'image', src: '/images/6zTkyqP0n_2000x1500__1.jpg', alt: 'VIQ team at work' },
   { type: 'video', src: '/videos/ViqSVideo.mp4' },
-  { type: 'image', src: '/images/projects/proyect-1/cover.jpg', alt: 'VIQ project' },
+  { type: 'image', src: '/images/logo1.png', alt: 'VIQ project' },
 ] as const;
 
 const fadeUp = {
@@ -30,11 +31,30 @@ const fadeUp = {
 const Hero = () => {
   const [active, setActive] = useState(0);
   const [removed, setRemoved] = useState<number[]>([]);
+  const [isVisible, setIsVisible] = useState(true);
   const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
 
   const pendingSlides = slides.filter((_, i) => !removed.includes(i));
 
   useEffect(() => {
+    const scrollContainer = document.getElementById('main-scroll-container');
+    if (!scrollContainer) return;
+
+    const onScroll = () => {
+      // Pause animations if scrolled more than halfway past the Hero
+      if (scrollContainer.scrollTop > window.innerHeight * 0.5) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+    };
+
+    scrollContainer.addEventListener('scroll', onScroll, { passive: true });
+    return () => scrollContainer.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return; // Pause rotation when covered
     if (active >= pendingSlides.length) {
       setActive(0);
       return;
@@ -45,20 +65,20 @@ const Hero = () => {
       setActive((prev) => (prev + 1) % pendingSlides.length);
     }, MEDIA_DURATION);
     return () => clearTimeout(id);
-  }, [active, pendingSlides.length, removed]);
+  }, [active, pendingSlides.length, removed, isVisible]);
 
   useEffect(() => {
     Object.entries(videoRefs.current).forEach(([index, video]) => {
       if (!video) return;
       const i = Number(index);
-      if (i === active) {
+      if (i === active && isVisible) {
         if (video.ended) video.currentTime = 0;
         video.play().catch(() => {});
       } else {
         video.pause();
       }
     });
-  }, [active]);
+  }, [active, isVisible]);
 
   const next = useCallback(() => {
     setActive((prev) => (prev + 1) % pendingSlides.length);
@@ -110,9 +130,13 @@ const Hero = () => {
 
   return (
     <>
+      <SEO
+        title="VIQ Systems | Web & Software Development, Digital Marketing, and Branding Services"
+        description="Looking for digital solutions in Miami? VIQ Systems offers web development, digital marketing, and branding services to elevate your business."
+      />
       {/* Hero — thesis: the subject is "systems", so open with the mark and
           the grid of the machine, not a generic centered gradient. */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative z-0 transform-gpu sticky top-0 min-h-[100dvh] pt-16 lg:pt-20 flex items-center overflow-hidden border-b border-strobe-gold">
         {/* Rotating media banner: video → photo → video → photo */}
         <div className="absolute inset-0 z-0">
           {pendingSlides.map((_, index) => renderSlide(index))}
@@ -125,7 +149,7 @@ const Hero = () => {
           {pendingSlides.map((slide, index) => (
             <button
               key={index}
-              onClick={next}
+              onClick={() => setActive(index)}
               aria-label={slide.type === 'video' ? `Play video ${index + 1}` : `Show photo ${index + 1}`}
               className={`font-mono text-[10px] uppercase tracking-[0.2em] transition-colors duration-300 px-2 py-1 ${
                 index === active

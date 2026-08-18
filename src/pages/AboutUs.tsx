@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { Target, Briefcase, Mail } from 'lucide-react';
+import { Target, Briefcase } from 'lucide-react';
 import { SectionHeading } from '../components/ui';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -42,6 +43,10 @@ const team = [
 const AboutUs = () => {
   return (
     <div className="min-h-screen pt-28 relative z-10 bg-[var(--color-bg-primary)]">
+      <SEO
+        title="About Us | Miami Digital Studio"
+        description="Learn about VIQ Systems, our mission, approach, and leadership team bringing 11+ years of engineering discipline to digital builds."
+      />
       <div className="container-custom">
         {/* Hero */}
         <div className="grid lg:grid-cols-12 gap-10 items-end mb-16 sm:mb-20">
@@ -185,7 +190,7 @@ const AboutUs = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button href="/contact">
-                Get in touch <Mail className="w-4 h-4" />
+                Get in touch
               </Button>
             </div>
           </div>

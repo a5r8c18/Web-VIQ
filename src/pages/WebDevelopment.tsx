@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Code, Database, Globe, Smartphone, Cloud, Shield, Zap, Monitor, Cpu, CheckCircle, Target } from 'lucide-react';
 import { SectionHeading } from '../components/ui';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -74,6 +75,10 @@ const WebDevelopment = () => {
 
   return (
     <div className="min-h-screen bg-[var(--color-bg-primary)] pt-28">
+      <SEO
+        title="Web & Software Development Services"
+        description="Custom web development, responsive web design, progressive web apps, cloud DevOps, and scalable software architecture by VIQ Systems in Miami."
+      />
       <div className="container-custom">
         {/* Page header — a thesis, not a trailer */}
         <div className="grid lg:grid-cols-12 gap-10 items-end mb-16 sm:mb-20">

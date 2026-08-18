@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Target, BarChart3, Eye, Globe, Lightbulb } from 'lucide-react';
 import { SectionHeading } from '../components/ui';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -40,6 +41,10 @@ const process = [
 const DigitalMarketing = () => {
   return (
     <div className="min-h-screen bg-[var(--color-bg-primary)] pt-28">
+      <SEO
+        title="Digital Marketing Services"
+        description="Data-driven digital marketing, SEO optimization, content strategy, and PPC campaign management with measurable ROI by VIQ Systems."
+      />
       <div className="container-custom">
         {/* Page header */}
         <div className="grid lg:grid-cols-12 gap-10 items-end mb-16 sm:mb-20">

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -23,6 +24,10 @@ const clients = [
 const Clients = () => {
   return (
     <div className="min-h-screen bg-[var(--color-bg-primary)] pt-28">
+      <SEO
+        title="Our Clients & Partnerships"
+        description="See how VIQ Systems collaborates with clients across technology, retail, finance, healthcare, and education to drive real results."
+      />
       <div className="container-custom">
         {/* Page header */}
         <div className="grid lg:grid-cols-12 gap-10 items-end mb-16 sm:mb-20">

@@ -34,14 +34,18 @@ const FloatingParticles = () => {
       canvas.height = window.innerHeight;
     };
 
+    const scrollContainer = document.getElementById('main-scroll-container') || window;
+
     const onScroll = () => {
-      scrollRef.current = window.scrollY || 0;
+      scrollRef.current = scrollContainer === window 
+        ? window.scrollY || 0 
+        : (scrollContainer as HTMLElement).scrollTop || 0;
     };
 
     resizeCanvas();
     onScroll();
     window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('scroll', onScroll, { passive: true });
+    scrollContainer.addEventListener('scroll', onScroll, { passive: true });
 
     // Smaller, quieter golden specks
     const particleCount = 28;
@@ -115,7 +119,7 @@ const FloatingParticles = () => {
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener('scroll', onScroll);
+      scrollContainer.removeEventListener('scroll', onScroll);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
@@ -126,7 +130,6 @@ const FloatingParticles = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-30"
-      style={{ mixBlendMode: 'screen' }}
       aria-hidden="true"
     />
   );
